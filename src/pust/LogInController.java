@@ -27,7 +27,7 @@ public class LogInController {
         //TODO make strings safe for root Admin. Sebastians shit
         if (connected && userName.getText().equals("root") && userName.getText().equals("root")) {
             SceneSwitch sceneSwitcher = new SceneSwitch();
-            sceneSwitcher.switchS(actionEvent);
+            sceneSwitcher.goToAdminCreate(actionEvent);
         } else {
             //TODO Something
         }

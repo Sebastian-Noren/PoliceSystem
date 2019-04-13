@@ -30,19 +30,24 @@ public class AdminDatabase {
 
         try {
             statement.executeUpdate("CREATE USER '" + accName + "'@'" + AppConstant.DATABASE_HOST + "' IDENTIFIED BY '" + accPassText + "';");
-            System.out.println("user complete");
         } catch (SQLException ex) {
-            System.err.println("Can´t create user");
+            ex.printStackTrace();
         }
     }
 
+    void grantOptionsSQL(String grant, String accName) {
+        try {
+            statement.executeUpdate("GRANT "+grant+" ON *.* TO '" + accName + "'@'" + AppConstant.DATABASE_HOST +"';");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     void removeUsersSQL(String userToDelete) {
         try {
             statement.executeUpdate("DROP USER '"+userToDelete+"'@'" + AppConstant.DATABASE_HOST + "';");
-            System.out.println("user Deleted");
         } catch (SQLException ex) {
-            System.err.println("Can´t delete user");
+            ex.printStackTrace();
         }
     }
 
@@ -53,10 +58,9 @@ public class AdminDatabase {
 
             while(rs.next()){
                 userReturn.add(rs.getString(1));
-
             }
         }catch (SQLException ex){
-            System.out.println("executing fail");
+            ex.printStackTrace();
         }
         return userReturn;
     }
