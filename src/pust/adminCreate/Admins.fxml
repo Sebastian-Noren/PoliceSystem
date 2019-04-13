@@ -5,11 +5,14 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -84,7 +87,76 @@
                               <Label text="Type new password." GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <CheckBox layoutX="14.0" layoutY="155.0" mnemonicParsing="false" text="CheckBox" />
+                        <VBox layoutX="315.0" layoutY="151.0" prefHeight="193.0" prefWidth="127.0">
+                           <children>
+                              <Label text="Global Privileges">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <GridPane prefHeight="136.0" prefWidth="111.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <CheckBox fx:id="select" mnemonicParsing="false" text="SELECT" />
+                                    <CheckBox fx:id="insert" mnemonicParsing="false" text="INSERT" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="update" mnemonicParsing="false" text="UPDATE" GridPane.rowIndex="2" />
+                                    <CheckBox fx:id="delete" mnemonicParsing="false" text="DELETE" GridPane.rowIndex="3" />
+                                    <CheckBox fx:id="grantOption" mnemonicParsing="false" text="GRANT OPTION" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <Button layoutX="461.0" layoutY="439.0" mnemonicParsing="false" onAction="#createAccBtn" text="Add Account" />
+                        <VBox layoutX="58.0" layoutY="151.0" prefHeight="146.0" prefWidth="127.0">
+                           <children>
+                              <Label text="Account Role">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <GridPane prefHeight="87.0" prefWidth="127.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <RadioButton fx:id="accPoliceRole" mnemonicParsing="false" onAction="#roleSelect" selected="true" text="Police Officer">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="accRole" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="accPoliceChiefRole" mnemonicParsing="false" onAction="#roleSelect" text="Police chief" toggleGroup="$accRole" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="accITrole" mnemonicParsing="false" onAction="#roleSelect" text="IT-administrator" toggleGroup="$accRole" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <Separator layoutX="4.0" layoutY="117.0" prefHeight="11.0" prefWidth="621.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Separator>
+                        <Separator layoutX="249.0" layoutY="151.0" orientation="VERTICAL" prefHeight="309.0" prefWidth="14.0" />
+                        <Button layoutX="561.0" layoutY="439.0" mnemonicParsing="false" onAction="#returnLogin" text="Go back" />
                      </children>
                   </AnchorPane>
             </content>
@@ -99,7 +171,6 @@
       <HBox BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="25.0" prefWidth="697.0" />
-            <Button mnemonicParsing="false" onAction="#createAccBtn" text="Add Account" />
          </children>
       </HBox>
    </bottom>
