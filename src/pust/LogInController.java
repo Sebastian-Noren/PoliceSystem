@@ -2,20 +2,12 @@ package pust;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
+public class LogInController {
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class LogInController implements Initializable {
-
-    //TODO Create a nice loginscreen.
+    //TODO Create a nice loginscreen Julius.
 
     @FXML
     TextField userName;
@@ -24,14 +16,23 @@ public class LogInController implements Initializable {
     @FXML
     Button logInBtn;
     DatabaseConnection database;
+    boolean connected;
 
     public void logInBtn(ActionEvent actionEvent) {
 
-        database = new DatabaseConnection(userName.getText(), passWord.getText());
+        database = new DatabaseConnection();
+        connected = database.Loginconnect(userName.getText(), passWord.getText());
+
+
+        //TODO make strings safe for root Admin. Sebastians shit
+        if (connected && userName.getText().equals("root") && userName.getText().equals("root")) {
+            SceneSwitch sceneSwitcher = new SceneSwitch();
+            sceneSwitcher.switchS(actionEvent);
+        } else {
+            //TODO Something
+        }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
+
+
