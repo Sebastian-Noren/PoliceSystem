@@ -11,8 +11,16 @@
       <AnchorPane layoutY="199.0" prefHeight="580.0" prefWidth="243.0" style="-fx-background-color: #303C40;">
          <children>
             <VBox fx:id="vBox" layoutX="2.0" layoutY="41.0" prefHeight="509.0" prefWidth="267.0" stylesheets="@ApplicationWindow.css" />
-            <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#policeButton" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Police" />
-            <Button layoutX="148.0" layoutY="14.0" mnemonicParsing="false" onAction="#policeChiefButton" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Police chief" />
+            <Button fx:id="policeBtn" layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#policeButton" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Police" />
+            <Button fx:id="policeChiefBtn" layoutX="148.0" layoutY="14.0" mnemonicParsing="false" onAction="#policeChiefButton" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Police chief" />
+            <Button layoutX="73.0" layoutY="125.0" mnemonicParsing="false" onAction="#applyScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Apply" />
+            <Button layoutX="73.0" layoutY="171.0" mnemonicParsing="false" onAction="#reportCrimeScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Report crime" />
+            <Button layoutX="73.0" layoutY="216.0" mnemonicParsing="false" onAction="#reportLostPropertyScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Report lost property" />
+            <Button layoutX="73.0" layoutY="259.0" mnemonicParsing="false" onAction="#viewStatisticsScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="View statistics" />
+            <Button layoutX="73.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitArrestReportScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Submit arrest report" />
+            <Button layoutX="73.0" layoutY="351.0" mnemonicParsing="false" onAction="#viewCriminalRecordsScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="View criminal records" />
+            <Button layoutX="73.0" layoutY="398.0" mnemonicParsing="false" onAction="#concludeCaseScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Conclude case" />
+            <Button layoutX="73.0" layoutY="454.0" mnemonicParsing="false" onAction="#retrievePersonalInfoScene" prefHeight="25.0" prefWidth="138.0" styleClass="style-btn" stylesheets="@ApplicationWindow.css" text="Retrieve personal info" />
          </children>
       </AnchorPane>
       <Pane fx:id="multiScenes" layoutX="269.0" layoutY="199.0" prefHeight="580.0" prefWidth="714.0" />
