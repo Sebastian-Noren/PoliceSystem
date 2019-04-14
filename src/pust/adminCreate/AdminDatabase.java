@@ -17,7 +17,7 @@ public class AdminDatabase {
     void connect(){
         try{
             String url = "jdbc:mysql://"+ AppConstant.DATABASE_HOST +":3306/"+AppConstant.DATABASE_NAME+"?useTimezone=true&serverTimezone=UTC";
-            Connection con = DriverManager.getConnection(url,AppConstant.CURRENT_USER,AppConstant.CURRENT_USER_PASS);
+            Connection con = DriverManager.getConnection(url,AppConstant.getCurrentUser(),AppConstant.getCurrentUserPass());
             statement = con.createStatement();
             System.out.println("Connected to database!");
         } catch(Exception e){

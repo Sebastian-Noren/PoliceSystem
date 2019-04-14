@@ -18,8 +18,8 @@ public class DatabaseConnection {
             statement = con.createStatement();
             System.out.println("Login okay!");
             //Saves the current user to a global
-            AppConstant.CURRENT_USER = userName;
-            AppConstant.CURRENT_USER_PASS = passWord;
+            AppConstant.setCurrentUser(userName);
+            AppConstant.setCurrentUserPass(passWord);
             return true;
         } catch(Exception e){
             System.err.println(e);
@@ -33,7 +33,7 @@ public class DatabaseConnection {
     void connect(){
         try{
             String url = "jdbc:mysql://"+AppConstant.DATABASE_HOST +"/"+AppConstant.DATABASE_NAME+"?useTimezone=true&serverTimezone=UTC";
-            Connection con = DriverManager.getConnection(url,AppConstant.CURRENT_USER,AppConstant.CURRENT_USER_PASS);
+            Connection con = DriverManager.getConnection(url,AppConstant.getCurrentUser(),AppConstant.getCurrentUserPass());
             statement = con.createStatement();
             System.out.println("Connected to database!");
         } catch(Exception e){
