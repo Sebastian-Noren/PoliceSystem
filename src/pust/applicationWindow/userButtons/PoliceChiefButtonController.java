@@ -1,10 +1,13 @@
 package pust.applicationWindow.userButtons;
 
-import javafx.fxml.Initializable;
-import pust.applicationWindow.ApplicationController;
 
+import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/*
+ Under construction, will probably be deleted
+ */
 
 public class PoliceChiefButtonController implements Initializable {
 
@@ -14,8 +17,8 @@ public class PoliceChiefButtonController implements Initializable {
 
     }
 
-    //Calls on methods in ApplicationController that sets the scenes
     public void applyScene(){
+
 
     }
 
