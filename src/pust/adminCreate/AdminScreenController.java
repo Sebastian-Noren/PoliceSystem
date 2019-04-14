@@ -28,7 +28,7 @@ import java.util.StringJoiner;
 /**
  * @author Sebastian Norén <s.norén@gmail.com>
  */
-public class AdminController implements Initializable {
+public class AdminScreenController implements Initializable {
     private AdminDatabase sql;
     @FXML
     private TextField accName, accPass, accConfPass;
