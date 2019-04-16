@@ -41,44 +41,31 @@ public class AdminScreenController implements Initializable {
     @FXML
     private RadioButton accPoliceRole, accPoliceChiefRole, accITrole;
 
-    ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
-    ArrayList<String> adminUsers;
+    private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
+    private ArrayList<String> adminUsers;
     private String userSelect;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private AdminCreateModel adminCreateModel;;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sql = new AdminDatabase();
+        adminCreateModel = new AdminCreateModel();
         sql.connect();
         col_userAcc.setCellValueFactory(new PropertyValueFactory<>("users"));
         adminTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         adminTable.getSelectionModel().setCellSelectionEnabled(true);
         updateList();
         roleSelect();
-
     }
 
     @FXML
     private void createAccBtn() {
         if (accName.getText().isEmpty() || accPass.getText().isEmpty() || accConfPass.getText().isEmpty()) {
-            alert.setTitle("Warning");
-            alert.setHeaderText("");
-            alert.setContentText("you forgot to chose a Password or Account name. Please retry.");
-            alert.showAndWait();
+            adminCreateModel.alert();
         } else {
             if (accPass.getText().equals(accConfPass.getText())) {
                 sql.createUsersSQL(accName.getText(), accPass.getText());
-                sql.grantOptionsSQL(grant(select,insert,update,delete,grantOption),accName.getText());
-                alert.setTitle("Success");
-                alert.setHeaderText("");
-                alert.setContentText("Account created successfully.");
-                alert.showAndWait();
-            } else {
-                alert.setTitle("Warning");
-                alert.setHeaderText("");
-                alert.setContentText("Password don´t match.");
-                alert.showAndWait();
-
+                sql.grantOptionsSQL(adminCreateModel.grant(select, insert, update, delete, grantOption), accName.getText());
             }
         }
         accName.clear();
@@ -86,17 +73,18 @@ public class AdminScreenController implements Initializable {
         accConfPass.clear();
         accPoliceRole.setSelected(true);
         roleSelect();
+        updateList();
     }
 
     @FXML
     private void refreshUsers() {
-    updateList();
+        updateList();
     }
 
     @FXML
     private void deleteUser() {
-    sql.removeUsersSQL(userSelect);
-    updateList();
+        sql.removeUsersSQL(userSelect);
+        updateList();
     }
 
     @FXML
@@ -108,65 +96,26 @@ public class AdminScreenController implements Initializable {
             TableColumn tableColumn = tablePosition.getTableColumn();
             userSelect = (String) tableColumn.getCellObservableValue(item).getValue();
             System.err.println(userSelect);
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void roleSelect(){
-        if (accPoliceRole.isSelected()){
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
-            delete.setSelected(false);
-            delete.setDisable(true);
-            grantOption.setSelected(false);
-            grantOption.setDisable(true);
+    private void roleSelect() {
+        if (accPoliceRole.isSelected()) {
+            adminCreateModel.roleSelectPolice(select, insert, update, delete, grantOption);
         }
-        if (accPoliceChiefRole.isSelected()){
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
-            delete.setDisable(false);
-            delete.setSelected(true);
-            grantOption.setDisable(true);
-            grantOption.setSelected(false);
+        if (accPoliceChiefRole.isSelected()) {
+            adminCreateModel.roleSelectPoliceChief(select, insert, update, delete, grantOption);
         }
 
-        if (accITrole.isSelected()){
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
-            delete.setDisable(false);
-            delete.setSelected(true);
-            grantOption.setSelected(true);
-            grantOption.setDisable(false);
+        if (accITrole.isSelected()) {
+            adminCreateModel.roleSelectITadmin(select, insert, update, delete, grantOption);
         }
     }
 
-    private String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption){
-        StringJoiner sj = new StringJoiner(",");
-
-        if (select.isSelected()){
-            sj.add("SELECT");
-        }
-        if (insert.isSelected()){
-            sj.add("INSERT");
-        }
-        if (update.isSelected()){
-            sj.add("UPDATE");
-        }
-        if (delete.isSelected()){
-            sj.add("DELETE");
-        }
-        if (grantOption.isSelected()){
-            sj.add("GRANT OPTION");
-        }
-        return sj.toString();
-    }
-
-    private void updateList(){
+    private void updateList() {
         adminTable.getItems().clear();
         adminUsers = sql.getUsersAdmin();
         for (String g : adminUsers) {
