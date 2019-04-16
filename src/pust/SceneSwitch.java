@@ -24,7 +24,7 @@ public class SceneSwitch {
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle(AppConstant.SOFTWARE_NAME);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class SceneSwitch {
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle(AppConstant.SOFTWARE_NAME);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
