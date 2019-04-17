@@ -16,7 +16,7 @@ Model for switch scenes
 
 public class SceneSwitch {
 
-    void goToAdminCreate(Event event) {
+    public void goToAdminCreate(Event event) {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/pust/view/AdminScreen.fxml"));
@@ -34,7 +34,7 @@ public class SceneSwitch {
    public void goToLogin(Event event) {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/pust/LogInScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/pust/view/LogInScreen.fxml"));
             Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);

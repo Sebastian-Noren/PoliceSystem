@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pust.DatabaseConnection;
 import pust.SceneSwitch;
 import pust.model.adminCreate.AdminDatabase;
 import pust.model.adminCreate.AdminUserTable;
