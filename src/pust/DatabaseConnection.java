@@ -10,7 +10,7 @@ public class DatabaseConnection {
     public DatabaseConnection(){
     }
 
-    boolean Loginconnect(String userName, String passWord){
+    public boolean Loginconnect(String userName, String passWord){
         try{
 
             String url = "jdbc:mysql://"+AppConstant.getDatabaseHost() +":3306/"+AppConstant.getDatabaseName()+"?useTimezone=true&serverTimezone=UTC";
