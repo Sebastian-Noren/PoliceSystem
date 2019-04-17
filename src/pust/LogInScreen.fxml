@@ -29,7 +29,7 @@
       </Button>
       <Label fx:id="passForgot" layoutX="416.0" layoutY="504.0" text="Forgot password?" textFill="#698dae" />
       <Label fx:id="passWarning" layoutX="523.0" layoutY="478.0" text="Incorrect username or password" textFill="#f20d0d" />
-      <PasswordField fx:id="passWord" layoutX="290.0" layoutY="470.0" prefHeight="33.0" prefWidth="221.0" promptText="Password">
+      <PasswordField fx:id="passWord" layoutX="290.0" layoutY="470.0" onKeyPressed="#writingPassword" prefHeight="33.0" prefWidth="221.0" promptText="Password">
          <font>
             <Font size="14.0" />
          </font>

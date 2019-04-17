@@ -29,7 +29,7 @@ public class LogInController implements Initializable {
     DatabaseConnection database;
     boolean connected;
 
-    int counter;
+    private int counter;
 
     public void logInBtn(ActionEvent actionEvent) {
         counter++;
@@ -48,7 +48,13 @@ public class LogInController implements Initializable {
         }
     }
 
-    public void passwordCounter(int wrongPass){
+    // this method removes the "invalid password" warning while trying to type a new password
+    public void writingPassword(){
+        passWarning.setText("");
+    }
+
+    // this method takes the count of failed log in attempts and displays appropriate messsage
+    private void passwordCounter(int wrongPass){
         if (wrongPass >0 && wrongPass < 3){
             passWarning.setText("Incorrect username or password");
         } else if (wrongPass >= 3) {
@@ -56,7 +62,6 @@ public class LogInController implements Initializable {
             //create method to lock out
         }
     }
-
 
 
     @Override
