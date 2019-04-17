@@ -1,25 +1,17 @@
-package pust.adminCreate;
-
+package pust.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
-import pust.AppConstant;
 import pust.DatabaseConnection;
 import pust.SceneSwitch;
+import pust.model.adminCreate.AdminDatabase;
+import pust.model.adminCreate.AdminUserTable;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -41,10 +33,9 @@ public class AdminScreenController implements Initializable {
     @FXML
     private RadioButton accPoliceRole, accPoliceChiefRole, accITrole;
 
-    ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
-    ArrayList<String> adminUsers;
+    private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
     private String userSelect;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,7 +46,6 @@ public class AdminScreenController implements Initializable {
         adminTable.getSelectionModel().setCellSelectionEnabled(true);
         updateList();
         roleSelect();
-
     }
 
     @FXML
@@ -68,17 +58,7 @@ public class AdminScreenController implements Initializable {
         } else {
             if (accPass.getText().equals(accConfPass.getText())) {
                 sql.createUsersSQL(accName.getText(), accPass.getText());
-                sql.grantOptionsSQL(grant(select,insert,update,delete,grantOption),accName.getText());
-                alert.setTitle("Success");
-                alert.setHeaderText("");
-                alert.setContentText("Account created successfully.");
-                alert.showAndWait();
-            } else {
-                alert.setTitle("Warning");
-                alert.setHeaderText("");
-                alert.setContentText("Password don´t match.");
-                alert.showAndWait();
-
+                sql.grantOptionsSQL(grant(select, insert, update, delete, grantOption), accName.getText());
             }
         }
         accName.clear();
@@ -86,17 +66,18 @@ public class AdminScreenController implements Initializable {
         accConfPass.clear();
         accPoliceRole.setSelected(true);
         roleSelect();
+        updateList();
     }
 
     @FXML
     private void refreshUsers() {
-    updateList();
+        updateList();
     }
 
     @FXML
     private void deleteUser() {
-    sql.removeUsersSQL(userSelect);
-    updateList();
+        sql.removeUsersSQL(userSelect);
+        updateList();
     }
 
     @FXML
@@ -108,14 +89,14 @@ public class AdminScreenController implements Initializable {
             TableColumn tableColumn = tablePosition.getTableColumn();
             userSelect = (String) tableColumn.getCellObservableValue(item).getValue();
             System.err.println(userSelect);
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void roleSelect(){
-        if (accPoliceRole.isSelected()){
+    private void roleSelect() {
+        if (accPoliceRole.isSelected()) {
             select.setSelected(true);
             insert.setSelected(true);
             update.setSelected(true);
@@ -123,8 +104,9 @@ public class AdminScreenController implements Initializable {
             delete.setDisable(true);
             grantOption.setSelected(false);
             grantOption.setDisable(true);
+
         }
-        if (accPoliceChiefRole.isSelected()){
+        if (accPoliceChiefRole.isSelected()) {
             select.setSelected(true);
             insert.setSelected(true);
             update.setSelected(true);
@@ -133,8 +115,7 @@ public class AdminScreenController implements Initializable {
             grantOption.setDisable(true);
             grantOption.setSelected(false);
         }
-
-        if (accITrole.isSelected()){
+        if (accITrole.isSelected()) {
             select.setSelected(true);
             insert.setSelected(true);
             update.setSelected(true);
@@ -145,38 +126,39 @@ public class AdminScreenController implements Initializable {
         }
     }
 
-    private String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption){
-        StringJoiner sj = new StringJoiner(",");
+    @FXML
+    private void returnLogin(ActionEvent actionEvent) {
+        SceneSwitch sceneSwitch = new SceneSwitch();
+        sceneSwitch.goToLogin(actionEvent);
+    }
 
-        if (select.isSelected()){
+    private String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption) {
+        StringJoiner sj = new StringJoiner(",");
+        if (select.isSelected()) {
             sj.add("SELECT");
         }
-        if (insert.isSelected()){
+        if (insert.isSelected()) {
             sj.add("INSERT");
         }
-        if (update.isSelected()){
+        if (update.isSelected()) {
             sj.add("UPDATE");
         }
-        if (delete.isSelected()){
+        if (delete.isSelected()) {
             sj.add("DELETE");
         }
-        if (grantOption.isSelected()){
+        if (grantOption.isSelected()) {
             sj.add("GRANT OPTION");
         }
         return sj.toString();
     }
 
-    private void updateList(){
+    private void updateList() {
         adminTable.getItems().clear();
-        adminUsers = sql.getUsersAdmin();
+        ArrayList<String> adminUsers = sql.getUsersAdmin();
         for (String g : adminUsers) {
             oblist.add(new AdminUserTable(g));
         }
         adminTable.setItems(oblist);
     }
 
-    public void returnLogin(ActionEvent actionEvent) {
-        SceneSwitch sceneSwitch = new SceneSwitch();
-        sceneSwitch.goToLogin(actionEvent);
-    }
 }

@@ -1,4 +1,4 @@
-package pust.adminCreate;
+package pust.model.adminCreate;
 
 /**
  * @author Sebastian Norén <s.norén@gmail.com>

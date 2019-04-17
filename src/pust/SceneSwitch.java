@@ -19,12 +19,12 @@ public class SceneSwitch {
     void goToAdminCreate(Event event) {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/pust/adminCreate/AdminScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/pust/view/AdminScreen.fxml"));
             Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle(AppConstant.SOFTWARE_NAME);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class SceneSwitch {
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle(AppConstant.SOFTWARE_NAME);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
