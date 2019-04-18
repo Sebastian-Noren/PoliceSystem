@@ -11,7 +11,7 @@ public class AppConstant {
     private static String CURRENT_USER =""; //Save the current user in the program
     private static String CURRENT_USER_PASS = ""; //save the current password in the program.
 
-    public static String getSOFTWARE_NAME() {
+    static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
     }
 
@@ -27,7 +27,7 @@ public class AppConstant {
         return CURRENT_USER;
     }
 
-    public static void setCurrentUser(String currentUser) {
+    static void setCurrentUser(String currentUser) {
         CURRENT_USER = currentUser;
     }
 
@@ -35,7 +35,7 @@ public class AppConstant {
         return CURRENT_USER_PASS;
     }
 
-    public static void setCurrentUserPass(String currentUserPass) {
+    static void setCurrentUserPass(String currentUserPass) {
         CURRENT_USER_PASS = currentUserPass;
     }
 }

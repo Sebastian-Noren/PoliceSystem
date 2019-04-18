@@ -20,7 +20,6 @@ public class Main extends Application {
         window.setResizable(false);
         window.setTitle(AppConstant.getSOFTWARE_NAME());
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add("xxxx.css");
         window.setScene(scene);
         window.show();
     }

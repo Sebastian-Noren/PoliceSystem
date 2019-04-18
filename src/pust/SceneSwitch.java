@@ -24,6 +24,7 @@ public class SceneSwitch {
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
             primaryStage.show();
         } catch (IOException e) {
@@ -31,7 +32,7 @@ public class SceneSwitch {
         }
     }
 
-   public void goToLogin(Event event) {
+    public void goToLogin(Event event) {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/pust/view/LogInScreen.fxml"));
