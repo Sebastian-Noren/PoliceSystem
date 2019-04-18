@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import pust.SceneSwitch;
+import pust.model.adminCreate.AdminCreateModel;
 import pust.model.adminCreate.AdminDatabase;
 import pust.model.adminCreate.AdminUserTable;
 
@@ -21,8 +23,9 @@ import java.util.StringJoiner;
  */
 public class AdminScreenController implements Initializable {
     private AdminDatabase sql;
+    private AdminCreateModel adCrMo;
     @FXML
-    private TextField accName, accPass, accConfPass;
+    private TextField accFirstName, accLastName, accPass, accConfPass;
     @FXML
     private TableView<AdminUserTable> adminTable;
     @FXML
@@ -31,6 +34,8 @@ public class AdminScreenController implements Initializable {
     private CheckBox select, insert, update, delete, grantOption;
     @FXML
     private RadioButton accPoliceRole, accPoliceChiefRole, accITrole;
+    @FXML
+    private Label labWarFirstname, labWarPass, labWarLastname, labWarConfPass;
 
     private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
     private String userSelect;
@@ -39,6 +44,7 @@ public class AdminScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sql = new AdminDatabase();
+        adCrMo = new AdminCreateModel();
         sql.connect();
         col_userAcc.setCellValueFactory(new PropertyValueFactory<>("users"));
         adminTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -49,23 +55,40 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     private void createAccBtn() {
-        if (accName.getText().isEmpty() || accPass.getText().isEmpty() || accConfPass.getText().isEmpty()) {
-            alert.setTitle("Warning");
-            alert.setHeaderText("");
-            alert.setContentText("you forgot to chose a Password or Account name. Please retry.");
-            alert.showAndWait();
+        if (accFirstName.getText().isEmpty() || accLastName.getText().isEmpty() || accPass.getText().isEmpty() || accConfPass.getText().isEmpty()) {
+            if (accFirstName.getText().isEmpty()) {
+                labWarFirstname.setText("You need to fill out this field!");
+            }
+            if (accLastName.getText().isEmpty()) {
+                labWarLastname.setText("You need to fill out this field!");
+            }
+            if (accPass.getText().isEmpty()) {
+                labWarPass.setText("Needs a password!");
+            }
+            if (accConfPass.getText().isEmpty()) {
+                labWarConfPass.setText("Confirm your password!");
+            }
         } else {
             if (accPass.getText().equals(accConfPass.getText())) {
-                sql.createUsersSQL(accName.getText(), accPass.getText());
-                sql.grantOptionsSQL(grant(select, insert, update, delete, grantOption), accName.getText());
+                String randGenUserName = adCrMo.generateNewAccName(accFirstName.getText(), accLastName.getText());
+                sql.createUsersSQL(randGenUserName, accPass.getText());
+                sql.grantOptionsSQL(adCrMo.grant(select, insert, update, delete, grantOption), randGenUserName);
+                accFirstName.clear();
+                accLastName.clear();
+                accPass.clear();
+                accConfPass.clear();
+                accPoliceRole.setSelected(true);
+                roleSelect();
+                updateList();
+                alert.setTitle("Account Created");
+                alert.setHeaderText("");
+                alert.setContentText("New account name is: " + randGenUserName);
+                alert.showAndWait();
+            } else {
+                labWarPass.setText("Password don´t match!");
+                labWarConfPass.setText("Password don´t match!");
             }
         }
-        accName.clear();
-        accPass.clear();
-        accConfPass.clear();
-        accPoliceRole.setSelected(true);
-        roleSelect();
-        updateList();
     }
 
     @FXML
@@ -96,9 +119,6 @@ public class AdminScreenController implements Initializable {
     @FXML
     private void roleSelect() {
         if (accPoliceRole.isSelected()) {
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
             delete.setSelected(false);
             delete.setDisable(true);
             grantOption.setSelected(false);
@@ -106,49 +126,27 @@ public class AdminScreenController implements Initializable {
 
         }
         if (accPoliceChiefRole.isSelected()) {
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
             delete.setDisable(false);
             delete.setSelected(true);
             grantOption.setDisable(true);
             grantOption.setSelected(false);
         }
         if (accITrole.isSelected()) {
-            select.setSelected(true);
-            insert.setSelected(true);
-            update.setSelected(true);
+
             delete.setDisable(false);
             delete.setSelected(true);
             grantOption.setSelected(true);
             grantOption.setDisable(false);
         }
+        select.setSelected(true);
+        insert.setSelected(true);
+        update.setSelected(true);
     }
 
     @FXML
     private void returnLogin(ActionEvent actionEvent) {
         SceneSwitch sceneSwitch = new SceneSwitch();
         sceneSwitch.goToLogin(actionEvent);
-    }
-
-    private String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption) {
-        StringJoiner sj = new StringJoiner(",");
-        if (select.isSelected()) {
-            sj.add("SELECT");
-        }
-        if (insert.isSelected()) {
-            sj.add("INSERT");
-        }
-        if (update.isSelected()) {
-            sj.add("UPDATE");
-        }
-        if (delete.isSelected()) {
-            sj.add("DELETE");
-        }
-        if (grantOption.isSelected()) {
-            sj.add("GRANT OPTION");
-        }
-        return sj.toString();
     }
 
     private void updateList() {
@@ -158,6 +156,17 @@ public class AdminScreenController implements Initializable {
             oblist.add(new AdminUserTable(g));
         }
         adminTable.setItems(oblist);
+        labWarFirstname.setText("");
+        labWarLastname.setText("");
+        labWarPass.setText("");
+        labWarConfPass.setText("");
+    }
+    @FXML
+    private void typingReset() {
+        labWarFirstname.setText("");
+        labWarLastname.setText("");
+        labWarPass.setText("");
+        labWarConfPass.setText("");
     }
 
 }
