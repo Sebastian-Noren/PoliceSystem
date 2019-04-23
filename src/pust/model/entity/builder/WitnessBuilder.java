@@ -1,12 +1,12 @@
 package pust.model.entity.builder;
 
-import pust.model.entity.Visitor;
+import pust.model.entity.Witness;
 
-public class VisitorBuilder extends PersonBuilder<Visitor> {
+public class WitnessBuilder extends PersonBuilder<Witness> {
 
     @Override
-    public Visitor build() {
-        return new Visitor(
+    public Witness build() {
+        return new Witness(
                 super.firstName,
                 super.surname,
                 super.personalNumber,

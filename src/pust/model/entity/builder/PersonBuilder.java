@@ -1,8 +1,12 @@
 package pust.model.entity.builder;
 
+import pust.model.application_functions.Identification;
 import pust.model.entity.*;
+import pust.model.report_system.Crime;
+import pust.model.report_system.Record;
 
 public abstract class PersonBuilder <T extends Person>{
+
     protected String firstName;
     protected String surname;
     protected PersonalNumber personalNumber;

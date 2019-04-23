@@ -4,9 +4,9 @@ import pust.model.application_functions.Identification;
 import pust.model.report_system.Crime;
 import pust.model.report_system.Record;
 
-public class Notifier extends Person {
+public class Witness extends Person {
 
-    public Notifier(
+    public Witness(
             String firstName,
             String surname,
             PersonalNumber personalNumber,
