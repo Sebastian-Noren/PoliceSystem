@@ -1,11 +1,11 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.Police;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class MissingItem extends BaseReport {
 
@@ -20,14 +20,13 @@ public class MissingItem extends BaseReport {
     private String specificCharacteristics;
 
     public MissingItem(
-            Date currentDate,
+            String ref,
+            LocalDate currentDate,
             Police administrativeOfficer,
             LocalDateTime timeAndDateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
-            String ref,
-            String manufacturer,
             String areaOfUse,
             String model,
             String productionNumber,
@@ -38,15 +37,14 @@ public class MissingItem extends BaseReport {
             String specificCharacteristics
     ) {
         super(
+                ref,
                 currentDate,
                 administrativeOfficer,
                 timeAndDateOfEvent,
                 placeOfEvent,
                 notifier,
-                descriptionOfEvent,
-                ref
+                descriptionOfEvent
         );
-        this.manufacturer = manufacturer;
         this.areaOfUse = areaOfUse;
         this.model = model;
         this.productionNumber = productionNumber;

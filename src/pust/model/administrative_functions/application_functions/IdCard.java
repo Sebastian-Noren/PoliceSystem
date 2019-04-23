@@ -1,4 +1,4 @@
-package pust.model.application_functions;
+package pust.model.administrative_functions.application_functions;
 
 import pust.model.entity.Person;
 

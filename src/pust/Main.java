@@ -14,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Notifier notifier = new Notifier();
 
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));

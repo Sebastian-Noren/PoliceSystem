@@ -1,10 +1,10 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system.record;
 
 import java.util.ArrayList;
 
-public class CriminalRecord extends Record {
+public class EmployeeRecord extends Record {
 
-    public CriminalRecord(ArrayList record) {
+    public EmployeeRecord(ArrayList record) {
         super(record);
     }
 

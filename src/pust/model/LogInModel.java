@@ -1,7 +1,5 @@
 package pust.model;
 
-import pust.controller.LogInController;
-
 public class LogInModel {
 
 

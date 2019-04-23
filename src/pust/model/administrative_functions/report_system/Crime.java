@@ -1,12 +1,12 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.Police;
 import pust.model.entity.Witness;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Crime extends BaseReport {
 
@@ -16,26 +16,26 @@ public class Crime extends BaseReport {
     private Witness witness;
 
     public Crime(
-            Date currentDate,
+            String ref,
+            LocalDate currentDate,
             Police administrativeOfficer,
             LocalDateTime timeAndDateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
-            String ref,
             String tracks,
             String informationAboutOffender,
             MissingItem itemDescription,
             Witness witness
     ) {
         super(
+                ref,
                 currentDate,
                 administrativeOfficer,
                 timeAndDateOfEvent,
                 placeOfEvent,
                 notifier,
-                descriptionOfEvent,
-                ref
+                descriptionOfEvent
         );
         this.tracks = tracks;
         this.informationAboutOffender = informationAboutOffender;

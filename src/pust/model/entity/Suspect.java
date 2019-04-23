@@ -1,6 +1,6 @@
 package pust.model.entity;
 
-import pust.model.application_functions.Identification;
+import pust.model.administrative_functions.application_functions.Identification;
 import pust.model.report_system.Crime;
 import pust.model.report_system.Record;
 

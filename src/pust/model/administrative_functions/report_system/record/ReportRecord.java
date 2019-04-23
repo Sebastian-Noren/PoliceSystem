@@ -1,4 +1,4 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system.record;
 
 import java.util.ArrayList;
 

@@ -1,44 +1,45 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.Police;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public abstract class BaseReport {
+    /*
+    @param ref = diarienummer in swedish
+     */
 
+    private String ref;
     private LocalDate currentDate;
     private Police administrativeOfficer;
     private LocalDateTime timeAndDateOfEvent;
     private Address placeOfEvent;
     private Person notifier;
     private String descriptionOfEvent;
-    private String ref;
-
-    /*
-     * @param ref means diarienummer in swedish
-     */
 
     public BaseReport(
-            Date currentDate,
+            String ref,
+            LocalDate currentDate,
             Police administrativeOfficer,
             LocalDateTime timeAndDateOfEvent,
             Address placeOfEvent,
             Person notifier,
-            String descriptionOfEvent,
-            String ref
+            String descriptionOfEvent
     ) {
-        this.currentDate = LocalDate.now();
+        this.ref = ref;
+        this.currentDate = currentDate;
         this.administrativeOfficer = administrativeOfficer;
         this.timeAndDateOfEvent = timeAndDateOfEvent;
         this.placeOfEvent = placeOfEvent;
         this.notifier = notifier;
         this.descriptionOfEvent = descriptionOfEvent;
-        this.ref = ref;
+    }
+
+    public String getRef() {
+        return ref;
     }
 
     public LocalDate getCurrentDate() {
@@ -63,9 +64,5 @@ public abstract class BaseReport {
 
     public String getDescriptionOfEvent() {
         return descriptionOfEvent;
-    }
-
-    public String getRef() {
-        return ref;
     }
 }

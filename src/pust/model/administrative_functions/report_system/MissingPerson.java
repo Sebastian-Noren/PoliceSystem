@@ -1,17 +1,12 @@
-package pust.model.report_system;
+package pust.model.administrative_functions.report_system;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.Police;
 import pust.model.entity.Suspect;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-
-/* FIXME This class, MissingItem and Suspect all have a String variable called characteristics or specificCharacteristics.
- * It might be a better idea to create a class representing a characteristic object.
- *
- */
 
 public class MissingPerson extends BaseReport {
 
@@ -19,35 +14,37 @@ public class MissingPerson extends BaseReport {
     private String clothes;
     private String specificCharacteristics;
     private String reasonsForDisappearing;
-    private Suspect description;
+    private Suspect descriptionOfSuspect;
 
     public MissingPerson(
-            Date currentDate,
+            String ref,
+            LocalDate
+                    currentDate,
             Police administrativeOfficer,
             LocalDateTime timeAndDateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
-            String ref,
             Person missingPerson,
             String clothes,
             String specificCharacteristics,
             String reasonsForDisappearing,
-            Suspect description
+            Suspect descriptionOfSuspect
     ) {
         super(
+                ref,
                 currentDate,
                 administrativeOfficer,
                 timeAndDateOfEvent,
-                placeOfEvent, notifier,
-                descriptionOfEvent,
-                ref
+                placeOfEvent,
+                notifier,
+                descriptionOfEvent
         );
         this.missingPerson = missingPerson;
         this.clothes = clothes;
         this.specificCharacteristics = specificCharacteristics;
         this.reasonsForDisappearing = reasonsForDisappearing;
-        this.description = description;
+        this.descriptionOfSuspect = descriptionOfSuspect;
     }
 
     public Person getMissingPerson() {
@@ -66,7 +63,7 @@ public class MissingPerson extends BaseReport {
         return reasonsForDisappearing;
     }
 
-    public Suspect getDescription() {
-        return description;
+    public Suspect getDescriptionOfSuspect() {
+        return descriptionOfSuspect;
     }
 }
