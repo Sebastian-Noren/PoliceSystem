@@ -1,8 +1,9 @@
 package pust.model.entity;
 
 import pust.model.administrative_functions.application_functions.Identification;
-import pust.model.report_system.Crime;
-import pust.model.report_system.Record;
+import pust.model.administrative_functions.report_system.Crime;
+import pust.model.administrative_functions.report_system.record.Record;
+
 
 public class PoliceChief extends Employee {
     public PoliceChief(

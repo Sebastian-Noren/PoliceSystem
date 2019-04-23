@@ -1,11 +1,11 @@
 package pust.model.entity.entity_builder;
 
 import pust.model.administrative_functions.application_functions.Identification;
+import pust.model.administrative_functions.report_system.Crime;
+import pust.model.administrative_functions.report_system.record.Record;
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
-import pust.model.report_system.Crime;
-import pust.model.report_system.Record;
 
 public abstract class PersonBuilder <T extends Person>{
 
