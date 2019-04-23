@@ -1,7 +1,4 @@
-package pust.model.entity.builder;
-
-import pust.model.entity.Employee;
-import pust.model.entity.Person;
+package pust.model.entity.entity_builder;
 
 public abstract class EmployeeBuilder extends PersonBuilder {
 

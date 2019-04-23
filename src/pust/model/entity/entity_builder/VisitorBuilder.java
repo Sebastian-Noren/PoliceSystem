@@ -1,12 +1,12 @@
-package pust.model.entity.builder;
+package pust.model.entity.entity_builder;
 
-import pust.model.entity.Notifier;
+import pust.model.entity.Visitor;
 
-public class NotifierBuilder extends PersonBuilder<Notifier> {
+public class VisitorBuilder extends PersonBuilder<Visitor> {
 
     @Override
-    public Notifier build() {
-        return new Notifier(
+    public Visitor build() {
+        return new Visitor(
                 super.firstName,
                 super.surname,
                 super.personalNumber,

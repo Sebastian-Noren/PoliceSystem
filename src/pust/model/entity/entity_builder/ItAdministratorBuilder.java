@@ -1,13 +1,12 @@
-package pust.model.entity.builder;
+package pust.model.entity.entity_builder;
 
-import pust.model.entity.Person;
-import pust.model.entity.Police;
+import pust.model.entity.ItAdministrator;
 
-public class PoliceBuilder extends EmployeeBuilder {
+public class ItAdministratorBuilder extends EmployeeBuilder {
 
     @Override
-    public Person build() {
-        return new Police(
+    public ItAdministrator build(){
+        return new ItAdministrator(
                 super.firstName,
                 super.surname,
                 super.personalNumber,

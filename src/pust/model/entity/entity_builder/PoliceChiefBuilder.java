@@ -1,4 +1,4 @@
-package pust.model.entity.builder;
+package pust.model.entity.entity_builder;
 
 import pust.model.entity.Person;
 import pust.model.entity.PoliceChief;

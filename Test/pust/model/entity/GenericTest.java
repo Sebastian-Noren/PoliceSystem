@@ -1,7 +1,6 @@
 package pust.model.entity;
 
 import org.junit.*;
-import pust.model.entity.builder.VisitorBuilder;
 
 import static org.junit.Assert.*;
 
