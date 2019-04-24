@@ -9,38 +9,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1017.0" stylesheets="@../logInStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
-   <children>
-      <Button layoutX="65.0" layoutY="294.0" mnemonicParsing="false" onAction="#ReportTab" prefHeight="25.0" prefWidth="90.0" text="Report" />
-      <Button layoutX="45.0" layoutY="346.0" mnemonicParsing="false" onAction="#applyForIdentification" prefHeight="40.0" prefWidth="130.0" text="Identification" />
-      <Button layoutX="65.0" layoutY="398.0" mnemonicParsing="false" onAction="#view" prefHeight="25.0" prefWidth="90.0" text="View" />
-      <VBox fx:id="vBox" layoutX="240.0" layoutY="108.0" prefHeight="641.0" prefWidth="777.0" style="-fx-background-color: white;">
-         <children>
-            <Label textFill="#ee0c1b" />
-         </children></VBox>
-      <Button layoutX="65.0" layoutY="454.0" mnemonicParsing="false" onAction="#back" onDragDetected="#back" prefHeight="25.0" prefWidth="90.0" text="Back" />
-      <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-1.0" prefHeight="28.0" prefWidth="132.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox fx:id="vBoxText" layoutX="364.0" layoutY="50.0" prefHeight="50.0" prefWidth="409.0" />
-      <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="49.0" layoutX="954.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="979.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0"
+            prefWidth="1017.0" stylesheets="@../logInStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
+    <children>
+        <Button layoutX="65.0" layoutY="294.0" mnemonicParsing="false" onAction="#ReportTab" prefHeight="25.0"
+                prefWidth="90.0" text="Report"/>
+        <Button layoutX="45.0" layoutY="346.0" mnemonicParsing="false" onAction="#applyForIdentification"
+                prefHeight="40.0" prefWidth="130.0" text="Identification"/>
+        <Button layoutX="65.0" layoutY="398.0" mnemonicParsing="false" onAction="#view" prefHeight="25.0"
+                prefWidth="90.0" text="View"/>
+        <VBox fx:id="vBox" layoutX="240.0" layoutY="108.0" prefHeight="641.0" prefWidth="777.0"
+              style="-fx-background-color: white;">
+            <children>
+                <Label textFill="#ee0c1b"/>
+            </children>
+        </VBox>
+        <Button layoutX="65.0" layoutY="454.0" mnemonicParsing="false" onAction="#back" onDragDetected="#back"
+                prefHeight="25.0" prefWidth="90.0" text="Back"/>
+        <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-1.0" prefHeight="28.0" prefWidth="132.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="91.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <VBox fx:id="vBoxText" layoutX="364.0" layoutY="50.0" prefHeight="50.0" prefWidth="409.0"/>
+        <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="49.0" layoutX="954.0" layoutY="58.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="979.0" layoutY="48.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+    </children>
 </AnchorPane>
