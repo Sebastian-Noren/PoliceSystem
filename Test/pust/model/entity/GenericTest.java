@@ -22,7 +22,7 @@ public class GenericTest {
     }
 
     @Test
-    public void createSuspectWithYellowHair(){
+    public void createSuspectWithYellowHair() {
         final Color expected = Color.YELLOW;
 
         final Suspect actual = (Suspect) new SuspectBuilder().withHairColor(Color.YELLOW).build();
@@ -31,11 +31,14 @@ public class GenericTest {
     }
 
     @Test
-    public void emptyTest(){
-        
+    public void emptyTest() {
+
     }
 
-
+    @Test
+    public void deleteTest() {
+        
+    }
 
 
 }
