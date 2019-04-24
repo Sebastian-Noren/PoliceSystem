@@ -30,6 +30,11 @@ public class GenericTest {
         Assert.assertEquals(expected, actual.getHairColor());
     }
 
+    @Test
+    public void emptyTest(){
+        
+    }
+
 
 
 
