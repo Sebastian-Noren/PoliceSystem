@@ -39,7 +39,6 @@ public class SuspectBuilder extends PersonBuilder<Suspect> {
 
     public SuspectBuilder hasWeight(int weight){
         this.weight = weight;
-        //TODO Handle assertion
         assert weight >= 0;
         return this;
     }
