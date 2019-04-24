@@ -7,16 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import pust.SceneSwitch;
-import pust.model.adminCreate.AdminCreateModel;
-import pust.model.adminCreate.AdminDatabase;
-import pust.model.adminCreate.AdminUserTable;
+import pust.model.admin_create.AdminCreateModel;
+import pust.model.admin_create.AdminDatabase;
+import pust.model.admin_create.AdminUserTable;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.StringJoiner;
 
 /**
  * @author Sebastian Norén <s.norén@gmail.com>

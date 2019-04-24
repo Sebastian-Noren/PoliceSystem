@@ -12,9 +12,9 @@ public abstract class Record<T> {
 
     public abstract void register(T report);
 
-    public abstract ArrayList<T> view (T report);
+    public abstract ArrayList<T> view(T report);
 
-    public abstract void delete (T report);
+    public abstract void delete(T report);
 
-    public abstract ArrayList<T> edit (T report);
+    public abstract ArrayList<T> edit(T report);
 }

@@ -18,8 +18,7 @@ public class MissingPerson extends BaseReport {
 
     public MissingPerson(
             String ref,
-            LocalDate
-                    currentDate,
+            LocalDate currentDate,
             Police administrativeOfficer,
             LocalDateTime timeAndDateOfEvent,
             Address placeOfEvent,

@@ -63,7 +63,7 @@ public class MainFrameController implements Initializable {
         Image image1 = new Image("swepustlogg.png");
         notifyImg.setImage(image1);
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/standardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -74,7 +74,7 @@ public class MainFrameController implements Initializable {
 
     public void ReportTab() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/Report.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/Report.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -85,7 +85,7 @@ public class MainFrameController implements Initializable {
 
     public void applyForIdentification() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/ApplyForIdentification.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/ApplyForIdentification.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -96,7 +96,7 @@ public class MainFrameController implements Initializable {
 
     public void view() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/View.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/View.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -108,7 +108,7 @@ public class MainFrameController implements Initializable {
 
     public void back() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/standardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -132,7 +132,7 @@ public class MainFrameController implements Initializable {
 
         //uploading the scrolling text
         try {
-            fxml = FXMLLoader.load(getClass().getResource("View/ScrollText.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("view/ScrollText.fxml"));
             vBoxText.getChildren().removeAll();
             vBoxText.getChildren().setAll(fxml);
 
