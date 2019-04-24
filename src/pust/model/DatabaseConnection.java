@@ -1,7 +1,8 @@
-package pust;
+package pust.model;
+
+import pust.model.AppConstant;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DatabaseConnection {
 
@@ -13,7 +14,7 @@ public class DatabaseConnection {
     public boolean Loginconnect(String userName, String passWord){
         try{
 
-            String url = "jdbc:mysql://"+AppConstant.getDatabaseHost() +":3306/"+AppConstant.getDatabaseName()+"?useTimezone=true&serverTimezone=UTC";
+            String url = "jdbc:mysql://"+ AppConstant.getDatabaseHost() +":3306/"+AppConstant.getDatabaseName()+"?useTimezone=true&serverTimezone=UTC";
             Connection con = DriverManager.getConnection(url,userName,passWord);
             statement = con.createStatement();
             System.out.println("Login okay!");

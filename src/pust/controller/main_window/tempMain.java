@@ -1,4 +1,4 @@
-package pust.mainWindow;
+package pust.controller.main_window;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,7 @@ public class tempMain  extends Application {
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));
         primaryStage.getIcons().add(image);
-        Parent root = FXMLLoader.load(getClass().getResource("MainFrame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/main_window/MainFrame.fxml"));
 
         Scene scene = new Scene(root);
 

@@ -13,14 +13,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
-import pust.DatabaseConnection;
-import pust.SceneSwitch;
+import pust.model.DatabaseConnection;
 import pust.model.LogInModel;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
 
 public class LogInController implements Initializable {
 

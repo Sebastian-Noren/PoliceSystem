@@ -1,4 +1,4 @@
-package pust.mainWindow.controller;
+package pust.controller.main_window;
 
 public class ReportController {
 

@@ -4,21 +4,21 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="692.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.mainWindow.controller.ApplyForIdentificationController">
+<AnchorPane prefHeight="770.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewController">
    <children>
-      <TabPane layoutX="-4.0" layoutY="-3.0" prefHeight="692.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="770.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="ID">
+          <Tab text="Statistics">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="625.0" prefWidth="711.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="612.0" prefWidth="571.0" />
             </content>
           </Tab>
-          <Tab text="Criminal record">
+          <Tab text="Search">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-            <Tab text="Passport">
+            <Tab text="policeChief view">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

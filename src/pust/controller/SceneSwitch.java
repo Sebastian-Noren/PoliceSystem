@@ -1,4 +1,4 @@
-package pust;
+package pust.controller;
 
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pust.model.AppConstant;
 
 import java.io.IOException;
 

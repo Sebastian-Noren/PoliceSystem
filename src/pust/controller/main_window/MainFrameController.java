@@ -1,4 +1,4 @@
-package pust.mainWindow;
+package pust.controller.main_window;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
