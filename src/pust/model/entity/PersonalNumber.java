@@ -10,10 +10,10 @@ public class PersonalNumber {
     private int serialNumber;
     private int controlNumber;
 
-    public PersonalNumber(LocalDate birthDate, int serialNumber) {
+    public PersonalNumber(LocalDate birthDate, int serialNumber, int controlNumber) {
         this.birthDate = birthDate;
         this.serialNumber = serialNumber;
-        controlNumber = 0;
+        this.controlNumber = controlNumber;
     }
 
 
