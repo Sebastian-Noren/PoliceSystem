@@ -1,7 +1,10 @@
 package pust.model.admin_create;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.security.SecureRandom;
 import java.util.StringJoiner;
 
@@ -39,4 +42,28 @@ public class AdminCreateModel {
         sj.add(String.valueOf(num));
         return sj.toString();
     }
+
+    public int generatePoliceId() {
+        SecureRandom rand = new SecureRandom();
+        int num = 10000 + rand.nextInt(90000);
+        return num;
+    }
+
+    public void alertCreateComplete(String randGenUserName, int policeID){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Account Created");
+        alert.setHeaderText("");
+        alert.setContentText("New account name is: " + randGenUserName+", New police ID: "+policeID);
+        alert.showAndWait();
+    }
+
+    public BufferedImage resize(BufferedImage img, int height, int width) {
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
+
 }

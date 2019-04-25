@@ -6,10 +6,11 @@ This class can hold all variable or methods that can be used everywhere in the p
 
 public class AppConstant {
     private static final String SOFTWARE_NAME = "PUST GIS";
-    private static final String DATABASE_NAME = "sys"; // TODO Change to new database name
+    private static final String DATABASE_NAME = "pustgis"; // TODO Change to new database name
     private static final String DATABASE_HOST = "localhost"; // TODO Change Server.
     private static String CURRENT_USER = ""; //Save the current user in the program
     private static String CURRENT_USER_PASS = ""; //save the current password in the program.
+    public static String SAVE_FOLDER_PATH = "src/pust/images/";
 
     public static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
