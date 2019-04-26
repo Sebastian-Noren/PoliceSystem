@@ -13,14 +13,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
-import pust.DatabaseConnection;
-import pust.SceneSwitch;
+import pust.model.DatabaseConnection;
 import pust.model.LogInModel;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
 
 public class LogInController implements Initializable {
 
@@ -80,11 +77,13 @@ public class LogInController implements Initializable {
 
 
         //TODO make strings safe for root Admin. Sebastians shit
+        SceneSwitch sceneSwitcher = new SceneSwitch();
         if (connected && userName.getText().equals("root") && userName.getText().equals("root")) {
-            SceneSwitch sceneSwitcher = new SceneSwitch();
+            //Send you to IT-administrator
             sceneSwitcher.goToAdminCreate(actionEvent);
         } else {
-            //TODO Something
+            //Send you to mainWindows
+            sceneSwitcher.goToMain(actionEvent);
         }
     }
 
