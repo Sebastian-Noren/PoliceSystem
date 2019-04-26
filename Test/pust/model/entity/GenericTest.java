@@ -1,10 +1,8 @@
 package pust.model.entity;
-
 import org.junit.*;
 import pust.model.entity.entity_builder.SuspectBuilder;
 import pust.model.entity.entity_builder.VisitorBuilder;
 import pust.model.enumerations.Color;
-
 import static org.junit.Assert.*;
 
 public class GenericTest {
