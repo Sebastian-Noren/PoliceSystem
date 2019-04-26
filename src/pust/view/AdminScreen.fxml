@@ -58,16 +58,15 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
     <center>
-        <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <TabPane prefHeight="495.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
                 <Tab text="Login and Privilieges">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="621.0">
                             <children>
-                                <GridPane hgap="5.0" layoutX="14.0" layoutY="23.0" prefHeight="159.0" prefWidth="497.0" vgap="3.0">
+                                <GridPane hgap="5.0" layoutY="23.0" prefHeight="218.0" prefWidth="315.0" vgap="3.0">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.3333740234375" minWidth="10.0" prefWidth="84.66666666666667" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.6666386922201" minWidth="10.0" prefWidth="177.33333333333331" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.6666386922201" minWidth="10.0" prefWidth="177.33333333333331" />
                                     </columnConstraints>
                                     <rowConstraints>
@@ -75,6 +74,10 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -82,40 +85,46 @@
                                     </rowConstraints>
                                     <children>
                                         <Label text="First Name" GridPane.halignment="RIGHT" />
-                                        <Label text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                        <Label text="Confirm Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                                        <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+                                        <Label text="Confirm Password" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
                                         <TextField fx:id="accFirstName" onKeyPressed="#typingReset" prefHeight="29.0" prefWidth="132.0" promptText="First name" GridPane.columnIndex="1" />
-                                        <PasswordField fx:id="accPass" onKeyPressed="#typingReset" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                        <PasswordField fx:id="accConfPass" onKeyPressed="#typingReset" promptText="Confirm Password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                        <Label text="Type in the first name." GridPane.columnIndex="2" />
-                                        <Label text="Enter password again to confirm." GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                        <Label text="Type new password." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                        <TextField fx:id="accLastName" onKeyPressed="#typingReset" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="accSSN" onKeyPressed="#typingReset" promptText="SSN" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <TextField fx:id="accMail" onKeyPressed="#typingReset" promptText="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                        <PasswordField fx:id="accPass" onKeyPressed="#typingReset" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                        <PasswordField fx:id="accConfPass" onKeyPressed="#typingReset" promptText="Confirm Password" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                         <Label fx:id="labWarFirstname" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <font>
                                                 <Font size="10.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="accLastName" onKeyPressed="#typingReset" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <Label fx:id="labWarPass" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="5">
+
+                                        <Label fx:id="labWarPass" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                             <font>
                                                 <Font size="10.0" />
                                             </font>
                                         </Label>
                                         <Label contentDisplay="CENTER" text="Last name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                        <Label text="Type in the last name." GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                         <Label fx:id="labWarLastname" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                             <font>
                                                 <Font size="10.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="labWarConfPass" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                        <Label fx:id="labWarConfPass" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="11">
                                             <font>
                                                 <Font size="10.0" />
                                             </font>
                                         </Label>
+                              <Label text="SSN (12 format)" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                              <Label text="E-Mail (Optional)" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                              <Label fx:id="labWarSSN" text="Label" textFill="#d80707" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                 </GridPane>
-                                <VBox layoutX="178.0" layoutY="204.0" prefHeight="193.0" prefWidth="127.0">
+                                <VBox layoutX="190.0" layoutY="272.0" prefHeight="180.0" prefWidth="127.0">
                                     <children>
                                         <Label text="Global Privileges">
                                             <font>
@@ -146,8 +155,7 @@
                                         </GridPane>
                                     </children>
                                 </VBox>
-                                <Button layoutX="461.0" layoutY="439.0" mnemonicParsing="false" onAction="#createAccBtn" text="Add Account" />
-                                <VBox layoutX="26.0" layoutY="204.0" prefHeight="146.0" prefWidth="127.0">
+                                <VBox layoutX="14.0" layoutY="272.0" prefHeight="146.0" prefWidth="127.0">
                                     <children>
                                         <Label text="Account Role">
                                             <font>
@@ -178,14 +186,34 @@
                                         </GridPane>
                                     </children>
                                 </VBox>
-                                <Separator layoutX="3.0" layoutY="193.0" prefHeight="11.0" prefWidth="621.0">
+                                <Separator layoutX="6.0" layoutY="256.0" prefHeight="11.0" prefWidth="621.0">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
                                 </Separator>
-                                <Separator layoutX="147.0" layoutY="204.0" orientation="VERTICAL" prefHeight="256.0" prefWidth="14.0" />
-                                <Button layoutX="561.0" layoutY="439.0" mnemonicParsing="false" onAction="#returnLogin" text="Go back" />
-                                <Separator layoutX="311.0" layoutY="204.0" orientation="VERTICAL" prefHeight="256.0" prefWidth="7.0" />
+                                <Separator layoutX="347.0" layoutY="10.0" orientation="VERTICAL" prefHeight="244.0" prefWidth="8.0" />
+                        <Separator layoutX="158.0" layoutY="269.0" orientation="VERTICAL" prefHeight="187.0" prefWidth="8.0" />
+                        <Separator layoutX="348.0" layoutY="268.0" orientation="VERTICAL" prefHeight="188.0" prefWidth="5.0" />
+                        <HBox layoutX="381.0" layoutY="420.0" spacing="5.0">
+                           <children>
+                                      <Button mnemonicParsing="false" onAction="#createAccBtn" text="Add Account" />
+                                      <Button mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="55.0" text="Delete" />
+                                      <Button mnemonicParsing="false" onAction="#returnLogin" text="Go back" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <VBox alignment="CENTER" layoutX="404.0" layoutY="-1.0" prefHeight="255.0" prefWidth="177.0" spacing="5.0">
+                           <children>
+                               <ImageView fx:id="profileImg" fitHeight="224.0" fitWidth="176.0" layoutX="418.0" layoutY="10.0" onMouseClicked="#browseImg" pickOnBounds="true" preserveRatio="true">
+                                   <image>
+                                       <Image url="@/photo.jpg" />
+                                   </image>
+                               </ImageView>
+                              <Button mnemonicParsing="false" onAction="#browseImg" text="Select image" />
+                           </children>
+                        </VBox>
                             </children>
                         </AnchorPane>
                     </content>
@@ -197,9 +225,13 @@
         </TabPane>
     </center>
     <bottom>
-        <HBox BorderPane.alignment="CENTER">
+        <HBox alignment="BOTTOM_LEFT" BorderPane.alignment="BOTTOM_CENTER">
             <children>
-                <Region prefHeight="25.0" prefWidth="697.0" />
+            <Label text="User active:" />
+                <Region prefHeight="25.0" prefWidth="5.0" />
+            <Label fx:id="labelActiveUser" prefHeight="17.0" prefWidth="31.0" text="Root" />
+            <Region prefHeight="25.0" prefWidth="487.0" />
+            <Label text="Copyright © 2019, PUST GIS Systems" />
             </children>
         </HBox>
     </bottom>
@@ -216,13 +248,11 @@
                 </TableView>
                 <HBox>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="55.0" text="Delete" />
                         <Region prefHeight="25.0" prefWidth="46.0">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
                         </Region>
-                        <Button mnemonicParsing="false" onAction="#refreshUsers" text="Refresh" />
                     </children>
                     <padding>
                         <Insets top="5.0" />

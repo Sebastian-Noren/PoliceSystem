@@ -1,9 +1,10 @@
 package pust.model;
 
-import pust.controller.LogInController;
-
 public class LogInModel {
 
+    /*
+     * FIXME The name of the class could be more descriptive
+     */
 
 
     // this method takes the count of failed log in attempts and displays appropriate messsage
@@ -18,7 +19,7 @@ public class LogInModel {
         }
     }
 
-    public void returner(){
+    public void returner() {
 
 
     }

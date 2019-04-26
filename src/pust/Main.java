@@ -6,6 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pust.model.AppConstant;
+
+/*
+ * To run this program Assert must be enabled.
+ * 1. Edit the run configuration
+ * 2. Under VM options enter: -ea
+ * 3. Run
+ */
 
 public class Main extends Application {
 
@@ -13,6 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));
         primaryStage.getIcons().add(image);
@@ -22,6 +31,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         window.setScene(scene);
         window.show();
+
     }
 
     public static void main(String[] args) {
