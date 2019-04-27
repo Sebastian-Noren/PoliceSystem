@@ -80,7 +80,8 @@ public class MainFrameController implements Initializable {
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
+        } catch (IOException e) {
+            e.printStackTrace();
 
         }
     }

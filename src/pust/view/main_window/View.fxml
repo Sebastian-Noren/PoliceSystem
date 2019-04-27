@@ -6,24 +6,23 @@
 
 <!--FIXME THe name can be more descriptive-->
 
-<AnchorPane prefHeight="770.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewController">
+<AnchorPane prefHeight="770.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewController">
     <children>
         <TabPane prefHeight="770.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Statistics">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="612.0" prefWidth="571.0"/>
+                        <AnchorPane fx:id="statisticsPane" minHeight="0.0" minWidth="0.0" prefHeight="612.0" prefWidth="571.0" />
                     </content>
                 </Tab>
                 <Tab text="Search">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        <AnchorPane fx:id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
                 <Tab text="policeChief view">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        <AnchorPane fx:id="policeChiefViewPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
             </tabs>
