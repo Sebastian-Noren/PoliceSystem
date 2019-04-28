@@ -47,4 +47,19 @@ public class SceneSwitch {
             e.printStackTrace();
         }
     }
+
+    public void goToMain(Event event) {
+        try {
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/pust/view/main_window/MainFrame.fxml"));
+            Image image = new Image(getClass().getResourceAsStream("/swepustlogg.png"));
+            primaryStage.getIcons().add(image);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

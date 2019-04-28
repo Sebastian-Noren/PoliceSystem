@@ -27,15 +27,9 @@ public class LogInController implements Initializable {
     //TODO Create a nice loginscreen Julius.
 
     @FXML
-    TextField userName;
+    TextField userName, passWord;
     @FXML
-    TextField passWord;
-    @FXML
-    Label userWarning;
-    @FXML
-    Label passWarning;
-    @FXML
-    Label passForgot;
+    Label userWarning, passWarning, passForgot;
     @FXML
     Button logInBtn;
     @FXML
@@ -48,8 +42,9 @@ public class LogInController implements Initializable {
 
     private int counter;
 
-    public void logInBtn(ActionEvent actionEvent) {
-
+    @FXML
+    private void logInBtn(ActionEvent actionEvent) {
+        //change to isEmpty
         if (userName.getText().equals("")) {
             userWarning.setText("Enter a username");
             return;
@@ -77,11 +72,13 @@ public class LogInController implements Initializable {
 
 
         //TODO make strings safe for root Admin. Sebastians shit
+        SceneSwitch sceneSwitcher = new SceneSwitch();
         if (connected && userName.getText().equals("root") && userName.getText().equals("root")) {
-            SceneSwitch sceneSwitcher = new SceneSwitch();
+            //Send you to IT-administrator
             sceneSwitcher.goToAdminCreate(actionEvent);
         } else {
-            //TODO Something
+            //Send you to mainWindows
+            sceneSwitcher.goToMain(actionEvent);
         }
     }
 

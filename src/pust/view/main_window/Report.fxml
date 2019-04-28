@@ -4,32 +4,31 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportController">
-    <children>
-        <TabPane fx:id="tabPane" prefHeight="761.0" prefWidth="1027.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Report crime">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-                    </content>
-                </Tab>
-                <Tab text="Report arrest in custody">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-                    </content>
-                </Tab>
-                <Tab text="Report lost entity">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="715.0" prefWidth="984.0"/>
-                    </content>
-                </Tab>
-                <Tab text="Report missing person">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
+<AnchorPane prefHeight="663.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportController">
+   <children>
+      <TabPane fx:id="tabPane" prefHeight="663.0" prefWidth="762.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="reportCrimeTab" text="Report Crime">
+            <content>
+              <AnchorPane fx:id="reportCrimeAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="346.0" />
+            </content>
+          </Tab>
+          <Tab fx:id="reportCustodyTab" text="Report arrest in custody">
+            <content>
+              <AnchorPane fx:id="reportArrestPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="reportLostEntityTab" text="Report lost entity">
+              <content>
+                <AnchorPane fx:id="reportLostEntityPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="reportMissingPersonTab" text="Report missing person">
+              <content>
+                <AnchorPane fx:id="reportMissingPersonPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>

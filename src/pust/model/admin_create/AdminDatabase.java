@@ -1,5 +1,6 @@
 package pust.model.admin_create;
 
+import javafx.scene.control.Alert;
 import pust.model.AppConstant;
 
 import java.sql.*;
@@ -23,11 +24,26 @@ public class AdminDatabase {
     }
 
    public void createUsersSQL(String accName, String accPassText) {
-
         try {
             statement.executeUpdate("CREATE USER '" + accName + "'@'" + AppConstant.getDatabaseHost() + "' IDENTIFIED BY '" + accPassText + "';");
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public boolean insertPoliceSQL(int policeID, String strSSN, String randGenUserName, String strMail, String policeRole) {
+        try {
+            String prepareSQL = "INSERT INTO `"+AppConstant.getDatabaseName()+"`.`police` (`policeID`, `Person_SSN`, `username`, `E-mail`, `Job title`) VALUES " +
+                    "('"+policeID+"', '"+strSSN+"', '"+randGenUserName+"', '"+strMail+"', '"+policeRole+"');";
+            statement.executeUpdate(prepareSQL);
+            return true;
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("");
+            alert.setContentText("The person with this SSN "+strSSN+" does not exist in the database.");
+            alert.showAndWait();
+            return false;
         }
     }
 
@@ -42,6 +58,7 @@ public class AdminDatabase {
    public void removeUsersSQL(String userToDelete) {
         try {
             statement.executeUpdate("DROP USER '"+userToDelete+"'@'" + AppConstant.getDatabaseHost() + "';");
+            statement.executeUpdate("DELETE FROM `"+AppConstant.getDatabaseName()+"`.`police` WHERE (`username` = '"+userToDelete+"');");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

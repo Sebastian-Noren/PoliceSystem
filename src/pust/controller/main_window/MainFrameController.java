@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class MainFrameController implements Initializable {
     private ImageView notifyImg;
     @FXML
     private ImageView notifyNumber;
+
 
     Timeline timeline;
     @Override
@@ -63,7 +65,7 @@ public class MainFrameController implements Initializable {
         Image image1 = new Image("swepustlogg.png");
         notifyImg.setImage(image1);
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/standardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -74,18 +76,19 @@ public class MainFrameController implements Initializable {
 
     public void ReportTab() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/Report.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/Report.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
+        } catch (IOException e) {
+            e.printStackTrace();
 
         }
     }
 
     public void applyForIdentification() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/ApplyForIdentification.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/ApplyForIdentification.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -96,7 +99,7 @@ public class MainFrameController implements Initializable {
 
     public void view() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/View.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/View.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -108,7 +111,7 @@ public class MainFrameController implements Initializable {
 
     public void back() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/standardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -132,7 +135,7 @@ public class MainFrameController implements Initializable {
 
         //uploading the scrolling text
         try {
-            fxml = FXMLLoader.load(getClass().getResource("view/ScrollText.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pust/view/main_window/ScrollText.fxml"));
             vBoxText.getChildren().removeAll();
             vBoxText.getChildren().setAll(fxml);
 
