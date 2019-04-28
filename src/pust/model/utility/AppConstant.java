@@ -1,4 +1,4 @@
-package pust.model;
+package pust.model.utility;
 
 /*
 This class can hold all variable or methods that can be used everywhere in the program.

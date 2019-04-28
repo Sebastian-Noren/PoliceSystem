@@ -1,15 +1,15 @@
 package pust.model.administrative_functions.report_system.report_builder;
 
-import pust.model.administrative_functions.report_system.Arrest;
+import pust.model.administrative_functions.report_system.report.ArrestReport;
 import pust.model.entity.Suspect;
 
-public class ArrestBuilder extends BaseReportBuilder<Arrest> {
+public class ArrestReportBuilder extends BaseReportBuilder<ArrestReport> {
 
     protected Suspect suspect;
 
     @Override
-    public Arrest build() {
-        return new Arrest(
+    public ArrestReport build() {
+        return new ArrestReport(
                 super.ref,
                 super.currentDate,
                 super.administrativeOfficer,

@@ -1,6 +1,6 @@
-package pust.model;
+package pust.model.utility;
 
-import pust.model.AppConstant;
+import pust.model.utility.AppConstant;
 
 import java.sql.*;
 

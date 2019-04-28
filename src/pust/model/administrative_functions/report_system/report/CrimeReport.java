@@ -1,4 +1,4 @@
-package pust.model.administrative_functions.report_system;
+package pust.model.administrative_functions.report_system.report;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
@@ -8,14 +8,14 @@ import pust.model.entity.Witness;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Crime extends BaseReport {
+public class CrimeReport extends BaseReport {
 
     private String tracks;
     private String informationAboutOffender;
-    private MissingItem itemDescription;
+    private MissingItemReport itemDescription;
     private Witness witness;
 
-    public Crime(
+    public CrimeReport(
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
@@ -25,7 +25,7 @@ public class Crime extends BaseReport {
             String descriptionOfEvent,
             String tracks,
             String informationAboutOffender,
-            MissingItem itemDescription,
+            MissingItemReport itemDescription,
             Witness witness
     ) {
         super(
@@ -51,7 +51,7 @@ public class Crime extends BaseReport {
         return informationAboutOffender;
     }
 
-    public MissingItem getItemDescription() {
+    public MissingItemReport getItemDescription() {
         return itemDescription;
     }
 

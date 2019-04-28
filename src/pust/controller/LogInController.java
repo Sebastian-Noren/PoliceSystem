@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
-import pust.model.DatabaseConnection;
+import pust.model.utility.DatabaseConnection;
 import pust.model.LogInModel;
 
 import java.net.URL;

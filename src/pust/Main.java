@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pust.model.AppConstant;
+import pust.model.utility.AppConstant;
 
 /*
  * To run this program Assert must be enabled.

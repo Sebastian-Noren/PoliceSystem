@@ -4,22 +4,16 @@ import pust.model.administrative_functions.application_functions.Identification;
 import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
 
+public class MissingPerson extends Person {
 
-public class ItAdministrator extends Employee {
-
-    public ItAdministrator(
+    public MissingPerson(
             String firstName,
             String surname,
             PersonalNumber personalNumber,
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification,
-            int salary,
-            Enum title,
-            int id,
-            String userName,
-            String password
+            Identification identification
     ) {
         super(
                 firstName,
@@ -28,12 +22,7 @@ public class ItAdministrator extends Employee {
                 address,
                 crimeRecord,
                 height,
-                identification,
-                salary,
-                title,
-                id,
-                userName,
-                password
+                identification
         );
     }
 }

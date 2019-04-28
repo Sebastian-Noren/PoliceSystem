@@ -1,18 +1,21 @@
-package pust.model.entity;
+package pust.model.utility.random_person_generator;
 
-public class Address {
+import java.util.concurrent.ThreadLocalRandom;
+
+public class RandomAddress {
+
     private String streetName;
     private int streetNumber;
     private int zipCode;
     private String city;
     private String country;
 
-    public Address(String streetName, int streetNumber, int zipCode, String city, String country) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
+    RandomAddress() {
+        this.streetName = new StreetSource().random();
+        this.streetNumber = ThreadLocalRandom.current().nextInt(1, 200);
+        this.zipCode = ThreadLocalRandom.current().nextInt(10000, 97999);
+        this.city = new CitySource().random();
+        this.country = "Sverige";
     }
 
     public String getStreetName() {

@@ -1,8 +1,8 @@
 package pust.model.administrative_functions.report_system.report_builder;
 
-import pust.model.administrative_functions.report_system.MissingItem;
+import pust.model.administrative_functions.report_system.report.MissingItemReport;
 
-public class MissingItemBuilder extends BaseReportBuilder<MissingItem> {
+public class MissingItemReportBuilder extends BaseReportBuilder<MissingItemReport> {
 
     protected String manufacturer;
     protected String areaOfUse;
@@ -14,54 +14,54 @@ public class MissingItemBuilder extends BaseReportBuilder<MissingItem> {
     protected int fair;
     protected String specificCharacteristics;
 
-    public MissingItemBuilder withManufacturer(String manufacturer) {
+    public MissingItemReportBuilder withManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
         return this;
     }
 
-    public MissingItemBuilder withAreaOfUse(String areaOfUse) {
+    public MissingItemReportBuilder withAreaOfUse(String areaOfUse) {
         this.areaOfUse = areaOfUse;
         return this;
     }
 
-    public MissingItemBuilder withModel(String model) {
+    public MissingItemReportBuilder withModel(String model) {
         this.model = model;
         return this;
     }
 
-    public MissingItemBuilder withProductionNumber(String productionNumber) {
+    public MissingItemReportBuilder withProductionNumber(String productionNumber) {
         this.productionNumber = productionNumber;
         return this;
     }
 
-    public MissingItemBuilder withMarking(String marking) {
+    public MissingItemReportBuilder withMarking(String marking) {
         this.marking = marking;
         return this;
     }
 
-    public MissingItemBuilder withMaterial(String material) {
+    public MissingItemReportBuilder withMaterial(String material) {
         this.material = material;
         return this;
     }
 
-    public MissingItemBuilder withColor(Enum color) {
+    public MissingItemReportBuilder withColor(Enum color) {
         this.color = color;
         return this;
     }
 
-    public MissingItemBuilder asFair(int fair) {
+    public MissingItemReportBuilder asFair(int fair) {
         this.fair = fair;
         return this;
     }
 
-    public MissingItemBuilder withSpecificCharacteristics(String specificCharacteristics) {
+    public MissingItemReportBuilder withSpecificCharacteristics(String specificCharacteristics) {
         this.specificCharacteristics = specificCharacteristics;
         return this;
     }
 
 
     @Override
-    public MissingItem build() {
+    public MissingItemReport build() {
         return null;
     }
 }

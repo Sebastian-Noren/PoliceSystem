@@ -1,6 +1,6 @@
 package pust.model.admin_create;
 
-import pust.model.AppConstant;
+import pust.model.utility.AppConstant;
 
 import java.sql.*;
 import java.util.ArrayList;
