@@ -1,20 +1,20 @@
 package pust.model.administrative_functions.report_system.report_builder;
 
-import pust.model.administrative_functions.report_system.MissingPerson;
-import pust.model.entity.Person;
+import pust.model.administrative_functions.report_system.report.MissingPersonReport;
+import pust.model.entity.MissingPerson;
 import pust.model.entity.Suspect;
 
-public class MissingPersonBuilder extends BaseReportBuilder<MissingPerson> {
+public class MissingPersonReportBuilder extends BaseReportBuilder<MissingPersonReport> {
 
-    protected Person missingPerson;
+    protected MissingPerson missingPerson;
     protected String clothes;
     protected String specificCharacteristics;
     protected String reasonsForDisappearing;
     protected Suspect descriptionOfSuspect;
 
     @Override
-    public MissingPerson build() {
-        return new MissingPerson(
+    public MissingPersonReport build() {
+        return new MissingPersonReport(
                 super.ref,
                 super.currentDate,
                 super.administrativeOfficer,

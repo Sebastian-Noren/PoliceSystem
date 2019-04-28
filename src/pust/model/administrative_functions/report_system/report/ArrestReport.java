@@ -1,4 +1,4 @@
-package pust.model.administrative_functions.report_system;
+package pust.model.administrative_functions.report_system.report;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
@@ -8,11 +8,11 @@ import pust.model.entity.Suspect;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Arrest extends BaseReport {
+public class ArrestReport extends BaseReport {
 
     private Suspect suspect;
 
-    public Arrest(
+    public ArrestReport(
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,

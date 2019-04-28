@@ -1,4 +1,4 @@
-package pust.model.administrative_functions.report_system;
+package pust.model.administrative_functions.report_system.report;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
@@ -7,7 +7,7 @@ import pust.model.entity.Police;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class MissingItem extends BaseReport {
+public class MissingItemReport extends BaseReport {
 
     private String manufacturer;
     private String areaOfUse;
@@ -19,7 +19,7 @@ public class MissingItem extends BaseReport {
     private int fair;
     private String specificCharacteristics;
 
-    public MissingItem(
+    public MissingItemReport(
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,

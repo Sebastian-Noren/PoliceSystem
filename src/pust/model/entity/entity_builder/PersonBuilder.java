@@ -1,7 +1,7 @@
 package pust.model.entity.entity_builder;
 
 import pust.model.administrative_functions.application_functions.Identification;
-import pust.model.administrative_functions.report_system.Crime;
+import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
 import pust.model.entity.Address;
 import pust.model.entity.Person;
@@ -13,7 +13,7 @@ public abstract class PersonBuilder <T extends Person>{
     protected String surname;
     protected PersonalNumber personalNumber;
     protected Address address;
-    protected Record<Crime> crimeRecord;
+    protected Record crimeRecord;
     protected int height;
     protected Identification identification;
 
@@ -37,7 +37,7 @@ public abstract class PersonBuilder <T extends Person>{
         return this;
     }
 
-    public PersonBuilder withCrimeRecord(Record<Crime> crimeRecord) {
+    public PersonBuilder withCrimeRecord(Record crimeRecord) {
         this.crimeRecord = crimeRecord;
         return this;
     }

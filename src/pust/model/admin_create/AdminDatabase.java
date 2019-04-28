@@ -1,7 +1,8 @@
 package pust.model.admin_create;
 
 import javafx.scene.control.Alert;
-import pust.model.AppConstant;
+import pust.model.utility.AppConstant;
+
 
 import java.sql.*;
 import java.util.ArrayList;

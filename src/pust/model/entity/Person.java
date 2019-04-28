@@ -1,7 +1,7 @@
 package pust.model.entity;
 
 import pust.model.administrative_functions.application_functions.Identification;
-import pust.model.administrative_functions.report_system.Crime;
+import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
 
 public abstract class Person {
@@ -10,7 +10,7 @@ public abstract class Person {
     private String surname;
     private PersonalNumber personalNumber;
     private Address address;
-    private Record<Crime> crimeRecord;
+    private Record crimeRecord;
     private int height;
     private Identification identification;
 
@@ -19,7 +19,7 @@ public abstract class Person {
             String surname,
             PersonalNumber personalNumber,
             Address address,
-            Record<Crime> crimeRecord,
+            Record crimeRecord,
             int height,
             Identification identification
     ) {
@@ -49,7 +49,7 @@ public abstract class Person {
         return address;
     }
 
-    public Record<Crime> getCrimeRecord() {
+    public Record getCrimeRecord() {
         return crimeRecord;
     }
 

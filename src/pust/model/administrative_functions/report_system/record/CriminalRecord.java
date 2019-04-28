@@ -1,30 +1,32 @@
 package pust.model.administrative_functions.report_system.record;
 
+import pust.model.administrative_functions.report_system.report.BaseReport;
+
 import java.util.ArrayList;
 
 public class CriminalRecord extends Record {
 
-    public CriminalRecord(ArrayList record) {
+    public CriminalRecord(ArrayList<BaseReport> record) {
         super(record);
     }
 
     @Override
-    public void register(Object report) {
-
-    }
-
-    @Override
-    public ArrayList view(Object report) {
+    public ArrayList<BaseReport> register(BaseReport report) {
         return null;
     }
 
     @Override
-    public void delete(Object report) {
+    public ArrayList<BaseReport> view(BaseReport report) {
+        return null;
+    }
+
+    @Override
+    public void delete(BaseReport report) {
 
     }
 
     @Override
-    public ArrayList edit(Object report) {
+    public ArrayList<BaseReport> edit(BaseReport report) {
         return null;
     }
 }

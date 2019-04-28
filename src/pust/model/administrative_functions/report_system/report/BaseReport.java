@@ -1,4 +1,4 @@
-package pust.model.administrative_functions.report_system;
+package pust.model.administrative_functions.report_system.report;
 
 import pust.model.entity.Address;
 import pust.model.entity.Person;
