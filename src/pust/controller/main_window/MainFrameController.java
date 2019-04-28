@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class MainFrameController implements Initializable {
     private ImageView notifyImg;
     @FXML
     private ImageView notifyNumber;
+
 
     Timeline timeline;
     @Override
@@ -78,7 +80,8 @@ public class MainFrameController implements Initializable {
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
+        } catch (IOException e) {
+            e.printStackTrace();
 
         }
     }
