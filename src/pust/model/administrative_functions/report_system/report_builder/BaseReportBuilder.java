@@ -1,6 +1,6 @@
 package pust.model.administrative_functions.report_system.report_builder;
 
-import pust.model.administrative_functions.report_system.BaseReport;
+import pust.model.administrative_functions.report_system.report.BaseReport;
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.Police;

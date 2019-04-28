@@ -15,32 +15,6 @@ public class Address {
         this.country = country;
     }
 
-    public Address(String streetName, int streetNumber, int zipCode, String city) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
-        this.city = city;
-    }
-
-    public Address(String streetName, int streetNumber, int zipCode) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
-    }
-
-    public Address(String streetName, int streetNumber) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-    }
-
-    public Address(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public Address() {
-        //Default constructor
-    }
-
     public String getStreetName() {
         return streetName;
     }

@@ -8,6 +8,18 @@ import static org.junit.Assert.*;
 public class GenericTest {
 
     @Test
+    public void buildPatternExample() {
+        Suspect suspect = (Suspect) new SuspectBuilder()
+                .withFirstName("Ali")
+                .withSurname("Quick")
+                .build();
+
+        System.out.println(suspect.getFirstName());
+        System.out.println(suspect.getEthnicity());
+
+    }
+
+    @Test
     public void createVisitorWithFirstName() {
         // Arrange
         final String expected = "Christoffer";
@@ -35,7 +47,7 @@ public class GenericTest {
 
     @Test
     public void deleteTest() {
-        
+
     }
 
 

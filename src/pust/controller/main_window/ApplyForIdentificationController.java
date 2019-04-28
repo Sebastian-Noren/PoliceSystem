@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,9 +18,6 @@ public class ApplyForIdentificationController implements Initializable {
     private AnchorPane IDPane;
 
     @FXML
-    private AnchorPane CriminalRecordPane;
-
-    @FXML
     private AnchorPane passportPane;
 
     @Override
@@ -29,7 +25,6 @@ public class ApplyForIdentificationController implements Initializable {
         //loads up IDScene
         IDScene();
         //loads up criminalRecordsScene
-        criminalRecordScene();
         //Loads up passportScene
         passportScene();
 
@@ -38,21 +33,9 @@ public class ApplyForIdentificationController implements Initializable {
     public void IDScene(){
 
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../view/main_window/ID.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("../../view/main_window/PersonalInformation.fxml"));
             IDPane.getChildren().removeAll();
             IDPane.getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void criminalRecordScene(){
-        try {
-            fxml = FXMLLoader.load(getClass().getResource("../../view/main_window/CriminalRecords.fxml"));
-            CriminalRecordPane.getChildren().removeAll();
-            CriminalRecordPane.getChildren().setAll(fxml);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pust.model.AppConstant;
+import pust.model.utility.AppConstant;
 
 import java.io.IOException;
 
