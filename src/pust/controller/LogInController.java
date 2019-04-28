@@ -73,9 +73,10 @@ public class LogInController implements Initializable {
 
         //TODO make strings safe for root Admin. Sebastians shit
         SceneSwitch sceneSwitcher = new SceneSwitch();
-        if (connected && userName.getText().equals("root") && userName.getText().equals("root")) {
+        if (connected && userName.getText().equals("root") && passWord.getText().equals("root")) {
             //Send you to IT-administrator
-            sceneSwitcher.goToAdminCreate(actionEvent);
+           // sceneSwitcher.goToAdminCreate(actionEvent);
+            sceneSwitcher.goToMain(actionEvent); // Tempory block of IT-admin
         } else {
             //Send you to mainWindows
             sceneSwitcher.goToMain(actionEvent);
