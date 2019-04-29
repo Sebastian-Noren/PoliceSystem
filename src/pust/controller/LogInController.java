@@ -45,17 +45,17 @@ public class LogInController implements Initializable {
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
         //change to isEmpty
-        if (userName.getText().equals("")) {
+        if (userName.getText().isEmpty()) {
             userWarning.setText("Enter a username");
             return;
         }
-        if (passWord.getText().equals("")) {
+        if (passWord.getText().isEmpty()) {
             passWarning.setText("Enter a password");
             return;
         }
 
-        database = new DatabaseConnection();
-        connected = database.Loginconnect(userName.getText(), passWord.getText());
+        //database = new DatabaseConnection();
+        //connected = database.Loginconnect(userName.getText(), passWord.getText());
 
         // IF loginconnect returns incorrect username/password
         // this whole thing will be made better, code is all over the place for now
@@ -75,7 +75,7 @@ public class LogInController implements Initializable {
         SceneSwitch sceneSwitcher = new SceneSwitch();
         if (connected && userName.getText().equals("root") && passWord.getText().equals("root")) {
             //Send you to IT-administrator
-           // sceneSwitcher.goToAdminCreate(actionEvent);
+            sceneSwitcher.goToAdminCreate(actionEvent);
             sceneSwitcher.goToMain(actionEvent); // Tempory block of IT-admin
         } else {
             //Send you to mainWindows
