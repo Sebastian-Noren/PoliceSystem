@@ -51,6 +51,7 @@ public class PersonalInformationController implements Initializable {
     private void printCrimeRecords(ArrayList<TempCriminalRecord> criminalRecord) {
         for (TempCriminalRecord g : criminalRecord) {
             counter++;
+            criminalTextBox.appendText("Section:\t"+counter+"\n");
             criminalTextBox.appendText(g.toString());
         }
     }

@@ -80,8 +80,7 @@ public class TempCriminalRecord {
 
     @Override
     public String toString() {
-        return "Section:\t1\n" +
-                "Conviction:\t"+convictionDate+",  "+criminalCase.toUpperCase()+"\n" +
+        return  "Conviction:\t"+convictionDate+",  "+criminalCase.toUpperCase()+"\n" +
                 "Crime:\t"+crime.toUpperCase()+", Date of crime: "+crimeDate+", Place of crime: "+crimeStreet+", "+crimeCity+"\n" +
                 "Punishment:\t"+term.toUpperCase()+".\n"+
                 "-------------------------------------------------------------------------------------------------------------------------------------------------------------\n";

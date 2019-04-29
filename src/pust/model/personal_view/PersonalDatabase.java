@@ -1,6 +1,8 @@
 package pust.model.personal_view;
 
-import pust.model.AppConstant;
+
+
+import pust.model.utility.AppConstant;
 
 import java.sql.*;
 import java.util.ArrayList;

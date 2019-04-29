@@ -4,13 +4,13 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="749.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForIdentificationController">
+<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForIdentificationController">
     <children>
-        <TabPane layoutX="0.0" layoutY="0.0" prefHeight="720.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Personal information">
                     <content>
-                        <AnchorPane fx:id="IDPane" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="780.0" />
+                        <AnchorPane fx:id="IDPane" minHeight="0.0" minWidth="780.0" prefHeight="738.0" prefWidth="780.0" />
                     </content>
                 </Tab>
                 <Tab text="Passport">
