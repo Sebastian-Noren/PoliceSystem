@@ -33,8 +33,8 @@ public class PersonalInformationController implements Initializable {
 
     private void setlabel(TempPerson person) {
         labelSSN.setText(person.getPersonSSN());
-        labelAge.setText("");
-        labelSuspect.setText("");
+        labelAge.setText(""); //TODO Make calculation for age and set it
+        labelSuspect.setText(""); //TODO suspect calc
         labelCrimeCount.setText(String.valueOf(counter));
         labelGender.setText(person.getGender());
         labelFullname.setText(person.getLastname() + ", " + person.getFirstname());
