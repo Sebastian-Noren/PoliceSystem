@@ -55,22 +55,22 @@
                      </font>
                   </Label>
                   <Label text="Personal SSN" GridPane.rowIndex="1" />
-                  <Label fx:id="labelSSN" text="198911105555" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelSSN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Age:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label fx:id="labelAge" prefHeight="17.0" prefWidth="24.0" text="29" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="labelAge" prefHeight="17.0" prefWidth="24.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Label text="Year" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <Label text="Gender" GridPane.rowIndex="2" />
                   <Label text="Name" GridPane.rowIndex="3" />
                   <Label text="Firstname" GridPane.rowIndex="4" />
                   <Label text="Lastname" GridPane.rowIndex="5" />
-                  <Label fx:id="labelGender" text="Male" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="labelFullname" prefHeight="17.0" prefWidth="213.0" text="Norén, Sebastian" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
-                  <Label fx:id="labelFirstname" text="Sebastian" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="labelLastname" text="Norén" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="labelGender" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelFullname" prefHeight="17.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
+                  <Label fx:id="labelFirstname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelLastname" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Birthplace" GridPane.rowIndex="7" />
                   <Label text="Citizenship" GridPane.rowIndex="8" />
-                  <Label text="SWEDEN" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label text="V Torup" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Last updated" GridPane.rowIndex="10" />
                   <Label text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
@@ -106,10 +106,10 @@
                   <Label text="City" GridPane.rowIndex="3" />
                   <Label text="Country" GridPane.rowIndex="4" />
                   <Label text="Last updated" GridPane.rowIndex="6" />
-                  <Label fx:id="labelStreet" text="Fältvägen 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="labelZipCode" text="29139" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="labelCity" text="Krisitanstad" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="labelCountry" text="Sweden" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelStreet" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelZipCode" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="labelCountry" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>

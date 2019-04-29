@@ -24,11 +24,11 @@ public class PersonalInformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PersonalModel perModel = new PersonalModel();
-        TempPerson person = perModel.getPersonalInformation(SSN);
-        ArrayList<TempCriminalRecord> criminalRecord = perModel.getPersonalCrimeRecord(SSN);
-        printCrimeRecords(criminalRecord);
-        setlabel(person);
+      //  PersonalModel perModel = new PersonalModel();
+       // TempPerson person = perModel.getPersonalInformation(SSN);
+       // ArrayList<TempCriminalRecord> criminalRecord = perModel.getPersonalCrimeRecord(SSN);
+       // printCrimeRecords(criminalRecord);
+       // setlabel(person);
     }
 
     private void setlabel(TempPerson person) {
