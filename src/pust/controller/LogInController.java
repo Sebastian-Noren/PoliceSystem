@@ -1,3 +1,8 @@
+/*This is the login screen. To enter the system:
+ Username: user
+ Password: user
+*/
+
 package pust.controller;
 
 import javafx.animation.PauseTransition;
@@ -13,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
+import pust.controller.SceneSwitch;
 import pust.model.utility.DatabaseConnection;
 import pust.model.LogInModel;
 
@@ -23,8 +29,6 @@ public class LogInController implements Initializable {
 
     long time = System.currentTimeMillis();
     long end = time + 3000;
-
-    //TODO Create a nice loginscreen Julius.
 
     @FXML
     TextField userName, passWord;
@@ -44,7 +48,6 @@ public class LogInController implements Initializable {
 
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
-        //change to isEmpty
         if (userName.getText().isEmpty()) {
             userWarning.setText("Enter a username");
             return;
@@ -54,11 +57,22 @@ public class LogInController implements Initializable {
             return;
         }
 
+        //temporary log in without database
+        SceneSwitch sceneSwitcher = new SceneSwitch();
+        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
+            //Send you to IT-administrator
+            sceneSwitcher.goToAdminCreate(actionEvent);
+            //sceneSwitcher.goToMain(actionEvent);
+        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+            //Sends you to mainWindow
+            sceneSwitcher.goToMain(actionEvent);
+        }
+
         //database = new DatabaseConnection();
         //connected = database.Loginconnect(userName.getText(), passWord.getText());
 
-        // IF loginconnect returns incorrect username/password
-        // this whole thing will be made better, code is all over the place for now
+        // IF login returns incorrect username/password
+        // this whole thing will be made better.
         counter++;
         passWarning.setText(model.passwordCounter(counter));
         if (model.passwordCounter(counter).equals("warning")) {
@@ -70,9 +84,8 @@ public class LogInController implements Initializable {
             delay.play();
         }
 
-
         //TODO make strings safe for root Admin. Sebastians shit
-        SceneSwitch sceneSwitcher = new SceneSwitch();
+        /*SceneSwitch sceneSwitcher = new SceneSwitch();
         if (connected && userName.getText().equals("root") && passWord.getText().equals("root")) {
             //Send you to IT-administrator
             sceneSwitcher.goToAdminCreate(actionEvent);
@@ -80,7 +93,7 @@ public class LogInController implements Initializable {
         } else {
             //Send you to mainWindows
             sceneSwitcher.goToMain(actionEvent);
-        }
+        }*/
     }
 
     public void forgotPasswordClicked(ActionEvent event) {
