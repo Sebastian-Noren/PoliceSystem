@@ -1,11 +1,11 @@
 package pust.model.entity;
 
 import pust.model.administrative_functions.application_functions.Identification;
-import pust.model.administrative_functions.report_system.Crime;
+import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
 
 /*
- * FIXME Suspect, MissingItem and MissingPerson all have a variable called characteristics, perhaps a class should handle the attribute
+ * FIXME Suspect, MissingItemReport and MissingPersonReport all have a variable called characteristics, perhaps a class should handle the attribute
  */
 
 public class Suspect extends Person {
@@ -22,7 +22,7 @@ public class Suspect extends Person {
             String surname,
             PersonalNumber personalNumber,
             Address address,
-            Record<Crime> crimeRecord,
+            Record crimeRecord,
             int height,
             Identification identification,
             Enum gender,

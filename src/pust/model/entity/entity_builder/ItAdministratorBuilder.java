@@ -2,7 +2,7 @@ package pust.model.entity.entity_builder;
 
 import pust.model.entity.ItAdministrator;
 
-public class ItAdministratorBuilder extends EmployeeBuilder {
+public class ItAdministratorBuilder extends EmployeeBuilder<ItAdministrator> {
 
     @Override
     public ItAdministrator build(){

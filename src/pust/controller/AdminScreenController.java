@@ -7,11 +7,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import pust.model.admin_create.AdminCreateModel;
 import pust.model.admin_create.AdminDatabase;
 import pust.model.admin_create.AdminUserTable;
+import pust.model.utility.AppConstant;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -22,7 +33,7 @@ public class AdminScreenController implements Initializable {
     private AdminDatabase sql;
     private AdminCreateModel adCrMo;
     @FXML
-    private TextField accFirstName, accLastName, accPass, accConfPass;
+    private TextField accFirstName, accLastName, accPass, accConfPass, accSSN, accMail;
     @FXML
     private TableView<AdminUserTable> adminTable;
     @FXML
@@ -32,65 +43,62 @@ public class AdminScreenController implements Initializable {
     @FXML
     private RadioButton accPoliceRole, accPoliceChiefRole, accITrole;
     @FXML
-    private Label labWarFirstname, labWarPass, labWarLastname, labWarConfPass;
-
+    private Label labWarFirstname, labWarPass, labWarLastname, labWarConfPass, labelActiveUser, labWarSSN;
+    @FXML
+    private ImageView profileImg;
+    @FXML
+    private Image image;
     private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
-    private String userSelect;
-    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files (.jpg /.png)", "*.jpg", "*.png");
+    private FileChooser fc = new FileChooser();
+    BufferedImage bImg = null;
+    private String userSelect, policeRole;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sql = new AdminDatabase();
         adCrMo = new AdminCreateModel();
+        fc.getExtensionFilters().add(imageFilter);
         sql.connect();
         col_userAcc.setCellValueFactory(new PropertyValueFactory<>("users"));
         adminTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         adminTable.getSelectionModel().setCellSelectionEnabled(true);
+        labelActiveUser.setText(AppConstant.getCurrentUser());
         updateList();
         roleSelect();
+
     }
 
     @FXML
     private void createAccBtn() {
-        if (accFirstName.getText().isEmpty() || accLastName.getText().isEmpty() || accPass.getText().isEmpty() || accConfPass.getText().isEmpty()) {
-            if (accFirstName.getText().isEmpty()) {
-                labWarFirstname.setText("You need to fill out this field!");
-            }
-            if (accLastName.getText().isEmpty()) {
-                labWarLastname.setText("You need to fill out this field!");
-            }
-            if (accPass.getText().isEmpty()) {
-                labWarPass.setText("Needs a password!");
-            }
-            if (accConfPass.getText().isEmpty()) {
-                labWarConfPass.setText("Confirm your password!");
-            }
+        String strFirstName = accFirstName.getText();
+        String strLastName = accLastName.getText();
+        String strSSN = accSSN.getText();
+        String strPass = accPass.getText();
+        String strConfPass = accConfPass.getText();
+        String strMail = accMail.getText();
+        if (emptyFieldsCheck()) {
+            displayWarnings(strFirstName, strLastName, strSSN, strPass, strConfPass);
         } else {
-            if (accPass.getText().equals(accConfPass.getText())) {
-                String randGenUserName = adCrMo.generateNewAccName(accFirstName.getText(), accLastName.getText());
-                sql.createUsersSQL(randGenUserName, accPass.getText());
-                sql.grantOptionsSQL(adCrMo.grant(select, insert, update, delete, grantOption), randGenUserName);
-                accFirstName.clear();
-                accLastName.clear();
-                accPass.clear();
-                accConfPass.clear();
-                accPoliceRole.setSelected(true);
-                roleSelect();
-                updateList();
-                alert.setTitle("Account Created");
-                alert.setHeaderText("");
-                alert.setContentText("New account name is: " + randGenUserName);
-                alert.showAndWait();
+            if (strPass.equals(strConfPass)) {
+                String randGenUserName = adCrMo.generateNewAccName(strFirstName, strLastName);
+                int policeID = adCrMo.generatePoliceId();
+                if (sql.insertPoliceSQL(policeID, strSSN, randGenUserName, strMail, policeRole)) {
+                    sql.createUsersSQL(randGenUserName, strPass);
+                    sql.grantOptionsSQL(adCrMo.grant(select, insert, update, delete, grantOption), randGenUserName);
+                    saveImage(randGenUserName);
+                    resetTextfields();
+                    roleSelect();
+                    updateList();
+                    image = new Image("photo.jpg", 176.0, 224.0, false, true);
+                    profileImg.setImage(image);
+                    adCrMo.alertCreateComplete(randGenUserName, policeID);
+                }
             } else {
                 labWarPass.setText("Password don´t match!");
                 labWarConfPass.setText("Password don´t match!");
             }
         }
-    }
-
-    @FXML
-    private void refreshUsers() {
-        updateList();
     }
 
     @FXML
@@ -120,6 +128,7 @@ public class AdminScreenController implements Initializable {
             delete.setDisable(true);
             grantOption.setSelected(false);
             grantOption.setDisable(true);
+            policeRole = "Police officer";
 
         }
         if (accPoliceChiefRole.isSelected()) {
@@ -127,13 +136,14 @@ public class AdminScreenController implements Initializable {
             delete.setSelected(true);
             grantOption.setDisable(true);
             grantOption.setSelected(false);
+            policeRole = "Police chief";
         }
         if (accITrole.isSelected()) {
-
             delete.setDisable(false);
             delete.setSelected(true);
             grantOption.setSelected(true);
             grantOption.setDisable(false);
+            policeRole = "IT-administrator";
         }
         select.setSelected(true);
         insert.setSelected(true);
@@ -146,6 +156,29 @@ public class AdminScreenController implements Initializable {
         sceneSwitch.goToLogin(actionEvent);
     }
 
+    @FXML
+    private void typingReset() {
+        resetLabels();
+    }
+
+    @FXML
+    private void browseImg() {
+        File file = fc.showOpenDialog(null);
+        try {
+            if (file != null) {
+                String strImage = file.toURI().toString();
+                image = new Image(strImage, 176.0, 224.0, false, true);
+                profileImg.setImage(image);
+                strImage = strImage.replace("file:/", "");
+                System.out.println(strImage);
+                bImg = ImageIO.read(new FileInputStream(strImage));
+            }
+
+        } catch (IOException e) {
+            //e.printStackTrace();
+        }
+    }
+
     private void updateList() {
         adminTable.getItems().clear();
         ArrayList<String> adminUsers = sql.getUsersAdmin();
@@ -153,17 +186,66 @@ public class AdminScreenController implements Initializable {
             oblist.add(new AdminUserTable(g));
         }
         adminTable.setItems(oblist);
-        labWarFirstname.setText("");
-        labWarLastname.setText("");
-        labWarPass.setText("");
-        labWarConfPass.setText("");
+        resetLabels();
     }
-    @FXML
-    private void typingReset() {
+
+    private void resetLabels() {
         labWarFirstname.setText("");
         labWarLastname.setText("");
+        labWarSSN.setText("");
         labWarPass.setText("");
         labWarConfPass.setText("");
     }
 
+    private void resetTextfields() {
+        accFirstName.clear();
+        accLastName.clear();
+        accSSN.clear();
+        accMail.clear();
+        accPass.clear();
+        accConfPass.clear();
+        accPoliceRole.setSelected(true);
+    }
+
+    private boolean emptyFieldsCheck() {
+        return accFirstName.getText().isEmpty() ||
+                accLastName.getText().isEmpty() ||
+                accSSN.getText().isEmpty() ||
+                accPass.getText().isEmpty() ||
+                accConfPass.getText().isEmpty();
+    }
+
+    private void displayWarnings(String strFirstName, String strLastName, String strSSN, String strPass, String strConfPass) {
+        if (strFirstName.isEmpty()) {
+            labWarFirstname.setText("You need to fill out this field!");
+        }
+        if (strLastName.isEmpty()) {
+            labWarLastname.setText("You need to fill out this field!");
+        }
+        if (strSSN.isEmpty() || strSSN.length() < 12 || strSSN.length() > 12) {
+            labWarSSN.setText("SSN needs to be 12 characters!");
+        }
+        if (strPass.isEmpty()) {
+            labWarPass.setText("Needs a password!");
+        }
+        if (strConfPass.isEmpty()) {
+            labWarConfPass.setText("Confirm your password!");
+        }
+    }
+
+    private void saveImage(String randGenUserName) {
+
+        //TODO Funkar bara om det inte är mellanrum Mappar(filer??
+        String str = AppConstant.SAVE_FOLDER_PATH + randGenUserName + ".png";
+        try {
+            if (bImg != null) {
+                BufferedImage resized = adCrMo.resize(bImg, 224, 176);
+                File outputFile = new File(str);
+                ImageIO.write(resized, "png", outputFile);
+                bImg = null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

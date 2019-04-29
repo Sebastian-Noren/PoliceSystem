@@ -1,12 +1,13 @@
 package pust.model.entity.entity_builder;
 
 import pust.model.entity.Person;
+import pust.model.entity.Police;
 import pust.model.entity.PoliceChief;
 
-public class PoliceChiefBuilder extends EmployeeBuilder {
+public class PoliceChiefBuilder extends EmployeeBuilder<PoliceChief> {
 
     @Override
-    public Person build() {
+    public PoliceChief build() {
         return new PoliceChief(
                 super.firstName,
                 super.surname,

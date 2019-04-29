@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="609.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
+   <children>
+      <Label layoutX="376.0" layoutY="265.0" text="Report arrest in custody" />
+   </children>
+</AnchorPane>
