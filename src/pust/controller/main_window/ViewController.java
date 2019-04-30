@@ -23,7 +23,8 @@ public class ViewController implements Initializable {
     @FXML
     private AnchorPane policeChiefViewPane;
 
-
+    @FXML
+    private AnchorPane viewWanted;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,6 +34,8 @@ public class ViewController implements Initializable {
         searchScene();
         //loads up PoliceChiefViewScene
         policeChiefViewScene();
+        //loads up view wanted people
+        viewWanted();
 
     }
     public void statisticsScene(){
@@ -64,6 +67,18 @@ public class ViewController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("../../view/main_window/PoliceChief.fxml"));
             policeChiefViewPane.getChildren().removeAll();
             policeChiefViewPane.getChildren().setAll(fxml);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void viewWanted(){
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("../../view/main_window/ViewWantedScreen.fxml"));
+            viewWanted.getChildren().removeAll();
+            viewWanted.getChildren().setAll(fxml);
 
         } catch (IOException e) {
             e.printStackTrace();
