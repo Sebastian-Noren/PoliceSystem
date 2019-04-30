@@ -58,13 +58,13 @@ public class MainFrameController implements Initializable {
 
 
 
-        Image image = new Image("image/user_accounts.png");
+        Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
 
-        Image image1 = new Image("image/swepustlogg.png");
+        Image image1 = new Image("/image/swepustlogg.png");
         notifyImg.setImage(image1);
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
@@ -110,7 +110,7 @@ public class MainFrameController implements Initializable {
 
     public void back() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/standardWindow.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 

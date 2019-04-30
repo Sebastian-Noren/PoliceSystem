@@ -30,7 +30,7 @@ public class PersonalDatabase {
     public String getPerson(String ssn) {
         StringJoiner sj = new StringJoiner(":");
         try {
-            ResultSet rs = statement.executeQuery("select Person_SSN,firstname,lastname,gender, \n" +
+            ResultSet rs = statement.executeQuery("select SSN,firstname,lastname,gender, \n" +
                     "street,zipCode,city,country,wanted, missing  from person\n" +
                     "join address_has_person on person.SSN = address_has_person.Person_SSN\n" +
                     "join address on address.zipCode = address_has_person.Address_zipCode\n" +

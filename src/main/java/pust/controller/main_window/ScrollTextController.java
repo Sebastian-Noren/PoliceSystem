@@ -94,9 +94,9 @@ public class ScrollTextController implements Initializable {
 
         TranslateTransition translateTransition = new TranslateTransition();
         //Duration of text movement
-        translateTransition.setDuration(Duration.seconds(5));
+        translateTransition.setDuration(Duration.seconds(3));
         //to what position in the X-axis the text should move
-        translateTransition.setToX(600); //190
+        translateTransition.setToX(190); //190
         //autoReverse
         //translateTransition.setAutoReverse(true);
         //times the text will repeat

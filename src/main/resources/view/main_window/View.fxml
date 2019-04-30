@@ -25,6 +25,11 @@
                         <AnchorPane fx:id="policeChiefViewPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
+                <Tab text="Wanted Suspect">
+                    <content>
+                        <AnchorPane fx:id="viewWanted" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
     </children>

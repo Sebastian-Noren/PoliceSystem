@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pust.model.utility.AppConstant;
-import pust.model.utility.MavenDataBaseConnection;
 
 /*
  * To run this program Assert must be enabled.
@@ -22,8 +21,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        MavenDataBaseConnection.dataBaseConnection();
 
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/image/swepustlogg.png"));

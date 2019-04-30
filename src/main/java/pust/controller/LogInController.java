@@ -68,8 +68,8 @@ public class LogInController implements Initializable {
             sceneSwitcher.goToMain(actionEvent);
         }
 
-        database = new DatabaseConnection();
-        connected = database.Loginconnect(userName.getText(), passWord.getText());
+        //database = new DatabaseConnection();
+        //connected = database.Loginconnect(userName.getText(), passWord.getText());
 
         // IF login returns incorrect username/password
         // this whole thing will be made better.
