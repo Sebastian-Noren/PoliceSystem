@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.StandardWindowController">
+    <children>
+        <TabPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Search Individual">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="806.0" prefHeight="739.0" prefWidth="878.0">
+                            <children>
+                        <VBox layoutX="14.0" layoutY="28.0" prefHeight="79.0" prefWidth="158.0" spacing="2.0">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                           <children>
+                              <GridPane prefHeight="72.0" prefWidth="159.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="36.6666259765625" minHeight="10.0" prefHeight="28.666651407877605" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="44.66667175292969" minHeight="8.000015258789066" prefHeight="8.000015258789066" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                            <TextField fx:id="ssnTextSearch" onKeyPressed="#typingReset" prefHeight="25.0" prefWidth="183.0" promptText="SSN" GridPane.columnSpan="2147483647" />
+                                    <Label fx:id="labelSSN" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="15.0" prefWidth="178.0" text="Label" textFill="#d80707" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                            <Button alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#watchPersonInfo" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
