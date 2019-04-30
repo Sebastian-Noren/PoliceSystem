@@ -22,6 +22,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        
+
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/image/swepustlogg.png"));
         primaryStage.getIcons().add(image);
