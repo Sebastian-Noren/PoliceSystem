@@ -8,8 +8,8 @@ public class FirstNameSource implements IFirstNameSource {
     private ArrayList<String> cachedFemaleNames;
     private ArrayList<String> cachedMaleNames;
 
-    private static final String FEMALE_PATH = "src/pust/random_person_generator/files/female_names.txt";
-    private static final String MALE_PATH = "src/pust/random_person_generator/files/male_names.txt";
+    private static final String FEMALE_PATH = "src/main/resources/files/female_names.txt";
+    private static final String MALE_PATH = "src/main/resources/files/male_names.txt";
 
     FirstNameSource() {
         cachedFemaleNames = ReadFile.readFile(FEMALE_PATH);
