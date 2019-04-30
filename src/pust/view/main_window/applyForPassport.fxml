@@ -103,7 +103,7 @@
             <TextField prefHeight="25.0" prefWidth="86.0" promptText="Hair Color" />
             <TextField prefHeight="25.0" prefWidth="107.0" promptText="Eye Color" />
             <TextField prefHeight="25.0" prefWidth="107.0" promptText="Weight" />
-            <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="158.0" text="Load Image" />
+            <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="101.0" text="Upload Image" textAlignment="CENTER" />
          </children>
       </HBox>
       <Label layoutX="45.0" layoutY="414.0" text="6. Current status">

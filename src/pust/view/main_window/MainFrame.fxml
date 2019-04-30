@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
@@ -76,22 +77,34 @@
                <VBox.margin>
                   <Insets left="20.0" />
                </VBox.margin></ImageView>
-                <Button mnemonicParsing="false" onAction="#ReportTab" prefHeight="25.0" prefWidth="90.0" text="Report">
+                <Button fx:id="menuBtn1" mnemonicParsing="false" onAction="#ReportTab" prefHeight="25.0" prefWidth="90.0" stylesheets="@../menuButton.css" text="REPORT">
                <VBox.margin>
                   <Insets top="15.0" />
-               </VBox.margin></Button>
-                <Button mnemonicParsing="false" onAction="#applyForIdentification" prefHeight="28.0" prefWidth="90.0" text="ID">
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
+                <Button mnemonicParsing="false" onAction="#applyForIdentification" prefHeight="28.0" prefWidth="90.0" stylesheets="@../menuButton.css" text="ID">
                <VBox.margin>
                   <Insets top="15.0" />
-               </VBox.margin></Button>
-                <Button mnemonicParsing="false" onAction="#view" prefHeight="25.0" prefWidth="90.0" text="View">
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
+                <Button mnemonicParsing="false" onAction="#view" prefHeight="25.0" prefWidth="90.0" stylesheets="@../menuButton.css" text="VIEW">
                <VBox.margin>
                   <Insets top="15.0" />
-               </VBox.margin></Button>
-                <Button mnemonicParsing="false" onAction="#back" onDragDetected="#back" prefHeight="25.0" prefWidth="90.0" text="Back">
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
+                <Button mnemonicParsing="false" onAction="#back" onDragDetected="#back" prefHeight="25.0" prefWidth="90.0" stylesheets="@../menuButton.css" text="BACK">
                <VBox.margin>
                   <Insets top="15.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
             </children>
          <BorderPane.margin>
             <Insets />
