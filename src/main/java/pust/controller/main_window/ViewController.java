@@ -77,6 +77,7 @@ public class ViewController implements Initializable {
     public void viewWanted(){
         try {
             fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ViewWantedScreen.fxml"));
+
             viewWanted.getChildren().removeAll();
             viewWanted.getChildren().setAll(fxml);
 
