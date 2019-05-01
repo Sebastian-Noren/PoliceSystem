@@ -4,8 +4,6 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MavenDataBaseConnection {
 

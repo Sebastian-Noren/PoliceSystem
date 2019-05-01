@@ -63,7 +63,7 @@ public class ReportController implements Initializable {
 
     public void reportCrimeScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ReportCrime.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportCrime.fxml"));
             reportCrimeAnchorPane.getChildren().removeAll();
             reportCrimeAnchorPane.getChildren().setAll(fxml);
 
@@ -74,7 +74,7 @@ public class ReportController implements Initializable {
 
     public void reportArrestScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ReportArrestInCustody.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportArrestInCustody.fxml"));
             reportArrestPane.getChildren().removeAll();
             reportArrestPane.getChildren().setAll(fxml);
 
@@ -86,7 +86,7 @@ public class ReportController implements Initializable {
 
     public void reportLostEntity(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ReportLostEntity.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportLostEntity.fxml"));
             reportLostEntityPane .getChildren().removeAll();
             reportLostEntityPane .getChildren().setAll(fxml);
 
@@ -98,7 +98,7 @@ public class ReportController implements Initializable {
     public void reportMissingPerson(){
 
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ReportMissingPerson.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportMissingPerson.fxml"));
             reportMissingPersonPane .getChildren().removeAll();
             reportMissingPersonPane .getChildren().setAll(fxml);
 
