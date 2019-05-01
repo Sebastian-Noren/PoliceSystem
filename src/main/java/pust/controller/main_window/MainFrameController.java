@@ -56,8 +56,6 @@ public class MainFrameController implements Initializable {
         timeline.play();
 
 
-
-
         Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
 
