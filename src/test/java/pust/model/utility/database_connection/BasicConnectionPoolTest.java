@@ -13,12 +13,62 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BasicConnectionPoolTest {
 
     private IConnectionPool connectionPool;
 
+    /**
+     * The most basic connection example to connect to the database.
+     * The test consists of two examples:
+     * 1. Using the custom the connection pool
+     * 2. Using the DBCP connection pool from Apache commons
+     */
+
+    @Test
+    public void devBasicDatabaseConnection() {
+        // In the real program the remote connection is already done
+        LinuxRemoteConnection.remoteConnect();
+
+        //Create the connection pool if using the custom pool
+        try {
+            createConnectionPool();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //Fetch a connection from the connection pool
+        try (Connection connection = connectionPool.getConnection()) {
+            //Some SQL statements
+
+
+            //Return the connection back to the pool
+            connectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //If the DBCP connection pool is used it is simply called when
+        //creating the connection
+        try (Connection connection = DBCPDataSource.getConnection()) {
+            //Some SQL statements
+
+            //No need to return the connection back to the pool as it is
+            //handled by the DBCP.
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    /*
+     * This method creates a custom connection pool
+     * and gets a connection from the pool. The sql syntax is
+     * then executed and the connection is returned back to
+     * the pool.
+     */
 
     @Test
     public void devCreatePersonAndInjectToDatabase() {
@@ -48,11 +98,43 @@ public class BasicConnectionPoolTest {
             activateDatabase.executeUpdate();
             createPerson.executeUpdate();
             connection.commit();
+            connectionPool.releaseConnection(connection);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    /*
+     * This method also creates a pool but
+     * it is an Apache common component and added via
+     * maven dependencies.
+     * https://commons.apache.org/proper/commons-dbcp/
+     */
+
+    @Test
+    public void devDBCPDatabaseConnection() throws SQLException {
+        LinuxRemoteConnection.remoteConnect();
+        PreparedStatement database = null;
+        PreparedStatement firstName = null;
+        String useDataBase = "USE pustgis;";
+        String name = "SELECT firstname FROM person WHERE lastname = 'Muhammed';";
+        try (Connection connection = DBCPDataSource.getConnection()) {
+
+            connection.setAutoCommit(false);
+            database = connection.prepareStatement(useDataBase);
+            firstName = connection.prepareStatement(name);
+            database.execute();
+            ResultSet rs = firstName.executeQuery(name);
+            String temp = "";
+            while (rs.next()) {
+                temp = rs.getString("firstname");
+            }
+            Assert.assertEquals("Ali", temp);
+            System.out.println("The first name is: " + temp);
+        }
+    }
+
 
     @Test
     public void devDatabaseConnection() throws SQLException {
@@ -81,10 +163,10 @@ public class BasicConnectionPoolTest {
 
     @Test
     public void testPath() throws IOException {
-       File file = new File("src/main/resources/files/cities.txt");
-       if (file.exists()){
-           System.out.println("Exists");
-       }
+        File file = new File("src/main/resources/files/cities.txt");
+        if (file.exists()) {
+            System.out.println("Exists");
+        }
     }
 
 }

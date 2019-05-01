@@ -56,6 +56,6 @@ public class PersonalNumber {
             return "" + birthYear + "0" + birthMonth + "0" + birthDay + "" + serialNumber + "" + controlNumber;
 
         }
-        return "" + birthYear + "-" + birthMonth + "-" + birthDay + "-" + serialNumber + "" + controlNumber;
+        return "" + birthYear + "" + birthMonth + "" + birthDay + "" + serialNumber + "" + controlNumber;
     }
 }
