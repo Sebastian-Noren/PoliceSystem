@@ -35,52 +35,10 @@ public class LinuxRemoteConnection {
             int assignedPort = session.setPortForwardingL(
                     listeningPort, remoteHost, remotePort
             );
-            System.out.println("Localhost connected on: " + assignedPort + " to " + remoteHost  + " on " + host +":" + remotePort);
+            System.out.println("Localhost connected on: " + assignedPort + " to " + remoteHost + " on " + host + ":" + remotePort);
 
         } catch (Exception ex) {
             System.err.print(ex);
         }
-
     }
-
-
-    public static void dataBaseConnection() {
-        try {
-            remoteConnect();
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-        System.out.println("\nSelecting all firstnames from the table person\n");
-        Connection connection = null;
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://" + remoteHost +":" + listeningPort + "/";
-        String db = "pustgis";
-        String dbUser = "root";
-        String dbPasswd = "6978f28c972457220d4e72398bb9e000";
-        try{
-            Class.forName(driver);
-            connection = DriverManager.getConnection(url+db, dbUser, dbPasswd);
-            try{
-                Statement st = connection.createStatement();
-                String sql = "SELECT * FROM person";
-
-                ResultSet mySql = st.executeQuery(sql);
-                while (mySql.next()){
-                    String person = mySql.getString("firstname");
-                    System.out.println(person + "\n");
-                }
-
-            }
-            catch (SQLException s){
-                System.out.println("SQL statement is not executed!");
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        System.out.println("SQL statement complete");
-    }
-
 }
