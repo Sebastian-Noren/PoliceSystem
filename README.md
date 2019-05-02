@@ -53,8 +53,8 @@ understood by reading the code.
     <br>
     
     ```java
-            void sendToPrinter(Document document);
-            void createPdf(Document document);
+        void sendToPrinter(Document document);
+        void createPdf(Document document);
     ```
     
 3. **Variables**
@@ -242,7 +242,7 @@ understood by reading the code.
     * The main should have the most comments, when someone reads through the main they should be able 
     to understand what the whole program does.
 <br>
-***
+<hr>
 <br>
     
 * > "Later equals never"
