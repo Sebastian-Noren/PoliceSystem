@@ -33,7 +33,7 @@ public class ApplyForIdentificationController implements Initializable {
     public void IDScene(){
 
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/PersonalInformation.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/PersonalInformation.fxml"));
             IDPane.getChildren().removeAll();
             IDPane.getChildren().setAll(fxml);
 
@@ -45,7 +45,7 @@ public class ApplyForIdentificationController implements Initializable {
 
     public void passportScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/Passport.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Passport.fxml"));
             passportPane.getChildren().removeAll();
             passportPane.getChildren().setAll(fxml);
 
