@@ -35,6 +35,7 @@ understood by reading the code.
     <br>
     Example:
     <br>
+    
     ```java
         public interface ISendable {
             
@@ -43,16 +44,19 @@ understood by reading the code.
         
         }
     ```
+    
 2. **Methods**
     * Methods should be verbs in camel casing. 
     * The name should be as descriptive as possible of the functionality of the method.
     <br>
     Example:
     <br>
+    
     ```java
-        void sendToPrinter(Document document);
-        void createPdf(Document document);
+            void sendToPrinter(Document document);
+            void createPdf(Document document);
     ```
+    
 3. **Variables**
     * The name should be short yet meaningful and not an acronym or abbreviation.
     * Should **not** start with underscore ('_') or dollar sign '$' characters.
@@ -61,19 +65,23 @@ understood by reading the code.
     <br>
     Example:
     <br>
+    
     ```java
         int port = 3306;
         boolean isSent = false;
         int i = 0;
     ```
+    
 4. **Constant Variables**
     * Should all be **uppercase** seperated by underscore.
     <br>
     Example:
     <br>
+    
     ```java
         static final int MAX_QUE_SIZE = 10;
     ```
+    
 5. **Packages**
     * All package names are in **all-lowercase letters**
     * The top level package name is pust.
@@ -81,9 +89,11 @@ understood by reading the code.
     <br>
     Example:
     <br>
+    
     ```java
         pust.model.database_functionality
     ```
+    
 6.  **GitHub**
     * Use snake_casing when naming the branches. The name should be somewhat short but still descriptive.
 <br><br>
@@ -101,11 +111,13 @@ understood by reading the code.
     <br>
     Example:
     <br>
+    
     ```java
         int add(int x, int y) {
         return x + y;
         } 
     ```
+    
 3.  **Variables**
     * One variable declaration on each line.
     * Initialization of variables should not be in their declaration, but in a constructor or static constructor.
@@ -119,9 +131,11 @@ understood by reading the code.
     * If a bug is found make sure to report this as an issue.
     * **Never** merge anything or push anything directly to the master branch without the developing team's approval. 
     * When creating a new branch make sure to branch it off the develop branch.
+    
     ```java
         git checkout -b new_feature develop
-    ```    
+    ```   
+     
 5.  **Comments**
     * The code should be self commentating as much as possible.
     * A one sentence comment should use **line comment**.
@@ -133,6 +147,7 @@ understood by reading the code.
     <br>
     Example:
     <br>
+    
     ```java
         package pust.model.entity;
         import org.junit.*;
@@ -147,11 +162,13 @@ understood by reading the code.
             private int age;
          }
     ```
+    
     * A block comment description of a method should be done within the method with one whitespace 
     between the method name and the top of the block comment and one whitespace after.
     <br>
     Example:
     <br>
+    
     ```java
          public int calculateAge(int age, int height) {
             
@@ -163,6 +180,7 @@ understood by reading the code.
              return age * height;   
          }
     ```    
+    
 6.  **Access modifier**
     * The correct access modifier **MUST** be used **EVERY TIME**.
 7.  **Layout**
@@ -176,6 +194,7 @@ understood by reading the code.
     * **Always** use CTRL + L, it can not be done to often. A bare minimum is before every commit.
 8.  **Complete example**
     <br>
+    
     ```java
         package pust.model.entity;
         import org.junit.*;
@@ -214,6 +233,7 @@ understood by reading the code.
             }
          }
     ```
+    
 9.  **General Practices**
     * A efficiency program will always be of higher priority. Even if something can be done in a day, take the 
     time to make a program/logic that will last more then the time expected, and that will take into account 
