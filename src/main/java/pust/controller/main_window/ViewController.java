@@ -40,7 +40,7 @@ public class ViewController implements Initializable {
     }
     public void statisticsScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/Statistics.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Statistics.fxml"));
             statisticsPane.getChildren().removeAll();
             statisticsPane.getChildren().setAll(fxml);
 
@@ -52,7 +52,7 @@ public class ViewController implements Initializable {
     public void searchScene(){
 
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/search.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/search.fxml"));
             searchPane.getChildren().removeAll();
             searchPane.getChildren().setAll(fxml);
 
@@ -64,7 +64,7 @@ public class ViewController implements Initializable {
     }
     public void policeChiefViewScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/PoliceChief.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/PoliceChief.fxml"));
             policeChiefViewPane.getChildren().removeAll();
             policeChiefViewPane.getChildren().setAll(fxml);
 
@@ -76,7 +76,7 @@ public class ViewController implements Initializable {
 
     public void viewWanted(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/ViewWantedScreen.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ViewWantedScreen.fxml"));
 
             viewWanted.getChildren().removeAll();
             viewWanted.getChildren().setAll(fxml);

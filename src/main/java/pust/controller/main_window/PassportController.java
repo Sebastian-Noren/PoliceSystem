@@ -29,7 +29,7 @@ public class PassportController implements Initializable {
 
     public void applyForPassport() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("../../../../resources/view/main_window/applyForPassport.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/applyForPassport.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
