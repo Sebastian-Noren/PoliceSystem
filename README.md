@@ -29,7 +29,7 @@ understood by reading the code.
 
 1. **Classes and Interfaces**
     * Class names should be nouns in mixed case with the **first** letter of each internal word capitalised.
-    * Interface names should **start** with a capital I (capital i) followed by a verb starting with a capital letter.
+    * Interface names should **start** with a capital I (capital i) followed by a verb starting with a capital letter ending with   -able.
     * The name should be as descriptive as possible of the class functionality.
     * Whole words should be used and not acronyms or abbreviations.
     <br>
