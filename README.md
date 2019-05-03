@@ -46,7 +46,7 @@ understood by reading the code.
     ```
     
 2. **Methods**
-    * Methods should be verbs in camel casing. 
+    * Methods should be a verb describing a noun in camel casing. 
     * The name should be as descriptive as possible of the functionality of the method.
     <br>
     Example:
