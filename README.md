@@ -29,7 +29,7 @@ understood by reading the code.
 
 1. **Classes and Interfaces**
     * Class names should be nouns in mixed case with the **first** letter of each internal word capitalised.
-    * Interface names should **start** with a capital I (capital i) followed by a verb starting with a capital letter ending with   -able.
+    * Interface names should **start** with a capital character. The name should represent a collection of the classes  implementing it
     * The name should be as descriptive as possible of the class functionality.
     * Whole words should be used and not acronyms or abbreviations.
     <br>
@@ -192,7 +192,28 @@ understood by reading the code.
     * Before and after each =, +, -, / and * a blank space is inserted. 
     * No extra whitespaces between curly brackets that does not contain any code segment.
     * **Always** use CTRL + L, it can not be done to often. A bare minimum is before every commit.
-8.  **Complete example**
+8.  **Logging**
+    * In the start of every class a Logger object should be created, atleast in the classes implementing try-catch.
+    * In every catch the exception should be sent to the log.
+    * The level of logging can differ depending on the work done. An exception should always be logged as **Level.SEVERE**.
+    * FINE, FINER, FINEST can be used for debugging purposes.
+    <br>
+    Example:
+    <br>
+    
+    ```java
+         public class SomeClass {
+             private static final Logger LOGGER = Logger.getLogger(SomeClass.class.getName());
+             
+             try {
+               ...
+             } catch (Exception ex) {
+               LOGGER.log(Level.SEVERE, ex.toString(), ex);
+             }
+         }
+    
+    ```
+9.  **Complete example**
     <br>
     
     ```java
