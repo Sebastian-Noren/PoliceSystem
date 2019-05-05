@@ -1,48 +1,506 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="600.0">
-         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </top>
-         <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </left>
-         <center>
-            <GridPane BorderPane.alignment="CENTER">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+      <HBox alignment="CENTER" layoutX="137.0" prefHeight="66.0" prefWidth="541.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="66.0" prefWidth="386.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/swepustlogg.png" />
-                     </image>
-                  </ImageView>
+                  <Label fx:id="pustLabel" prefHeight="22.0" prefWidth="351.0" text="PUST GRAPHICAL INTERFACE SYSTEM">
+                     <font>
+                        <Font name="Garamond Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="BOTTOM" text="Crime Report">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
                </children>
-            </GridPane>
-         </center>
-         <bottom>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutY="66.0" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox prefHeight="48.0" prefWidth="79.0">
+               <children>
+                  <Label text="Crime ID:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="25.0" prefWidth="44.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="117.0">
+               <children>
+                  <Label text="Date Occured:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <DatePicker />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="167.0">
+               <children>
+                  <Label text="Street:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="56.0">
+               <children>
+                  <Label text="Zip Code:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="147.0">
+               <children>
+                  <Label text="City:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField prefHeight="22.0" prefWidth="187.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="130.0">
+               <children>
+                  <Label text="Date Reported:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <DatePicker />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="116.0" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="64.0" prefWidth="86.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="54.0" text="Notifier:">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Autofill" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="183.0">
+               <children>
+                  <Label text="Last Name:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="201.0">
+               <children>
+                  <Label text="First Name:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="81.0">
+               <children>
+                  <Label text="SSN:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="48.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="47.0" text="Gender:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="26.0" prefWidth="48.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox layoutX="-1.0" layoutY="16.0" prefHeight="52.0" prefWidth="139.0" style="-fx-border-color: gray; -fx-border-insets: 1;">
+         <children>
+            <Label text="Case ID:">
+               <font>
+                  <Font name="Garamond" size="14.0" />
+               </font>
+            </Label>
+            <TextField prefWidth="116.0" />
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </VBox>
+      <HBox layoutY="169.0" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox prefHeight="48.0" prefWidth="76.0">
+               <children>
+                  <Label text="Contact:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="185.0">
+               <children>
+                  <Label text="Street:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="56.0">
+               <children>
+                  <Label text="Zip Code:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="189.0">
+               <children>
+                  <Label text="City:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="50.0" prefWidth="197.0">
+               <children>
+                  <Label text="Phone:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="219.0" prefHeight="52.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="86.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="53.0" text="Suspect:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Autofill" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="183.0">
+               <children>
+                  <Label text="Last Name:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="201.0">
+               <children>
+                  <Label text="First Name:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="81.0">
+               <children>
+                  <Label text="SSN:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="43.0">
+               <children>
+                  <Label text="Gender">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="25.0" prefWidth="43.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutY="273.0" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox prefHeight="48.0" prefWidth="76.0">
+               <children>
+                  <Label text="Contact:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="185.0">
+               <children>
+                  <Label text="Street:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="56.0">
+               <children>
+                  <Label text="Zip Code:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="48.0" prefWidth="189.0">
+               <children>
+                  <Label text="City:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="50.0" prefWidth="198.0">
+               <children>
+                  <Label text="Phone:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="323.0" prefHeight="95.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="133.0" prefWidth="86.0">
+               <children>
+                  <Label text="Description:">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="133.0" prefWidth="72.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="TOP" text="Build:">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
+                  <ListView prefHeight="26.0" prefWidth="72.0" />
+                  <Label text="Gender:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="26.0" prefWidth="72.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="109.0" prefWidth="64.0">
+               <children>
+                  <Label text="Weight:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField prefHeight="3.0" prefWidth="64.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="2.0" />
+                     </VBox.margin></TextField>
+                  <Label text="Height:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextField prefHeight="16.0" prefWidth="64.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="109.0" prefWidth="64.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="67.0" text="Eye Color:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="28.0" prefWidth="64.0" />
+                  <Label prefHeight="17.0" prefWidth="74.0" text="Hair Color:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="25.0" prefWidth="57.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="93.0" prefWidth="61.0">
+               <children>
+                  <Label text="Ethnicity:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <ListView prefHeight="22.0" prefWidth="64.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="93.0" prefWidth="356.0">
+               <children>
+                  <Label text="Characteristics:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextArea prefHeight="66.0" prefWidth="357.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="717.0" layoutY="4.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/smallSwepustlogg.png" />
+         </image>
+      </ImageView>
+      <HBox layoutY="418.0" prefHeight="128.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="133.0" prefWidth="86.0">
+               <children>
+                  <Label text="Crime:">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="126.0" prefWidth="658.0">
+               <children>
+                  <Label text="Description of event.">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font></Label>
+                  <TextArea prefHeight="99.0" prefWidth="648.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutY="546.0" prefHeight="54.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="86.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="42.0" text="Police:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="183.0">
+               <children>
+                  <Label text="Police ID:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="201.0">
+               <children>
+                  <Label text="First Name:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="52.0" prefWidth="81.0">
+               <children>
+                  <Label text="SSN:">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="51.0" prefWidth="206.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Submit Report" />
+               </children>
+               <padding>
+                  <Insets bottom="15.0" right="40.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
