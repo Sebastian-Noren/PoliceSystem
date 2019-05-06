@@ -1,0 +1,35 @@
+.root {
+
+}
+
+.label {
+
+}
+
+.label .pustLabel {
+-fx-font: 32px Garamond;
+}
+
+.text-field {
+    -fx-focus-color: -fx-control-inner-background ;
+    -fx-faint-focus-color: -fx-control-inner-background ;
+    -fx-background-color: #dcf1f2;
+    -fx-shape: "M200,0 H0 V30 H200 Z";
+    -fx-effect: innershadow(one-pass-box, gray, 0, 0, 0, 0);
+}
+
+.text-area .content{
+    -fx-focus-color: -fx-control-inner-background ;
+    -fx-faint-focus-color: -fx-control-inner-background ;
+    -fx-background-color: #dcf1f2;
+    -fx-shape: "M200,0 H0 V30 H200 Z";
+    -fx-effect: innershadow(one-pass-box, gray, 0, 0, 0, 0);
+}
+
+.list-view {
+-fx-focus-color: -fx-control-inner-background ;
+    -fx-faint-focus-color: -fx-control-inner-background ;
+    -fx-background-color: #dcf1f2;
+    -fx-shape: "M200,0 H0 V30 H200 Z";
+    -fx-effect: innershadow(one-pass-box, gray, 0, 0, 0, 0);
+}
