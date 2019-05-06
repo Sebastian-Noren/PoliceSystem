@@ -115,17 +115,13 @@ public class BasicConnectionPoolTest {
     @Test
     public void devDBCPDatabaseConnection() throws SQLException {
         LinuxRemoteConnection.remoteConnect();
-        PreparedStatement database = null;
         PreparedStatement firstName = null;
-        String useDataBase = "USE pustgis;";
         String name = "SELECT firstname FROM person WHERE lastname = 'Muhammed';";
         try (Connection connection = DBCPDataSource.getConnection()) {
-
             connection.setAutoCommit(false);
-            database = connection.prepareStatement(useDataBase);
             firstName = connection.prepareStatement(name);
-            database.execute();
             ResultSet rs = firstName.executeQuery(name);
+
             String temp = "";
             while (rs.next()) {
                 temp = rs.getString("firstname");

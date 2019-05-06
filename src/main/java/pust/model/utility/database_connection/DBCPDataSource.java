@@ -10,7 +10,7 @@ public class DBCPDataSource {
     private static BasicDataSource ds = new BasicDataSource();
 
     static {
-        ds.setUrl("jdbc:mysql://localhost:4321");
+        ds.setUrl("jdbc:mysql://localhost:4321/pustgis");
         ds.setUsername("root");
         ds.setPassword("6978f28c972457220d4e72398bb9e000");
         ds.setMinIdle(5);

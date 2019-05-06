@@ -6,6 +6,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is kept for educational purposes. It is provided to get
+ * a better understanding of what the class DBCPDataSouce is doing
+ * behind the curtains.
+ *
+ * Creates a pool of connections with initial size of 10 connections.
+ * When calling the getConnection a connection is removed from the
+ * connection pool and added to the usedConnections list. After some
+ * work has been done the releaseConnection method is called and the
+ * connection is added to connectionPool and removed from usedConnections.
+ */
+
 public class BasicConnectionPool implements IConnectionPool {
 
     private String url;

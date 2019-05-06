@@ -39,5 +39,10 @@ public class AppConstant {
     public static void setCurrentUserPass(String currentUserPass) {
         CURRENT_USER_PASS = currentUserPass;
     }
+
+    public static boolean isFemale(int serialNumber) {
+        return serialNumber % 2 == 0;
+    }
+
 }
 
