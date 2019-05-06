@@ -1,8 +1,6 @@
 package pust.model.personal_view;
 
-
-
-import pust.model.utility.AppConstant;
+import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,23 +11,11 @@ import java.util.StringJoiner;
  */
 public class PersonalDatabase {
 
-    Statement statement;
-
-    public void connect(){
-        try{
-            String url = "jdbc:mysql://"+ AppConstant.getDatabaseHost()+":3306/"+AppConstant.getDatabaseName()+"?useTimezone=true&serverTimezone=UTC";
-            Connection con = DriverManager.getConnection(url,AppConstant.getCurrentUser(),AppConstant.getCurrentUserPass());
-            statement = con.createStatement();
-            System.out.println("Connected");
-        } catch(Exception e){
-            System.err.println(e);
-            System.out.println("connect fail");
-        }
-    }
-
     public String getPerson(String ssn) {
         StringJoiner sj = new StringJoiner(":");
         try {
+            Connection con = DBCPDataSource.getConnection();
+            Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select SSN,firstname,lastname,gender, \n" +
                     "street,zipCode,city,country,wanted, missing  from person\n" +
                     "join address_has_person on person.SSN = address_has_person.Person_SSN\n" +
@@ -58,6 +44,8 @@ public class PersonalDatabase {
     public ArrayList<String> getCrimeRecord(String ssn) {
         ArrayList<String> strRecords = new ArrayList<>();
         try {
+            Connection con = DBCPDataSource.getConnection();
+            Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select convictiondate, criminalcase, crimeType, crimedate, Address_street, city, term  from crime\n" +
                     "join crimeregister on crime.crimeID = crimeregister.Crime_CrimeID\n" +
                     "join convictionterm on convictionterm.termID = crimeregister.convictionterm_termID\n" +
