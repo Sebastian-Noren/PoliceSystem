@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.StandardWindowController">
+<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.StandardWindowController">
     <children>
         <TabPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>

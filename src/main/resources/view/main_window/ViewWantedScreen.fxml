@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewWantedController">
+<BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewWantedController">
     <left>
         <VBox prefHeight="680.0" prefWidth="170.0" BorderPane.alignment="CENTER">
             <children>

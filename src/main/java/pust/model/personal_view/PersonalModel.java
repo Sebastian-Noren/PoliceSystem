@@ -9,7 +9,6 @@ public class PersonalModel {
     PersonalDatabase perData = new PersonalDatabase();
 
     public TempPerson getPersonalInformation(String ssn) {
-        perData.connect();
         String print = perData.getPerson(ssn);
         boolean wanted, missing;
 
