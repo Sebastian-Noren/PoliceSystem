@@ -5,6 +5,7 @@ import pust.model.administrative_functions.report_system.record.CriminalRecord;
 import pust.model.entity.*;
 import pust.model.entity.entity_builder.*;
 import pust.model.enumerations.*;
+import pust.model.utility.AppConstant;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -85,6 +87,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -95,6 +98,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -110,6 +114,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -125,6 +130,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -135,13 +141,14 @@ public class RandomPerson {
                 .withGender(giveGender(personalNumber.getSerialNumber()))
                 .hasEthnicity(createRandomEthnicity())
                 .hasCharacteristic("John Doe")
-                .withHairColor(createRandomColor())
-                .withEyeColor(createRandomColor())
+                .withHairColor(createRandomHairColor())
+                .withEyeColor(createRandomEyeColor())
                 .hasBuild(createRandomBuild())
                 .withPersonalNumber(personalNumber)
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -152,6 +159,7 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
@@ -162,12 +170,13 @@ public class RandomPerson {
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
+                .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
                 .build();
     }
 
     private int createRandomHeight(int serialNumber) {
-        if (FirstNameSource.isFemale(serialNumber)) {
+        if (AppConstant.isFemale(serialNumber)) {
             return ThreadLocalRandom.current().nextInt(147, 188);
         } else {
             return ThreadLocalRandom.current().nextInt(161, 212);
@@ -255,7 +264,7 @@ public class RandomPerson {
     }
 
     private int createRandomWeight(int serialNumber) {
-        if (FirstNameSource.isFemale(serialNumber)) {
+        if (AppConstant.isFemale(serialNumber)) {
             return ThreadLocalRandom.current().nextInt(50, 100);
         } else {
             return ThreadLocalRandom.current().nextInt(60, 120);
@@ -263,7 +272,7 @@ public class RandomPerson {
     }
 
     private Gender giveGender(int serialNumber) {
-        if (FirstNameSource.isFemale(serialNumber)) {
+        if (AppConstant.isFemale(serialNumber)) {
             return Gender.FEMALE;
         } else {
             return Gender.MALE;
@@ -274,8 +283,11 @@ public class RandomPerson {
         return Ethnicity.values()[ThreadLocalRandom.current().nextInt(Ethnicity.values().length)];
     }
 
-    private Enum createRandomColor() {
-        return Color.values()[ThreadLocalRandom.current().nextInt(Color.values().length)];
+    private Enum createRandomEyeColor() {
+        return Color.eyeColor.values()[ThreadLocalRandom.current().nextInt(Color.eyeColor.values().length)];
+    }
+    private Enum createRandomHairColor() {
+        return Color.hairColor.values()[ThreadLocalRandom.current().nextInt(Color.hairColor.values().length)];
     }
 
     private Enum createRandomBuild() {

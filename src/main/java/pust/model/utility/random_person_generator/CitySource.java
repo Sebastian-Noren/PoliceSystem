@@ -7,7 +7,7 @@ public class CitySource implements ISource {
 
     private ArrayList<String> cachedCities;
 
-    private static final String CITY_PATH = "src/pust/random_person_generator/files/cities.txt";
+    private static final String CITY_PATH = "src/main/resources/files/cities.txt";
 
     CitySource() {
         cachedCities = ReadFile.readFile(CITY_PATH);

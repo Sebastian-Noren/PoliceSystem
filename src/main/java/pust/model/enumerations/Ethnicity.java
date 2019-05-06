@@ -4,5 +4,6 @@ public enum Ethnicity {
     EUROPEAN,
     AFRICAN,
     ASIAN,
-    HISPANIC
+    HISPANIC,
+    MIDDLE_EAST
 }
