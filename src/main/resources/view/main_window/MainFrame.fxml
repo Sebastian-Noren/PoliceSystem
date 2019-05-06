@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
         <VBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -72,7 +72,7 @@
             <children>
                 <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../assets/user_accounts.png" />
+                        <Image url="@../../image/user_accounts.png" />
                     </image>
                <VBox.margin>
                   <Insets left="20.0" />
