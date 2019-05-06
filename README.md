@@ -297,4 +297,4 @@ understood by reading the code.
 * [Java Naming conventions](https://www.geeksforgeeks.org/java-naming-conventions/)
 * [Michael Fethers - Working Effectively with Legacy Code](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052)
 * [Robert C. Martin - Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=as_li_ss_tl?s=books&ie=UTF8&qid=1458577041&sr=1-1&keywords=clean+code&linkCode=sl1&tag=devdaily-20&linkId=b02cce691c33e6c64b8daf0c169d39f7)
-* [C# Coding Conventions (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions?fbclid=IwAR36n5e9SrXJOuM5C7Rg5zt6wOALrm9-CMmWhihok_OQmPZvaKMkMKeDTpg)
+* [C# Coding Conventions (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions?fbclid=IwAR36n5e9SrXJOuM5C7Rg5zt6wOALrm9-CMmWhihok_OQmPZvaKMkMKeDTpg)'

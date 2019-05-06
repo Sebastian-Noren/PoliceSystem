@@ -18,7 +18,7 @@
 <BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewWantedController">
    <left>
       <VBox prefHeight="680.0" prefWidth="170.0" BorderPane.alignment="CENTER">
-         <children>
+         <children>YELLOW
             <ListView prefHeight="702.0" prefWidth="170.0" />
          </children>
          <padding>
@@ -39,7 +39,7 @@
                   <Region prefHeight="100.0" prefWidth="99.0" />
                   <ImageView fitHeight="83.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../assets/swepustlogg.png" />
+                        <Image url="@/image/swepustlogg.png" />
                      </image>
                   </ImageView>
                </children>

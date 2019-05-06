@@ -7,7 +7,7 @@ public class StreetSource implements ISource {
 
     private ArrayList<String> streets;
 
-    private static final String STREET_PATH = "src/pust/random_person_generator/files/streets.txt";
+    private static final String STREET_PATH = "src/main/resources/files/streets.txt";
 
     StreetSource() {
         streets = ReadFile.readFile(STREET_PATH);
