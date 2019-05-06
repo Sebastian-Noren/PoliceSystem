@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import pust.controller.SceneSwitch;
 import pust.model.utility.DatabaseConnection;
 import pust.model.LogInModel;
+import pust.model.utility.LinuxRemoteConnection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -141,6 +142,7 @@ public class LogInController implements Initializable {
         warningImage.setVisible(false);
         passWarning.setText("");
         userWarning.setText("");
+        LinuxRemoteConnection.remoteConnect();
     }
 }
 

@@ -59,7 +59,6 @@ public class AdminScreenController implements Initializable {
         sql = new AdminDatabase();
         adCrMo = new AdminCreateModel();
         fc.getExtensionFilters().add(imageFilter);
-        sql.connect();
         col_userAcc.setCellValueFactory(new PropertyValueFactory<>("users"));
         adminTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         adminTable.getSelectionModel().setCellSelectionEnabled(true);
