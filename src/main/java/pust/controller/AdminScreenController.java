@@ -26,9 +26,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/**
- * @author Sebastian Norén <s.norén@gmail.com>
- */
 public class AdminScreenController implements Initializable {
     private AdminDatabase sql;
     private AdminCreateModel adCrMo;
@@ -59,14 +56,12 @@ public class AdminScreenController implements Initializable {
         sql = new AdminDatabase();
         adCrMo = new AdminCreateModel();
         fc.getExtensionFilters().add(imageFilter);
-        sql.connect();
         col_userAcc.setCellValueFactory(new PropertyValueFactory<>("users"));
         adminTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         adminTable.getSelectionModel().setCellSelectionEnabled(true);
         labelActiveUser.setText(AppConstant.getCurrentUser());
         updateList();
         roleSelect();
-
     }
 
     @FXML
@@ -92,7 +87,7 @@ public class AdminScreenController implements Initializable {
                     updateList();
                     image = new Image("image/photo.jpg", 176.0, 224.0, false, true);
                     profileImg.setImage(image);
-                    adCrMo.alertCreateComplete(randGenUserName, policeID);
+                    AppConstant.alertBoxInformation("Account Created","New account name is: " + randGenUserName+", New police ID: "+policeID);
                 }
             } else {
                 labWarPass.setText("Password don´t match!");
@@ -152,8 +147,8 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     private void returnLogin(ActionEvent actionEvent) {
-        SceneSwitch sceneSwitch = new SceneSwitch();
-        sceneSwitch.goToLogin(actionEvent);
+        String strSceneFXML = "/view/LogInScreen.fxml";
+        AppConstant.switchScene(actionEvent,strSceneFXML);
     }
 
     @FXML
@@ -173,7 +168,6 @@ public class AdminScreenController implements Initializable {
                 System.out.println(strImage);
                 bImg = ImageIO.read(new FileInputStream(strImage));
             }
-
         } catch (IOException e) {
             //e.printStackTrace();
         }

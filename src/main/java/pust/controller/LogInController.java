@@ -18,9 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
-import pust.controller.SceneSwitch;
-import pust.model.utility.DatabaseConnection;
+import pust.model.utility.AppConstant;
 import pust.model.LogInModel;
+import pust.model.utility.LinuxRemoteConnection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,9 +39,6 @@ public class LogInController implements Initializable {
     @FXML
     ImageView warningImage;
 
-    DatabaseConnection database;
-    boolean connected;
-
     private LogInModel model = new LogInModel();
 
     private int counter;
@@ -58,18 +55,16 @@ public class LogInController implements Initializable {
         }
 
         //temporary log in without database
-        SceneSwitch sceneSwitcher = new SceneSwitch();
+
         if (userName.getText().equals("root") && passWord.getText().equals("root")) {
             //Send you to IT-administrator
-            sceneSwitcher.goToAdminCreate(actionEvent);
-            //sceneSwitcher.goToMain(actionEvent);
+            String strSceneFXML = "/view/AdminScreen.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
         } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
             //Sends you to mainWindow
-            sceneSwitcher.goToMain(actionEvent);
+            String strSceneFXML = "/view/main_window/MainFrame.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
         }
-
-        //database = new DatabaseConnection();
-        //connected = database.Loginconnect(userName.getText(), passWord.getText());
 
         // IF login returns incorrect username/password
         // this whole thing will be made better.
@@ -83,23 +78,12 @@ public class LogInController implements Initializable {
             delay.setOnFinished(event -> unLockout());
             delay.play();
         }
-
-        //TODO make strings safe for root Admin. Sebastians shit
-        /*SceneSwitch sceneSwitcher = new SceneSwitch();
-        if (connected && userName.getText().equals("root") && passWord.getText().equals("root")) {
-            //Send you to IT-administrator
-            sceneSwitcher.goToAdminCreate(actionEvent);
-            sceneSwitcher.goToMain(actionEvent); // Tempory block of IT-admin
-        } else {
-            //Send you to mainWindows
-            sceneSwitcher.goToMain(actionEvent);
-        }*/
     }
 
     public void forgotPasswordClicked(ActionEvent event) {
         //placeholder code
-        SceneSwitch sceneSwitcher = new SceneSwitch();
-        sceneSwitcher.goToAdminCreate(event);
+        String strSceneFXML = "/view/main_window/MainFrame.fxml";
+        AppConstant.switchScene(event,strSceneFXML);
     }
 
     //to be moved to LogInModel if possible.
@@ -141,6 +125,7 @@ public class LogInController implements Initializable {
         warningImage.setVisible(false);
         passWarning.setText("");
         userWarning.setText("");
+        LinuxRemoteConnection.remoteConnect();
     }
 }
 
