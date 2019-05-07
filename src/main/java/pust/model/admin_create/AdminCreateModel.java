@@ -8,9 +8,7 @@ import java.awt.image.BufferedImage;
 import java.security.SecureRandom;
 import java.util.StringJoiner;
 
-/**
- * @author Sebastian Norén <s.norén@gmail.com>
- */
+
 public class AdminCreateModel {
 
     public String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption) {

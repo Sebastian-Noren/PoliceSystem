@@ -24,8 +24,6 @@ import pust.model.utility.DatabaseConnection;
 import pust.model.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
 import pust.model.utility.database_connection.DBCPDataSource;
-
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -150,6 +148,7 @@ public class LogInController implements Initializable {
         warningImage.setVisible(false);
         passWarning.setText("");
         userWarning.setText("");
+        LinuxRemoteConnection.remoteConnect();
     }
 }
 
