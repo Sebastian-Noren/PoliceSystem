@@ -2,6 +2,7 @@ package pust.controller.main_window;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -96,6 +97,7 @@ public class MainFrameController implements Initializable {
 
     public void view() {
         try {
+
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/View.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
@@ -141,5 +143,16 @@ public class MainFrameController implements Initializable {
         }
     }
 
+    //TODO DONT WORK WHYYYYYY??
+    @FXML
+    private void menuLogOut(Event actionEvent) {
+//        String strSceneFXML = "/view/LogInScreen.fxml";
+//        AppConstant.switchScene(actionEvent,strSceneFXML);
+    }
+
+    @FXML
+    private void menuExit() {
+        System.exit(0);
+    }
 
 }
