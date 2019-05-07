@@ -31,6 +31,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         window.setScene(scene);
         window.show();
+        //When someone press X
+        window.setOnCloseRequest(event -> System.exit(0));
 
     }
 

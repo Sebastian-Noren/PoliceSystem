@@ -3,29 +3,25 @@ package pust.model.utility;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
 
 public class LinuxRemoteConnection {
 
-    private static int listeningPort;
-    private static String remoteHost;
-    private static int remotePort;
+    private static Encrypt encrypt;
 
     public static void remoteConnect() {
-        String user = "root";
-        String password = "bd59487c64d470f9e1bf719988a54950";
-        String host = "206.189.27.211";
-        int port = 22;
+        readEncryption();
+        String user = encrypt.getUser();
+        String password = encrypt.getPassword();
+        String host = encrypt.getHost();
+        int port = encrypt.getPort();
 
         try {
-
             JSch jSch = new JSch();
             Session session = jSch.getSession(user, host, port);
-            listeningPort = 4321;
-            remoteHost = "localhost";
-            remotePort = 3306;
+            int listeningPort = encrypt.getListeningPort();
+            String remoteHost = encrypt.getRemoteHost();
+            int remotePort = encrypt.getRemotePort();
 
             session.setPassword(password);
             session.setConfig("StrictHostKeyChecking", "no");
@@ -39,6 +35,14 @@ public class LinuxRemoteConnection {
 
         } catch (Exception ex) {
             System.err.print(ex);
+        }
+    }
+
+    private static void readEncryption() {
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream("encrypt.bin"))) {
+            encrypt = (Encrypt) oi.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
