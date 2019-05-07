@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="781.0" prefHeight="700.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.PersonalInformationController">
+<AnchorPane minHeight="700.0" minWidth="781.0" prefHeight="700.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.PersonalInformationController">
    <children>
       <Label layoutX="327.0" layoutY="14.0" text="PPA Multisearch">
          <font>
@@ -73,6 +73,8 @@
                   <Label GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Last updated" GridPane.rowIndex="10" />
                   <Label text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label text="Sweden" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label prefHeight="17.0" prefWidth="99.0" text="Not implemented" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -142,15 +144,17 @@
                   <Label text="Missing" GridPane.rowIndex="1" />
                   <Label text="Wanted" GridPane.rowIndex="2" />
                   <Label text="Suspect" GridPane.rowIndex="3" />
-                  <Label text="Criminal Conviction" GridPane.rowIndex="4" />
+                  <Label text="Criminal Conviction" GridPane.rowIndex="5" />
                   <Label fx:id="labelMissing" text="No Hit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="labelWanted" text="No Hit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="labelSuspect" text="No Hit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="labelCrimeCount" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Label fx:id="labelCrimeCount" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Label text="Custody" GridPane.rowIndex="4" />
+                  <Label fx:id="labelInCustody" text="No Hit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </children>

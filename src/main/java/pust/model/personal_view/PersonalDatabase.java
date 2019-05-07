@@ -4,15 +4,20 @@ import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
-/**
- * @author Sebastian Norén <s.norén@gmail.com>
- */
 public class PersonalDatabase {
 
-    public String getPerson(String ssn) {
-        StringJoiner sj = new StringJoiner(":");
+    public TempPerson getPerson(String ssn) {
+        boolean wanted = false, missing = false;
+        String personSSN = null;
+        String firstname = null;
+        String lastname = null;
+        String gender = null;
+        String streetAddres = null;
+        String zipcode = null;
+        String city = null;
+        String country = null;
+        String wantedtemp;
         try {
             Connection con = DBCPDataSource.getConnection();
             Statement statement = con.createStatement();
@@ -21,28 +26,30 @@ public class PersonalDatabase {
                     "join address_has_person on person.SSN = address_has_person.Person_SSN\n" +
                     "join address on address.zipCode = address_has_person.Address_zipCode\n" +
                     " where  person.SSN like '"+ssn+"';");
-
             while(rs.next()){
-                sj.add(rs.getString(1));
-                sj.add(rs.getString(2));
-                sj.add(rs.getString(3));
-                sj.add(rs.getString(4));
-                sj.add(rs.getString(5));
-                sj.add(rs.getString(6));
-                sj.add(rs.getString(7));
-                sj.add(rs.getString(8));
-                sj.add(rs.getString(9));
-                sj.add(rs.getString(10));
-
+                personSSN = rs.getString(1);
+                firstname = rs.getString(2);
+                lastname = rs.getString(3);
+                gender = rs.getString(4);
+                streetAddres = rs.getString(5);
+                zipcode = rs.getString(6);
+                city = rs.getString(7);
+                country = rs.getString(8);
+                wantedtemp = rs.getString(9);
+                int temp = Integer.parseInt(wantedtemp);
+                wanted = temp != 0;
+                String missingtemp = rs.getString(10);
+                int temp2 = Integer.parseInt(missingtemp);
+                missing = temp2 != 0;
             }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
-        return  sj.toString();
+        return new TempPerson(personSSN, firstname, lastname, gender, new TempAddres(streetAddres, zipcode, city, country), wanted, missing);
     }
 
-    public ArrayList<String> getCrimeRecord(String ssn) {
-        ArrayList<String> strRecords = new ArrayList<>();
+    public ArrayList<TempCriminalRecord> getCrimeRecord(String ssn) {
+        ArrayList<TempCriminalRecord> crimRecords = new ArrayList<>();
         try {
             Connection con = DBCPDataSource.getConnection();
             Statement statement = con.createStatement();
@@ -51,22 +58,21 @@ public class PersonalDatabase {
                     "join convictionterm on convictionterm.termID = crimeregister.convictionterm_termID\n" +
                     "join address on address.zipCode = crimeregister.Address_zipCode\n" +
                     " where  crimeregister.Person_SSN ='"+ssn+"' ;");
-
             while(rs.next()){
-                StringJoiner sj = new StringJoiner(":");
-                sj.add(rs.getString(1));
-                sj.add(rs.getString(2));
-                sj.add(rs.getString(3));
-                sj.add(rs.getString(4));
-                sj.add(rs.getString(5));
-                sj.add(rs.getString(6));
-                sj.add(rs.getString(7));
-                strRecords.add(sj.toString());
+                String convictionDate = rs.getString(1);
+                String criminalCase = rs.getString(2);
+                String crimeType = rs.getString(3);
+                String crimeDate = rs.getString(4);
+                String streetAddress = rs.getString(5);
+                String city = rs.getString(6);
+                String term = rs.getString(7);
+                crimRecords.add(new TempCriminalRecord(convictionDate,criminalCase,crimeType,crimeDate,streetAddress,city,term));
             }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
-        return strRecords;
+        System.out.println("leaving");
+        return crimRecords;
     }
 
 }
