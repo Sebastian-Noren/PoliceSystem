@@ -151,8 +151,8 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     private void returnLogin(ActionEvent actionEvent) {
-        SceneSwitch sceneSwitch = new SceneSwitch();
-        sceneSwitch.goToLogin(actionEvent);
+        String strSceneFXML = "/view/LogInScreen.fxml";
+        AppConstant.switchScene(actionEvent,strSceneFXML);
     }
 
     @FXML
