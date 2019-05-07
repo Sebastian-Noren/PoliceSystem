@@ -26,9 +26,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/**
- * @author Sebastian Norén <s.norén@gmail.com>
- */
 public class AdminScreenController implements Initializable {
     private AdminDatabase sql;
     private AdminCreateModel adCrMo;
@@ -65,7 +62,6 @@ public class AdminScreenController implements Initializable {
         labelActiveUser.setText(AppConstant.getCurrentUser());
         updateList();
         roleSelect();
-
     }
 
     @FXML
