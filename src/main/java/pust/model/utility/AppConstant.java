@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -52,6 +53,22 @@ public class AppConstant {
 
     public static boolean isFemale(int serialNumber) {
         return serialNumber % 2 == 0;
+    }
+
+    public static void alertBoxInformation(String titel, String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titel);
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void alertBoxWarning(String titel, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titel);
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public static void switchScene(Event event, String changeScene) {

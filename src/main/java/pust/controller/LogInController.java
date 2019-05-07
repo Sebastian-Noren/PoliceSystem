@@ -78,7 +78,6 @@ public class LogInController implements Initializable {
             delay.setOnFinished(event -> unLockout());
             delay.play();
         }
-
     }
 
     public void forgotPasswordClicked(ActionEvent event) {

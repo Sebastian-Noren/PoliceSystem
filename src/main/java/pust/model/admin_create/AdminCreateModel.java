@@ -47,14 +47,6 @@ public class AdminCreateModel {
         return num;
     }
 
-    public void alertCreateComplete(String randGenUserName, int policeID){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Account Created");
-        alert.setHeaderText("");
-        alert.setContentText("New account name is: " + randGenUserName+", New police ID: "+policeID);
-        alert.showAndWait();
-    }
-
     public BufferedImage resize(BufferedImage img, int height, int width) {
         Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
