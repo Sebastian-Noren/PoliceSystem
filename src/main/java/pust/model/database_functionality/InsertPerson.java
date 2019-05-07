@@ -1,7 +1,6 @@
 package pust.model.database_functionality;
 
 import pust.model.entity.Employee;
-import pust.model.entity.Notifier;
 import pust.model.entity.Person;
 import pust.model.entity.Suspect;
 import pust.model.enumerations.Build;
@@ -10,15 +9,9 @@ import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static pust.model.enumerations.Build.THIN;
-import static pust.model.enumerations.Build.NORMAL;
-import static pust.model.enumerations.Build.MUSCULAR;
-import static pust.model.enumerations.Build.EXTENSIVE;
 
 public class InsertPerson {
     private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
@@ -46,11 +39,14 @@ public class InsertPerson {
         if (person instanceof Suspect) {
             insertPerson();
             insertSuspect();
+            insertAddress();
         } else if (person instanceof Employee) {
             insertPerson();
             insertEmployee();
+            insertAddress();
         } else {
             insertPerson();
+            insertAddress();
         }
     }
 
@@ -88,12 +84,35 @@ public class InsertPerson {
     }
 
     private void insertEmployee() {
+        PreparedStatement pstmt = null;
 
+        try (Connection connection = DBCPDataSource.getConnection()) {
+
+            connection.setAutoCommit(false);
+            pstmt = connection.prepareStatement(sqlPerson());
+            pstmt.setInt(1, employee.getId());
+            pstmt.setInt(2, employee.getSalary());
+            pstmt.setString(3, person.getPersonalNumber().getPersonalNumber());
+            pstmt.setString(4, employee.getUserName());
+            pstmt.setString(person.get);
+            pstmt.executeUpdate();
+            connection.commit();
+
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException ex) {
+                    LOGGER.log(Level.SEVERE, ex.toString(), ex);
+                }
+            }
+        }
     }
 
     private void insertPerson() {
         PreparedStatement pstmt = null;
-        String sql = sqlPerson();
 
         try (Connection connection = DBCPDataSource.getConnection()) {
 
@@ -102,7 +121,7 @@ public class InsertPerson {
             pstmt.setString(1, person.getPersonalNumber().getPersonalNumber());
             pstmt.setString(2, person.getFirstName());
             pstmt.setString(3, person.getSurname());
-            pstmt.setString(4, calculateGender(person)); //FIXME Add gender to person class
+            pstmt.setString(4, parseGender(person)); //FIXME Add gender to person class
             pstmt.setInt(5, 0);
             pstmt.setInt(6, 0);
             pstmt.setInt(7, 0);
@@ -122,6 +141,38 @@ public class InsertPerson {
         }
     }
 
+    private void insertAddress() {
+        PreparedStatement address = null;
+        PreparedStatement connectPerson = null;
+        String streetAddress = person.getAddress().getStreetName().concat(" " + person.getAddress().getStreetNumber());
+
+        try (Connection connection = DBCPDataSource.getConnection()) {
+
+            connection.setAutoCommit(false);
+            address = connection.prepareStatement(sqlAddress());
+            connectPerson = connection.prepareStatement(sqlConnectAddressToPerson());
+            address.setInt(1, person.getAddress().getZipCode());
+            address.setString(2, person.getAddress().getCity());
+            address.setString(3, streetAddress);
+            address.setString(4, person.getAddress().getCountry());
+            connectPerson.setString(1, person.getPersonalNumber().getPersonalNumber());
+            connectPerson.setString(2, streetAddress);
+            connectPerson.setInt(3, person.getAddress().getZipCode());
+            connection.commit();
+
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        } finally {
+            if (address != null) {
+                try {
+                    address.close();
+                } catch (SQLException ex) {
+                    LOGGER.log(Level.SEVERE, ex.toString(), ex);
+                }
+            }
+        }
+    }
+
     private String sqlSuspect() {
         return "INSERT INTO suspect(" +
                 "Person_SSN, build, weight, " +
@@ -134,7 +185,11 @@ public class InsertPerson {
     }
 
     private String sqlEmployee() {
-        return null; //TODO Finish the method
+        return "INSERT INTO police(" +
+                "policeID, salary, Person_SSN," +
+                "username, e-mail, jobtitle)" +
+                "VALUES" +
+                "(?, ?, ?, ?, ?, ?)";
     }
 
     private String sqlPerson() {
@@ -145,7 +200,21 @@ public class InsertPerson {
                 "(?, ?, ?, ?, ?, ?, ?)";
     }
 
-    private String calculateGender(Person person) {
+    private String sqlAddress() {
+        return "INSERT INTO address(" +
+                "zipCode, city, street, country)" +
+                "VALUES" +
+                "(?, ?, ?, ?)";
+    }
+
+    private String sqlConnectAddressToPerson() {
+        return "INSERT INTO address_has_person(" +
+                "Person_SSN, Address_street, Address_zipCode)" +
+                "VALUES" +
+                "(?, ?, ?)";
+    }
+
+    private String parseGender(Person person) {
         if (AppConstant.isFemale(person.getPersonalNumber().getSerialNumber())) {
             return "F";
         } else {

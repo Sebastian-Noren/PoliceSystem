@@ -20,7 +20,8 @@ public class PoliceChiefBuilder extends EmployeeBuilder<PoliceChief> {
                 super.title,
                 super.id,
                 super.userName,
-                super.password
+                super.password,
+                super.email
         );
     }
 }

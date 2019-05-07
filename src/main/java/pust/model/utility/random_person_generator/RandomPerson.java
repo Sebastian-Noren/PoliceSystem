@@ -72,6 +72,7 @@ public class RandomPerson {
                 .withId(createRandomId())
                 .withTitle(createRandomTitle())
                 .withSalary(createRandomSalary())
+                .withEmail(createRandomEmail())
                 .withPersonalNumber(personalNumber)
                 .withFirstName(firstName)
                 .withSurname(surname)
@@ -292,6 +293,10 @@ public class RandomPerson {
 
     private Enum createRandomBuild() {
         return Build.values()[ThreadLocalRandom.current().nextInt(Build.values().length)];
+    }
+
+    private String createRandomEmail(){
+        return firstName.concat(".").concat(surname).concat("@pustgis.se");
     }
 
 }

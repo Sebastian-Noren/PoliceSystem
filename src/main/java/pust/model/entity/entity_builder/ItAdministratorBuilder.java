@@ -18,7 +18,8 @@ public class ItAdministratorBuilder extends EmployeeBuilder<ItAdministrator> {
                 super.title,
                 super.id,
                 super.userName,
-                super.password
+                super.password,
+                super.email
         );
     }
 }

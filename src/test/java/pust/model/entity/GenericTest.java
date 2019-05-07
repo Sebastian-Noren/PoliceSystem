@@ -6,12 +6,34 @@ import pust.model.entity.entity_builder.VisitorBuilder;
 import pust.model.enumerations.Color;
 import pust.model.enumerations.Ethnicity;
 import pust.model.enumerations.PersonType;
+import pust.model.utility.Encrypt;
 import pust.model.utility.LinuxRemoteConnection;
 import pust.model.utility.random_person_generator.RandomPerson;
+
+import javax.xml.transform.Result;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.sql.*;
 
 import static org.junit.Assert.*;
 
 public class GenericTest {
+
+    @Test
+    public void preparedStatement(){
+        PreparedStatement preparedStatement = null;
+        try(Connection connection = DriverManager.getConnection("Some connection")){
+            int accountId = 19845;
+            String sql = "SELECT * FROM account WHERE accountID = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, accountId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            connection.commit();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 
     @Test
     public void addRandomPersonToDatabase(){
@@ -59,6 +81,18 @@ public class GenericTest {
         final Suspect actual = (Suspect) new SuspectBuilder().withHairColor(Color.hairColor.BLONDE).build();
 
         Assert.assertEquals(expected, actual.getHairColor());
+    }
+
+    @Test
+    public void decrypt(){
+        Encrypt encrypt = new Encrypt();
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream("encrypt.bin"))) {
+            encrypt = (Encrypt) oi.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(encrypt.getPassword());
     }
 
     @Test

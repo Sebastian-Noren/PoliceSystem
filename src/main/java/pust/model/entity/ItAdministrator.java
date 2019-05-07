@@ -19,7 +19,8 @@ public class ItAdministrator extends Employee {
             Enum title,
             int id,
             String userName,
-            String password
+            String password,
+            String email
     ) {
         super(
                 firstName,
@@ -33,7 +34,8 @@ public class ItAdministrator extends Employee {
                 title,
                 id,
                 userName,
-                password
+                password,
+                email
         );
     }
 }

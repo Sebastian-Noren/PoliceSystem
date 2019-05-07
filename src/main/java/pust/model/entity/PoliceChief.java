@@ -18,7 +18,8 @@ public class PoliceChief extends Employee {
             Enum title,
             int id,
             String userName,
-            String password
+            String password,
+            String email
     ) {
         super(
                 firstName,
@@ -32,7 +33,8 @@ public class PoliceChief extends Employee {
                 title,
                 id,
                 userName,
-                password
+                password,
+                email
         );
     }
 }
