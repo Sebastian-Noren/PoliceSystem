@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: 'Courier';
-    src: url('Courier Prime.ttf');
+    src: url('/font/Courier Prime.ttf');
 }
 
 @font-face {
     font-family: 'Garamond';
-    src: url('Garamond Regular.ttf');
+    src: url('/font/Garamond Regular.ttf');
 }
 
 .text-input {
