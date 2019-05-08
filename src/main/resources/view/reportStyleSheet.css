@@ -2,38 +2,12 @@
 
 }
 
-@font-face {
-    font-family: 'Courier';
-    src: url('Courier Prime.ttf');
-}
-
-@font-face {
-    font-family: 'Garamond';
-    src: url('Garamond Regular.ttf');
-}
-
-.text-input {
-    -fx-font: 14px "Courier Prime";
-    -fx-font-weight: bold;
-}
-
 .label {
-    -fx-font: 14px "Garamond";
+
 }
 
-.choice-box .label {
-    -fx-font: 14px "Courier Prime";
-    -fx-font-weight: bold;
-}
-
-#pustLabel {
-    -fx-font: 18px "Garamond";
-    -fx-font-weight: bold;
-}
-
-#boldLabel {
-    -fx-font: 14px "Garamond";
-    -fx-font-weight: bold;
+.label .pustLabel {
+-fx-font: 32px Garamond;
 }
 
 .text-field {
@@ -52,7 +26,7 @@
     -fx-effect: innershadow(one-pass-box, gray, 0, 0, 0, 0);
 }
 
-.choice-box {
+.list-view {
 -fx-focus-color: -fx-control-inner-background ;
     -fx-faint-focus-color: -fx-control-inner-background ;
     -fx-background-color: #dcf1f2;
