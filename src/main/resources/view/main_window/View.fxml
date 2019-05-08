@@ -6,9 +6,9 @@
 
 <!--FIXME THe name can be more descriptive-->
 
-<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewController">
+<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewController">
     <children>
-        <TabPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Statistics">
                     <content>
