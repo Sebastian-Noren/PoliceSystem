@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
+<AnchorPane prefHeight="609.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
    <children>
       <Label layoutX="376.0" layoutY="265.0" text="Report arrest in custody" />
    </children>

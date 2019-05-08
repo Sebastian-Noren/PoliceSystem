@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
         <VBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -62,7 +62,7 @@
         </VBox>
     </top>
     <center>
-        <VBox fx:id="vBox" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" BorderPane.alignment="CENTER" />
+        <VBox fx:id="vBox" minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" BorderPane.alignment="CENTER" />
     </center>
     <bottom>
         <Region prefHeight="47.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
