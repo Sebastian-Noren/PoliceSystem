@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewWantedController">
+<BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewWantedController">
     <left>
-        <VBox prefHeight="565.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="680.0" prefWidth="170.0" BorderPane.alignment="CENTER">
             <children>
                 <ListView prefHeight="702.0" prefWidth="170.0" />
             </children>

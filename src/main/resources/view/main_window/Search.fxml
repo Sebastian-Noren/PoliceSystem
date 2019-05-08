@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.SearchController">
+<AnchorPane prefHeight="593.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.SearchController">
    <children>
       <Label layoutX="328.0" layoutY="255.0" text="search" />
    </children>
