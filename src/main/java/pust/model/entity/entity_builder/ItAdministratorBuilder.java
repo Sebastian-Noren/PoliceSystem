@@ -14,6 +14,7 @@ public class ItAdministratorBuilder extends EmployeeBuilder<ItAdministrator> {
                 super.crimeRecord,
                 super.height,
                 super.identification,
+                super.phoneNumber,
                 super.salary,
                 super.title,
                 super.id,

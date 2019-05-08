@@ -29,7 +29,6 @@ public class InsertPerson {
             this.employee = (Employee) person;
         } else {
             this.person = person;
-            System.out.println(person.getFirstName());
         }
         updateDatabase();
     }
@@ -89,12 +88,13 @@ public class InsertPerson {
         try (Connection connection = DBCPDataSource.getConnection()) {
 
             connection.setAutoCommit(false);
-            pstmt = connection.prepareStatement(sqlPerson());
+            pstmt = connection.prepareStatement(sqlEmployee());
             pstmt.setInt(1, employee.getId());
             pstmt.setInt(2, employee.getSalary());
             pstmt.setString(3, person.getPersonalNumber().getPersonalNumber());
             pstmt.setString(4, employee.getUserName());
-            pstmt.setString(person.get);
+            pstmt.setString(5, employee.getEmail());
+            pstmt.setString(6, employee.getTitle().toString());
             pstmt.executeUpdate();
             connection.commit();
 
@@ -125,6 +125,7 @@ public class InsertPerson {
             pstmt.setInt(5, 0);
             pstmt.setInt(6, 0);
             pstmt.setInt(7, 0);
+            pstmt.setString(8, person.getPhoneNumber());
             pstmt.executeUpdate();
             connection.commit();
 
@@ -187,7 +188,7 @@ public class InsertPerson {
     private String sqlEmployee() {
         return "INSERT INTO police(" +
                 "policeID, salary, Person_SSN," +
-                "username, e-mail, jobtitle)" +
+                "username, 'e-mail', jobtitle)" +
                 "VALUES" +
                 "(?, ?, ?, ?, ?, ?)";
     }
@@ -195,9 +196,10 @@ public class InsertPerson {
     private String sqlPerson() {
         return "INSERT INTO person(" +
                 "SSN, firstname, lastname, " +
-                "gender, wanted, missing, custody)" +
+                "gender, wanted, missing, custody," +
+                "phoneNumber)" +
                 "VALUES" +
-                "(?, ?, ?, ?, ?, ?, ?)";
+                "(?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     private String sqlAddress() {
@@ -237,5 +239,14 @@ public class InsertPerson {
                 return "";
 
         }
+    }
+
+    private String parseEmail(Employee employee) {
+        String[] arrEmail = employee.getEmail().split("@");
+        StringBuilder email = new StringBuilder();
+        email.append(arrEmail[0]);
+        email.append("\\@");
+        email.append(arrEmail[1]);
+        return email.toString();
     }
 }
