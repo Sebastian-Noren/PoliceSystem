@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/Sebastian-Noren/PoliceSystem/database_connection/src/main/resources/image/Swepust2.png" alt="PGIS logo" width="50%"/>
+<img src="https://github.com/Sebastian-Noren/PoliceSystem/blob/master/src/main/resources/image/Swepust2.png" alt="PGIS logo" width="50%"/>
 <hr>
 A didactic software system designed by students during project course 2 at Kristianstad University.
 <br><br>

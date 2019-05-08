@@ -20,11 +20,7 @@ public class AdminDatabase {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!");
-            alert.setHeaderText("");
-            alert.setContentText("The person with this SSN "+strSSN+" does not exist in the database.");
-            alert.showAndWait();
+            AppConstant.alertBoxWarning("Warning!","The person with this SSN "+strSSN+" does not exist in the database.");
             return false;
         }
     }
