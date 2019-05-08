@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ApplyForPassportController">
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
    <children>
-      <HBox layoutX="36.0" layoutY="122.0" prefHeight="35.0" prefWidth="304.0" spacing="5.0">
+      <HBox layoutX="36.0" layoutY="103.0" prefHeight="35.0" prefWidth="304.0" spacing="5.0">
          <children>
             <TextField fx:id="lastName" promptText="Last name" />
             <TextField fx:id="firstName" promptText="First name" />
@@ -20,12 +20,12 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <Label layoutX="43.0" layoutY="103.0" text="1. Name">
+      <Label layoutX="42.0" layoutY="84.0" text="1. Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <HBox layoutX="38.0" layoutY="228.0" prefHeight="35.0" prefWidth="341.0" spacing="5.0">
+      <HBox layoutX="38.0" layoutY="211.0" prefHeight="35.0" prefWidth="341.0" spacing="5.0">
          <children>
             <TextField fx:id="dateOfBirth" promptText="Date of birth" />
             <TextField fx:id="sex" promptText="Sex Male/Female" />
@@ -35,12 +35,12 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <Label layoutX="45.0" layoutY="208.0" text="3. Birth">
+      <Label layoutX="45.0" layoutY="192.0" text="3. Birth">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <HBox layoutX="36.0" layoutY="173.0" prefHeight="35.0" prefWidth="408.0" spacing="5.0">
+      <HBox layoutX="36.0" layoutY="157.0" prefHeight="35.0" prefWidth="408.0" spacing="5.0">
          <children>
             <TextField fx:id="ssn" prefHeight="25.0" prefWidth="231.0" promptText="SSN" />
          </children>
@@ -48,17 +48,17 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <Label layoutX="43.0" layoutY="157.0" text="2. Social Security Number">
+      <Label layoutX="40.0" layoutY="138.0" text="2. Social Security Number">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="263.0" text="4. Personal information">
+      <Label layoutX="45.0" layoutY="246.0" text="4. Personal information">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <HBox layoutX="36.0" layoutY="282.0" prefHeight="35.0" prefWidth="595.0" spacing="5.0">
+      <HBox layoutX="36.0" layoutY="265.0" prefHeight="35.0" prefWidth="595.0" spacing="5.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -69,46 +69,46 @@
             <TextField fx:id="weight" prefHeight="25.0" prefWidth="107.0" promptText="Weight" />
          </children>
       </HBox>
-      <Button fx:id="backBtn" layoutX="16.0" layoutY="566.0" mnemonicParsing="false" text="Back" />
-      <Button fx:id="nextBtn" layoutX="715.0" layoutY="566.0" mnemonicParsing="false" text="Next" />
-      <TextField fx:id="nationality" layoutX="44.0" layoutY="350.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField fx:id="type" layoutX="203.0" layoutY="412.0" />
-      <TextField fx:id="code" layoutX="42.0" layoutY="412.0" />
-      <TextField fx:id="dateOfIssue" layoutX="42.0" layoutY="467.0" />
-      <TextField fx:id="dateOfExpiry" layoutX="203.0" layoutY="467.0" />
-      <TextField fx:id="authority" layoutX="204.0" layoutY="350.0" />
-      <TextField fx:id="passportNbr" layoutX="42.0" layoutY="519.0" />
-      <Label layoutX="46.0" layoutY="443.0" text="9. Date of issue ">
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="45.0" text="Back" />
+      <Button fx:id="nextBtn" layoutX="726.0" layoutY="501.0" mnemonicParsing="false" text="Next" />
+      <TextField fx:id="nationality" layoutX="42.0" layoutY="319.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="type" layoutX="199.0" layoutY="371.0" />
+      <TextField fx:id="code" layoutX="38.0" layoutY="371.0" />
+      <TextField fx:id="dateOfIssue" layoutX="36.0" layoutY="420.0" />
+      <TextField fx:id="dateOfExpiry" layoutX="197.0" layoutY="420.0" />
+      <TextField fx:id="authority" layoutX="203.0" layoutY="319.0" />
+      <TextField fx:id="passportNbr" layoutX="36.0" layoutY="472.0" />
+      <Label layoutX="40.0" layoutY="396.0" text="9. Date of issue ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="445.0" text="10. Date of expiry ">
+      <Label layoutX="202.0" layoutY="398.0" text="10. Date of expiry ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="323.0" text="5. Nationality">
+      <Label layoutX="46.0" layoutY="300.0" text="5. Nationality">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="324.0" prefHeight="19.0" prefWidth="83.0" text="6. Authority">
+      <Label layoutX="207.0" layoutY="300.0" prefHeight="19.0" prefWidth="83.0" text="6. Authority">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="207.0" layoutY="387.0" prefHeight="19.0" prefWidth="83.0" text="8. Type">
+      <Label layoutX="203.0" layoutY="346.0" prefHeight="19.0" prefWidth="83.0" text="8. Type">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="46.0" layoutY="387.0" prefHeight="19.0" prefWidth="83.0" text="7. Code">
+      <Label layoutX="42.0" layoutY="346.0" prefHeight="19.0" prefWidth="83.0" text="7. Code">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="497.0" text="11. Passport number  ">
+      <Label layoutX="36.0" layoutY="450.0" text="11. Passport number  ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
