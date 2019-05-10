@@ -13,6 +13,7 @@ public abstract class Person {
     private Record crimeRecord;
     private int height;
     private Identification identification;
+    private String phoneNumber;
 
     Person(
             String firstName,
@@ -21,7 +22,8 @@ public abstract class Person {
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification
+            Identification identification,
+            String phoneNumber
     ) {
 
         this.firstName = firstName;
@@ -31,6 +33,7 @@ public abstract class Person {
         this.crimeRecord = crimeRecord;
         this.height = height;
         this.identification = identification;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -59,5 +62,13 @@ public abstract class Person {
 
     public Identification getIdentification() {
         return identification;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPersonalNumber(PersonalNumber personalNumber) {
+        this.personalNumber = personalNumber;
     }
 }

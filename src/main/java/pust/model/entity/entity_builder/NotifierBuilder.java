@@ -13,7 +13,8 @@ public class NotifierBuilder extends PersonBuilder<Notifier> {
                 super.address,
                 super.crimeRecord,
                 super.height,
-                super.identification
+                super.identification,
+                super.phoneNumber
         );
     }
 }

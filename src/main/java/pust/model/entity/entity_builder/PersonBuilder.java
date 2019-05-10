@@ -16,6 +16,7 @@ public abstract class PersonBuilder <T extends Person>{
     protected Record crimeRecord;
     protected int height;
     protected Identification identification;
+    protected String phoneNumber;
 
     public PersonBuilder withFirstName(String firstName) {
         this.firstName = firstName;
@@ -49,6 +50,11 @@ public abstract class PersonBuilder <T extends Person>{
 
     public PersonBuilder withIdentification(Identification identification) {
         this.identification = identification;
+        return this;
+    }
+
+    public PersonBuilder withPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 

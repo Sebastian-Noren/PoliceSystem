@@ -14,7 +14,8 @@ public class Visitor extends Person {
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification
+            Identification identification,
+            String phoneNumber
     ) {
         super(
                 firstName,
@@ -23,7 +24,8 @@ public class Visitor extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification
+                identification,
+                phoneNumber
         );
     }
 }

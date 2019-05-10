@@ -5,6 +5,7 @@
 
 package pust.controller;
 
+import com.mysql.cj.protocol.Resultset;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,8 +22,12 @@ import javafx.util.Duration;
 import pust.model.utility.AppConstant;
 import pust.model.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
-
+import pust.model.utility.database_connection.DBCPDataSource;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -42,6 +47,7 @@ public class LogInController implements Initializable {
     private LogInModel model = new LogInModel();
 
     private int counter;
+
 
     @FXML
     private void logInBtn(ActionEvent actionEvent) {

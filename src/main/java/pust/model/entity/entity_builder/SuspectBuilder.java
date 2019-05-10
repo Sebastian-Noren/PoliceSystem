@@ -58,6 +58,7 @@ public class SuspectBuilder extends PersonBuilder<Suspect> {
                 super.crimeRecord,
                 super.height,
                 super.identification,
+                super.phoneNumber,
                 gender,
                 ethnicity,
                 build,
