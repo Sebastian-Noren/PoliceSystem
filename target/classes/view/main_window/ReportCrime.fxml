@@ -14,11 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ReportCrimeController">
-=======
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
->>>>>>> 825aa5b2c330c4b38503e5347ce72022b8fec540
    <children>
       <HBox alignment="CENTER" layoutX="137.0" prefHeight="66.0" prefWidth="541.0">
          <children>

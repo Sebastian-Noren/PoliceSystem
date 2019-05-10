@@ -305,7 +305,10 @@ public class RandomPerson {
     }
 
     private String createRandomEmail(){
-        return firstName.concat(".").concat(surname).concat("@pustgis.se");
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName).append(".").append(surname).append("@pustgis.se");
+        return sb.toString();
+        //return firstName.concat(".").concat(surname).concat("@pustgis.se");
     }
 
     private String createRandomPhoneNumber() {

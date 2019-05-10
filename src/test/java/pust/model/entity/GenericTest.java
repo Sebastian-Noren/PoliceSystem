@@ -22,15 +22,13 @@ import static org.junit.Assert.*;
 public class GenericTest {
 
     @Test
-    public void testParseEmail(){
-        String[] arrEmail = "christoffer.quick@pustgis.se".split("@");
-        StringBuilder email = new StringBuilder();
-        email.append(arrEmail[0]);
-        email.append("'@'");
-        email.append(arrEmail[1]);
-        for (int i = 0; i < email.length(); i++) {
-            System.out.println(email.charAt(i));
-        }
+    public void createRandomEmail() {
+        String firstName = "christoffer";
+        String surname = "quick";
+        System.out.println(firstName.concat(".").concat(surname).concat("@pustgis.se"));
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName).append(".").append(surname).append("@pustgis.se");
+        System.out.println(sb.toString());
     }
 
     @Test
@@ -46,24 +44,6 @@ public class GenericTest {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
-
-    @Test
-    public void addRandomSuspectToDatabase() {
-        LinuxRemoteConnection.remoteConnect();
-        InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.SUSPECT).generateRandomPerson());
-    }
-
-    @Test
-    public void addRandomePoliceToDatabase() {
-        LinuxRemoteConnection.remoteConnect();
-        InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.POLICE).generateRandomPerson());
-    }
-
-    @Test
-    public void addRandomPersonToDatabase() {
-        LinuxRemoteConnection.remoteConnect();
-        InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.NOTIFIER).generateRandomPerson());
     }
 
     @Test

@@ -13,12 +13,26 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/*
+ * To insert a person of any type instantiate a new InsertPerson object and the
+ * person will be added to the database.
+ */
+
+//FIXME Implement this class as the HandlePassport class is implemented
+
 public class InsertPerson {
     private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     private Person person;
     private Suspect suspect;
     private Employee employee;
+
+    /**
+     * The constructor takes a person object as parameter
+     *
+     * @param person is used to cast the object type to match
+     *               the criteria of the database structure.
+     */
 
     public InsertPerson(Person person) {
         if (person instanceof Suspect) {
@@ -33,7 +47,10 @@ public class InsertPerson {
         updateDatabase();
     }
 
-
+    /*
+     * Depending on the type of the object person the correct
+     * methods are called to perform the database insertion.
+     */
     private void updateDatabase() {
         if (person instanceof Suspect) {
             insertPerson();
@@ -48,6 +65,12 @@ public class InsertPerson {
             insertAddress();
         }
     }
+
+    /*
+     * insertSuspect/Person/Employee methods have the same code layout.
+     * What differentiate them are the object type to be insert into the
+     * database.
+     */
 
     private void insertSuspect() {
 
@@ -159,6 +182,8 @@ public class InsertPerson {
             connectPerson.setString(1, person.getPersonalNumber().getPersonalNumber());
             connectPerson.setString(2, streetAddress);
             connectPerson.setInt(3, person.getAddress().getZipCode());
+            address.executeUpdate();
+            connectPerson.executeUpdate();
             connection.commit();
 
         } catch (SQLException ex) {
@@ -239,14 +264,5 @@ public class InsertPerson {
                 return "";
 
         }
-    }
-
-    private String parseEmail(Employee employee) {
-        String[] arrEmail = employee.getEmail().split("@");
-        StringBuilder email = new StringBuilder();
-        email.append(arrEmail[0]);
-        email.append("\\@");
-        email.append(arrEmail[1]);
-        return email.toString();
     }
 }
