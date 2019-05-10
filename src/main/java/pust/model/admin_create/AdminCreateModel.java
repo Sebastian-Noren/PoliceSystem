@@ -8,9 +8,7 @@ import java.awt.image.BufferedImage;
 import java.security.SecureRandom;
 import java.util.StringJoiner;
 
-/**
- * @author Sebastian Norén <s.norén@gmail.com>
- */
+
 public class AdminCreateModel {
 
     public String grant(CheckBox select, CheckBox insert, CheckBox update, CheckBox delete, CheckBox grantOption) {
@@ -47,14 +45,6 @@ public class AdminCreateModel {
         SecureRandom rand = new SecureRandom();
         int num = 10000 + rand.nextInt(90000);
         return num;
-    }
-
-    public void alertCreateComplete(String randGenUserName, int policeID){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Account Created");
-        alert.setHeaderText("");
-        alert.setContentText("New account name is: " + randGenUserName+", New police ID: "+policeID);
-        alert.showAndWait();
     }
 
     public BufferedImage resize(BufferedImage img, int height, int width) {

@@ -4,6 +4,17 @@ package pust.model.utility;
 This class can hold all variable or methods that can be used everywhere in the program.
  */
 
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
 public class AppConstant {
     private static final String SOFTWARE_NAME = "PUST GIS";
     private static final String DATABASE_NAME = "pustgis"; // TODO Change to new database name
@@ -42,6 +53,37 @@ public class AppConstant {
 
     public static boolean isFemale(int serialNumber) {
         return serialNumber % 2 == 0;
+    }
+
+    public static void alertBoxInformation(String titel, String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titel);
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void alertBoxWarning(String titel, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titel);
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void switchScene(Event event, String changeScene) {
+        try {
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(AppConstant.class.getResource(changeScene));
+            Image image = new Image(AppConstant.class.getResourceAsStream("/image/swepustlogg.png"));
+            primaryStage.getIcons().add(image);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle(AppConstant.getSOFTWARE_NAME());
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

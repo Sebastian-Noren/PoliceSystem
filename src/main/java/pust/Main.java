@@ -1,6 +1,7 @@
 package pust;
 
 import javafx.application.Application;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +32,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         window.setScene(scene);
         window.show();
+        //When someone press X
+        window.setOnCloseRequest(event -> System.exit(0));
 
     }
 

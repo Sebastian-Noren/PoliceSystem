@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import pust.model.personal_view.PersonalModel;
+import pust.model.personal_view.PersonalDatabase;
 import pust.model.personal_view.TempCriminalRecord;
 import pust.model.personal_view.TempPerson;
 
@@ -15,26 +15,27 @@ import java.util.ResourceBundle;
 public class PersonalInformationController implements Initializable {
     @FXML
     private Label labelSSN, labelAge, labelGender, labelFullname, labelFirstname, labelLastname,
-            labelStreet, labelZipCode, labelCity, labelCountry, labelMissing, labelWanted, labelSuspect, labelCrimeCount;
+            labelStreet, labelZipCode, labelCity, labelCountry, labelMissing, labelWanted, labelSuspect,
+            labelCrimeCount,labelInCustody;
     @FXML
     private TextArea criminalTextBox;
-    //TODO make so this
     private static final String SSN = "198911105555";
     private int counter = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        PersonalModel perModel = new PersonalModel();
-//        TempPerson person = perModel.getPersonalInformation(SSN);
-//        ArrayList<TempCriminalRecord> criminalRecord = perModel.getPersonalCrimeRecord(SSN);
-//        printCrimeRecords(criminalRecord);
-//        setlabel(person);
+        PersonalDatabase perData = new PersonalDatabase();
+        TempPerson person = perData.getPerson(SSN);
+        ArrayList<TempCriminalRecord> criminalRecord = perData.getCrimeRecord(SSN);
+       printCrimeRecords(criminalRecord);
+        setlabel(person);
     }
 
     private void setlabel(TempPerson person) {
         labelSSN.setText(person.getPersonSSN());
         labelAge.setText(""); //TODO Make calculation for age and set it
         labelSuspect.setText(""); //TODO suspect calc
+        labelInCustody.setText("");
         labelCrimeCount.setText(String.valueOf(counter));
         labelGender.setText(person.getGender());
         labelFullname.setText(person.getLastname() + ", " + person.getFirstname());

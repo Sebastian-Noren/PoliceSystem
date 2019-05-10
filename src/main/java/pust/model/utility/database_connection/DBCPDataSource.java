@@ -19,6 +19,7 @@ public class DBCPDataSource {
     }
 
     public static Connection getConnection() throws SQLException {
+        System.out.println("Connected to database!");
         return ds.getConnection();
     }
 
