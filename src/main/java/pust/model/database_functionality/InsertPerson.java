@@ -213,7 +213,7 @@ public class InsertPerson {
     private String sqlEmployee() {
         return "INSERT INTO police(" +
                 "policeID, salary, Person_SSN," +
-                "username, 'e-mail', jobtitle)" +
+                "username, `e-mail`, jobtitle)" +
                 "VALUES" +
                 "(?, ?, ?, ?, ?, ?)";
     }
