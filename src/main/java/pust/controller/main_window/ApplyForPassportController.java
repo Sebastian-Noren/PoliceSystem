@@ -2,7 +2,6 @@ package pust.controller.main_window;
 
 
 import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamMotionDetector;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,26 +128,20 @@ public class ApplyForPassportController extends Thread implements Initializable 
         // Start camera capture
         new VideoCapture().start();
 
-        boolean state = true;
+//        boolean state = true;
 
         //checks our motion
-        new DetectMotion().motionDetected(state);
-
+//        new DetectMotion().motionDetected(state);
 
 
     }
 
     public void captureImage() {
-        boolean state = false;
-        new DetectMotion().motionDetected(state);
 
         BufferedImage image = webcam.getImage();
         Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
         upploadImage[0] = myCaptured;
-
-
-
 
 
     }
@@ -384,45 +377,45 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-//TODO måste kunna stänga av detta! kolla "while true"
-    public class DetectMotion {
-        public Thread t;
-        public WebcamMotionDetector motionDetector;
+////TODO måste kunna stänga av detta! kolla "while true"
+//    public class DetectMotion {
+//        public Thread t;
+//        public WebcamMotionDetector motionDetector;
+//
+//        public void motionDetected(boolean state) {
+//
+//            motionDetector = new WebcamMotionDetector(webcam.getDefault());
+//            motionDetector.setInterval(500);
+//            motionDetector.start();
+//
+//            t = new Thread("motion-printer") {
+//
+//                @Override
+//                public void run() {
+//                    do {
+//                        try {
+//                            if (motionDetector.isMotion()) {
+//                                System.out.println("you are moving");
+//
+//                            } else if (!motionDetector.isMotion()) {
+//                                System.out.println("you are still");
+//
+//                            }
+//                            Thread.sleep(1000);
+//                        } catch (InterruptedException e) {
+//                            break;
+//                        }
+//                    } while (state);
+//                }
+//            };
+//
+//            t.setDaemon(true);
+//            t.start();
+//
+//        }
 
-        public void motionDetected(boolean state) {
 
-            motionDetector = new WebcamMotionDetector(webcam.getDefault());
-            motionDetector.setInterval(500);
-            motionDetector.start();
-
-            t = new Thread("motion-printer") {
-
-                @Override
-                public void run() {
-                    do {
-                        try {
-                            if (motionDetector.isMotion()) {
-                                System.out.println("you are moving");
-
-                            } else if (!motionDetector.isMotion()) {
-                                System.out.println("you are still");
-
-                            }
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            break;
-                        }
-                    } while (state);
-                }
-            };
-
-            t.setDaemon(true);
-            t.start();
-
-        }
-
-
-    }
+//    }
 
 
 }
