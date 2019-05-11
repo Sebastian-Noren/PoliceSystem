@@ -1,8 +1,9 @@
 package pust.controller.main_window;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamMotionDetector;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,15 +24,14 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.*;
 
-public class ApplyForPassportController implements Initializable {
+public class ApplyForPassportController extends Thread implements Initializable {
     @FXML
     private Button backBtn;
     @FXML
     private AnchorPane anchorPane;
-    @FXML
-    private Button nextBtn, uppload;
     //will be autofilled later
     @FXML
     private TextField firstName, lastName, dateOfBirth, sex, placeOfBirth, ssn, height, hairColor, eyeColor, weight;
@@ -38,6 +40,17 @@ public class ApplyForPassportController implements Initializable {
     private TextField nationality, type, code, dateOfIssue, dateOfExpiry, authority, passportNbr;
     @FXML
     private ImageView iconImage;
+
+    private int captured;
+
+    //-------------------------------------
+    //set our webcam to public to be used in class video
+    public Webcam webcam;
+    public static boolean isCapture = false;
+    //we set this public to be accessed in class video.
+    public ImageView imageView;
+//-------------------------------------
+
 
     //upload image
     private Image[] upploadImage = new Image[1];
@@ -48,6 +61,10 @@ public class ApplyForPassportController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SecureRandom secureRandom = new SecureRandom();
+
+
+        //get our default cam
+        webcam = webcam.getDefault();
 
         //fill array with places
         automaticBirthPlace();
@@ -94,32 +111,45 @@ public class ApplyForPassportController implements Initializable {
 
         });
 
-        uppload.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                upploadImage();
-            }
-        });
+
+    }
+
+    public void startCam() {
+
+        // new MultipointMotionDetectionExample();
+
+        if (webcam == null) {
+            System.out.println("Camera not found");
+        }
+
+        //set with and height of our cam to the size of our imageView
+        webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
+        webcam.open();
+
+        // Start camera capture
+        new VideoCapture().start();
+
+        boolean state = true;
+
+        //checks our motion
+        new DetectMotion().motionDetected(state);
 
 
-        //set back button on action back();
-        backBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                back();
 
-            }
-        });
+    }
+
+    public void captureImage() {
+        boolean state = false;
+        new DetectMotion().motionDetected(state);
+
+        BufferedImage image = webcam.getImage();
+        Image myCaptured = SwingFXUtils.toFXImage(image, null);
+
+        upploadImage[0] = myCaptured;
 
 
-        nextBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
 
-                next();
 
-            }
-        });
 
     }
 
@@ -151,48 +181,48 @@ public class ApplyForPassportController implements Initializable {
             FileInputStream fileInputStream = new FileInputStream(uploadedImage.get(0));
             Image image1 = new Image(fileInputStream, 160, 194, false, false);
             //insert uploaded image to array
+
             upploadImage[0] = image1;
 
 
             //get uploaded file
-           switch(uploadedImage.get(0).getName()){
-               case "woman1.jpg":
-                   this.height.setText("164");
-                   this.hairColor.setText("Light brown");
-                   this.eyeColor.setText("Green");
-                   this.weight.setText("62");
-                   break;
-               case "man1.jpg":
-                   this.height.setText("174");
-                   this.hairColor.setText("Black");
-                   this.eyeColor.setText("Brown");
-                   this.weight.setText("77");
-                   break;
-               case "woman2.jpg":
-                   this.height.setText("170");
-                   this.hairColor.setText("Blond");
-                   this.eyeColor.setText("Blue");
-                   this.weight.setText("69");
-                   break;
-               case "man2.jpg":
-                   this.height.setText("178");
-                   this.hairColor.setText("Brown/Grey");
-                   this.eyeColor.setText("Light brown/Yellow");
-                   this.weight.setText("78");
-                   break;
-               case "woman3.jpg":
-                   this.height.setText("174");
-                   this.hairColor.setText("Brown");
-                   this.eyeColor.setText("Light brown/Grey");
-                   this.weight.setText("73");
-                   break;
-                   default:
-                   System.out.println("outside the fold of automatic");
-                   break;
+            switch (uploadedImage.get(0).getName()) {
+                case "woman1.jpg":
+                    this.height.setText("164");
+                    this.hairColor.setText("Light brown");
+                    this.eyeColor.setText("Green");
+                    this.weight.setText("62");
+                    break;
+                case "man1.jpg":
+                    this.height.setText("174");
+                    this.hairColor.setText("Black");
+                    this.eyeColor.setText("Brown");
+                    this.weight.setText("77");
+                    break;
+                case "woman2.jpg":
+                    this.height.setText("170");
+                    this.hairColor.setText("Blond");
+                    this.eyeColor.setText("Blue");
+                    this.weight.setText("69");
+                    break;
+                case "man2.jpg":
+                    this.height.setText("178");
+                    this.hairColor.setText("Brown/Grey");
+                    this.eyeColor.setText("Light brown/Yellow");
+                    this.weight.setText("78");
+                    break;
+                case "woman3.jpg":
+                    this.height.setText("174");
+                    this.hairColor.setText("Brown");
+                    this.eyeColor.setText("Light brown/Grey");
+                    this.weight.setText("73");
+                    break;
+                default:
+                    System.out.println("outside the fold of automatic");
+                    break;
 
 
-           }
-
+            }
 
 
         } catch (FileNotFoundException e) {
@@ -246,16 +276,17 @@ public class ApplyForPassportController implements Initializable {
         birthPlace[9] = place9;
 
     }
-    public void automaticGender(){
+
+    public void automaticGender() {
         String gender = this.ssn.getText();
         char gender1 = gender.charAt(10);
 
-        boolean even = (gender1%2) ==0? true:false;
+        boolean even = (gender1 % 2) == 0 ? true : false;
 
         //if true (true that u can divide the number with 2) then its a even number = gender woman else man (odd number)
-        if (even){
+        if (even) {
             sex.setText("W");
-        }else{
+        } else {
             sex.setText("M");
         }
     }
@@ -334,25 +365,61 @@ public class ApplyForPassportController implements Initializable {
                 this.dateOfBirth.setText("NOT VALID!");
                 break;
 
-
         }
 
-        //year mon day
-        //1993 03 03 7353
-        /*
-        01 = January
-        02 = February
-        03 = March
-        04 = April
-        05 = May
-        06 = June
-        07 = July
-        08 = August
-        09 = September
-        10 = October
-        11 = November
-        12 = December
-         */
+
+    }
+
+    //TODO ändra detta gör det bättre!
+    class VideoCapture extends Thread {
+        @Override
+        public void run() {
+            while (!isCapture) { // For each 30 millisecond take picture and set it in image view
+                try {
+                    imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
+                    sleep(30);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
+    }
+
+//TODO måste kunna stänga av detta! kolla "while true"
+    public class DetectMotion {
+        public Thread t;
+        public WebcamMotionDetector motionDetector;
+
+        public void motionDetected(boolean state) {
+
+            motionDetector = new WebcamMotionDetector(webcam.getDefault());
+            motionDetector.setInterval(500);
+            motionDetector.start();
+
+            t = new Thread("motion-printer") {
+
+                @Override
+                public void run() {
+                    do {
+                        try {
+                            if (motionDetector.isMotion()) {
+                                System.out.println("you are moving");
+
+                            } else if (!motionDetector.isMotion()) {
+                                System.out.println("you are still");
+
+                            }
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    } while (state);
+                }
+            };
+
+            t.setDaemon(true);
+            t.start();
+
+        }
 
 
     }

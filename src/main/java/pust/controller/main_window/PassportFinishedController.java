@@ -203,7 +203,7 @@ public class PassportFinishedController implements Initializable {
 
             ImageIO.write(image, "jpg", new File("src\\main\\resources\\image\\people\\" + ssn.getText() + ".jpg"));
 
-            imageViewpass.setImage(myCaptured);
+
 
         } catch (AWTException e) {
             e.printStackTrace();
