@@ -2,6 +2,7 @@ package pust.controller.main_window;
 
 
 import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamMotionDetector;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -126,12 +127,12 @@ public class ApplyForPassportController extends Thread implements Initializable 
         webcam.open();
 
         // Start camera capture
-        new VideoCapture().start();
+        // new VideoCapture().start();
 
-//        boolean state = true;
+        //boolean state = true;
 
         //checks our motion
-//        new DetectMotion().motionDetected(state);
+        //new DetectMotion().motionDetected(state);
 
 
     }
@@ -143,7 +144,10 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
         upploadImage[0] = myCaptured;
 
+    }
 
+    public void paus() {
+        webcam.close();
     }
 
     public void back() {
@@ -173,8 +177,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
         try {
             FileInputStream fileInputStream = new FileInputStream(uploadedImage.get(0));
             Image image1 = new Image(fileInputStream, 160, 194, false, false);
-            //insert uploaded image to array
 
+            //insert uploaded image to array
             upploadImage[0] = image1;
 
 
@@ -287,7 +291,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
     //set date of birth based on ssn entered!
     public void automaticDateOfBirth() {
 
-
         //take ssn and add it to string
         String ssn = this.ssn.getText();
         //get day
@@ -312,9 +315,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
         //set our created string (stringBuilder) to a string
         String month4 = month3.toString();
-
-        System.out.println(month3);
-        // for specific month
 
 
         switch (month4) {
@@ -377,45 +377,50 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-////TODO måste kunna stänga av detta! kolla "while true"
-//    public class DetectMotion {
-//        public Thread t;
-//        public WebcamMotionDetector motionDetector;
-//
-//        public void motionDetected(boolean state) {
-//
-//            motionDetector = new WebcamMotionDetector(webcam.getDefault());
-//            motionDetector.setInterval(500);
-//            motionDetector.start();
-//
-//            t = new Thread("motion-printer") {
-//
-//                @Override
-//                public void run() {
-//                    do {
-//                        try {
-//                            if (motionDetector.isMotion()) {
-//                                System.out.println("you are moving");
-//
-//                            } else if (!motionDetector.isMotion()) {
-//                                System.out.println("you are still");
-//
-//                            }
-//                            Thread.sleep(1000);
-//                        } catch (InterruptedException e) {
-//                            break;
-//                        }
-//                    } while (state);
-//                }
-//            };
-//
-//            t.setDaemon(true);
-//            t.start();
-//
-//        }
+    ////TODO måste kunna stänga av detta! kolla "while true"
+    public class DetectMotion {
+        public Thread t;
+        public WebcamMotionDetector motionDetector;
+
+        public void motionDetected(boolean state) {
+
+            motionDetector = new WebcamMotionDetector(webcam.getDefault());
+            motionDetector.setInterval(500);
+            motionDetector.start();
+
+            t = new Thread("motion-printer") {
+
+                @Override
+                public void run() {
+                    do {
+                        try {
+                            if (motionDetector.isMotion()) {
+                                System.out.println("you are moving");
+
+                            } else if (!motionDetector.isMotion()) {
+                                System.out.println("you are still");
+
+                            }
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    } while (state);
+                }
+            };
+
+            t.setDaemon(true);
+            t.start();
+
+        }
+
+        public void shutdown() {
+            t.setDaemon(false);
+            t.stop();
+        }
 
 
-//    }
+    }
 
 
 }

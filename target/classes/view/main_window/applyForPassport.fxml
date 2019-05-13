@@ -121,7 +121,8 @@
       <ImageView fx:id="iconImage" fitHeight="93.0" fitWidth="109.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="uppload" layoutX="613.0" layoutY="358.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload" />
       <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="451.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="start" layoutX="611.0" layoutY="253.0" mnemonicParsing="false" onAction="#startCam" text="start" />
-      <Button fx:id="capture" layoutX="662.0" layoutY="253.0" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+      <Button fx:id="start" layoutX="593.0" layoutY="253.0" mnemonicParsing="false" onAction="#startCam" text="start" />
+      <Button fx:id="capture" layoutX="698.0" layoutY="253.0" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+      <Button layoutX="644.0" layoutY="253.0" mnemonicParsing="false" onAction="#paus" text="paus" />
    </children>
 </AnchorPane>
