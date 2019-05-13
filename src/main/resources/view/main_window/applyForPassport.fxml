@@ -7,125 +7,155 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
    <children>
-      <HBox layoutX="36.0" layoutY="122.0" prefHeight="35.0" prefWidth="304.0" spacing="5.0">
-         <children>
-            <TextField fx:id="lastName" promptText="Last name" />
-            <TextField fx:id="firstName" promptText="First name" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </HBox>
-      <Label layoutX="43.0" layoutY="103.0" text="1. Name">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <HBox layoutX="38.0" layoutY="228.0" prefHeight="35.0" prefWidth="341.0" spacing="5.0">
-         <children>
-            <TextField fx:id="dateOfBirth" promptText="Date of birth" />
-            <TextField fx:id="sex" promptText="Sex Male/Female" />
-            <TextField fx:id="placeOfBirth" promptText="Place of birth" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </HBox>
-      <Label layoutX="45.0" layoutY="208.0" text="3. Birth">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <HBox layoutX="36.0" layoutY="173.0" prefHeight="35.0" prefWidth="408.0" spacing="5.0">
-         <children>
-            <TextField fx:id="ssn" prefHeight="25.0" prefWidth="231.0" promptText="SSN" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </HBox>
-      <Label layoutX="43.0" layoutY="157.0" text="2. Social Security Number">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="44.0" layoutY="263.0" text="4. Personal information">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <HBox layoutX="36.0" layoutY="282.0" prefHeight="35.0" prefWidth="595.0" spacing="5.0">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <children>
-            <TextField fx:id="height" promptText="Height" />
-            <TextField fx:id="hairColor" prefHeight="25.0" prefWidth="136.0" promptText="Hair Color" />
-            <TextField fx:id="eyeColor" prefHeight="25.0" prefWidth="144.0" promptText="Eye Color" />
-            <TextField fx:id="weight" prefHeight="25.0" prefWidth="107.0" promptText="Weight" />
-         </children>
-      </HBox>
 
 
-      <Button fx:id="backBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#back" prefHeight="19.0" prefWidth="45.0" text="Back" />
-      <Button fx:id="nextBtn" layoutX="726.0" layoutY="501.0" mnemonicParsing="false" onAction="#next" text="Next" />
-      <TextField fx:id="nationality" layoutX="42.0" layoutY="319.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField fx:id="type" layoutX="199.0" layoutY="371.0" />
-      <TextField fx:id="code" layoutX="38.0" layoutY="371.0" />
-      <TextField fx:id="dateOfIssue" layoutX="36.0" layoutY="420.0" />
-      <TextField fx:id="dateOfExpiry" layoutX="197.0" layoutY="420.0" />
-      <TextField fx:id="authority" layoutX="203.0" layoutY="319.0" />
-      <TextField fx:id="passportNbr" layoutX="36.0" layoutY="472.0" />
-      <Label layoutX="40.0" layoutY="396.0" text="9. Date of issue ">
-
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="208.0" layoutY="445.0" text="10. Date of expiry ">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="44.0" layoutY="323.0" text="5. Nationality">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="208.0" layoutY="324.0" prefHeight="19.0" prefWidth="83.0" text="6. Authority">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="207.0" layoutY="387.0" prefHeight="19.0" prefWidth="83.0" text="8. Type">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="46.0" layoutY="387.0" prefHeight="19.0" prefWidth="83.0" text="7. Code">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="42.0" layoutY="497.0" text="11. Passport number  ">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="18.0" text="APPLICATION FOR A SWEDISH PASSPORT">
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="526.0" mnemonicParsing="false" onAction="#back" prefHeight="19.0" prefWidth="45.0" text="Back" />
+      <Button fx:id="nextBtn" layoutX="726.0" layoutY="526.0" mnemonicParsing="false" onAction="#next" text="Next" />
+      <Label layoutX="188.0" layoutY="26.0" prefHeight="25.0" prefWidth="428.0" text="APPLICATION FOR A SWEDISH PASSPORT">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <ImageView fx:id="iconImage" fitHeight="93.0" fitWidth="109.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="uppload" layoutX="613.0" layoutY="358.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload" />
-      <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="451.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="start" layoutX="593.0" layoutY="253.0" mnemonicParsing="false" onAction="#startCam" text="start" />
-      <Button fx:id="capture" layoutX="698.0" layoutY="253.0" mnemonicParsing="false" onAction="#captureImage" text="capture" />
-      <Button layoutX="644.0" layoutY="253.0" mnemonicParsing="false" onAction="#paus" text="paus" />
+      <ImageView fx:id="iconImage" fitHeight="58.0" fitWidth="71.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="uppload" layoutX="301.0" layoutY="526.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload Image from computer" />
+      <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="437.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="37.0" layoutY="73.0" prefHeight="453.0" prefWidth="366.0">
+         <children>
+            <Label text="1. Name">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="304.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="lastName" promptText="Last name" />
+                  <TextField fx:id="firstName" promptText="First name" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Label text="2. Social Security Number">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="242.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="ssn" prefHeight="25.0" prefWidth="231.0" promptText="SSN" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Label text="3. Birth">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="341.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="dateOfBirth" promptText="Date of birth" />
+                  <TextField fx:id="sex" promptText="Sex Male/Female" />
+                  <TextField fx:id="placeOfBirth" promptText="Place of birth" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Label text="4. Personal information">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="45.0" prefWidth="358.0" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="35.0" prefWidth="351.0" spacing="5.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="height" promptText="Height" />
+                        <TextField fx:id="hairColor" prefHeight="25.0" prefWidth="136.0" promptText="Hair Color" />
+                        <TextField fx:id="eyeColor" prefHeight="25.0" prefWidth="144.0" promptText="Eye Color" />
+                        <TextField fx:id="weight" prefHeight="25.0" prefWidth="107.0" promptText="Weight" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Label prefHeight="19.0" prefWidth="308.0" text="5. Nationality                     6. Authority">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="283.0" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="nationality" prefHeight="25.0" prefWidth="149.0" promptText="Nationality" />
+                  <TextField fx:id="authority" promptText="Authority" />
+               </children>
+            </HBox>
+            <Label prefHeight="19.0" prefWidth="310.0" text="7. Type                                8. Code        ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="304.0" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="type" promptText="Type" />
+                  <TextField fx:id="code" promptText="Code" />
+               </children>
+            </HBox>
+            <Label prefHeight="19.0" prefWidth="308.0" text="9. Date of issue                  10. Date of Expiry">
+      
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="304.0" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="dateOfIssue" promptText="Date of issue" />
+                  <TextField fx:id="dateOfExpiry" promptText="Date of expiry" />
+               </children>
+            </HBox>
+            <Label text="11. Passport number  ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="passportNbr" prefHeight="25.0" prefWidth="289.0" promptText="Passport number" />
+         </children>
+      </VBox>
+      <HBox layoutX="33.0" layoutY="87.0" prefHeight="35.0" prefWidth="158.0" spacing="5.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox layoutX="523.0" layoutY="317.0" prefHeight="35.0" prefWidth="166.0" spacing="5.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+            <Button fx:id="start" mnemonicParsing="false" onAction="#startCam" text="start" />
+            <Button mnemonicParsing="false" onAction="#paus" text="paus" />
+            <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

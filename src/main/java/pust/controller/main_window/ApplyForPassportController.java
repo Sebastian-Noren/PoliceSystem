@@ -126,6 +126,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
         webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
         webcam.open();
 
+        VideoCapture videoCapture = new VideoCapture();
+        videoCapture.start();
+
         // Start camera capture
         // new VideoCapture().start();
 
@@ -148,6 +151,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     public void paus() {
         webcam.close();
+        VideoCapture videoCapture = new VideoCapture();
+
     }
 
     public void back() {
