@@ -414,11 +414,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
         }
 
-        public void shutdown() {
-            t.setDaemon(false);
-            t.stop();
-        }
-
 
     }
 
