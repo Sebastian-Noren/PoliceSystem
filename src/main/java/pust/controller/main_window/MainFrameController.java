@@ -2,6 +2,7 @@ package pust.controller.main_window;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -30,32 +33,37 @@ public class MainFrameController implements Initializable {
     private ImageView notifyImg;
     @FXML
     private ImageView notifyNumber;
+    private int i = 0;
 
 
     Timeline timeline;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //first notify number
+        RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
+
+
+//----------------------------------------------------------------------------------------------------------------------
+        //First ScrollText
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(2000),
-                ae -> firstNotify()));
+                //insert specific text here AND also call method to get latLong and marker description to send to google maps
+                ae -> scrollText(randomCrimeSpot.getCrimeMark()[0].getScrolltextDescription())));
+
+//----------------------------------------------------------------------------------------------------------------------
+
         timeline.play();
-        //scroll text containing two texts
-        timeline = new Timeline(new KeyFrame(
-                Duration.millis(1000),
-                ae -> scrollText()));
-        timeline.play();
-        //second notification matching second text
+        //second notify + text
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(10000),
-                ae ->  secondNotify()));
+                ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
         timeline.play();
-        //set image to null
+        //third notify = remove notify image
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(18000),
-                ae ->  notifyNumber.setImage(null)));
+                ae -> scrollText("")));
         timeline.play();
-
+//------------------------------------------------------------------------------------------------------
 
         Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
@@ -71,6 +79,24 @@ public class MainFrameController implements Initializable {
 
         }
     }
+
+
+    public void googleMaps() {
+
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
+            vBox.getChildren().removeAll();
+            vBox.getChildren().setAll(fxml);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
+
 
     public void ReportTab() {
         try {
@@ -119,28 +145,75 @@ public class MainFrameController implements Initializable {
         }
     }
 
-    public void firstNotify() {
-        //set the notify image (number)
-        Image notify = new Image("image/one.png");
-        notifyNumber.setImage(notify);
-    }
 
-    public void secondNotify(){
-        Image notify1 = new Image("image/two.png");
-        notifyNumber.setImage(notify1);
-    }
+    public void scrollText(String crimeDescription) {
+        i++;
+        switch (i) {
+            case 1:
+                Image notify = new Image("image/one.png");
+                notifyNumber.setImage(notify);
+                System.out.println("notify 1");
 
-    public void scrollText() {
+                break;
+            case 2:
+                Image notify1 = new Image("image/two.png");
+                notifyNumber.setImage(notify1);
+                System.out.println("notify 2");
+                break;
+            case 3:
+                notifyNumber.setImage(null);
+                System.out.println("third time, remove notification");
+                break;
 
-        //uploading the scrolling text
-        try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ScrollText.fxml"));
-            vBoxText.getChildren().removeAll();
-            vBoxText.getChildren().setAll(fxml);
-
-        } catch (IOException e1) {
 
         }
+
+        // Create the Text
+        Text text = new Text(crimeDescription);
+        // Set the Font of the Text
+        text.setFont(Font.font(15));
+        text.setStyle("-fx-text-color:#ee0c1b");
+
+        // add text inside the vBox
+        vBoxText.getChildren().addAll(text);
+
+        vBoxText.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 5;" +
+                "-fx-border-color: white;");
+        TranslateTransition translateTransition = new TranslateTransition();
+        //Duration of text movement
+        translateTransition.setDuration(Duration.seconds(5));
+        //to what position in the X-axis the text should move
+        translateTransition.setToX(380);
+        //autoReverse
+        //translateTransition.setAutoReverse(true);
+        //times the text will repeat
+        translateTransition.setCycleCount(3);
+        //text inside a node inside Vbox that will move
+        translateTransition.setNode(text);
+        translateTransition.play();
+
+        Timeline timeline;
+        timeline = new Timeline(new KeyFrame(
+
+                Duration.millis(8000),
+                //add marker metoden som lägger till en marker
+                ae -> vBoxText.getChildren().removeAll(text)));
+        timeline.play();
+
+
+        //uploading the scrolling text from the class scrollTextController
+//        try {
+//            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ScrollText.fxml"));
+//            vBoxText.getChildren().removeAll();
+//            vBoxText.getChildren().setAll(fxml);
+//
+//        } catch (IOException e1) {
+//
+//        }
     }
 
     //TODO DONT WORK WHYYYYYY??
