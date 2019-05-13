@@ -1,8 +1,6 @@
 package pust.controller.main_window;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,21 +49,6 @@ public class PassportFinishedController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        screenshot.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                screenShot();
-            }
-        });
-
-        backBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                back();
-            }
-        });
-
-
     }
 
 
@@ -80,7 +63,6 @@ public class PassportFinishedController implements Initializable {
         //for signature
         Font font2 = Font.font("Serif", FontWeight.EXTRA_LIGHT, 20);
 
-        //labels that users fill out (will later change to autofill but these labels will still have this logic)
         String fullname = firstname + " " + lastname;
         this.name.setFont(font);
         this.name.setText(fullname);
@@ -191,16 +173,15 @@ public class PassportFinishedController implements Initializable {
             Rectangle rect = new Rectangle((int) bounds.getMinX(), (int) bounds.getMinY(), (int) imageViewpass.getFitWidth(), (int) imageViewpass.getFitHeight());
 
             BufferedImage image = robot.createScreenCapture(rect);
-
+            //myCaptured is not "used" but needs to be there in able to create a screenShot
             Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
-            ImageIO.write(image, "jpg", new File("C:\\Users\\Alawi\\Desktop\\" + ssn.getText() + ".jpg"));
-
+            ImageIO.write(image, "jpg", new File("src\\main\\resources\\image\\people\\" + ssn.getText() + ".jpg"));
 
 
         } catch (AWTException e) {
             e.printStackTrace();
-            // }catch(IOException e){
+
 
         } catch (IOException e) {
 
