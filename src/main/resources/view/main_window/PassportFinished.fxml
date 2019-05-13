@@ -10,154 +10,215 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="770.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.PassportFinishedController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="616.0" stroke="WHITE" strokeType="INSIDE" width="770.0" />
-      <ImageView fx:id="imageViewpass" fitHeight="591.0" fitWidth="745.0" layoutX="14.0" layoutY="5.0">
-         <image>
-            <Image url="@../../image/pass.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="backBtn" layoutX="10.0" layoutY="592.0" mnemonicParsing="false" text="back" />
-      <ImageView fx:id="profileImg" fitHeight="194.0" fitWidth="160.0" layoutX="14.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="screenshot" layoutX="336.0" layoutY="14.0" mnemonicParsing="false" text="Screenshot" />
-      <Label fx:id="signature" layoutX="548.0" layoutY="556.0" prefHeight="55.0" prefWidth="170.0" />
-      <HBox layoutX="163.0" layoutY="337.0" prefHeight="279.0" prefWidth="180.0">
-         <children>
-            <AnchorPane prefHeight="264.0" prefWidth="200.0">
-               <children>
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8. Authority" wrappingWidth="92.9999965429306">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Given names" wrappingWidth="105.99999088048935">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="authority" layoutX="19.0" layoutY="257.0" prefHeight="17.0" prefWidth="83.0" />
-                  <Label fx:id="name" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Nationality" wrappingWidth="92.9999965429306">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="nationality" layoutX="14.0" layoutY="45.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Date of birth" wrappingWidth="105.99999316036701">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="dateOfBirth" layoutX="14.0" layoutY="79.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Sex" wrappingWidth="92.9999965429306">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="sex" layoutX="16.0" layoutY="110.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5. Date of issue" wrappingWidth="105.99999316036701">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="dateOfIssue" layoutX="16.0" layoutY="147.0" prefHeight="17.0" prefWidth="160.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6. Date of expiry" wrappingWidth="118.99999088048935">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="dateOfExpiry" layoutX="16.0" layoutY="183.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7. Place of birth" wrappingWidth="105.99999316036701">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="placeOfBirth" layoutX="16.0" layoutY="220.0" prefHeight="17.0" prefWidth="130.0" />
-               </children>
-            </AnchorPane>
-         </children></HBox>
-      <HBox layoutX="329.0" layoutY="362.0" prefHeight="55.0" prefWidth="329.0">
-         <children>
-            <AnchorPane prefHeight="55.0" prefWidth="400.0">
-               <children>
-                  <Text fill="#7c3f7b" layoutX="15.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9. Type" wrappingWidth="82.99999088048935">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="type" layoutX="15.0" layoutY="19.0" prefHeight="17.0" prefWidth="75.0" />
-                  <Text fill="#7c3f7b" layoutX="98.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10. Code" wrappingWidth="82.99999088048935">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="code" layoutX="102.0" layoutY="19.0" prefHeight="17.0" prefWidth="75.0" />
-                  <Text fill="#7c3f7b" layoutX="181.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11. Passport No." wrappingWidth="105.99999316036701">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="passportNbr" layoutX="190.0" layoutY="17.0" prefHeight="17.0" prefWidth="130.0">
-                     <font>
-                        <Font size="16.0" />
-                     </font></Label>
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <HBox layoutX="502.0" layoutY="417.0" prefHeight="65.0" prefWidth="156.0">
-         <children>
-            <AnchorPane prefHeight="100.0" prefWidth="144.0">
-               <children>
-                  <Text fill="#7c3f7b" layoutX="17.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12.  Pers. id. No." wrappingWidth="119.00000125169754">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="ssn" layoutX="18.0" layoutY="6.0" prefHeight="17.0" prefWidth="139.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13.  Height." wrappingWidth="105.99999316036701">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="height" layoutX="18.0" layoutY="43.0" prefHeight="17.0" prefWidth="62.0" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <Text fill="#7c3f7b" layoutX="548.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signature" wrappingWidth="82.99999088048935">
-         <font>
-            <Font name="Times New Roman" size="12.0" />
-         </font>
-      </Text>
-      <HBox layoutX="490.0" layoutY="195.0" prefHeight="112.0" prefWidth="180.0">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="14.  Weight." wrappingWidth="92.9999965429306">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="weight" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="83.0" />
-                  <Label fx:id="hairColor" layoutX="14.0" layoutY="49.0" prefHeight="17.0" prefWidth="119.0" />
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15.  Hair color." wrappingWidth="105.99998742341995">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#7c3f7b" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16.  Eye color" wrappingWidth="118.99999551475048">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="eyeColor" layoutX="14.0" layoutY="83.0" prefHeight="17.0" prefWidth="119.0" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <ImageView fx:id="profileImg1" fitHeight="143.0" fitWidth="160.0" layoutX="343.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="profileImage2" fitHeight="39.0" fitWidth="49.0" layoutX="694.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="736.0" prefHeight="565.0" prefWidth="736.0"
+            xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pust.controller.main_window.PassportFinishedController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="598.0" stroke="WHITE" strokeType="INSIDE"
+                   width="750.0"/>
+        <ImageView fx:id="imageViewpass" fitHeight="565.0" fitWidth="715.0" layoutX="14.0" layoutY="5.0">
+
+            <image>
+                <Image url="@../../image/pass.jpg"/>
+            </image>
+        </ImageView>
+
+        <Button fx:id="backBtn" layoutX="14.0" layoutY="571.0" mnemonicParsing="false" text="back"/>
+        <ImageView fx:id="profileImg" fitHeight="194.0" fitWidth="160.0" layoutX="14.0" layoutY="334.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <Button fx:id="screenshot" layoutX="322.0" layoutY="571.0" mnemonicParsing="false" prefHeight="25.0"
+                prefWidth="75.0" text="Screenshot"/>
+        <Label fx:id="signature" layoutX="573.0" layoutY="482.0" prefHeight="55.0" prefWidth="170.0"/>
+        <HBox layoutX="167.0" layoutY="323.0" prefHeight="234.0" prefWidth="176.0">
+            <children>
+                <AnchorPane prefHeight="223.0" prefWidth="176.0">
+
+                    <children>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="8. Authority" wrappingWidth="92.9999965429306">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="11.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="1. Given names" wrappingWidth="105.99999088048935">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="authority" layoutX="19.0" layoutY="257.0" prefHeight="4.0" prefWidth="83.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="name" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="2. Nationality" wrappingWidth="92.9999965429306">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="nationality" layoutX="14.0" layoutY="45.0" prefHeight="17.0" prefWidth="149.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="3. Date of birth" wrappingWidth="105.99999316036701">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="dateOfBirth" layoutX="14.0" layoutY="79.0" prefHeight="17.0" prefWidth="149.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="4. Sex" wrappingWidth="92.9999965429306">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="sex" layoutX="16.0" layoutY="110.0" prefHeight="17.0" prefWidth="149.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="5. Date of issue" wrappingWidth="105.99999316036701">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="dateOfIssue" layoutX="16.0" layoutY="147.0" prefHeight="17.0" prefWidth="160.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="6. Date of expiry" wrappingWidth="118.99999088048935">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="dateOfExpiry" layoutX="16.0" layoutY="183.0" prefHeight="17.0" prefWidth="149.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="7. Place of birth" wrappingWidth="105.99999316036701">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="placeOfBirth" layoutX="16.0" layoutY="220.0" prefHeight="17.0" prefWidth="130.0">
+                            <font>
+                                <Font size="11.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+        <HBox layoutX="314.0" layoutY="324.0" prefHeight="55.0" prefWidth="329.0">
+            <children>
+                <AnchorPane prefHeight="55.0" prefWidth="400.0">
+                    <children>
+                        <Text fill="#7c3f7b" layoutX="15.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="9. Type" wrappingWidth="82.99999088048935">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="type" layoutX="15.0" layoutY="19.0" prefHeight="17.0" prefWidth="75.0"/>
+                        <Text fill="#7c3f7b" layoutX="98.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="10. Code" wrappingWidth="82.99999088048935">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="code" layoutX="102.0" layoutY="19.0" prefHeight="17.0" prefWidth="75.0"/>
+                        <Text fill="#7c3f7b" layoutX="181.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="11. Passport No." wrappingWidth="105.99999316036701">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="passportNbr" layoutX="190.0" layoutY="17.0" prefHeight="17.0" prefWidth="130.0"/>
+                        <HBox layoutX="167.0" layoutY="42.0" prefHeight="65.0" prefWidth="156.0">
+                            <children>
+                                <AnchorPane prefHeight="100.0" prefWidth="144.0">
+                                    <children>
+                                        <Text fill="#7c3f7b" layoutX="17.0" layoutY="3.0" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="12.  Pers. id. No."
+                                              wrappingWidth="119.00000125169754">
+                                            <font>
+                                                <Font name="Times New Roman" size="12.0"/>
+                                            </font>
+                                        </Text>
+                                        <Label fx:id="ssn" layoutX="18.0" layoutY="6.0" prefHeight="17.0"
+                                               prefWidth="139.0"/>
+                                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="13.  Height." wrappingWidth="105.99999316036701">
+                                            <font>
+                                                <Font name="Times New Roman" size="12.0"/>
+                                            </font>
+                                        </Text>
+                                        <Label fx:id="height" layoutX="18.0" layoutY="43.0" prefHeight="17.0"
+                                               prefWidth="62.0"/>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+        <Text fill="#7c3f7b" layoutX="573.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signature"
+              wrappingWidth="82.99999088048935">
+            <font>
+                <Font name="Times New Roman" size="12.0"/>
+            </font>
+        </Text>
+        <HBox layoutX="490.0" layoutY="195.0" prefHeight="112.0" prefWidth="180.0">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="11.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="14.  Weight." wrappingWidth="92.9999965429306">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="weight" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="83.0"/>
+                        <Label fx:id="hairColor" layoutX="14.0" layoutY="49.0" prefHeight="17.0" prefWidth="119.0"/>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="15.  Hair color." wrappingWidth="105.99998742341995">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="#7c3f7b" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="16.  Eye color" wrappingWidth="118.99999551475048">
+                            <font>
+                                <Font name="Times New Roman" size="12.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="eyeColor" layoutX="14.0" layoutY="83.0" prefHeight="17.0" prefWidth="119.0"/>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+        <ImageView fx:id="profileImg1" fitHeight="143.0" fitWidth="160.0" layoutX="343.0" layoutY="145.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="profileImage2" fitHeight="39.0" fitWidth="49.0" layoutX="670.0" layoutY="358.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+    </children>
 </AnchorPane>

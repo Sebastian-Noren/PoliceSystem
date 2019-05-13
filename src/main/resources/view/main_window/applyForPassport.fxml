@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ApplyForPassportController">
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
    <children>
       <HBox layoutX="36.0" layoutY="122.0" prefHeight="35.0" prefWidth="304.0" spacing="5.0">
          <children>
@@ -69,16 +69,19 @@
             <TextField fx:id="weight" prefHeight="25.0" prefWidth="107.0" promptText="Weight" />
          </children>
       </HBox>
-      <Button fx:id="backBtn" layoutX="16.0" layoutY="566.0" mnemonicParsing="false" text="Back" />
-      <Button fx:id="nextBtn" layoutX="715.0" layoutY="566.0" mnemonicParsing="false" text="Next" />
-      <TextField fx:id="nationality" layoutX="44.0" layoutY="350.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField fx:id="type" layoutX="203.0" layoutY="412.0" />
-      <TextField fx:id="code" layoutX="42.0" layoutY="412.0" />
-      <TextField fx:id="dateOfIssue" layoutX="42.0" layoutY="467.0" />
-      <TextField fx:id="dateOfExpiry" layoutX="203.0" layoutY="467.0" />
-      <TextField fx:id="authority" layoutX="204.0" layoutY="350.0" />
-      <TextField fx:id="passportNbr" layoutX="42.0" layoutY="519.0" />
-      <Label layoutX="46.0" layoutY="443.0" text="9. Date of issue ">
+
+
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#back" prefHeight="19.0" prefWidth="45.0" text="Back" />
+      <Button fx:id="nextBtn" layoutX="726.0" layoutY="501.0" mnemonicParsing="false" onAction="#next" text="Next" />
+      <TextField fx:id="nationality" layoutX="42.0" layoutY="319.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="type" layoutX="199.0" layoutY="371.0" />
+      <TextField fx:id="code" layoutX="38.0" layoutY="371.0" />
+      <TextField fx:id="dateOfIssue" layoutX="36.0" layoutY="420.0" />
+      <TextField fx:id="dateOfExpiry" layoutX="197.0" layoutY="420.0" />
+      <TextField fx:id="authority" layoutX="203.0" layoutY="319.0" />
+      <TextField fx:id="passportNbr" layoutX="36.0" layoutY="472.0" />
+      <Label layoutX="40.0" layoutY="396.0" text="9. Date of issue ">
+
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -113,12 +116,16 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="193.0" layoutY="22.0" text="APPLICATION FOR A SWEDISH PASSPORT">
+      <Label layoutX="36.0" layoutY="18.0" text="APPLICATION FOR A SWEDISH PASSPORT">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <ImageView fx:id="iconImage" fitHeight="93.0" fitWidth="109.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="uppload" layoutX="613.0" layoutY="358.0" mnemonicParsing="false" text="uppload" />
+      <Button fx:id="uppload" layoutX="613.0" layoutY="358.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload" />
+      <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="451.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="start" layoutX="593.0" layoutY="253.0" mnemonicParsing="false" onAction="#startCam" text="start" />
+      <Button fx:id="capture" layoutX="698.0" layoutY="253.0" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+      <Button layoutX="644.0" layoutY="253.0" mnemonicParsing="false" onAction="#paus" text="paus" />
    </children>
 </AnchorPane>
