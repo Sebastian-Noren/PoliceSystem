@@ -14,7 +14,12 @@ public class MissingPerson extends Person {
             Record crimeRecord,
             int height,
             Identification identification,
-            String phoneNumber
+            String phoneNumber,
+            Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect
     ) {
         super(
                 firstName,
@@ -24,7 +29,12 @@ public class MissingPerson extends Person {
                 crimeRecord,
                 height,
                 identification,
-                phoneNumber
-        );
+                phoneNumber,
+                gender,
+                isWanted,
+                isMissing,
+                inCustody,
+                isSuspect
+                );
     }
 }

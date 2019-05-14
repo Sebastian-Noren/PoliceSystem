@@ -14,7 +14,12 @@ public class WitnessBuilder extends PersonBuilder<Witness> {
                 super.crimeRecord,
                 super.height,
                 super.identification,
-                super.phoneNumber
+                super.phoneNumber,
+                super.gender,
+                super.isWanted,
+                super.isMissing,
+                super.inCustody,
+                super.isSuspect
         );
     }
 }

@@ -4,18 +4,12 @@ import pust.model.entity.Suspect;
 
 public class SuspectBuilder extends PersonBuilder<Suspect> {
 
-    private Enum gender;
     private Enum ethnicity;
     private Enum build;
     private Enum hairColor;
     private Enum eyeColor;
     private int weight;
     private String characteristic;
-
-    public SuspectBuilder withGender(Enum gender){
-        this.gender = gender;
-        return this;
-    }
 
     public SuspectBuilder hasEthnicity(Enum ethnicity){
         this.ethnicity = ethnicity;
@@ -59,7 +53,11 @@ public class SuspectBuilder extends PersonBuilder<Suspect> {
                 super.height,
                 super.identification,
                 super.phoneNumber,
-                gender,
+                super.gender,
+                super.isWanted,
+                super.isMissing,
+                super.inCustody,
+                super.isSuspect,
                 ethnicity,
                 build,
                 hairColor,
