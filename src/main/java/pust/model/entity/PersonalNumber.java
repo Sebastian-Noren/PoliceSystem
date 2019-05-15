@@ -58,24 +58,4 @@ public class PersonalNumber {
         }
         return "" + birthYear + "" + birthMonth + "" + birthDay + "" + serialNumber + "" + controlNumber;
     }
-
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public void setBirthMonth(int birthMonth) {
-        this.birthMonth = birthMonth;
-    }
-
-    public void setBirthDay(int birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public void setControlNumber(int controlNumber) {
-        this.controlNumber = controlNumber;
-    }
 }

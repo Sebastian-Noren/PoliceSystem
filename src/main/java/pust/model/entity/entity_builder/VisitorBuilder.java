@@ -13,8 +13,7 @@ public class VisitorBuilder extends PersonBuilder<Visitor> {
                 super.address,
                 super.crimeRecord,
                 super.height,
-                super.identification,
-                super.phoneNumber
+                super.identification
         );
     }
 }

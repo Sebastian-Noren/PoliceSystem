@@ -47,9 +47,16 @@ public class PassportFinishedController implements Initializable {
     private Label nationality, type, code, dateOfIssue, dateOfExpiry, signature, passportNbr, authority;
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        //screenshot.addEventHandler(KeyEvent.KEY_PRESSED,event -> {
 
+            //if (event.getCode() == KeyCode.ENTER){
+            //    screenShot();
+          //  }
+        //});
 
         screenshot.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -194,7 +201,7 @@ public class PassportFinishedController implements Initializable {
 
             Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
-            ImageIO.write(image, "jpg", new File("C:\\Users\\Alawi\\Desktop\\" + ssn.getText() + ".jpg"));
+            ImageIO.write(image, "jpg", new File("src\\main\\resources\\image\\people\\" + ssn.getText() + ".jpg"));
 
             imageViewpass.setImage(myCaptured);
 

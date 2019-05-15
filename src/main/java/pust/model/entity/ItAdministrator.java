@@ -15,13 +15,11 @@ public class ItAdministrator extends Employee {
             Record crimeRecord,
             int height,
             Identification identification,
-            String phoneNumber,
             int salary,
             Enum title,
             int id,
             String userName,
-            String password,
-            String email
+            String password
     ) {
         super(
                 firstName,
@@ -31,13 +29,11 @@ public class ItAdministrator extends Employee {
                 crimeRecord,
                 height,
                 identification,
-                phoneNumber,
                 salary,
                 title,
                 id,
                 userName,
-                password,
-                email
+                password
         );
     }
 }

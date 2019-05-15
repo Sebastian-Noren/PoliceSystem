@@ -9,7 +9,6 @@ public abstract class EmployeeBuilder<T> extends PersonBuilder<Employee> {
     protected int id;
     protected String userName;
     protected String password;
-    protected String email;
 
     public EmployeeBuilder withSalary(int salary) {
         this.salary = salary;
@@ -33,11 +32,6 @@ public abstract class EmployeeBuilder<T> extends PersonBuilder<Employee> {
 
     public EmployeeBuilder withPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public EmployeeBuilder withEmail(String email){
-        this.email = email;
         return this;
     }
 

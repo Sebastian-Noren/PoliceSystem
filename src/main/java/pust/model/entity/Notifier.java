@@ -13,8 +13,7 @@ public class Notifier extends Person {
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification,
-            String phoneNumber
+            Identification identification
     ) {
         super(
                 firstName,
@@ -23,8 +22,7 @@ public class Notifier extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification,
-                phoneNumber
+                identification
         );
     }
 }

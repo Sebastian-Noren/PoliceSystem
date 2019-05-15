@@ -14,13 +14,11 @@ public class ItAdministratorBuilder extends EmployeeBuilder<ItAdministrator> {
                 super.crimeRecord,
                 super.height,
                 super.identification,
-                super.phoneNumber,
                 super.salary,
                 super.title,
                 super.id,
                 super.userName,
-                super.password,
-                super.email
+                super.password
         );
     }
 }

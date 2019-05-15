@@ -13,8 +13,7 @@ public class WitnessBuilder extends PersonBuilder<Witness> {
                 super.address,
                 super.crimeRecord,
                 super.height,
-                super.identification,
-                super.phoneNumber
+                super.identification
         );
     }
 }
