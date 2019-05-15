@@ -12,6 +12,7 @@ public abstract class Employee extends Person {
     private int id;
     private String userName;
     private String password;
+    private String email;
 
     public Employee(
             String firstName,
@@ -21,11 +22,13 @@ public abstract class Employee extends Person {
             Record crimeRecord,
             int height,
             Identification identification,
+            String phoneNumber,
             int salary,
             Enum title,
             int id,
             String userName,
-            String password
+            String password,
+            String email
     ) {
         super(
                 firstName,
@@ -34,13 +37,15 @@ public abstract class Employee extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification
+                identification,
+                phoneNumber
         );
         this.salary = salary;
         this.title = title;
         this.id = id;
         this.userName = userName;
         this.password = password;
+        this.email = email;
     }
 
     public int getSalary() {
@@ -61,5 +66,9 @@ public abstract class Employee extends Person {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ReportController">
+<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportController">
    <children>
-      <TabPane fx:id="tabPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="reportCrimeTab" text="Report Crime">
             <content>

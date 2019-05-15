@@ -16,11 +16,13 @@ public class PoliceChiefBuilder extends EmployeeBuilder<PoliceChief> {
                 super.crimeRecord,
                 super.height,
                 super.identification,
+                super.phoneNumber,
                 super.salary,
                 super.title,
                 super.id,
                 super.userName,
-                super.password
+                super.password,
+                super.email
         );
     }
 }

@@ -25,6 +25,7 @@ public class Suspect extends Person {
             Record crimeRecord,
             int height,
             Identification identification,
+            String phoneNumber,
             Enum gender,
             Enum ethnicity,
             Enum build,
@@ -40,7 +41,8 @@ public class Suspect extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification
+                identification,
+                phoneNumber
         );
         this.gender = gender;
         this.ethnicity = ethnicity;

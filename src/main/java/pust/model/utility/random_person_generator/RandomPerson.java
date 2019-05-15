@@ -72,12 +72,14 @@ public class RandomPerson {
                 .withId(createRandomId())
                 .withTitle(createRandomTitle())
                 .withSalary(createRandomSalary())
+                .withEmail(createRandomEmail())
                 .withPersonalNumber(personalNumber)
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -89,6 +91,7 @@ public class RandomPerson {
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -100,6 +103,7 @@ public class RandomPerson {
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -110,12 +114,14 @@ public class RandomPerson {
                 .withId(createRandomId())
                 .withTitle(createRandomTitle())
                 .withSalary(createRandomSalary())
+                .withEmail(createRandomEmail())
                 .withPersonalNumber(personalNumber)
                 .withFirstName(firstName)
                 .withSurname(surname)
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -126,6 +132,7 @@ public class RandomPerson {
                 .withId(createRandomId())
                 .withTitle(createRandomTitle())
                 .withSalary(createRandomSalary())
+                .withEmail(createRandomEmail())
                 .withPersonalNumber(personalNumber)
                 .withFirstName(firstName)
                 .withSurname(surname)
@@ -150,6 +157,7 @@ public class RandomPerson {
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -161,6 +169,7 @@ public class RandomPerson {
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -172,6 +181,7 @@ public class RandomPerson {
                 .withAddress(address)
                 .withHeight(createRandomHeight(personalNumber.getSerialNumber()))
                 .withCrimeRecord(criminalRecord)
+                .withPhoneNumber(createRandomPhoneNumber())
                 .build();
     }
 
@@ -292,6 +302,23 @@ public class RandomPerson {
 
     private Enum createRandomBuild() {
         return Build.values()[ThreadLocalRandom.current().nextInt(Build.values().length)];
+    }
+
+    private String createRandomEmail(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName).append(".").append(surname).append("@pustgis.se");
+        return sb.toString();
+        //return firstName.concat(".").concat(surname).concat("@pustgis.se");
+    }
+
+    private String createRandomPhoneNumber() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("07");
+        sb.append(ThreadLocalRandom.current().nextInt(0, 7));
+        for (int i = 0; i < 7; i++) {
+            sb.append(ThreadLocalRandom.current().nextInt(0, 10));
+        }
+        return sb.toString();
     }
 
 }
