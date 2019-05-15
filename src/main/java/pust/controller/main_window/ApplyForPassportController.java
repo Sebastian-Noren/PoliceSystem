@@ -7,7 +7,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,8 +29,6 @@ import java.util.*;
 
 public class ApplyForPassportController extends Thread implements Initializable {
     @FXML
-    private Button backBtn;
-    @FXML
     private AnchorPane anchorPane;
     //will be autofilled later
     @FXML
@@ -40,8 +38,11 @@ public class ApplyForPassportController extends Thread implements Initializable 
     private TextField nationality, type, code, dateOfIssue, dateOfExpiry, authority, passportNbr;
     @FXML
     private ImageView iconImage;
+    @FXML
+    public TextField videoStatus;
 
-    private int captured;
+    public DetectMotion detectMotion = new DetectMotion();
+
 
     //-------------------------------------
     //set our webcam to public to be used in class video
@@ -116,8 +117,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     public void startCam() {
 
-        // new MultipointMotionDetectionExample();
-
         if (webcam == null) {
             System.out.println("Camera not found");
         }
@@ -129,29 +128,51 @@ public class ApplyForPassportController extends Thread implements Initializable 
         VideoCapture videoCapture = new VideoCapture();
         videoCapture.start();
 
-        // Start camera capture
-        // new VideoCapture().start();
+//         Start camera capture
+        new VideoCapture().start();
 
-        //boolean state = true;
-
-        //checks our motion
-        //new DetectMotion().motionDetected(state);
+//        checks our motion
+        detectMotion.motionDetected(videoStatus);
 
 
     }
+
 
     public void captureImage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR IN CAPTURE");
+        alert.setHeaderText("CANNOT TAKE IMAGE WHILE MOVING!");
+        alert.setContentText("PUST is unable to capture image since target is moving, in order to avoid blurry" +
+                " photos the applicant need to stand still, please try again!");
 
-        BufferedImage image = webcam.getImage();
-        Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
-        upploadImage[0] = myCaptured;
+        switch(videoStatus.getText()){
+            case "PLEASE STAND STILL":
+                alert.showAndWait();
+                break;
+            case "YOU CAN TAKE A PICTURE":
+                BufferedImage image = webcam.getImage();
+                Image myCaptured = SwingFXUtils.toFXImage(image, null);
+
+                upploadImage[0] = myCaptured;
+
+                break;
+
+        }
+
+
 
     }
 
+    //TODO jobba på denna
     public void paus() {
-        webcam.close();
         VideoCapture videoCapture = new VideoCapture();
+        //stop detecting motion
+        detectMotion.t.stop();
+        //stop video capture
+        videoCapture.stop();
+        //stop webcamv
+        webcam.close();
 
     }
 
@@ -246,6 +267,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     authority.getText(), passportNbr.getText());
 
             passportFinishedController.setProfileImage(upploadImage[0]);
+
 
 
         } catch (IOException e) {
@@ -372,7 +394,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
     class VideoCapture extends Thread {
         @Override
         public void run() {
-            while (!isCapture) { // For each 30 millisecond take picture and set it in image view
+            // each 30 millis a image  is taken and inserted to imageView
+            while (!isCapture) {
                 try {
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
@@ -382,35 +405,41 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    ////TODO måste kunna stänga av detta! kolla "while true"
     public class DetectMotion {
+
+
         public Thread t;
         public WebcamMotionDetector motionDetector;
 
-        public void motionDetected(boolean state) {
+        public void motionDetected(TextField videoStatus) {
 
             motionDetector = new WebcamMotionDetector(webcam.getDefault());
             motionDetector.setInterval(500);
             motionDetector.start();
 
-            t = new Thread("motion-printer") {
+            t = new Thread("running") {
 
                 @Override
                 public void run() {
                     do {
                         try {
                             if (motionDetector.isMotion()) {
+                                //something for us to compare in event log
                                 System.out.println("you are moving");
+                                videoStatus.setText("");
+                                videoStatus.setText("PLEASE STAND STILL");
 
                             } else if (!motionDetector.isMotion()) {
+                                //something for us to compare in event log
                                 System.out.println("you are still");
-
+                                videoStatus.setText("");
+                                videoStatus.setText("YOU CAN TAKE A PICTURE");
                             }
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             break;
                         }
-                    } while (state);
+                    } while (true);
                 }
             };
 

@@ -19,9 +19,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
-        <VBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="100.0" prefWidth="821.0" BorderPane.alignment="CENTER">
             <children>
-                <MenuBar fx:id="menuBar" prefHeight="28.0" prefWidth="132.0">
+                <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="931.0">
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
@@ -53,9 +53,12 @@
                 </MenuBar>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <Region prefHeight="75.0" prefWidth="356.0" />
+
+                        <Region fx:id="region" prefHeight="75.0" prefWidth="356.0" />
+
                         <VBox fx:id="vBoxText" prefHeight="75.0" prefWidth="573.0" />
                   <AnchorPane prefHeight="75.0" prefWidth="91.0">
+
                      <children>
                               <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="49.0" layoutY="13.0" onMouseClicked="#googleMaps" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="49.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />

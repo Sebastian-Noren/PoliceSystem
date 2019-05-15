@@ -118,6 +118,8 @@ public class PassportFinishedController implements Initializable {
         this.dateOfIssue.setFont(font);
         //set the current date
         this.dateOfIssue.setText(dateOfIssue);
+        //set the font
+        this.dateOfExpiry.setFont(font);
         //set the text (current date + 5 years)
         this.dateOfExpiry.setText(dateOfExpiry);
 
@@ -152,7 +154,9 @@ public class PassportFinishedController implements Initializable {
 
 
     public void setProfileImage(Image image) {
+
         profileImg.setImage(image);
+
 
         GaussianBlur gaussianBlur = new GaussianBlur();
 

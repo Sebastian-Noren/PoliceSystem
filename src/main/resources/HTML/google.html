@@ -22,7 +22,11 @@
     </script>
     <script type="text/javascript">
 
+
         function initialize() {
+
+
+
             var latlng = new google.maps.LatLng(55.704659, 13.191007);
             var myOptions = {
                 zoom: 14,
@@ -35,8 +39,9 @@
 
             };
 
+
             //our automatic crime location  //we need to pass information here also! searchstring,description
-            document.crimeLocation = function crimeLocation(searchString,descriptionString) {
+            document.crimeLocation = function crimeLocation(searchString, descriptionString) {
                 document.geocoder.geocode({'address': searchString}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         document.map.setCenter(results[0].geometry.location);
@@ -98,6 +103,8 @@
                     if (status == google.maps.GeocoderStatus.OK) {
                         document.map.setCenter(results[0].geometry.location);
 
+
+
                         //sets  marker
                         var map = new google.maps.Map(document.getElementById("map_canvas"), {
                             zoom: 15,
@@ -116,7 +123,9 @@
                 });
             }
 
+
         }
+
 
 
     </script>

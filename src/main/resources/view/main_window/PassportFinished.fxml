@@ -22,7 +22,7 @@
 
         <Button fx:id="backBtn" layoutX="14.0" layoutY="571.0" mnemonicParsing="false" onAction="#back" text="back" />
         <ImageView fx:id="profileImg" fitHeight="213.0" fitWidth="160.0" layoutX="14.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
-        <Button fx:id="screenshot" layoutX="322.0" layoutY="571.0" mnemonicParsing="false" onAction="#screenShot" prefHeight="25.0" prefWidth="75.0" text="Screenshot" />
+        <Button fx:id="screenshot" layoutX="306.0" layoutY="5.0" mnemonicParsing="false" onAction="#screenShot" prefHeight="25.0" prefWidth="75.0" text="Screenshot" />
         <Label fx:id="signature" layoutX="525.0" layoutY="489.0" prefHeight="55.0" prefWidth="170.0" />
         <HBox layoutX="167.0" layoutY="321.0" prefHeight="274.0" prefWidth="176.0">
             <children>
