@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -35,7 +35,7 @@ public class MainFrameController implements Initializable {
     @FXML
     private ImageView notifyNumber;
     @FXML
-    private Region region;
+    private AnchorPane anchorPane;
     private int i = 0;
 
 
@@ -45,19 +45,22 @@ public class MainFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
+        anchorPane.setStyle("-fx-background-color:#e1e1e1;");
+        
+
+
+
 //----------------------------------------------------------------------------------------------------------------------
         //First ScrollText  //10 sec between each
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(2),
                 //insert specific text here AND also call method to get latLong and marker description to send to google maps
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[0].getScrolltextDescription())));
-
-//----------------------------------------------------------------------------------------------------------------------
-
         timeline.play();
+//----------------------------------------------------------------------------------------------------------------------
         //second notify + text
         timeline = new Timeline(new KeyFrame(
-                Duration.seconds(17),
+                Duration.seconds(18),
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
         timeline.play();
 //----------------------------------------------------------------------------------------------------------------------
@@ -172,8 +175,8 @@ public class MainFrameController implements Initializable {
         Text text = new Text(crimeDescription);
         // Set the Font of the Text
         text.setFont(Font.font(20));
-        text.setStyle("-fx-text-color:#ee0c1b");
-
+        text.setStyle("-fx-text-fill:#ee0c1b");
+        //vBoxText.setPrefWidth(634);
         // add text inside the vBox
         vBoxText.getChildren().addAll(text);
 
@@ -190,14 +193,6 @@ public class MainFrameController implements Initializable {
 
         translateTransition.setFromX(800);
         translateTransition.setToX(-800);
-
-
-
-
-           vBoxText.clipProperty();
-
-
-
         //autoReverse
         //translateTransition.setAutoReverse(true);
         //times the text will repeat
@@ -205,6 +200,8 @@ public class MainFrameController implements Initializable {
         //text inside a node inside Vbox that will move
         translateTransition.setNode(text);
         translateTransition.play();
+
+
 
         Timeline timeline;
         timeline = new Timeline(new KeyFrame(

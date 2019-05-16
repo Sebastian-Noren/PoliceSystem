@@ -15,11 +15,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
-        <VBox prefHeight="100.0" prefWidth="821.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="77.0" prefWidth="980.0" BorderPane.alignment="CENTER">
             <children>
                 <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="931.0">
                     <menus>
@@ -51,19 +52,24 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox prefHeight="66.0" prefWidth="980.0">
                     <children>
-
-                        <Region fx:id="region" prefHeight="75.0" prefWidth="356.0" />
-
-                        <VBox fx:id="vBoxText" prefHeight="75.0" prefWidth="573.0" />
-                  <AnchorPane prefHeight="75.0" prefWidth="91.0">
-
+                  <AnchorPane prefHeight="63.0" prefWidth="980.0">
                      <children>
-                              <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="49.0" layoutY="13.0" onMouseClicked="#googleMaps" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="49.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+      
+                              <VBox fx:id="vBoxText" layoutX="165.0" layoutY="1.0" prefHeight="67.0" prefWidth="746.0" />
+                        <AnchorPane fx:id="anchorPane" layoutX="905.0" layoutY="1.0" prefHeight="64.0" prefWidth="79.0">
+      
+                                 <children>
+                                    <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="49.0" layoutX="7.0" layoutY="7.0" onMouseClicked="#googleMaps" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="39.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="67.0" layoutX="-2.0" stroke="#dddddd" strokeType="INSIDE" width="172.0" />
                      </children>
                   </AnchorPane>
+
+                        <Region fx:id="region" prefHeight="75.0" prefWidth="990.0" />
                     </children>
                 </HBox>
             </children>
@@ -76,7 +82,7 @@
         <Region prefHeight="47.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </bottom>
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="715.0" prefWidth="175.0" spacing="5.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="vBoxLeft" alignment="TOP_CENTER" prefHeight="715.0" prefWidth="175.0" spacing="5.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
                     <image>
