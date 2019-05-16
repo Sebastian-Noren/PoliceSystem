@@ -23,6 +23,11 @@ public abstract class Employee extends Person {
             int height,
             Identification identification,
             String phoneNumber,
+            Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect,
             int salary,
             Enum title,
             int id,
@@ -38,7 +43,12 @@ public abstract class Employee extends Person {
                 crimeRecord,
                 height,
                 identification,
-                phoneNumber
+                phoneNumber,
+                gender,
+                isWanted,
+                isMissing,
+                inCustody,
+                isSuspect
         );
         this.salary = salary;
         this.title = title;
