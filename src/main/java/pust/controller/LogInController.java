@@ -5,7 +5,6 @@
 
 package pust.controller;
 
-import com.mysql.cj.protocol.Resultset;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,16 +17,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import pust.model.utility.AppConstant;
-import pust.model.LogInModel;
+import pust.model.login.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.database_connection.DBCPDataSource;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -86,10 +82,9 @@ public class LogInController implements Initializable {
         }
     }
 
-    public void forgotPasswordClicked(ActionEvent event) {
+    public void forgotPasswordClicked() {
         //placeholder code
-        String strSceneFXML = "/view/main_window/MainFrame.fxml";
-        AppConstant.switchScene(event,strSceneFXML);
+        model.resetPassword();
     }
 
     //to be moved to LogInModel if possible.
