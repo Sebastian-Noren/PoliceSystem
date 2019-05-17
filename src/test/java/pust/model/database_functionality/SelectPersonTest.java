@@ -16,7 +16,7 @@ public class SelectPersonTest {
 
     @Test
     public void loadPerson() {
-     //   LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
+        LinuxRemoteConnection.remoteConnect();
         Person person = new SelectPerson(ssn).loadPerson();
         Suspect suspect;
         Employee employee;
