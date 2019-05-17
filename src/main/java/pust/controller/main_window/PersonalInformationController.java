@@ -9,7 +9,11 @@ import pust.model.personal_view.TempCriminalRecord;
 import pust.model.personal_view.TempPerson;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class PersonalInformationController implements Initializable {
@@ -33,7 +37,7 @@ public class PersonalInformationController implements Initializable {
 
     private void setlabel(TempPerson person) {
         labelSSN.setText(person.getPersonSSN());
-        labelAge.setText(""); //TODO Make calculation for age and set it
+        labelAge.setText(calcAge(person.getPersonSSN())); //TODO Make calculation for age and set it
         labelSuspect.setText(""); //TODO suspect calc
         labelInCustody.setText("");
         labelCrimeCount.setText(String.valueOf(counter));
@@ -57,4 +61,13 @@ public class PersonalInformationController implements Initializable {
         }
     }
 
+    private String calcAge(String personSSN){
+        String ssn = personSSN;
+        ssn = ssn.substring(0, ssn.length()-4);
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate birthDate = LocalDate.parse(ssn, formatter);
+
+        return Integer.toString(Period.between(birthDate, currentDate).getYears());
+    }
 }

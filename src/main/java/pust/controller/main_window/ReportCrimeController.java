@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 public class ReportCrimeController implements Initializable {
 
     @FXML
