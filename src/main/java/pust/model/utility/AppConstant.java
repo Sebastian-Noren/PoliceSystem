@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pust.model.database_functionality.InsertPerson;
+import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
 import pust.model.enumerations.*;
 
@@ -35,6 +36,7 @@ public class AppConstant {
     private static String CURRENT_USER = ""; //Save the current user in the program
     private static String CURRENT_USER_PASS = ""; //save the current password in the program.
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
+    public static Person person;
 
     public static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
