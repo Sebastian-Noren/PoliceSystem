@@ -1,44 +1,51 @@
 package pust.model.utility;
 
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
-    public static void generateAndSendEmail(String recipient, String subject, String message) throws AddressException, MessagingException {
+    public static void generateAndSendEmail(String recipient, String subject, String message) throws MessagingException {
 
-        // Step1
-        System.out.println("\n 1st ===> setup Mail Server Properties..");
+        // This sets up the properties of the mail server
         Properties mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
-        System.out.println("Mail Server Properties have been setup successfully..");
 
-        // Step2
-        System.out.println("\n\n 2nd ===> get Mail Session..");
-        Session getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+        // This brings the server properties into a session and generates the e-mail
+        Session session = Session.getDefaultInstance(mailServerProperties, null);
+        MimeMessage createMail = new MimeMessage(session);
+        createMail.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        createMail.setSubject(subject);
 
-        MimeMessage generateMailMessage = new MimeMessage(getMailSession);
-        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        generateMailMessage.setSubject(subject);
-        String emailBody = message + "<br><br> Regards, <br>Juwlz 1337";
-        generateMailMessage.setContent(emailBody, "text/html");
-        System.out.println("Mail Session has been created successfully..");
+        //Creates email with text and image
+        MimeMultipart multipart = new MimeMultipart("related");
+        BodyPart messageBody = new MimeBodyPart();
+        String emailText = message + "<br><br> Regards, <br>PUST Integrated Graphic System";
+        messageBody.setContent(emailText, "text/html");
+        multipart.addBodyPart(messageBody);
+        messageBody = new MimeBodyPart();
+        DataSource fds = new FileDataSource("/image/swepusText.png");
+        messageBody.setDataHandler(new DataHandler(fds));
+        messageBody.setHeader("Content -ID", "<image>");
+        multipart.addBodyPart(messageBody);
+        createMail.setContent(multipart);
 
-        // Step3
-        System.out.println("\n\n 3rd ===> Get Session and Send mail");
-        Transport transport = getMailSession.getTransport("smtp");
 
-        // Enter user ID and password
-        transport.connect("smtp.gmail.com", "jsoutine@gmail.com", "Groda3lefant");
-        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+
+
+        // Here the mail is sent with user ID and password
+        Transport transport = session.getTransport("smtp");
+        transport.connect("smtp.gmail.com", "noreply.pust@gmail.com", "SeigHeil");
+        transport.sendMessage(createMail, createMail.getAllRecipients());
         transport.close();
     }
 }
