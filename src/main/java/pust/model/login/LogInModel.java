@@ -1,30 +1,20 @@
 package pust.model.login;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PopupControl;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
+import com.google.protobuf.Message;
+import com.jcraft.jsch.Session;
+import javafx.scene.control.TextInputDialog;
 import pust.controller.PopupController;
+import pust.model.utility.SendMail;
 
-import java.io.IOException;
-import java.util.HashMap;
+import javax.mail.internet.MimeMessage;
+import java.util.Optional;
+import java.util.Properties;
 
 
 public class LogInModel {
 
     PopupController pop = new PopupController();
-
-
-    public LogInModel() throws IOException {
-        FXMLLoader loader = FXMLLoader.load(getClass().getResource("/view/passwordPopup.fxml"));
-    }
-
+    SendMail mail = new SendMail();
 
     // this method takes the count of failed log in attempts and displays appropriate messsage
     public String passwordCounter(int wrongPass) {
@@ -37,40 +27,21 @@ public class LogInModel {
         }
     }
 
-    public void resetPassword() {
+    public void resetPassword() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
 
-      Popup popup = new Popup();
-      popup.show();
-    }
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Password Reset");
+        dialog.setHeaderText("Enter your E-mail address:");
+        dialog.setContentText("E-mail:");
+        Optional<String> result = dialog.showAndWait();
 
-   /* private HashMap<String, Object> showPopupWindow() {
-        HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Popup.fxml"));
-        // initializing the controller
-        PopupController popupController = new PopupController();
-        loader.setController(popupController);
-        Parent layout;
-        try {
-            layout = loader.load();
-            Scene scene = new Scene(layout);
-            // this is the popup stage
-            Stage popupStage = new Stage();
-            // Giving the popup controller access to the popup stage (to allow the controller to close the stage)
-            popupController.setStage(popupStage);
-            if(this.main!=null) {
-                popupStage.initOwner(main.getPrimaryStage());
-            }
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.setScene(scene);
-            popupStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(result.isPresent()){
+            String subject = "PUST Password Reset";
+            String emailResult = result.get();
+            String message = "Hello " + emailResult +", here is your new password: ";
+            SendMail.generateAndSendEmail(emailResult, subject, message);
         }
-        return popupController.getResult();
-    }*/
-
-
+        //pass.show();
+    }
 }
 

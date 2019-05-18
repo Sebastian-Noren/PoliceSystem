@@ -82,7 +82,7 @@ public class LogInController implements Initializable {
         }
     }
 
-    public void forgotPasswordClicked() {
+    public void forgotPasswordClicked() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
         //placeholder code
         model.resetPassword();
     }
