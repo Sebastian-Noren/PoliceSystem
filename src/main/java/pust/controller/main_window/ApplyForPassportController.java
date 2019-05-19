@@ -39,7 +39,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
     @FXML
     private ImageView iconImage;
     @FXML
-    public TextField videoStatus;
+    private TextField videoStatus;
 
     public DetectMotion detectMotion = new DetectMotion();
 
@@ -62,6 +62,12 @@ public class ApplyForPassportController extends Thread implements Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SecureRandom secureRandom = new SecureRandom();
+
+        videoStatus.setStyle("-fx-border-style: solid inside; ");
+        videoStatus.setStyle("-fx-border-width: 2; ");
+        videoStatus.setStyle("-fx-border-insets: 5;");
+        videoStatus.setStyle("-fx-border-radius: 5;");
+        videoStatus.setStyle("-fx-border-color:white; ");
 
         //get our default cam
         webcam = webcam.getDefault();
@@ -435,14 +441,19 @@ public class ApplyForPassportController extends Thread implements Initializable 
                             if (motionDetector.isMotion()) {
                                 //something for us to compare in event log
                                 System.out.println("you are moving");
-                                videoStatus.setText("");
+                                //videoStatus.setText("");
+                                videoStatus.setStyle("-fx-text-inner-color: red;");
                                 videoStatus.setText("PLEASE STAND STILL");
+                                videoStatus.setStyle("-fx-text-inner-color: red;");
 
                             } else if (!motionDetector.isMotion()) {
                                 //something for us to compare in event log
                                 System.out.println("you are still");
-                                videoStatus.setText("");
+                                //videoStatus.setText("");
+                                videoStatus.setStyle("-fx-text-inner-color: green;");
                                 videoStatus.setText("YOU CAN TAKE A PICTURE");
+
+
                             }
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {

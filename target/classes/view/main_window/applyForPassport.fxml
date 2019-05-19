@@ -16,15 +16,14 @@
 
       <Button fx:id="backBtn" layoutX="14.0" layoutY="526.0" mnemonicParsing="false" onAction="#back" prefHeight="19.0" prefWidth="45.0" text="Back" />
       <Button fx:id="nextBtn" layoutX="726.0" layoutY="526.0" mnemonicParsing="false" onAction="#next" text="Next" />
-      <Label layoutX="188.0" layoutY="26.0" prefHeight="25.0" prefWidth="428.0" text="APPLICATION FOR A SWEDISH PASSPORT">
+      <Label layoutX="189.0" layoutY="14.0" prefHeight="25.0" prefWidth="428.0" text="APPLICATION FOR A SWEDISH PASSPORT">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <ImageView fx:id="iconImage" fitHeight="58.0" fitWidth="71.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="uppload" layoutX="301.0" layoutY="526.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload Image from computer" />
-      <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="437.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="37.0" layoutY="73.0" prefHeight="453.0" prefWidth="366.0">
+      <VBox layoutX="37.0" layoutY="73.0" prefHeight="453.0" prefWidth="361.0">
          <children>
             <Label text="1. Name">
                <font>
@@ -139,19 +138,32 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="passportNbr" prefHeight="25.0" prefWidth="289.0" promptText="Passport number" />
+            <HBox prefHeight="25.0" prefWidth="292.0">
+               <children>
+                  <TextField fx:id="passportNbr" prefHeight="25.0" prefWidth="154.0" promptText="Passport number" />
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <HBox layoutX="523.0" layoutY="317.0" prefHeight="35.0" prefWidth="166.0" spacing="5.0">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
+      <VBox layoutX="420.0" layoutY="52.0" prefHeight="313.0" prefWidth="310.0">
          <children>
-            <Button fx:id="start" mnemonicParsing="false" onAction="#startCam" text="start" />
-            <Button mnemonicParsing="false" onAction="#paus" text="paus" />
-            <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+            <AnchorPane prefHeight="329.0" prefWidth="279.0">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="7.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox layoutX="89.0" layoutY="278.0" prefHeight="35.0" prefWidth="166.0" spacing="5.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="start" mnemonicParsing="false" onAction="#startCam" text="start" />
+                        <Button mnemonicParsing="false" onAction="#paus" text="paus" />
+                        <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="videoStatus" layoutX="89.0" layoutY="2.0" prefHeight="25.0" prefWidth="166.0" />
+               </children>
+            </AnchorPane>
          </children>
-      </HBox>
-      <TextField fx:id="videoStatus" layoutX="523.0" layoutY="52.0" prefHeight="25.0" prefWidth="166.0" />
+      </VBox>
    </children>
 </AnchorPane>
