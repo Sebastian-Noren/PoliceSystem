@@ -63,7 +63,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
     public void initialize(URL location, ResourceBundle resources) {
         SecureRandom secureRandom = new SecureRandom();
 
-
         //get our default cam
         webcam = webcam.getDefault();
 
@@ -134,6 +133,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
 //        checks our motion
         detectMotion.motionDetected(videoStatus);
 
+        Log log = new Log();
+        log.saveToFile("OPENED WEBCAM");
+
 
     }
 
@@ -143,36 +145,40 @@ public class ApplyForPassportController extends Thread implements Initializable 
         alert.setTitle("ERROR IN CAPTURE");
         alert.setHeaderText("CANNOT TAKE IMAGE WHILE MOVING!");
         alert.setContentText("PUST is unable to capture image since target is moving, in order to avoid blurry" +
-                " photos the applicant need to stand still, please try again!");
+                " photos the applicant needs to stand still, please try again!");
 
 
-        switch(videoStatus.getText()){
+        switch (videoStatus.getText()) {
             case "PLEASE STAND STILL":
                 alert.showAndWait();
                 break;
             case "YOU CAN TAKE A PICTURE":
+
                 BufferedImage image = webcam.getImage();
                 Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
                 upploadImage[0] = myCaptured;
+
+                Log log = new Log();
+                log.saveToFile("IMAGE CAPTURED");
 
                 break;
 
         }
 
 
-
     }
 
     //TODO jobba på denna
     public void paus() {
+        //stop webcam
+        webcam.close();
         VideoCapture videoCapture = new VideoCapture();
         //stop detecting motion
         detectMotion.t.stop();
         //stop video capture
         videoCapture.stop();
-        //stop webcamv
-        webcam.close();
+
 
     }
 
@@ -267,7 +273,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     authority.getText(), passportNbr.getText());
 
             passportFinishedController.setProfileImage(upploadImage[0]);
-
 
 
         } catch (IOException e) {
@@ -392,8 +397,11 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     //TODO ändra detta gör det bättre!
     class VideoCapture extends Thread {
+
         @Override
         public void run() {
+
+
             // each 30 millis a image  is taken and inserted to imageView
             while (!isCapture) {
                 try {
@@ -412,6 +420,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         public WebcamMotionDetector motionDetector;
 
         public void motionDetected(TextField videoStatus) {
+
 
             motionDetector = new WebcamMotionDetector(webcam.getDefault());
             motionDetector.setInterval(500);

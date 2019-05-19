@@ -46,21 +46,24 @@ public class GoogleMapsController implements Initializable {
         //set text
 
         webEngine.executeScript("document.findLocation(\"" + textBox.getText() + "\")");
+        Log log = new Log();
+        log.saveToFile("SEARCHED GOOGLE MAPS LOCATION FOR: " + textBox.getText());
     }
 
     public void goToCrimeLocation() {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
+        Log log = new Log();
         i++;
 
 
         switch (i) {
             case 1:
                 webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[0].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[0].getMarkerDescription() + "\")");
-
+                log.saveToFile("OPENED CRIME LOCATION AT: " + randomCrimeSpot.getCrimeMark()[0].getLatLong());
                 break;
             case 2:
                 webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[1].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[1].getMarkerDescription() + "\")");
-
+                log.saveToFile("OPENED CRIME LOCATION AT: " + randomCrimeSpot.getCrimeMark()[1].getLatLong());
                 break;
             case 3:
                 currentCrime.setStyle("-fx-border-color: white;");

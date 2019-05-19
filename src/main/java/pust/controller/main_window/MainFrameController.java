@@ -3,7 +3,6 @@ package pust.controller.main_window;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +34,9 @@ public class MainFrameController implements Initializable {
     @FXML
     private ImageView notifyNumber;
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane anchorPaneRight;
+    @FXML
+    private AnchorPane anchorPaneLeft;
     private int i = 0;
 
 
@@ -45,9 +46,8 @@ public class MainFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
-        anchorPane.setStyle("-fx-background-color:#e1e1e1;");
-        
-
+        anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
+        anchorPaneLeft.setStyle("-fx-background-color: #d7d7d7");
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ public class MainFrameController implements Initializable {
         Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
 
-        Image image1 = new Image("/image/swepustlogg.png");
+        Image image1 = new Image("/image/smallSwepustlogg.png");
         notifyImg.setImage(image1);
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
@@ -83,15 +83,17 @@ public class MainFrameController implements Initializable {
     }
 
 
+    //removes notification open google maps
     public void googleMaps() {
         notifyNumber.setImage(null);
-        System.out.println("third time, remove notification");
 
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
+            Log log = new Log();
+            log.saveToFile("OPENED GOOGLE MAPS");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,16 +156,17 @@ public class MainFrameController implements Initializable {
 
         i++;
         switch (i) {
+            //notify 1
             case 1:
                 Image notify = new Image("image/one.png");
                 notifyNumber.setImage(notify);
-                System.out.println("notify 1");
+
 
                 break;
+                //notify 2
             case 2:
                 Image notify1 = new Image("image/two.png");
                 notifyNumber.setImage(notify1);
-                System.out.println("notify 2");
                 break;
             case 3:
                 break;
@@ -202,7 +205,6 @@ public class MainFrameController implements Initializable {
         translateTransition.play();
 
 
-
         Timeline timeline;
         timeline = new Timeline(new KeyFrame(
 
@@ -211,28 +213,7 @@ public class MainFrameController implements Initializable {
                 ae -> vBoxText.getChildren().removeAll(text)));
         timeline.play();
 
-
-        //uploading the scrolling text from the class scrollTextController
-//        try {
-//            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ScrollText.fxml"));
-//            vBoxText.getChildren().removeAll();
-//            vBoxText.getChildren().setAll(fxml);
-//
-//        } catch (IOException e1) {
-//
-//        }
     }
 
-    //TODO DONT WORK WHYYYYYY??
-    @FXML
-    private void menuLogOut(Event actionEvent) {
-//        String strSceneFXML = "/view/LogInScreen.fxml";
-//        AppConstant.switchScene(actionEvent,strSceneFXML);
-    }
-
-    @FXML
-    private void menuExit() {
-        System.exit(0);
-    }
 
 }

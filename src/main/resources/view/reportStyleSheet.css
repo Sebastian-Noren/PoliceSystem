@@ -2,24 +2,11 @@
 
 }
 
-<<<<<<< HEAD
-@font-face {
-    font-family: 'Courier';
-    src: url('/font/Courier Prime.ttf');
-}
-
-@font-face {
-    font-family: 'Garamond';
-    src: url('/font/Garamond Regular.ttf');
-}
-
 .text-input {
     -fx-font: 14px "Courier Prime";
     -fx-font-weight: bold;
 }
 
-=======
->>>>>>> 825aa5b2c330c4b38503e5347ce72022b8fec540
 .label {
 
 }
