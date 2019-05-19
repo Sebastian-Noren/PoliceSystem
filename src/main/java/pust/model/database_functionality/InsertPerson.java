@@ -168,7 +168,7 @@ public class InsertPerson {
     private void insertAddress() {
         PreparedStatement address = null;
         PreparedStatement connectPerson = null;
-        String streetAddress = person.getAddress().getStreetName().concat(" " + person.getAddress().getStreetNumber());
+        String streetAddress = person.getAddress().getStreet().concat(" " + person.getAddress().getStreet());
 
         try (Connection connection = DBCPDataSource.getConnection()) {
 

@@ -9,8 +9,6 @@ import pust.model.utility.random_person_generator.RandomPerson;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +28,7 @@ public class BasicConnectionPoolTest {
     @Test
     public void devBasicDatabaseConnection() {
         // In the real program the remote connection is already done
-        LinuxRemoteConnection.remoteConnect();
+      //  LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
 
         //Create the connection pool if using the custom pool
         try {
@@ -74,7 +72,7 @@ public class BasicConnectionPoolTest {
     public void devCreatePersonAndInjectToDatabase() {
         Person person = new RandomPerson(PersonType.VISITOR).generateRandomPerson();
 
-        LinuxRemoteConnection.remoteConnect();
+     //   LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         PreparedStatement createPerson = null;
         PreparedStatement activateDatabase = null;
         String usedDatabase = "USE pustgis;";
@@ -114,7 +112,7 @@ public class BasicConnectionPoolTest {
 
     @Test
     public void devDBCPDatabaseConnection() throws SQLException {
-        LinuxRemoteConnection.remoteConnect();
+      //  LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         PreparedStatement firstName = null;
         String name = "SELECT firstname FROM person WHERE lastname = 'Muhammed';";
         try (Connection connection = DBCPDataSource.getConnection()) {
@@ -134,7 +132,7 @@ public class BasicConnectionPoolTest {
 
     @Test
     public void devDatabaseConnection() throws SQLException {
-        LinuxRemoteConnection.remoteConnect();
+    //    LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         System.out.println("Connecting to database ...");
         IConnectionPool connectionPool = BasicConnectionPool
                 .create("jdbc:mysql://localhost:4321",

@@ -1,11 +1,6 @@
-/*This is the login screen. To enter the system:
- Username: user
- Password: user
-*/
 
 package pust.controller;
 
-import com.mysql.cj.protocol.Resultset;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,22 +13,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.utility.AppConstant;
-import pust.model.LogInModel;
+import pust.model.login.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.database_connection.DBCPDataSource;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
+
     long time = System.currentTimeMillis();
-    long end = time + 3000;
 
     @FXML
     TextField userName, passWord;
@@ -48,7 +41,6 @@ public class LogInController implements Initializable {
 
     private int counter;
 
-
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
         if (userName.getText().isEmpty()) {
@@ -59,9 +51,19 @@ public class LogInController implements Initializable {
             passWarning.setText("Enter a password");
             return;
         }
+        if (userName.getText().equals("root")) {
+            if (model.LogInAuth(userName.getText(), passWord.getText())) {
+                //Send you to IT-administrator
+                String strSceneFXML = "/view/AdminScreen.fxml";
+                AppConstant.switchScene(actionEvent, strSceneFXML);
+            }
+        } else if (model.LogInAuth(userName.getText(), passWord.getText())) {
+            //Sends you to mainWindow
+            String strSceneFXML = "/view/main_window/MainFrame.fxml";
+            AppConstant.switchScene(actionEvent, strSceneFXML);
+        }
 
         //temporary log in without database
-
         if (userName.getText().equals("root") && passWord.getText().equals("root")) {
             //Send you to IT-administrator
             String strSceneFXML = "/view/AdminScreen.fxml";
@@ -81,15 +83,14 @@ public class LogInController implements Initializable {
             counter = 0;
             PauseTransition delay = new PauseTransition(Duration.seconds(5)); // Warning can be set for any time
             lockout();
+            model.alertWarning("Warning", "You have been locked out");
             delay.setOnFinished(event -> unLockout());
             delay.play();
         }
     }
 
-    public void forgotPasswordClicked(ActionEvent event) {
-        //placeholder code
-        String strSceneFXML = "/view/main_window/MainFrame.fxml";
-        AppConstant.switchScene(event,strSceneFXML);
+    public void forgotPasswordClicked() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
+        model.resetPassword();
     }
 
     //to be moved to LogInModel if possible.
