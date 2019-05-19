@@ -301,5 +301,65 @@ public class AppConstant {
         }
     }
 
+    private static String monthToString(int month) {
+        switch (month) {
+            case 1:
+                return "January";
+            case 2:
+                return "February";
+            case 3:
+                return "Mars";
+            case 4:
+                return "April";
+            case 5:
+                return "May";
+            case 6:
+                return "June";
+            case 7:
+                return "July";
+            case 8:
+                return "August";
+            case 9:
+                return "September";
+            case 10:
+                return "October";
+            case 11:
+                return "November";
+            case 12:
+                return "December";
+            default:
+                return "ERROR";
+        }
+    }
+
+    public static String dateOfBirth(String ssn) {
+        System.out.println(ssn);
+        int year;
+        int month;
+        int day;
+
+        StringBuilder sb = new StringBuilder();
+        char[] ssnArray = ssn.toCharArray();
+        for (int i = 0; i < 4; i++) {
+            sb.append(ssnArray[i]);
+        }
+        year = Integer.valueOf(sb.toString());
+        System.out.println(year);
+        sb = new StringBuilder();
+        for (int i = 4; i < 6; i++) {
+            sb.append(ssnArray[i]);
+        }
+        month = Integer.valueOf(sb.toString());
+        System.out.println(month);
+        sb = new StringBuilder();
+        for (int i = 6; i < 8; i++) {
+            sb.append(ssnArray[i]);
+        }
+        day = Integer.valueOf(sb.toString());
+        System.out.println(day);
+
+        return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
+    }
+
 }
 
