@@ -1,23 +1,10 @@
 package pust.model.database_functionality;
 
 import org.junit.Test;
-import pust.model.administrative_functions.application_functions.Identification;
-import pust.model.administrative_functions.report_system.record.Record;
 import pust.model.entity.*;
-import pust.model.enumerations.*;
-import pust.model.utility.AppConstant;
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.database_connection.DBCPDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.junit.Assert.*;
 
 public class SelectPersonTest {
     private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());

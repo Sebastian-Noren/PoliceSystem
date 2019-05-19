@@ -8,13 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pust.model.utility.AppConstant;
 
-/*
- * To run this program Assert must be enabled.
- * 1. Edit the run configuration
- * 2. Under VM options enter: -ea
- * 3. Run
- */
-
 public class Main extends Application {
 
     private static Stage window;

@@ -1,11 +1,6 @@
-/*This is the login screen. To enter the system:
- Username: user
- Password: user
-*/
 
 package pust.controller;
 
-import com.mysql.cj.protocol.Resultset;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,12 +17,8 @@ import javafx.util.Duration;
 import pust.model.utility.AppConstant;
 import pust.model.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.database_connection.DBCPDataSource;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -48,7 +39,6 @@ public class LogInController implements Initializable {
 
     private int counter;
 
-
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
         if (userName.getText().isEmpty()) {
@@ -59,17 +49,16 @@ public class LogInController implements Initializable {
             passWarning.setText("Enter a password");
             return;
         }
-
-        //temporary log in without database
-
-        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
-            //Send you to IT-administrator
-            String strSceneFXML = "/view/AdminScreen.fxml";
-            AppConstant.switchScene(actionEvent,strSceneFXML);
-        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+        if (userName.getText().equals("root")) {
+            if (model.LogInAuth(userName.getText(), passWord.getText())) {
+                //Send you to IT-administrator
+                String strSceneFXML = "/view/AdminScreen.fxml";
+                AppConstant.switchScene(actionEvent, strSceneFXML);
+            }
+        } else if (model.LogInAuth(userName.getText(), passWord.getText())) {
             //Sends you to mainWindow
             String strSceneFXML = "/view/main_window/MainFrame.fxml";
-            AppConstant.switchScene(actionEvent,strSceneFXML);
+            AppConstant.switchScene(actionEvent, strSceneFXML);
         }
 
         // IF login returns incorrect username/password
@@ -89,7 +78,7 @@ public class LogInController implements Initializable {
     public void forgotPasswordClicked(ActionEvent event) {
         //placeholder code
         String strSceneFXML = "/view/main_window/MainFrame.fxml";
-        AppConstant.switchScene(event,strSceneFXML);
+        AppConstant.switchScene(event, strSceneFXML);
     }
 
     //to be moved to LogInModel if possible.
