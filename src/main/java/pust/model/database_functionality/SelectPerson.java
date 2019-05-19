@@ -244,7 +244,6 @@ public class SelectPerson {
             LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
 
-        //TODO Remove -1 when the Address classes are refactored.
         address = new Address(street, zipCode, city, country);
     }
 
