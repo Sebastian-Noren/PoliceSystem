@@ -63,6 +63,17 @@ public class LogInController implements Initializable {
             AppConstant.switchScene(actionEvent, strSceneFXML);
         }
 
+        //temporary log in without database
+        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
+            //Send you to IT-administrator
+            String strSceneFXML = "/view/AdminScreen.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
+        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+            //Sends you to mainWindow
+            String strSceneFXML = "/view/main_window/MainFrame.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
+        }
+
         // IF login returns incorrect username/password
         // this whole thing will be made better.
         counter++;
