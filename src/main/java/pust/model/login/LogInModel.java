@@ -5,13 +5,16 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.utility.SendMail;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class LogInModel {
+    private static BasicDataSource ds = new BasicDataSource();
 
     // this method takes the count of failed log in attempts and displays appropriate messsage
     public String passwordCounter(int wrongPass) {
@@ -86,6 +89,21 @@ public class LogInModel {
             valid = false;
         }
         return valid;
+    }
+
+    public boolean LogInAuth(String userName, String passWordText){
+        try {
+            ds.setUrl("jdbc:mysql://localhost:4321/pustgis");
+            ds.setUsername(userName);
+            ds.setPassword(passWordText);
+            //"6978f28c972457220d4e72398bb9e000"
+            ds.getConnection();
+            System.out.println("Login Successfully");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
 

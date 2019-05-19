@@ -1,7 +1,3 @@
-/*This is the login screen. To enter the system:
- Username: user
- Password: user
-*/
 
 package pust.controller;
 
@@ -19,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.utility.AppConstant;
 import pust.model.login.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
@@ -28,8 +25,8 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
+
     long time = System.currentTimeMillis();
-    long end = time + 3000;
 
     @FXML
     TextField userName, passWord;
@@ -44,7 +41,6 @@ public class LogInController implements Initializable {
 
     private int counter;
 
-
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
         if (userName.getText().isEmpty()) {
@@ -55,17 +51,16 @@ public class LogInController implements Initializable {
             passWarning.setText("Enter a password");
             return;
         }
-
-        //temporary log in without database
-
-        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
-            //Send you to IT-administrator
-            String strSceneFXML = "/view/AdminScreen.fxml";
-            AppConstant.switchScene(actionEvent,strSceneFXML);
-        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+        if (userName.getText().equals("root")) {
+            if (model.LogInAuth(userName.getText(), passWord.getText())) {
+                //Send you to IT-administrator
+                String strSceneFXML = "/view/AdminScreen.fxml";
+                AppConstant.switchScene(actionEvent, strSceneFXML);
+            }
+        } else if (model.LogInAuth(userName.getText(), passWord.getText())) {
             //Sends you to mainWindow
             String strSceneFXML = "/view/main_window/MainFrame.fxml";
-            AppConstant.switchScene(actionEvent,strSceneFXML);
+            AppConstant.switchScene(actionEvent, strSceneFXML);
         }
 
         // IF login returns incorrect username/password

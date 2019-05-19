@@ -123,7 +123,7 @@ public class AdminScreenController implements Initializable {
             delete.setDisable(true);
             grantOption.setSelected(false);
             grantOption.setDisable(true);
-            policeRole = "Police officer";
+            policeRole = "INSPECTOR";
 
         }
         if (accPoliceChiefRole.isSelected()) {
@@ -131,14 +131,14 @@ public class AdminScreenController implements Initializable {
             delete.setSelected(true);
             grantOption.setDisable(true);
             grantOption.setSelected(false);
-            policeRole = "Police chief";
+            policeRole = "SUPERINTENDENT";
         }
         if (accITrole.isSelected()) {
             delete.setDisable(false);
             delete.setSelected(true);
             grantOption.setSelected(true);
             grantOption.setDisable(false);
-            policeRole = "IT-administrator";
+            policeRole = "ITADMINISTRATOR";
         }
         select.setSelected(true);
         insert.setSelected(true);
