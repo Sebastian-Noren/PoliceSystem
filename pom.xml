@@ -14,6 +14,14 @@
 
     <dependencies>
 
+        <!-- Mail Functionality -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+
         <!-- MySQL connector -->
         <dependency>
             <groupId>mysql</groupId>
@@ -145,10 +153,7 @@
         </dependency>
 
         <!-- iText library ends -->
-
-
     </dependencies>
-
 
     <build>
 

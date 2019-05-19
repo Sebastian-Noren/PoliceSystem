@@ -13,9 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.utility.AppConstant;
-import pust.model.LogInModel;
+import pust.model.login.LogInModel;
 import pust.model.utility.LinuxRemoteConnection;
 
 import java.net.URL;
@@ -23,8 +25,8 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
+
     long time = System.currentTimeMillis();
-    long end = time + 3000;
 
     @FXML
     TextField userName, passWord;
@@ -61,6 +63,17 @@ public class LogInController implements Initializable {
             AppConstant.switchScene(actionEvent, strSceneFXML);
         }
 
+        //temporary log in without database
+        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
+            //Send you to IT-administrator
+            String strSceneFXML = "/view/AdminScreen.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
+        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+            //Sends you to mainWindow
+            String strSceneFXML = "/view/main_window/MainFrame.fxml";
+            AppConstant.switchScene(actionEvent,strSceneFXML);
+        }
+
         // IF login returns incorrect username/password
         // this whole thing will be made better.
         counter++;
@@ -70,15 +83,14 @@ public class LogInController implements Initializable {
             counter = 0;
             PauseTransition delay = new PauseTransition(Duration.seconds(5)); // Warning can be set for any time
             lockout();
+            model.alertWarning("Warning", "You have been locked out");
             delay.setOnFinished(event -> unLockout());
             delay.play();
         }
     }
 
-    public void forgotPasswordClicked(ActionEvent event) {
-        //placeholder code
-        String strSceneFXML = "/view/main_window/MainFrame.fxml";
-        AppConstant.switchScene(event, strSceneFXML);
+    public void forgotPasswordClicked() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
+        model.resetPassword();
     }
 
     //to be moved to LogInModel if possible.
