@@ -206,8 +206,7 @@ public class RandomPerson {
     private Address createRandomAddress() {
         RandomAddress address = new RandomAddress();
         return new Address(
-                address.getStreetName(),
-                address.getStreetNumber(),
+                address.getStreet(),
                 address.getZipCode(),
                 address.getCity(),
                 address.getCountry()

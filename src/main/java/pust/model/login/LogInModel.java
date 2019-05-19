@@ -3,7 +3,6 @@ package pust.model.login;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pust.model.utility.SendMail;
@@ -44,9 +43,9 @@ public class LogInModel {
                 if (validEmail(emailResult)) {
                     String message = "Hello " + emailResult + ", here is your new password: ";
                     SendMail.generateAndSendEmail(emailResult, subject, message);
-                    alert("E-mail sent", "Check your inbox, we have sent you a new password");
+                    alertInfo("E-mail sent", "Check your inbox, we have sent you a new password");
                 } else {
-                    alert("Warning", "You did not enter a valid e-mail address");
+                    alertInfo("Warning", "You did not enter a valid e-mail address");
                 }
             }
         } catch (RuntimeException e) {
@@ -54,8 +53,20 @@ public class LogInModel {
         }
     }
 
-    private void alert(String title, String content) {
+    private void alertInfo(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
+        alert.initStyle(StageStyle.DECORATED);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/view/basicStyleSheet.css").toExternalForm());
+        alert.showAndWait();
+    }
+
+    public void alertWarning(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
         alert.initStyle(StageStyle.DECORATED);

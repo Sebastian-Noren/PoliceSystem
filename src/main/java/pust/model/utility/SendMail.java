@@ -1,5 +1,6 @@
 package pust.model.utility;
 
+import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -33,7 +34,7 @@ public class SendMail {
         messageBody.setContent(emailText, "text/html");
         multipart.addBodyPart(messageBody);
         messageBody = new MimeBodyPart();
-        DataSource fds = new FileDataSource("/image/swepusText.png");
+        DataSource fds = new FileDataSource("C:\\Dev\\Git\\PoliceSystem\\src\\main\\resources\\image\\swepustText.png");
         messageBody.setDataHandler(new DataHandler(fds));
         messageBody.setHeader("Content -ID", "<image>");
         multipart.addBodyPart(messageBody);

@@ -77,13 +77,13 @@ public class LogInController implements Initializable {
             counter = 0;
             PauseTransition delay = new PauseTransition(Duration.seconds(5)); // Warning can be set for any time
             lockout();
+            model.alertWarning("Warning", "You have been locked out");
             delay.setOnFinished(event -> unLockout());
             delay.play();
         }
     }
 
     public void forgotPasswordClicked() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
-        //placeholder code
         model.resetPassword();
     }
 

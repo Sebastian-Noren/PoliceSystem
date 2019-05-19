@@ -58,8 +58,8 @@ public class RandomPersonTest {
             System.out.println("Surname:            "
                     + person.getSurname());
             System.out.println("Address:            "
-                    + person.getAddress().getStreetName()
-                    + " " + person.getAddress().getStreetNumber());
+                    + person.getAddress().getStreet()
+                    + " ");
             System.out.println("Zip code:           "
                     + person.getAddress().getZipCode());
             System.out.println("City:               "
