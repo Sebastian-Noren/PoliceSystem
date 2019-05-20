@@ -12,6 +12,7 @@ import pust.model.utility.LinuxRemoteConnection;
 import pust.model.utility.random_person_generator.RandomPerson;
 
 import javax.xml.transform.Result;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +21,14 @@ import java.sql.*;
 import static org.junit.Assert.*;
 
 public class GenericTest {
+
+    @Test
+    public void testPath(){
+        File file = new File("src/main/resources/html/google.html");
+
+        if(file.exists())
+            System.out.println("File exists");
+    }
 
     @Test
     public void createRandomEmail() {
