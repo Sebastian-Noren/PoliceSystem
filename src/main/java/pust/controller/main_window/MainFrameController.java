@@ -167,7 +167,7 @@ public class MainFrameController implements Initializable {
                 AppConstant.alertBoxInformation("NO SSN","Must enter a SSN first!");
             }
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, ex.toString(), e
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
 
