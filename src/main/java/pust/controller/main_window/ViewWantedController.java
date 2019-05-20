@@ -63,9 +63,9 @@ public class ViewWantedController implements Initializable {
     }
 
     private void setlabel(Person person, Suspect suspect) {
-            labelHeadName.setText(person.getFirstName() + " " + person.getSurname());
+            labelHeadName.setText(person.getFirstName().toUpperCase() + " " + person.getSurname().toUpperCase());
             labelWanted.setText(String.valueOf(person.isWanted()));
-            labelAlias.setText(person.getFirstName() + " " + person.getSurname());
+            labelAlias.setText(person.getFirstName().toUpperCase() + " " + person.getSurname().toUpperCase());
             labelSSN.setText(person.getPersonalNumber().getPersonalNumber());
             labelDateBirth.setText(AppConstant.dateOfBirth(person.getPersonalNumber().getPersonalNumber()));
             labelGender.setText(person.getGender().toString());
