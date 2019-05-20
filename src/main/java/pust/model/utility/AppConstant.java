@@ -360,6 +360,5 @@ public class AppConstant {
 
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
-
 }
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ReportCrimeController">
+<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="600.0" prefWidth="801.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportCrimeController">
    <children>
       <HBox alignment="CENTER" layoutX="137.0" prefHeight="66.0" prefWidth="541.0">
          <children>
@@ -112,10 +112,10 @@
                   <TextField fx:id="notifierSSNField" prefHeight="27.0" prefWidth="87.0" />
                </children>
             </VBox>
-            <VBox prefHeight="52.0" prefWidth="48.0">
+            <VBox prefHeight="52.0" prefWidth="92.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="47.0" text="Gender:" />
-                  <ChoiceBox fx:id="notifierGenderBox" prefWidth="150.0" />
+                  <ChoiceBox fx:id="notifierGenderBox" prefHeight="28.0" prefWidth="92.0" />
                </children>
             </VBox>
          </children>
@@ -140,7 +140,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="48.0" prefWidth="185.0">
+            <VBox prefHeight="48.0" prefWidth="217.0">
                <children>
                   <Label text="Street:" />
                   <TextField fx:id="notifierStreetField" />
@@ -198,7 +198,7 @@
                   <TextField fx:id="suspectSSNField" />
                </children>
             </VBox>
-            <VBox prefHeight="52.0" prefWidth="43.0">
+            <VBox prefHeight="52.0" prefWidth="94.0">
                <children>
                   <Label text="Gender" />
                   <ChoiceBox fx:id="suspectGenderBox" prefWidth="150.0" />
@@ -217,7 +217,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="48.0" prefWidth="185.0">
+            <VBox prefHeight="48.0" prefWidth="217.0">
                <children>
                   <Label text="Street:" />
                   <TextField fx:id="suspectStreetField" />
@@ -256,7 +256,7 @@
                   <Insets bottom="10.0" left="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="133.0" prefWidth="72.0">
+            <VBox prefHeight="93.0" prefWidth="103.0">
                <children>
                   <Label alignment="CENTER_RIGHT" contentDisplay="TOP" text="Build:">
                      <padding>
@@ -282,7 +282,7 @@
                   <TextField fx:id="suspectHeightField" prefHeight="16.0" prefWidth="64.0" />
                </children>
             </VBox>
-            <VBox prefHeight="109.0" prefWidth="64.0">
+            <VBox prefHeight="93.0" prefWidth="103.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="67.0" text="Eye Color:" />
                   <ChoiceBox fx:id="suspectEyeBox" prefWidth="150.0" />
@@ -290,16 +290,16 @@
                   <ChoiceBox fx:id="suspectHairBox" prefWidth="150.0" />
                </children>
             </VBox>
-            <VBox prefHeight="93.0" prefWidth="61.0">
+            <VBox prefHeight="93.0" prefWidth="126.0">
                <children>
                   <Label text="Ethnicity:" />
                   <ChoiceBox fx:id="suspectEthnicityBox" prefWidth="150.0" />
                </children>
             </VBox>
-            <VBox prefHeight="93.0" prefWidth="356.0">
+            <VBox prefHeight="93.0" prefWidth="232.0">
                <children>
                   <Label text="Characteristics:" />
-                  <TextArea fx:id="characteristicsArea" prefHeight="66.0" prefWidth="357.0">
+                  <TextArea fx:id="characteristicsArea" prefHeight="66.0" prefWidth="230.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -323,7 +323,7 @@
                   <Insets bottom="10.0" left="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="126.0" prefWidth="658.0">
+            <VBox prefHeight="126.0" prefWidth="669.0">
                <children>
                   <Label text="Description of event." />
                   <TextArea fx:id="descriptionArea" prefHeight="99.0" prefWidth="648.0">
