@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 public class ScrollTextController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         //first text matching first notifier
         Timeline timeline;
         timeline = new Timeline(new KeyFrame(
@@ -32,7 +31,6 @@ public class ScrollTextController implements Initializable {
     }
     @FXML
     private VBox VboxText;
-
 
     public void movingText() {
         // Create the Text
@@ -72,7 +70,6 @@ public class ScrollTextController implements Initializable {
                 //add marker metoden som lägger till en marker
                 ae -> VboxText.getChildren().removeAll(text)));
         timeline.play();
-
     }
 
     public void movingTextTwo() {
@@ -110,7 +107,5 @@ public class ScrollTextController implements Initializable {
                 //add marker metoden som lägger till en marker
                 ae -> VboxText.getChildren().removeAll(text)));
         timeline.play();
-
     }
-
 }

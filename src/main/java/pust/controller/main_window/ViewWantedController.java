@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewWantedController implements Initializable {
+
     @FXML
     private Label labelHeadName, labelWanted, labelAlias, labelSSN, labelDateBirth, labelGender,
             labelEthnicity, labelHair, labelHeight, labelWeight, labelEyes, labelThin, labelDescription;

@@ -1,5 +1,4 @@
 package pust.controller.main_window;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.utility.AppConstant;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,5 +49,5 @@ public class StandardWindowController implements Initializable {
     private void typingReset() {
         labelSSN.setText("");
     }
-
 }
+
