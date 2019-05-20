@@ -30,7 +30,7 @@ public class SelectPersonTest {
         System.out.println("Suspect: " + person.isSuspect());
         System.out.println("Height: " + person.getHeight());
         System.out.println("Gender: " + person.getGender().toString());
-        System.out.println("Street: " + person.getAddress().getStreetName());
+        System.out.println("Street: " + person.getAddress().getStreet());
         System.out.println("City: " + person.getAddress().getCity());
         System.out.println("Zip code: " + person.getAddress().getZipCode());
         System.out.println("Country: " + person.getAddress().getCountry());
