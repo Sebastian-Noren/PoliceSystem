@@ -16,17 +16,6 @@ import java.util.Optional;
 public class LogInModel {
     private static BasicDataSource ds = new BasicDataSource();
 
-    // this method takes the count of failed log in attempts and displays appropriate messsage
-    public String passwordCounter(int wrongPass) {
-        if (wrongPass > 0 && wrongPass < 3) {
-            return "Incorrect username or password";
-        } else if (wrongPass >= 3) {
-            return "warning";
-        } else {
-            return "";
-        }
-    }
-
     public void resetPassword() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
 
         TextInputDialog dialog = new TextInputDialog();
@@ -77,7 +66,7 @@ public class LogInModel {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.getDialogPane().getStylesheets().add(getClass().getResource("/view/basicStyleSheet.css").toExternalForm());
-        alert.showAndWait();
+        alert.show();
     }
 
     private boolean validEmail(String email) {
