@@ -35,8 +35,7 @@ public class PersonalInformationController implements Initializable {
 
     private void setlabel() {
         labelSSN.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
-        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().toString()));
-        //labelAge.setText(String.valueOf(2019 - AppConstant.person.getPersonalNumber().getBirthYear()));
+        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().getPersonalNumber()));
         labelSuspect.setText(String.valueOf(AppConstant.person.isSuspect()));
         labelInCustody.setText(String.valueOf(AppConstant.person.isWanted()));
         labelCrimeCount.setText(String.valueOf(counter));

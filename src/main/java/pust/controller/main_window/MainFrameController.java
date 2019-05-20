@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import pust.model.utility.AppConstant;
 import pust.model.database_functionality.InsertPerson;
 import java.io.IOException;
 import java.net.URL;
@@ -158,11 +159,15 @@ public class MainFrameController implements Initializable {
 
     public void applyForIdentification() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
-            vBox.getChildren().removeAll();
-            vBox.getChildren().setAll(fxml);
-        } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+            if (AppConstant.isSsnCheck()) {
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
+            }else {
+                AppConstant.alertBoxInformation("NO SSN","Must enter a SSN first!");
+            }
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, ex.toString(), e
         }
     }
 
