@@ -300,7 +300,7 @@ public class AppConstant {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.getDialogPane().getStylesheets().add(AppConstant.class.getResource("/view/basicStyleSheet.css").toExternalForm());
-        alert.showAndWait();
+        alert.show();
     }
 
     public static void switchScene(Event event, String changeScene) {
