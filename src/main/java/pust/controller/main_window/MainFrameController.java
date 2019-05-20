@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import pust.model.utility.AppConstant;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,10 +87,13 @@ public class MainFrameController implements Initializable {
 
     public void applyForIdentification() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
-            vBox.getChildren().removeAll();
-            vBox.getChildren().setAll(fxml);
-
+            if (AppConstant.isSsnCheck()) {
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
+            }else {
+                AppConstant.alertBoxInformation("NO SSN","Must enter a SSN first!");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

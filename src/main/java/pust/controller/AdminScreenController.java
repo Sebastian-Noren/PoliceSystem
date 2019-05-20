@@ -48,7 +48,7 @@ public class AdminScreenController implements Initializable {
     private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
     private FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files (.jpg /.png)", "*.jpg", "*.png");
     private FileChooser fc = new FileChooser();
-    BufferedImage bImg = null;
+    private BufferedImage bImg = null;
     private String userSelect, policeRole;
 
     @Override

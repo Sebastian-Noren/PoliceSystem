@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<AnchorPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.StandardWindowController">
+<AnchorPane fx:id="IDPane" minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.StandardWindowController">
     <children>
         <TabPane minHeight="702.0" minWidth="781.0" prefHeight="702.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
