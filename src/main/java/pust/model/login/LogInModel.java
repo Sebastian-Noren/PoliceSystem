@@ -10,14 +10,16 @@ import pust.model.utility.SendMail;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
 public class LogInModel {
     private static BasicDataSource ds = new BasicDataSource();
 
-    public void resetPassword() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
+    private SendMail sendMail = new SendMail();
 
+    public void resetPassword() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
         TextInputDialog dialog = new TextInputDialog();
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
@@ -34,7 +36,9 @@ public class LogInModel {
 
                 if (validEmail(emailResult)) {
                     String message = "Hello " + emailResult + ", here is your new password: ";
-                    SendMail.generateAndSendEmail(emailResult, subject, message);
+
+                        sendMail.generateAndSendEmail(emailResult, subject, message);
+
                     alertInfo("E-mail sent", "Check your inbox, we have sent you a new password");
                 } else {
                     alertInfo("Warning", "You did not enter a valid e-mail address");

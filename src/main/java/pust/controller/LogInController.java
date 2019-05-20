@@ -80,19 +80,20 @@ public class LogInController implements Initializable {
         //if (model.passwordCounter(counter).equals("warning"))
     }
 
-    // incredibly flawed but cool lock-out. To be improved.
+    // flawed but cool lock-out. To be improved.
     private void lockout(String userInfo) {
         long endTime;
         lockedAccount = userInfo;
-        String warningContent = ("Due to repeated failed attempts to log in, your account has been locked for " + lockDuration + " seconds. " +
-                lockTimeLeft + " seconds remaining.");
         if (userName.getText().equals(lockedAccount) ){
-            model.alertWarning("Warning", warningContent);
             userName.setText(null);
             endTime = System.nanoTime();
             lockTimeLeft = (endTime - startTime);
             lockTimeLeft = TimeUnit.SECONDS.convert(lockTimeLeft, TimeUnit.NANOSECONDS);
             lockTimeLeft = lockDuration - lockTimeLeft;
+            model.alertWarning("Warning", "Due to repeated failed attempts to log in, " +
+                    "your account has been locked for "
+                    + lockDuration + " seconds. "
+                    + lockTimeLeft + " seconds remaining.");
         }
     }
 

@@ -1,6 +1,4 @@
 package pust.model.utility;
-
-import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -13,7 +11,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
-    public static void generateAndSendEmail(String recipient, String subject, String message) throws MessagingException {
+    public void generateAndSendEmail(String recipient, String subject, String message) throws MessagingException {
 
         // This sets up the properties of the mail server
         Properties mailServerProperties = System.getProperties();
@@ -27,7 +25,7 @@ public class SendMail {
         createMail.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         createMail.setSubject(subject);
 
-        //Creates email with text and image
+        //Creates email with text
         MimeMultipart multipart = new MimeMultipart("related");
         BodyPart messageBody = new MimeBodyPart();
         String emailText = message + "<br><br> Regards, <br>PUST Integrated Graphic System";
@@ -40,14 +38,10 @@ public class SendMail {
         multipart.addBodyPart(messageBody);
         createMail.setContent(multipart);
 
-
-
-
         // Here the mail is sent with user ID and password
         Transport transport = session.getTransport("smtp");
-        transport.connect("smtp.gmail.com", "noreply.pust@gmail.com", "SeigHeil");
+        transport.connect("smtp.gmail.com", "noreply.pust@gmail.com", "FluffyBunny");
         transport.sendMessage(createMail, createMail.getAllRecipients());
         transport.close();
     }
 }
-

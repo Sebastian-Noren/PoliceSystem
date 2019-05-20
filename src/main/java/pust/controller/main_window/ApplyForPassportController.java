@@ -1,6 +1,7 @@
 package pust.controller.main_window;
 
-
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamMotionDetector;
 import javafx.embed.swing.SwingFXUtils;
@@ -84,7 +85,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         type.setText("P");
         code.setText("SWE");
 
-
         //get current date
         Calendar currentDate = Calendar.getInstance();
         //today's date
@@ -114,10 +114,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         ssn.setOnKeyPressed(e -> {
             automaticDateOfBirth();
             automaticGender();
-
         });
-
-
     }
 
     public void startCam() {
@@ -185,7 +182,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         //stop video capture
         videoCapture.stop();
 
-
     }
 
     public void back() {
@@ -194,10 +190,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/main_window/Passport.fxml"));
             //insert pane to current anchorPane
             anchorPane.getChildren().setAll(pane);
-
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -207,18 +201,14 @@ public class ApplyForPassportController extends Thread implements Initializable 
         //upload image
         FileChooser fileChooser = new FileChooser();
         File selectedImage = fileChooser.showOpenDialog(null);
-
         List<File> uploadedImage = new ArrayList<>();
         uploadedImage.add(selectedImage);
-
-
         try {
             FileInputStream fileInputStream = new FileInputStream(uploadedImage.get(0));
             Image image1 = new Image(fileInputStream, 160, 194, false, false);
 
             //insert uploaded image to array
             upploadImage[0] = image1;
-
 
             //get uploaded file
             switch (uploadedImage.get(0).getName()) {
@@ -255,16 +245,12 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 default:
                     System.out.println("outside the fold of automatic");
                     break;
-
-
             }
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-
 
     public void next() {
         try {
@@ -279,13 +265,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     authority.getText(), passportNbr.getText());
 
             passportFinishedController.setProfileImage(upploadImage[0]);
-
-
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-
     }
 
     public void automaticBirthPlace() {
@@ -309,13 +291,11 @@ public class ApplyForPassportController extends Thread implements Initializable 
         birthPlace[8] = place8;
         String place9 = "TRELLEBORG";
         birthPlace[9] = place9;
-
     }
 
     public void automaticGender() {
         String gender = this.ssn.getText();
         char gender1 = gender.charAt(10);
-
         boolean even = (gender1 % 2) == 0 ? true : false;
 
         //if true (true that u can divide the number with 2) then its a even number = gender woman else man (odd number)
@@ -340,7 +320,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         day2.append(day1);
         //set our created string (stringBuilder) to a string
         String day3 = day2.toString();
-
 
         //cut character at specific index of ssn and create a char of that index [cut at the month]
         char month = ssn.charAt(4);
@@ -395,10 +374,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
             default:
                 this.dateOfBirth.setText("NOT VALID!");
                 break;
-
         }
-
-
     }
 
     //TODO ändra detta gör det bättre!
@@ -406,7 +382,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
         @Override
         public void run() {
-
 
             // each 30 millis a image  is taken and inserted to imageView
             while (!isCapture) {
@@ -426,8 +401,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         public WebcamMotionDetector motionDetector;
 
         public void motionDetected(TextField videoStatus) {
-
-
             motionDetector = new WebcamMotionDetector(webcam.getDefault());
             motionDetector.setInterval(500);
             motionDetector.start();
@@ -462,14 +435,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     } while (true);
                 }
             };
-
             t.setDaemon(true);
             t.start();
-
         }
-
-
     }
-
-
 }
+

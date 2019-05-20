@@ -7,13 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import pust.model.database_functionality.InsertPerson;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReportController implements Initializable {
 
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private TabPane tabPane;
@@ -42,10 +46,8 @@ public class ReportController implements Initializable {
     @FXML
     private Tab reportMissingPersonTab;
 
-
     @FXML
     private AnchorPane reportMissingPersonPane;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,8 +59,6 @@ public class ReportController implements Initializable {
         reportLostEntity();
      //loads up missingPersonScene
         reportMissingPerson();
-
-
     }
 
     public void reportCrimeScene(){
@@ -66,7 +66,6 @@ public class ReportController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportCrime.fxml"));
             reportCrimeAnchorPane.getChildren().removeAll();
             reportCrimeAnchorPane.getChildren().setAll(fxml);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,21 +76,18 @@ public class ReportController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportArrestInCustody.fxml"));
             reportArrestPane.getChildren().removeAll();
             reportArrestPane.getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
-
 
     public void reportLostEntity(){
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportLostEntity.fxml"));
             reportLostEntityPane .getChildren().removeAll();
             reportLostEntityPane .getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
@@ -101,15 +97,8 @@ public class ReportController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ReportMissingPerson.fxml"));
             reportMissingPersonPane .getChildren().removeAll();
             reportMissingPersonPane .getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
-
-
-
-
-
-
 }

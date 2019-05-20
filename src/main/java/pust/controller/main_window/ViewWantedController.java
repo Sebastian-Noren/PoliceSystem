@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 
 public class ViewWantedController implements Initializable {
+
     @FXML
     private Label labelHeadName, labelWanted, labelAlias, labelSSN, labelDateBirth, labelGender,
             labelEthnicity, labelHair, labelHeight, labelWeight, labelEyes, labelThin, labelDescription;
@@ -23,7 +24,6 @@ public class ViewWantedController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         Person person = new SelectPerson("196104035555").loadPerson();
 
@@ -54,7 +54,5 @@ public class ViewWantedController implements Initializable {
         labelEyes.setText(suspect.getEyeColor().toString());
         labelThin.setText(suspect.getBuild().toString());
         labelDescription.setText(suspect.getCharacteristic());
-
     }
-
 }
