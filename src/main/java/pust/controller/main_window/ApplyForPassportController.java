@@ -190,6 +190,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void back() {
+        detectMotion.t.stop();
+        webcam.close();
         try {
             //Set fxml (scene 2) to AnchorPane pane
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/main_window/Passport.fxml"));
@@ -268,6 +270,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
 
     public void next() {
+        detectMotion.t.stop();
+        webcam.close();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
             AnchorPane pane = loader.load();
