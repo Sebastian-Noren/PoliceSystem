@@ -7,4 +7,4 @@ artifacts/
 target/
 encrypt.bin
 hs_err_pid19458.log
-/HTML/google.html
+src/main/resources/html/google.html
