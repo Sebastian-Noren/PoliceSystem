@@ -15,11 +15,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ViewWantedController">
+<?import java.net.URL?>
+<BorderPane prefHeight="680.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ViewWantedController">
+    <stylesheets>
+        <URL value="@../basicStyleSheet.css" />
+    </stylesheets>
     <left>
         <VBox prefHeight="680.0" prefWidth="170.0" BorderPane.alignment="CENTER">
             <children>
-                <ListView prefHeight="702.0" prefWidth="170.0" />
+                <ListView fx:id="listWanted" prefHeight="702.0" prefWidth="170.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -39,7 +43,7 @@
                         <Region prefHeight="100.0" prefWidth="99.0" />
                         <ImageView fitHeight="83.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@/image/swepustlogg.png" />
+                                <Image url="@/image/smallSwepustlogg.png" />
                             </image>
                         </ImageView>
                     </children>
