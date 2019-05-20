@@ -6,12 +6,14 @@ public class MarkerInformation {
     private String scrolltextDescription;
     private String markerDescription;
     private String latLong;
+    private String title;
 
 
-    public MarkerInformation(String scrolltextDescription, String markerDescription, String latLong) {
+    public MarkerInformation(String scrolltextDescription, String markerDescription, String latLong,String title) {
         this.scrolltextDescription = scrolltextDescription;
         this.markerDescription = markerDescription;
         this.latLong = latLong;
+        this.title= title;
     }
 
     public String getScrolltextDescription() {
@@ -38,5 +40,11 @@ public class MarkerInformation {
         this.latLong = latLong;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

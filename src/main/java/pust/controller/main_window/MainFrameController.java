@@ -3,12 +3,15 @@ package pust.controller.main_window;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -37,6 +40,8 @@ public class MainFrameController implements Initializable {
     private AnchorPane anchorPaneRight;
     @FXML
     private AnchorPane anchorPaneLeft;
+    @FXML
+    private ChoiceBox<String> choiceBox;
     private int i = 0;
 
 
@@ -46,6 +51,8 @@ public class MainFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
+
+        choiceBox.setStyle("-fx-background-color: #d7d7d7;");
         anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
         anchorPaneLeft.setStyle("-fx-background-color: #d7d7d7");
 
@@ -56,12 +63,14 @@ public class MainFrameController implements Initializable {
                 Duration.seconds(2),
                 //insert specific text here AND also call method to get latLong and marker description to send to google maps
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[0].getScrolltextDescription())));
+        choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[0].getTitle());
         timeline.play();
 //----------------------------------------------------------------------------------------------------------------------
         //second notify + text
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(18),
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
+        choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
         timeline.play();
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -80,20 +89,85 @@ public class MainFrameController implements Initializable {
         } catch (IOException e1) {
 
         }
+
+        notifyImg.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+               // goToGoogleMaps();
+
+            }
+        });
+
+        notifyNumber.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                goToGoogleMaps();
+                openChoiceBox();
+            }
+        });
+
+
     }
 
 
     //removes notification open google maps
-    public void googleMaps() {
-        notifyNumber.setImage(null);
 
+
+    public void openChoiceBox() {
+
+
+        choiceBox.show();
+
+        choiceBox.getSelectionModel().selectedItemProperty().addListener((V, oldValue, newValue) -> {
+
+
+            if (choiceBox.getValue().equals("Aggravated assault")) {
+
+                GoogleMapsController.goToCrimeLocation("Aggravated");
+
+
+
+            } else if (choiceBox.getValue().equals("Vandalism")) {
+
+                GoogleMapsController.goToCrimeLocation("Vandalism");
+
+
+
+            }
+
+
+        });
+
+    }
+
+
+    //  public void sendInfoToGoogle(String type) {
+
+    //    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
+    //  GoogleMapsController temp = loader.getController();
+    // temp.textField(type);
+
+    //}
+
+    public void goToGoogleMaps() {
         try {
+
+
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
+
+           // GoogleMapsController google = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMapsController.fxml"));
+            //google.goToCrimeLocation("Aggravated");
+
+
             Log log = new Log();
             log.saveToFile("OPENED GOOGLE MAPS");
+
+            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
+            //GoogleMapsController temp = loader.getController();
+            //temp.goToCrimeLocation("Aggravated");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -163,7 +237,7 @@ public class MainFrameController implements Initializable {
 
 
                 break;
-                //notify 2
+            //notify 2
             case 2:
                 Image notify1 = new Image("image/two.png");
                 notifyNumber.setImage(notify1);

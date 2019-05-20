@@ -5,12 +5,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="728.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.GoogleMapsController">
+<AnchorPane prefHeight="728.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.GoogleMapsController">
    <children>
       <WebView fx:id="webView" minHeight="643.0" minWidth="781.0" prefHeight="728.0" prefWidth="793.0" />
       <TextField fx:id="textBox" layoutX="578.0" layoutY="14.0" promptText="Search" />
       <Button layoutX="522.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToLocation" text="go" />
       <Button layoutX="338.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadHtmlGoogle" text="reload" />
-      <Button fx:id="currentCrime" layoutX="397.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToCrimeLocation" text="View current crimes" />
    </children>
 </AnchorPane>

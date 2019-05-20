@@ -77,7 +77,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         //set random place
         placeOfBirth.setText(birthPlace[secureRandom.nextInt(birthPlace.length)]);
 
-        Image image = new Image("image/swepustlogg.png");
+        Image image = new Image("image/smallSwepustlogg.png");
         iconImage.setImage(image);
 
         nationality.setText("SWEDISH");
