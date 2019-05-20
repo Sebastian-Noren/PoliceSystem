@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,14 +36,15 @@ public class MainFrameController implements Initializable {
     @FXML
     private ImageView notifyImg;
     @FXML
-    private ImageView notifyNumber;
-    @FXML
     private AnchorPane anchorPaneRight;
     @FXML
     private AnchorPane anchorPaneLeft;
     @FXML
     private ChoiceBox<String> choiceBox;
+    @FXML
+    private Label notifyLabelNumber;
     private int i = 0;
+    private int notify = 0;
 
 
     Timeline timeline;
@@ -51,6 +53,7 @@ public class MainFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
+        notifyLabelNumber.setVisible(false);
 
         choiceBox.setStyle("-fx-background-color: #d7d7d7;");
         anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
@@ -63,17 +66,13 @@ public class MainFrameController implements Initializable {
                 Duration.seconds(2),
                 //insert specific text here AND also call method to get latLong and marker description to send to google maps
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[0].getScrolltextDescription())));
-        choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[0].getTitle());
         timeline.play();
 //----------------------------------------------------------------------------------------------------------------------
         //second notify + text
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(18),
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
-        choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
         timeline.play();
-//----------------------------------------------------------------------------------------------------------------------
-
 //----------------------------------------------------------------------------------------------------------------------
 
         Image image = new Image("/image/user_accounts.png");
@@ -93,12 +92,12 @@ public class MainFrameController implements Initializable {
         notifyImg.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               // goToGoogleMaps();
+                // goToGoogleMaps();
 
             }
         });
 
-        notifyNumber.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        notifyLabelNumber.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 goToGoogleMaps();
@@ -106,11 +105,16 @@ public class MainFrameController implements Initializable {
             }
         });
 
+//        notifyLabelNumber.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                goToGoogleMaps();
+//                openChoiceBox();
+//            }
+//        });
+
 
     }
-
-
-    //removes notification open google maps
 
 
     public void openChoiceBox() {
@@ -122,15 +126,22 @@ public class MainFrameController implements Initializable {
 
 
             if (choiceBox.getValue().equals("Aggravated assault")) {
-
+                notify--;
                 GoogleMapsController.goToCrimeLocation("Aggravated");
 
+                notifyLabelNumber.setText(String.valueOf(notify));
 
-
+                choiceBox.getItems().remove("Aggravated assault");
             } else if (choiceBox.getValue().equals("Vandalism")) {
+                notify--;
 
                 GoogleMapsController.goToCrimeLocation("Vandalism");
 
+                notifyLabelNumber.setText(String.valueOf(notify));
+                choiceBox.getItems().remove("Vandalism");
+
+
+                //}
 
 
             }
@@ -141,33 +152,15 @@ public class MainFrameController implements Initializable {
     }
 
 
-    //  public void sendInfoToGoogle(String type) {
-
-    //    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
-    //  GoogleMapsController temp = loader.getController();
-    // temp.textField(type);
-
-    //}
-
     public void goToGoogleMaps() {
         try {
-
 
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-
-           // GoogleMapsController google = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMapsController.fxml"));
-            //google.goToCrimeLocation("Aggravated");
-
-
             Log log = new Log();
             log.saveToFile("OPENED GOOGLE MAPS");
-
-            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
-            //GoogleMapsController temp = loader.getController();
-            //temp.goToCrimeLocation("Aggravated");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -227,20 +220,29 @@ public class MainFrameController implements Initializable {
 
 
     public void scrollText(String crimeDescription) {
+        RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
         i++;
         switch (i) {
             //notify 1
             case 1:
-                Image notify = new Image("image/one.png");
-                notifyNumber.setImage(notify);
 
+
+                notifyLabelNumber.setVisible(true);
+                notify++;
+
+                notifyLabelNumber.setText(String.valueOf(notify));
+
+                choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[0].getTitle());
 
                 break;
             //notify 2
             case 2:
-                Image notify1 = new Image("image/two.png");
-                notifyNumber.setImage(notify1);
+
+                notify++;
+                notifyLabelNumber.setText(String.valueOf(notify));
+                choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
+
                 break;
             case 3:
                 break;

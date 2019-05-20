@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
    <children>
 
 
@@ -21,9 +21,9 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <ImageView fx:id="iconImage" fitHeight="58.0" fitWidth="71.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="iconImage" fitHeight="40.0" fitWidth="47.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="uppload" layoutX="301.0" layoutY="526.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload Image from computer" />
-      <VBox layoutX="14.0" layoutY="43.0" prefHeight="472.0" prefWidth="408.0">
+      <VBox layoutX="21.0" layoutY="52.0" prefHeight="472.0" prefWidth="408.0">
          <children>
             <Label text="1. Name">
                <font>
@@ -90,7 +90,7 @@
                   </HBox>
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="308.0" text="5. Nationality                     6. Authority">
+            <Label prefHeight="19.0" prefWidth="308.0" text="5. Nationality                         6. Authority">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -104,7 +104,7 @@
                   <TextField fx:id="authority" promptText="Authority" />
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="310.0" text="7. Type                                8. Code        ">
+            <Label prefHeight="19.0" prefWidth="310.0" text="7. Type                                             8. Code        ">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -118,7 +118,7 @@
                   <TextField fx:id="code" promptText="Code" />
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="308.0" text="9. Date of issue                  10. Date of Expiry">
+            <Label prefHeight="19.0" prefWidth="308.0" text="9. Date of issue                                10. Date of Expiry">
       
                <font>
                   <Font name="System Bold" size="13.0" />

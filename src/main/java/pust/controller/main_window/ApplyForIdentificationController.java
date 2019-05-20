@@ -27,10 +27,9 @@ public class ApplyForIdentificationController implements Initializable {
         //loads up criminalRecordsScene
         //Loads up passportScene
         passportScene();
-
     }
 
-    public void IDScene(){
+    public void IDScene() {
 
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/PersonalInformation.fxml"));
@@ -40,10 +39,9 @@ public class ApplyForIdentificationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void passportScene(){
+    public void passportScene() {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Passport.fxml"));
             passportPane.getChildren().removeAll();
@@ -52,7 +50,6 @@ public class ApplyForIdentificationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
     }

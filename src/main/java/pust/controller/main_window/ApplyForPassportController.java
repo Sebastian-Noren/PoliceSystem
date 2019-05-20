@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import pust.model.utility.AppConstant;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -44,13 +45,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
     public DetectMotion detectMotion = new DetectMotion();
 
 
-    //-------------------------------------
-    //set our webcam to public to be used in class video
     public Webcam webcam;
-    public static boolean isCapture = false;
-    //we set this public to be accessed in class video.
     public ImageView imageView;
-//-------------------------------------
 
 
     //upload image
@@ -62,6 +58,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SecureRandom secureRandom = new SecureRandom();
+
+        ssn.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
 
         videoStatus.setStyle("-fx-border-style: solid inside; ");
         videoStatus.setStyle("-fx-border-width: 2; ");
@@ -111,7 +109,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         //TODO fix
         //When we auto fill ssn then we will activate the method
         //but for now we need to type in the information manually.
-        ssn.setOnKeyPressed(e -> {
+        ssn.setOnMouseClicked(e -> {
             automaticDateOfBirth();
             automaticGender();
 
@@ -133,6 +131,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         VideoCapture videoCapture = new VideoCapture();
         videoCapture.start();
 
+        videoCapture.status(true);
 //         Start camera capture
         new VideoCapture().start();
 
@@ -168,6 +167,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 Log log = new Log();
                 log.saveToFile("IMAGE CAPTURED");
 
+                detectMotion.t.stop();
+
                 break;
 
         }
@@ -175,15 +176,15 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     }
 
-    //TODO jobba på denna
     public void paus() {
-        //stop webcam
-        webcam.close();
         VideoCapture videoCapture = new VideoCapture();
-        //stop detecting motion
-        detectMotion.t.stop();
         //stop video capture
         videoCapture.stop();
+        //stop detecting motion
+        detectMotion.t.stop();
+        videoCapture.status(false);
+        //stop webcam
+        webcam.close();
 
 
     }
@@ -403,19 +404,25 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     //TODO ändra detta gör det bättre!
     class VideoCapture extends Thread {
+        private boolean status = true;
 
         @Override
         public void run() {
 
 
             // each 30 millis a image  is taken and inserted to imageView
-            while (!isCapture) {
+            while (status != false) {
                 try {
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
                 } catch (InterruptedException ex) {
                 }
             }
+        }
+
+        public void status(boolean state) {
+            status = state;
+
         }
     }
 
@@ -457,7 +464,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                             }
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
-                            break;
+
                         }
                     } while (true);
                 }

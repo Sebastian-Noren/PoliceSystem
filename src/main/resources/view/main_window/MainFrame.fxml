@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.MainFrameController">
     <top>
         <VBox prefHeight="77.0" prefWidth="980.0" BorderPane.alignment="CENTER">
             <children>
@@ -61,7 +61,11 @@
                                  <children>
                               <ChoiceBox fx:id="choiceBox" layoutX="8.0" layoutY="20.0" prefHeight="4.0" prefWidth="10.0" />
                                     <ImageView fx:id="notifyImg" fitHeight="50.0" fitWidth="67.0" layoutX="1.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" layoutX="40.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="notifyLabelNumber" layoutX="26.0" prefHeight="14.0" prefWidth="29.0" styleClass="circleButton" stylesheets="@../notifyStyleSheet.css">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="anchorPaneLeft" layoutX="-2.0" prefHeight="64.0" prefWidth="173.0" />
@@ -75,7 +79,7 @@
         </VBox>
     </top>
     <center>
-        <VBox fx:id="vBox" minHeight="702.0" minWidth="781.0" onMouseClicked="#openChoiceBox" onMouseDragOver="#openChoiceBox" prefHeight="702.0" prefWidth="781.0" BorderPane.alignment="CENTER" />
+        <VBox fx:id="vBox" minHeight="702.0" minWidth="781.0" onMouseClicked="#openChoiceBox" onMouseDragOver="#openChoiceBox" prefHeight="702.0" prefWidth="781.0" styleClass="notifyLabelNumber" stylesheets="@../notifyStyleSheet.css" BorderPane.alignment="CENTER" />
     </center>
     <bottom>
         <Region prefHeight="47.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
@@ -118,6 +122,7 @@
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
+                  <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
             </children>
          <BorderPane.margin>
             <Insets />
