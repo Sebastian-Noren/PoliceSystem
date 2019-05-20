@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import pust.model.admin_create.AdminCreateModel;
-import pust.model.admin_create.AdminDatabase;
+import pust.model.database_functionality.AdminDatabase;
 import pust.model.admin_create.AdminUserTable;
 import pust.model.utility.AppConstant;
 
