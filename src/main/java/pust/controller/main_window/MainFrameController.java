@@ -11,12 +11,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import pust.model.database_functionality.InsertPerson;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainFrameController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private VBox vBox;
@@ -32,7 +36,8 @@ public class MainFrameController implements Initializable {
     private ImageView notifyNumber;
 
 
-    Timeline timeline;
+    private Timeline timeline;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //first notify number
@@ -48,14 +53,13 @@ public class MainFrameController implements Initializable {
         //second notification matching second text
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(10000),
-                ae ->  secondNotify()));
+                ae -> secondNotify()));
         timeline.play();
         //set image to null
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(18000),
-                ae ->  notifyNumber.setImage(null)));
+                ae -> notifyNumber.setImage(null)));
         timeline.play();
-
 
         Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
@@ -67,8 +71,8 @@ public class MainFrameController implements Initializable {
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
@@ -77,10 +81,8 @@ public class MainFrameController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Report.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
@@ -89,23 +91,20 @@ public class MainFrameController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
     public void view() {
         try {
-
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/View.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-
     }
 
     public void back() {
@@ -113,9 +112,8 @@ public class MainFrameController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
-        } catch (IOException e1) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
@@ -125,21 +123,20 @@ public class MainFrameController implements Initializable {
         notifyNumber.setImage(notify);
     }
 
-    public void secondNotify(){
+    public void secondNotify() {
         Image notify1 = new Image("image/two.png");
         notifyNumber.setImage(notify1);
     }
 
     public void scrollText() {
-
         //uploading the scrolling text
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ScrollText.fxml"));
             vBoxText.getChildren().removeAll();
             vBoxText.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
@@ -154,5 +151,4 @@ public class MainFrameController implements Initializable {
     private void menuExit() {
         System.exit(0);
     }
-
 }

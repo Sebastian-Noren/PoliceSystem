@@ -1,5 +1,4 @@
 package pust.controller.main_window;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -9,10 +8,8 @@ import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 public class StandardWindowController implements Initializable {
 
@@ -25,12 +22,11 @@ public class StandardWindowController implements Initializable {
             labelSSN.setText("SSN needs to be 12 characters!");
             ssnTextSearch.clear();
         }else{
-
             String ssn = ssnTextSearch.getText();
             Person person = new SelectPerson(ssn).loadPerson();
             AppConstant.person =person;
 
-            //TODO Make a swich in the scene here
+            //TODO Make a switch in the scene here
 
             Suspect suspect;
             Employee employee;

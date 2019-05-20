@@ -33,14 +33,12 @@ public class PersonalInformationController implements Initializable {
         setlabel();
     }
 
-
     private void setlabel() {
         labelSSN.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
         labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().toString()));
         //labelAge.setText(String.valueOf(2019 - AppConstant.person.getPersonalNumber().getBirthYear()));
         labelSuspect.setText(String.valueOf(AppConstant.person.isSuspect()));
         labelInCustody.setText(String.valueOf(AppConstant.person.isWanted()));
-
         labelCrimeCount.setText(String.valueOf(counter));
         labelGender.setText(AppConstant.person.getGender().toString());
         labelFullname.setText(AppConstant.person.getSurname() + ", " + AppConstant.person.getFirstName());
@@ -68,7 +66,6 @@ public class PersonalInformationController implements Initializable {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate birthDate = LocalDate.parse(ssn, formatter);
-
         return Integer.toString(Period.between(birthDate, currentDate).getYears());
     }
 }
