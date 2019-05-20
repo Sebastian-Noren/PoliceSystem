@@ -82,7 +82,7 @@ public class InsertPerson {
             pstmt = connection.prepareStatement(sqlSuspect());
             pstmt.setString(1, suspect.getPersonalNumber().getPersonalNumber());
             System.out.println(suspect.getPersonalNumber().getPersonalNumber());
-            pstmt.setString(2, parseBuild((Build) suspect.getBuild()));
+            pstmt.setString(2, AppConstant.parseBuildToString((Build) suspect.getBuild()));
             pstmt.setInt(3, suspect.getWeight());
             pstmt.setDouble(4, person.getHeight());
             pstmt.setString(5, suspect.getCharacteristic());
@@ -144,7 +144,7 @@ public class InsertPerson {
             pstmt.setString(1, person.getPersonalNumber().getPersonalNumber());
             pstmt.setString(2, person.getFirstName());
             pstmt.setString(3, person.getSurname());
-            pstmt.setString(4, parseGender(person)); //FIXME Add gender to person class
+            pstmt.setString(4, AppConstant.parseGenderToString(person.getGender()));
             pstmt.setInt(5, 0);
             pstmt.setInt(6, 0);
             pstmt.setInt(7, 0);
@@ -168,7 +168,7 @@ public class InsertPerson {
     private void insertAddress() {
         PreparedStatement address = null;
         PreparedStatement connectPerson = null;
-        String streetAddress = person.getAddress().getStreetName().concat(" " + person.getAddress().getStreetNumber());
+        String streetAddress = person.getAddress().getStreet().concat(" " + person.getAddress().getStreet());
 
         try (Connection connection = DBCPDataSource.getConnection()) {
 
@@ -239,30 +239,5 @@ public class InsertPerson {
                 "Person_SSN, Address_street, Address_zipCode)" +
                 "VALUES" +
                 "(?, ?, ?)";
-    }
-
-    private String parseGender(Person person) {
-        if (AppConstant.isFemale(person.getPersonalNumber().getSerialNumber())) {
-            return "F";
-        } else {
-            return "M";
-        }
-    }
-
-    private String parseBuild(Build build) {
-        switch (build) {
-            case THIN:
-                return "T";
-            case NORMAL:
-                return "N";
-            case MUSCULAR:
-                return "M";
-            case EXTENSIVE:
-                return "F";
-            default:
-                LOGGER.log(Level.FINER, "No build type found matching the cases");
-                return "";
-
-        }
     }
 }

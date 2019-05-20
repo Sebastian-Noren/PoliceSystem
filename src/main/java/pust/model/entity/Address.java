@@ -1,26 +1,20 @@
 package pust.model.entity;
 
 public class Address {
-    private String streetName;
-    private int streetNumber;
+    private String street;
     private int zipCode;
     private String city;
     private String country;
 
-    public Address(String streetName, int streetNumber, int zipCode, String city, String country) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
+    public Address(String street, int zipCode, String city, String country) {
+        this.street = street;
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
     }
 
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public int getStreetNumber() {
-        return streetNumber;
+    public String getStreet() {
+        return street;
     }
 
     public int getZipCode() {
