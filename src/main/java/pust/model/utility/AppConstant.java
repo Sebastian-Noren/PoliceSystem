@@ -207,7 +207,7 @@ public class AppConstant {
                 return WHITEANDBLACKCARIBBEAN;
             case "White and Asian":
                 return WHITEANDASIAN;
-            case "Other mixed":
+            case "Other Mixed":
                 return OTHERMIXED;
             case "Indian":
                 return INDIAN;
@@ -350,7 +350,6 @@ public class AppConstant {
     }
 
     public static String dateOfBirth(String ssn) {
-        System.out.println(ssn);
         int year;
         int month;
         int day;
@@ -361,19 +360,16 @@ public class AppConstant {
             sb.append(ssnArray[i]);
         }
         year = Integer.valueOf(sb.toString());
-        System.out.println(year);
         sb = new StringBuilder();
         for (int i = 4; i < 6; i++) {
             sb.append(ssnArray[i]);
         }
         month = Integer.valueOf(sb.toString());
-        System.out.println(month);
         sb = new StringBuilder();
         for (int i = 6; i < 8; i++) {
             sb.append(ssnArray[i]);
         }
         day = Integer.valueOf(sb.toString());
-        System.out.println(day);
 
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
