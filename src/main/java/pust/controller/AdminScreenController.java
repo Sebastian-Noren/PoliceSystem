@@ -87,7 +87,7 @@ public class AdminScreenController implements Initializable {
                     updateList();
                     image = new Image("image/photo.jpg", 176.0, 224.0, false, true);
                     profileImg.setImage(image);
-                    AppConstant.alertBoxInformation("Account Created","New account name is: " + randGenUserName+", New police ID: "+policeID);
+                    AppConstant.alertBoxInformation("Account Created", String.format("New account name is: %s, New police ID: %d", randGenUserName, policeID));
                 }
             } else {
                 labWarPass.setText("Password don´t match!");
