@@ -1,0 +1,14 @@
+
+.circleButton {
+    -fx-border-radius: 20;
+    -fx-background-radius: 10px;
+    -fx-background-color: red;
+    -fx-alignment: center;
+    -fx-padding: 5;
+    -fx-font-weight: bold;
+
+    -fx-text-fill: white;
+}
+
+
+

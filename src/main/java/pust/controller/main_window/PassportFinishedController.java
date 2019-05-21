@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import pust.model.database_functionality.InsertPerson;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,9 +26,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PassportFinishedController implements Initializable {
 
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private AnchorPane anchorPane;
@@ -45,13 +49,9 @@ public class PassportFinishedController implements Initializable {
     @FXML
     private Label nationality, type, code, dateOfIssue, dateOfExpiry, signature, passportNbr, authority;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
     }
-
 
     public void setText(String firstname, String lastname, String dateOfBirth, String sex, String placeOfBirth, String ssn, String height,
                         String hairColor, String eyeColor, String weight, String nationality, String type, String code, String dateOfIssue, String dateOfExpiry,
@@ -849,29 +849,20 @@ public class PassportFinishedController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
-
 
     public void setProfileImage(Image image) {
 
         profileImg.setImage(image);
-
-
         GaussianBlur gaussianBlur = new GaussianBlur();
-
         profileImage2.setEffect(gaussianBlur);
         profileImage2.setImage(image);
-
-
         profileImg1.setImage(image);
     }
 
     public void screenShot() {
         try {
-
-
             Robot robot = new Robot();
             //get node location relative to the screen
             Bounds bounds = imageViewpass.localToScreen(imageViewpass.getBoundsInLocal());
@@ -891,12 +882,8 @@ public class PassportFinishedController implements Initializable {
             e.printStackTrace();
 
 
-        } catch (IOException e) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-
-
     }
-
-
 }
