@@ -35,9 +35,10 @@ public class LogInModel {
                 String emailResult = result.get().trim();
 
                 if (validEmail(emailResult)) {
-                    String message = "Hello " + emailResult + ", here is your new password: ";
+                    String message = "Hello " + emailResult + ", here is your new password: test";
+                    String attachment = this.getClass().getResource("/image/swepustText.png").getPath();
 
-                        sendMail.generateAndSendEmail(emailResult, subject, message);
+                        sendMail.generateAndSendEmail(emailResult, subject, message, attachment);
 
                     alertInfo("E-mail sent", "Check your inbox, we have sent you a new password");
                 } else {

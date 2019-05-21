@@ -1,4 +1,8 @@
 package pust.model.utility;
+
+import org.apache.commons.logging.impl.ServletContextCleaner;
+
+import java.io.File;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -11,7 +15,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
-    public void generateAndSendEmail(String recipient, String subject, String message) throws MessagingException {
+    public void generateAndSendEmail(String recipient, String subject, String message, String attachment) throws MessagingException {
 
         // This sets up the properties of the mail server
         Properties mailServerProperties = System.getProperties();
@@ -26,15 +30,19 @@ public class SendMail {
         createMail.setSubject(subject);
 
         //Creates email with text
+
+        File file = new File("/image/swepustText.png");
+        attachment = this.getClass().getResource("/image/swepustText.png").getPath();
+
         MimeMultipart multipart = new MimeMultipart("related");
         BodyPart messageBody = new MimeBodyPart();
         String emailText = message + "<br><br> Regards, <br>PUST Integrated Graphic System";
         messageBody.setContent(emailText, "text/html");
         multipart.addBodyPart(messageBody);
         messageBody = new MimeBodyPart();
-        DataSource fds = new FileDataSource("C:\\Dev\\Git\\PoliceSystem\\src\\main\\resources\\image\\swepustText.png");
-        messageBody.setDataHandler(new DataHandler(fds));
-        messageBody.setHeader("Content -ID", "<image>");
+        DataSource source = new FileDataSource(attachment);
+        messageBody.setDataHandler(new DataHandler(source));
+        messageBody.setFileName(attachment);
         multipart.addBodyPart(messageBody);
         createMail.setContent(multipart);
 
