@@ -1,4 +1,5 @@
 package pust.controller.main_window;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Employee;
 import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,14 +49,25 @@ public class StandardWindowController implements Initializable {
             }
             if (!(AppConstant.person == null)) {
                 AppConstant.setSsnCheck(true);
-                try {
-                    Parent fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
-                    IDPane.getChildren().removeAll();
-                    IDPane.getChildren().setAll(fxml);
-                } catch (IOException e) {
-                    LOGGER.log(Level.SEVERE, e.toString(), e);
+                if (AppConstant.person.isWanted()) {
+                    AppConstant.alertBoxWarning("Wanted!", AppConstant.person.getFirstName() + " is wanted for a Crime!");
+                    try {
+                        Parent fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ViewWantedScreen.fxml"));
+                        IDPane.getChildren().removeAll();
+                        IDPane.getChildren().setAll(fxml);
+                    } catch (IOException e) {
+                        LOGGER.log(Level.SEVERE, e.toString(), e);
+                    }
+                } else {
+                    try {
+                        Parent fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
+                        IDPane.getChildren().removeAll();
+                        IDPane.getChildren().setAll(fxml);
+                    } catch (IOException e) {
+                        LOGGER.log(Level.SEVERE, e.toString(), e);
+                    }
                 }
-            }else {
+            } else {
                 AppConstant.alertBoxInformation("Person not found", String.format("No person found in system with SSN: %s", ssn));
                 ssnTextSearch.clear();
             }

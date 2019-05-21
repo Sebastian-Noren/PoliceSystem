@@ -13,16 +13,18 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class PersonalInformationController implements Initializable {
+
     @FXML
     private Label labelSSN, labelAge, labelGender, labelFullname, labelFirstname, labelLastname,
             labelStreet, labelZipCode, labelCity, labelCountry, labelMissing, labelWanted, labelSuspect,
             labelCrimeCount, labelInCustody, labelDate2, labelDate1;
     @FXML
     private TextArea criminalTextBox;
+    @FXML
+
     private int counter = 0;
 
     @Override
@@ -35,9 +37,6 @@ public class PersonalInformationController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         labelDate1.setText(String.format("%s", date.format(formatter)));
         labelDate2.setText(String.format("%s", date.format(formatter)));
-        if (AppConstant.person.isWanted()) {
-            AppConstant.alertBoxWarning("Wanted!", AppConstant.person.getFirstName() + " is wanted for a Crime!");
-        }
     }
 
     private void setlabel() {
