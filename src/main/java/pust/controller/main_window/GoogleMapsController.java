@@ -17,17 +17,10 @@ public class GoogleMapsController implements Initializable {
     @FXML
     private TextField textBox;
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
         webEngine = webView.getEngine();
         loadHtmlGoogle();
-
-
-
     }
    // public void textField(String crime){
      //   textBox.setText(crime);
@@ -53,8 +46,6 @@ public class GoogleMapsController implements Initializable {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
         Log log = new Log();
 
-
-
         switch (crime) {
             case "Aggravated":
                 webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[0].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[0].getMarkerDescription() + "\")");
@@ -64,11 +55,6 @@ public class GoogleMapsController implements Initializable {
                 webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[1].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[1].getMarkerDescription() + "\")");
                 log.saveToFile("OPENED CRIME LOCATION AT: " + randomCrimeSpot.getCrimeMark()[1].getLatLong());
                 break;
-
         }
-
-
     }
-
-
 }

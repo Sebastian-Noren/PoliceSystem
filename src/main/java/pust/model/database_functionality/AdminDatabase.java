@@ -1,6 +1,5 @@
-package pust.model.admin_create;
+package pust.model.database_functionality;
 
-import javafx.scene.control.Alert;
 import pust.model.utility.AppConstant;
 import pust.model.utility.database_connection.DBCPDataSource;
 

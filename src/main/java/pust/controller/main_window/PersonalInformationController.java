@@ -31,16 +31,16 @@ public class PersonalInformationController implements Initializable {
         ArrayList<CriminalRecord> criminalRecord = perData.getCrimeRecord(AppConstant.person.getPersonalNumber().getPersonalNumber());
         printCrimeRecords(criminalRecord);
         setlabel();
+        if (AppConstant.person.isWanted()) {
+            AppConstant.alertBoxWarning("Wanted!", AppConstant.person.getFirstName() + " is wanted for a Crime!");
+        }
     }
-
 
     private void setlabel() {
         labelSSN.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
-        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().toString()));
-        //labelAge.setText(String.valueOf(2019 - AppConstant.person.getPersonalNumber().getBirthYear()));
+        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().getPersonalNumber()));
         labelSuspect.setText(String.valueOf(AppConstant.person.isSuspect()));
-        labelInCustody.setText(String.valueOf(AppConstant.person.isWanted()));
-
+        labelInCustody.setText(String.valueOf(AppConstant.person.isInCustody()));
         labelCrimeCount.setText(String.valueOf(counter));
         labelGender.setText(AppConstant.person.getGender().toString());
         labelFullname.setText(AppConstant.person.getSurname() + ", " + AppConstant.person.getFirstName());
@@ -68,7 +68,6 @@ public class PersonalInformationController implements Initializable {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate birthDate = LocalDate.parse(ssn, formatter);
-
         return Integer.toString(Period.between(birthDate, currentDate).getYears());
     }
 }

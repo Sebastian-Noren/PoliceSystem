@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pust.model.database_functionality.InsertPerson;
+import javafx.stage.StageStyle;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
 import pust.model.enumerations.*;
@@ -31,12 +31,22 @@ import static pust.model.enumerations.Title.*;
 public class AppConstant {
     private static final Logger LOGGER = Logger.getLogger(AppConstant.class.getName());
     private static final String SOFTWARE_NAME = "PUST GIS";
-    private static final String DATABASE_NAME = "pustgis"; // TODO Change to new database name
-    private static final String DATABASE_HOST = "localhost"; // TODO Change Server.
+    private static final String DATABASE_NAME = "pustgis";
+    private static final String DATABASE_HOST = "localhost";
     private static String CURRENT_USER = ""; //Save the current user in the program
     private static String CURRENT_USER_PASS = ""; //save the current password in the program.
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
+    private static boolean SSN_CHECK = false;
     public static Person person;
+
+    public static boolean isSsnCheck() {
+        return SSN_CHECK;
+    }
+
+    public static void setSsnCheck(boolean ssnCheck) {
+        SSN_CHECK = ssnCheck;
+    }
+
 
     public static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
@@ -197,7 +207,7 @@ public class AppConstant {
                 return WHITEANDBLACKCARIBBEAN;
             case "White and Asian":
                 return WHITEANDASIAN;
-            case "Other mixed":
+            case "Other Mixed":
                 return OTHERMIXED;
             case "Indian":
                 return INDIAN;
@@ -266,24 +276,31 @@ public class AppConstant {
             default:
                 LOGGER.log(Level.FINER, "No hair colour found matching the cases");
                 return null;
-
         }
     }
 
     public static void alertBoxInformation(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/smallSwepustlogg.png").toString()));
+        alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
-        alert.setHeaderText("");
+        alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(AppConstant.class.getResource("/view/basicStyleSheet.css").toExternalForm());
         alert.showAndWait();
     }
 
     public static void alertBoxWarning(String titel, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/smallSwepustlogg.png").toString()));
+        alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(titel);
-        alert.setHeaderText("");
+        alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
+        alert.getDialogPane().getStylesheets().add(AppConstant.class.getResource("/view/basicStyleSheet.css").toExternalForm());
+        alert.show();
     }
 
     public static void switchScene(Event event, String changeScene) {
@@ -333,7 +350,6 @@ public class AppConstant {
     }
 
     public static String dateOfBirth(String ssn) {
-        System.out.println(ssn);
         int year;
         int month;
         int day;
@@ -344,19 +360,16 @@ public class AppConstant {
             sb.append(ssnArray[i]);
         }
         year = Integer.valueOf(sb.toString());
-        System.out.println(year);
         sb = new StringBuilder();
         for (int i = 4; i < 6; i++) {
             sb.append(ssnArray[i]);
         }
         month = Integer.valueOf(sb.toString());
-        System.out.println(month);
         sb = new StringBuilder();
         for (int i = 6; i < 8; i++) {
             sb.append(ssnArray[i]);
         }
         day = Integer.valueOf(sb.toString());
-        System.out.println(day);
 
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }

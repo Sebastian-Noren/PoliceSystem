@@ -18,12 +18,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import pust.model.utility.AppConstant;
+import pust.model.database_functionality.InsertPerson;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainFrameController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private VBox vBox;
@@ -46,34 +51,26 @@ public class MainFrameController implements Initializable {
     private int i = 0;
     private int notify = 0;
 
-
-    Timeline timeline;
+    private Timeline timeline;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
 
         notifyLabelNumber.setVisible(false);
-
         choiceBox.setStyle("-fx-background-color: #d7d7d7;");
         anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
         anchorPaneLeft.setStyle("-fx-background-color: #d7d7d7");
 
-
-//----------------------------------------------------------------------------------------------------------------------
-        //First ScrollText  //10 sec between each
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(2),
-                //insert specific text here AND also call method to get latLong and marker description to send to google maps
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[0].getScrolltextDescription())));
         timeline.play();
-//----------------------------------------------------------------------------------------------------------------------
-        //second notify + text
+
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(18),
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
         timeline.play();
-//----------------------------------------------------------------------------------------------------------------------
 
         Image image = new Image("/image/user_accounts.png");
         imageView.setImage(image);
@@ -85,8 +82,8 @@ public class MainFrameController implements Initializable {
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e1) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
 
         notifyImg.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -104,26 +101,11 @@ public class MainFrameController implements Initializable {
                 openChoiceBox();
             }
         });
-
-//        notifyLabelNumber.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                goToGoogleMaps();
-//                openChoiceBox();
-//            }
-//        });
-
-
     }
 
-
     public void openChoiceBox() {
-
-
         choiceBox.show();
-
         choiceBox.getSelectionModel().selectedItemProperty().addListener((V, oldValue, newValue) -> {
-
 
             if (choiceBox.getValue().equals("Aggravated assault")) {
                 notify--;
@@ -140,71 +122,56 @@ public class MainFrameController implements Initializable {
                 notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().remove("Vandalism");
 
-
-                //}
-
-
             }
-
-
         });
-
     }
-
 
     public void goToGoogleMaps() {
         try {
-
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/GoogleMaps.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
             Log log = new Log();
             log.saveToFile("OPENED GOOGLE MAPS");
 
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-
-
     }
-
 
     public void ReportTab() {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Report.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
     public void applyForIdentification() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
-            vBox.getChildren().removeAll();
-            vBox.getChildren().setAll(fxml);
-
+            if (AppConstant.isSsnCheck()) {
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/ApplyForIdentification.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
+            } else {
+                AppConstant.alertBoxInformation("NO SSN", "Must enter a SSN first!");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
 
     public void view() {
         try {
-
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/View.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-
     }
 
     public void back() {
@@ -212,44 +179,29 @@ public class MainFrameController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
             vBox.getChildren().removeAll();
             vBox.getChildren().setAll(fxml);
-
-        } catch (IOException e1) {
-
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
 
-
     public void scrollText(String crimeDescription) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
-
         i++;
         switch (i) {
-            //notify 1
             case 1:
-
-
                 notifyLabelNumber.setVisible(true);
                 notify++;
-
                 notifyLabelNumber.setText(String.valueOf(notify));
-
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[0].getTitle());
-
                 break;
-            //notify 2
             case 2:
-
                 notify++;
                 notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
-
                 break;
             case 3:
                 break;
-
-
         }
-
         // Create the Text
         Text text = new Text(crimeDescription);
         // Set the Font of the Text
@@ -280,16 +232,12 @@ public class MainFrameController implements Initializable {
         translateTransition.setNode(text);
         translateTransition.play();
 
-
         Timeline timeline;
         timeline = new Timeline(new KeyFrame(
-
                 Duration.seconds(15),
                 //add marker metoden som lägger till en marker
                 ae -> vBoxText.getChildren().removeAll(text)));
         timeline.play();
-
     }
-
-
 }
+
