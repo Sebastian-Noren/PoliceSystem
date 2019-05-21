@@ -22,8 +22,8 @@ public class GoogleMapsController implements Initializable {
         webEngine = webView.getEngine();
         loadHtmlGoogle();
     }
-   // public void textField(String crime){
-     //   textBox.setText(crime);
+    // public void textField(String crime){
+    //   textBox.setText(crime);
     //}
 
     public void loadHtmlGoogle() {

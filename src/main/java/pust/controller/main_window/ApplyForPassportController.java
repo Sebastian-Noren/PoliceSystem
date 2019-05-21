@@ -1,7 +1,5 @@
 package pust.controller.main_window;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamMotionDetector;
 import javafx.embed.swing.SwingFXUtils;
@@ -30,6 +28,7 @@ import java.util.List;
 import java.util.*;
 
 public class ApplyForPassportController extends Thread implements Initializable {
+
     @FXML
     private AnchorPane anchorPane;
     //will be autofilled later
@@ -174,14 +173,19 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void paus() {
-        VideoCapture videoCapture = new VideoCapture();
-        //stop video capture
-        videoCapture.stop();
+        
+
+        if(webcam.open()){
+
         //stop detecting motion
         detectMotion.t.stop();
-        videoCapture.status(false);
+        //stop video capture
+
+//        videoCapture.status(false);
         //stop webcam
         webcam.close();
+        }
+
 
     }
 
@@ -255,26 +259,43 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
+
     public void next() {
-        if(detectMotion.t.isDaemon() && webcam.open()){
-            detectMotion.t.stop();
-            webcam.close();
-        }
+        if (upploadImage[0] != null && firstName.getText() != null && lastName.getText() != null && ssn.getText() != null && dateOfBirth.getText() != null
+                && sex.getText() != null && placeOfBirth.getText() != null && height.getText() != null && hairColor.getText() != null && eyeColor.getText() != null
+                && weight.getText() != null) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
-            AnchorPane pane = loader.load();
-            anchorPane.getChildren().setAll(pane);
 
-            PassportFinishedController passportFinishedController = loader.getController();
-            //sending information to next scene
-            passportFinishedController.setText(firstName.getText(), lastName.getText(), dateOfBirth.getText(), sex.getText(), placeOfBirth.getText(), ssn.getText(), height.getText(),
-                    hairColor.getText(), eyeColor.getText(), weight.getText(), nationality.getText(), type.getText(), code.getText(), dateOfIssue.getText(), dateOfExpiry.getText(),
-                    authority.getText(), passportNbr.getText());
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
+                AnchorPane pane = loader.load();
+                anchorPane.getChildren().setAll(pane);
 
-            passportFinishedController.setProfileImage(upploadImage[0]);
-        } catch (IOException e) {
-            e.printStackTrace();
+                PassportFinishedController passportFinishedController = loader.getController();
+                //sending information to next scene
+                passportFinishedController.setText(firstName.getText(), lastName.getText(), dateOfBirth.getText(), sex.getText(), placeOfBirth.getText(), ssn.getText(), height.getText(),
+                        hairColor.getText(), eyeColor.getText(), weight.getText(), nationality.getText(), type.getText(), code.getText(), dateOfIssue.getText(), dateOfExpiry.getText(),
+                        authority.getText(), passportNbr.getText());
+
+                passportFinishedController.setProfileImage(upploadImage[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Fill out all information!");
+            alert1.setContentText("All information needs to be filled out," + "\n" +
+                    "1. First name" + "\n" +
+                    "2. Last name" + "\n" +
+                    "3. Social security number" + "\n" +
+                    "4. Date of birth" + "\n" +
+                    "5. Sex" + "\n" +
+                    "6. Place of birth" + "\n" +
+                    "7. Height" + "\n" +
+                    "8. Hair color" + "\n" +
+                    "9. Eye color" + "\n" +
+                    "10. Weight ");
+            alert1.showAndWait();
         }
     }
 
@@ -300,6 +321,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         String place9 = "TRELLEBORG";
         birthPlace[9] = place9;
     }
+
 
     public void automaticGender() {
         String gender = this.ssn.getText();
@@ -398,6 +420,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
                 } catch (InterruptedException ex) {
+
                 }
             }
         }
