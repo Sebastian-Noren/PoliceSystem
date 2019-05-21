@@ -270,8 +270,11 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
 
     public void next() {
-        detectMotion.t.stop();
-        webcam.close();
+        if(detectMotion.t.isDaemon() && webcam.open()){
+            detectMotion.t.stop();
+            webcam.close();
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
             AnchorPane pane = loader.load();

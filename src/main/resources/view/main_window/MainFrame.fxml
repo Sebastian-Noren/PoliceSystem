@@ -122,7 +122,6 @@
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
-                  <ImageView fx:id="notifyNumber" fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
             </children>
          <BorderPane.margin>
             <Insets />
