@@ -33,10 +33,12 @@ public class ViewWantedController implements Initializable {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         labelCurrentDate.setText(String.format("Last Updated: %s", date.format(formatter)));
-        if (AppConstant.person.isWanted()) {
-            WantedDatabase wantedDatabase = new WantedDatabase();
-            String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
-            setlabel(AppConstant.person, AppConstant.suspect, crime);
+        if (!(AppConstant.person == null)) {
+            if (AppConstant.person.isWanted()) {
+                WantedDatabase wantedDatabase = new WantedDatabase();
+                String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+                setlabel(AppConstant.person, AppConstant.suspect, crime);
+            }
         }
     }
 
