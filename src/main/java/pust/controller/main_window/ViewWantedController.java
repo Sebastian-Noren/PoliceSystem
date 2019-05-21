@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import pust.model.database_functionality.WantedDatabase;
+import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Person;
 import pust.model.entity.Suspect;
@@ -35,8 +35,8 @@ public class ViewWantedController implements Initializable {
         labelCurrentDate.setText(String.format("Last Updated: %s", date.format(formatter)));
         if (!(AppConstant.person == null)) {
             if (AppConstant.person.isWanted()) {
-                WantedDatabase wantedDatabase = new WantedDatabase();
-                String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+                SQLDatabase SQLDatabase = new SQLDatabase();
+                String crime = String.format("Wanted for %s.", SQLDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
                 setlabel(AppConstant.person, AppConstant.suspect, crime);
             }
         }
@@ -58,19 +58,19 @@ public class ViewWantedController implements Initializable {
     }
 
     private void getSuspectedFromList(String splitSSN) {
-        WantedDatabase wantedDatabase = new WantedDatabase();
+        SQLDatabase SQLDatabase = new SQLDatabase();
         Person person = new SelectPerson(splitSSN).loadPerson();
         if (person instanceof Suspect) {
             suspect = (Suspect) person;
         }
-        String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(splitSSN));
+        String crime = String.format("Wanted for %s.", SQLDatabase.getWantedCrime(splitSSN));
         setlabel(person, suspect, crime);
     }
 
     private void updateWantedlist() {
-        WantedDatabase wantedDatabase = new WantedDatabase();
+        SQLDatabase SQLDatabase = new SQLDatabase();
         listWanted.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        ArrayList<String> listOfWantedSuspects = wantedDatabase.getSuspects();
+        ArrayList<String> listOfWantedSuspects = SQLDatabase.getSuspects();
         for (String g : listOfWantedSuspects) {
             listWanted.getItems().add(g);
         }
