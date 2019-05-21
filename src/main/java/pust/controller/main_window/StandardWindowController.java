@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import pust.model.database_functionality.InsertPerson;
 import pust.model.database_functionality.SelectPerson;
+import pust.model.entity.Employee;
+import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +40,11 @@ public class StandardWindowController implements Initializable {
         } else {
             String ssn = ssnTextSearch.getText().trim();
             AppConstant.person = new SelectPerson(ssn).loadPerson();
+            if (AppConstant.person instanceof Suspect) {
+                AppConstant.suspect = (Suspect) AppConstant.person;
+            } else if (AppConstant.person instanceof Employee) {
+                AppConstant.employee = (Employee) AppConstant.person;
+            }
             if (!(AppConstant.person == null)) {
                 AppConstant.setSsnCheck(true);
                 try {
