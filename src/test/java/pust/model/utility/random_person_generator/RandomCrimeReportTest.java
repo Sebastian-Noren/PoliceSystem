@@ -39,23 +39,21 @@ public class RandomCrimeReportTest {
             LocalDate localDate = randomLocalDate();
             localDate.format(formatter);
             System.out.println(i + ": " + localDate.toString());
-        }
 
-        for (int i = 0; i < 100; i++) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd--hh:mm");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime localDateTime = randomTimeAndDateOfEvent();
-            localDateTime.format(formatter);
-            System.out.println(i + ": " + localDateTime.toString());
+            String formatDateAndTime = localDateTime.format(format);
+            System.out.println(i + ": " + formatDateAndTime);
         }
     }
 
     private LocalDateTime randomTimeAndDateOfEvent() {
         int year = currentDate.getYear() - ThreadLocalRandom.current().nextInt(11);
         int month = currentDate.getMonthValue() - ThreadLocalRandom.current().nextInt(1, currentDate.getMonthValue() - 1);
-        int day = currentDate.getDayOfMonth() - 1;
-        if ((isLeapYear(year) && month == 2)){
-            day =
+        if (month == 0){
+            month++;
         }
+        int day = dayOfMonth(year, month) - ThreadLocalRandom.current().nextInt(1, 28);
         int hour = ThreadLocalRandom.current().nextInt(24);
         int min = ThreadLocalRandom.current().nextInt(60);
         return LocalDateTime.of(year, month, day, hour, min);
@@ -64,7 +62,7 @@ public class RandomCrimeReportTest {
     private LocalDate randomLocalDate() {
         int year = ThreadLocalRandom.current().nextInt(1980, 2019);
         int month = ThreadLocalRandom.current().nextInt(1, 13);
-
+        int day = dayOfMonth(year, month);
         return LocalDate.of(year, month, day);
     }
 
