@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane minHeight="700.0" minWidth="781.0" prefHeight="700.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
    <top>
       <HBox prefHeight="36.0" prefWidth="781.0" BorderPane.alignment="CENTER">
@@ -143,8 +142,8 @@
                            </padding>
                         </Label>
                         <ChoiceBox fx:id="suspectBuildBox" prefWidth="150.0" />
-                        <Label text="Gender:" />
-                        <ChoiceBox fx:id="suspectDescGenderBox" prefWidth="150.0" />
+                        <Label text="Ethnicity:" />
+                        <ChoiceBox fx:id="suspectEthnicityBox" prefWidth="150.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="109.0" prefWidth="64.0">
@@ -170,16 +169,10 @@
                         <ChoiceBox fx:id="suspectHairBox" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="93.0" prefWidth="126.0">
-                     <children>
-                        <Label text="Ethnicity:" />
-                        <ChoiceBox fx:id="suspectEthnicityBox" prefWidth="150.0" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="93.0" prefWidth="232.0">
+                  <VBox prefHeight="94.0" prefWidth="330.0">
                      <children>
                         <Label text="Characteristics:" />
-                        <TextArea fx:id="characteristicsArea" prefHeight="66.0" prefWidth="230.0">
+                        <TextArea fx:id="characteristicsArea" prefHeight="67.0" prefWidth="328.0">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
