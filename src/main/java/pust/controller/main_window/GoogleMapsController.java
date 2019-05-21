@@ -55,6 +55,10 @@ public class GoogleMapsController implements Initializable {
                 webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[1].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[1].getMarkerDescription() + "\")");
                 log.saveToFile("OPENED CRIME LOCATION AT: " + randomCrimeSpot.getCrimeMark()[1].getLatLong());
                 break;
+            case "Theft":
+                webEngine.executeScript("document.crimeLocation(\"" + randomCrimeSpot.getCrimeMark()[2].getLatLong() + "\",\"" + randomCrimeSpot.getCrimeMark()[2].getMarkerDescription() + "\")");
+                log.saveToFile("OPENED CRIME LOCATION AT: " + randomCrimeSpot.getCrimeMark()[2].getLatLong());
+                break;
         }
     }
 }

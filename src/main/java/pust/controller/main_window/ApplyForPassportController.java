@@ -154,36 +154,33 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 alert.showAndWait();
                 break;
             case "YOU CAN TAKE A PICTURE":
+                detectMotion.t.stop();
 
                 BufferedImage image = webcam.getImage();
                 Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
                 upploadImage[0] = myCaptured;
+                webcam.close();
 
                 Log log = new Log();
                 log.saveToFile("IMAGE CAPTURED");
-
-                detectMotion.t.stop();
-
                 break;
 
         }
-
-
     }
 
     public void paus() {
 
 
-        if(webcam.open()){
+        if (webcam.open()) {
 
-        //stop detecting motion
-        detectMotion.t.stop();
-        //stop video capture
+            //stop detecting motion
+            detectMotion.t.stop();
+            //stop video capture
 
 //        videoCapture.status(false);
-        //stop webcam
-        webcam.close();
+            //stop webcam
+            webcam.close();
         }
 
 
@@ -408,18 +405,19 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     //TODO ändra detta gör det bättre!
-    class VideoCapture extends Thread {
+    class VideoCapture extends Thread   {
         private boolean status = true;
 
         @Override
-        public void run() {
+        public void run(){
 
             // each 30 millis a image  is taken and inserted to imageView
             while (status != false) {
                 try {
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
-                } catch (InterruptedException ex) {
+
+                }catch(InterruptedException e){
 
                 }
             }
@@ -450,16 +448,14 @@ public class ApplyForPassportController extends Thread implements Initializable 
                         try {
                             if (motionDetector.isMotion()) {
                                 //something for us to compare in event log
-                                System.out.println("you are moving");
-                                //videoStatus.setText("");
+                                //System.out.println("you are moving");
                                 videoStatus.setStyle("-fx-text-inner-color: red;");
                                 videoStatus.setText("PLEASE STAND STILL");
                                 videoStatus.setStyle("-fx-text-inner-color: red;");
 
                             } else if (!motionDetector.isMotion()) {
                                 //something for us to compare in event log
-                                System.out.println("you are still");
-                                //videoStatus.setText("");
+                               // System.out.println("you are still");
                                 videoStatus.setStyle("-fx-text-inner-color: green;");
                                 videoStatus.setText("YOU CAN TAKE A PICTURE");
 
