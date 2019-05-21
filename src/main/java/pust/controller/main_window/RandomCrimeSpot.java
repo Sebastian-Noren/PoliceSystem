@@ -14,7 +14,9 @@ public class RandomCrimeSpot {
         MarkerInformation mark1 = new MarkerInformation("Suspects causing vandalism, spray painting walls at HKR and breaking windows",
                 "Description: Multiple people, wearing masks, dressed in black", "56.046864,14.146155","Vandalism");
         crimeMark[1] = mark1;
-
+        MarkerInformation mark2 = new MarkerInformation("suspect caught stealing clothes and is currently under citizen arrest",
+                "Description: Black male 169 cm, early 20s, black hair, beard","56.027812,14.153537","Theft");
+        crimeMark[2] = mark2;
 
     }
 

@@ -25,7 +25,9 @@ import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
+
 import pust.model.database_functionality.InsertPerson;
+import pust.model.utility.AppConstant;
 
 import java.io.IOException;
 import java.net.URL;
@@ -66,6 +68,7 @@ public class MainFrameController implements Initializable {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
         initClock();
         setPoliceInfo();
+        choiceBox.getItems().add("C͙u͙r͙r͙e͙n͙t͙ ͙c͙r͙i͙m͙e͙s͙");
         notifyLabelNumber.setVisible(false);
         choiceBox.setStyle("-fx-background-color: #d7d7d7;");
         anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
@@ -81,7 +84,15 @@ public class MainFrameController implements Initializable {
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
         timeline.play();
 
-        Image image = new Image("/image/police.jpg");
+
+        
+        timeline = new Timeline(new KeyFrame(
+                Duration.seconds(34),
+                ae -> scrollText(randomCrimeSpot.getCrimeMark()[2].getScrolltextDescription())
+        ));
+        timeline.play();
+Image image = new Image("/image/police.jpg");
+
         imageView.setImage(image);
 
         Image image1 = new Image("/image/smallSwepustlogg.png");
@@ -106,31 +117,44 @@ public class MainFrameController implements Initializable {
         notifyLabelNumber.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                goToGoogleMaps();
+                //goToGoogleMaps();
                 openChoiceBox();
             }
         });
     }
+
 
     public void openChoiceBox() {
         choiceBox.show();
         choiceBox.getSelectionModel().selectedItemProperty().addListener((V, oldValue, newValue) -> {
 
             if (choiceBox.getValue().equals("Aggravated assault")) {
-                notify--;
+
+
+                notifyLabelNumber.setText(String.valueOf(2));
                 GoogleMapsController.goToCrimeLocation("Aggravated");
 
-                notifyLabelNumber.setText(String.valueOf(notify));
-
                 choiceBox.getItems().remove("Aggravated assault");
+
+
             } else if (choiceBox.getValue().equals("Vandalism")) {
-                notify--;
+
+
+                notifyLabelNumber.setText(String.valueOf(1));
+
 
                 GoogleMapsController.goToCrimeLocation("Vandalism");
 
-                notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().remove("Vandalism");
 
+            } else if (choiceBox.getValue().equals("Theft")) {
+
+
+                notifyLabelNumber.setText(String.valueOf(0));
+
+                GoogleMapsController.goToCrimeLocation("Theft");
+
+                choiceBox.getItems().remove("Theft");
             }
         });
     }
@@ -209,6 +233,9 @@ public class MainFrameController implements Initializable {
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
                 break;
             case 3:
+                notify++;
+                notifyLabelNumber.setText(String.valueOf(notify));
+                choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[2].getTitle());
                 break;
         }
         // Create the Text
