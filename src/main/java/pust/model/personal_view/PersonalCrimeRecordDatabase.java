@@ -11,12 +11,11 @@ public class PersonalCrimeRecordDatabase {
         ArrayList<CriminalRecord> crimRecords = new ArrayList<>();
         try {
             Connection con = DBCPDataSource.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select convictiondate, criminalcase, crimeType, crimedate, Address_street, city, term  from crime\n" +
-                    "join crimeregister on crime.crimeID = crimeregister.Crime_CrimeID\n" +
-                    "join convictionterm on convictionterm.termID = crimeregister.convictionterm_termID\n" +
-                    "join address on address.zipCode = crimeregister.Address_zipCode\n" +
-                    " where  crimeregister.Person_SSN ='" + ssn + "' ;");
+            con.setAutoCommit(false);
+            PreparedStatement suspectCrimeData = con.prepareStatement(sqlCrimeRecord());
+            suspectCrimeData.setString(1, ssn);
+            ResultSet rs = suspectCrimeData.executeQuery();
+            con.commit();
             while (rs.next()) {
                 String convictionDate = rs.getString(1);
                 String criminalCase = rs.getString(2);
@@ -31,6 +30,14 @@ public class PersonalCrimeRecordDatabase {
             ex.printStackTrace();
         }
         return crimRecords;
+    }
+
+    private String sqlCrimeRecord() {
+        return "select convictiondate, criminalcase, crimeType, crimedate, Address_street, city, term  from crime\n" +
+                "join crimeregister on crime.crimeID = crimeregister.Crime_CrimeID\n" +
+                "join convictionterm on convictionterm.termID = crimeregister.convictionterm_termID\n" +
+                "join address on address.zipCode = crimeregister.Address_zipCode\n" +
+                " where  crimeregister.Person_SSN = ?";
     }
 
 }

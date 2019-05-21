@@ -5,7 +5,4 @@ public class ReportLostEntityController {
     public void empty(){
 
     }
-
-
-
 }

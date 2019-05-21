@@ -9,12 +9,9 @@ import pust.model.enumerations.Color;
 import pust.model.enumerations.Ethnicity;
 import pust.model.enumerations.Gender;
 import pust.model.utility.AppConstant;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 public class ReportCrimeController implements Initializable {
-
-
 
     @FXML
     public TextField caseIDField, crimeStreetField, crimeZipField, crimeCityField, notifierFirstNameField,
@@ -25,31 +22,29 @@ public class ReportCrimeController implements Initializable {
 
     @FXML
     public TextArea characteristicsArea, descriptionArea;
-
     @FXML
     public DatePicker crimeDatePick, reportDatePick;
-
     @FXML
-    public ChoiceBox crimeIDBox, notifierGenderBox, suspectGenderBox, suspectBuildBox, suspectDescGenderBox,
-            suspectEyeBox, suspectHairBox, suspectEthnicityBox;
-
+    public ChoiceBox<String> crimeIDBox;
     @FXML
-    private Button notifierAutoBtn, suspectAutoBtn, descriptionSaveBtn, crimeSaveBtn, submitBtn;
-
+    public ChoiceBox<Gender> notifierGenderBox;
+    @FXML
+    public ChoiceBox<Gender> suspectGenderBox;
+    @FXML
+    public ChoiceBox<Build> suspectBuildBox;
+    @FXML
+    public ChoiceBox<Gender> suspectDescGenderBox;
+    @FXML
+    public ChoiceBox<Color.eyeColor> suspectEyeBox;
+    @FXML
+    public ChoiceBox<Color.hairColor> suspectHairBox;
+    @FXML
+    public ChoiceBox<Ethnicity> suspectEthnicityBox;
     @FXML
     public Label pustLabel, boldLabel;
 
-    //this sets up the choiceBoxes, will be replaced by database info.
     private ObservableList<String> crimeIDList = FXCollections
             .observableArrayList("1","2","3","4");
-    private ObservableList<String> buildList = FXCollections
-            .observableArrayList(Build.values().toString());
-    private ObservableList<String> eyeList = FXCollections
-            .observableArrayList("Green","Blue","Brown","Beautiful");
-    private ObservableList<String> hairList = FXCollections
-            .observableArrayList("Blonde","Brown","Black","Purple");
-    private ObservableList<String> ethnicityList = FXCollections
-            .observableArrayList("White","Black","Yellow","Purple");
 
     //These control the buttons, so far only local values, will be filled by database.
     public void notifierAutoBtnPressed(){
