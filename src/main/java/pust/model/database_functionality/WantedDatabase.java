@@ -2,10 +2,7 @@ package pust.model.database_functionality;
 
 import pust.model.utility.database_connection.DBCPDataSource;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.logging.Level;
@@ -18,8 +15,11 @@ public class WantedDatabase {
         ArrayList<String> userReturn = new ArrayList<>();
         try {
             Connection con = DBCPDataSource.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select firstname,lastname, SSN from person where person.wanted = true;");
+            con.setAutoCommit(false);
+            PreparedStatement suspectListData = con.prepareStatement(sqlSuspect());
+            ResultSet rs = suspectListData.executeQuery();
+            con.commit();
+
             while (rs.next()) {
                 StringJoiner sj = new StringJoiner(" ");
                 String str1 = rs.getString(1);
@@ -35,16 +35,19 @@ public class WantedDatabase {
         return userReturn;
     }
 
+    private String sqlSuspect() {
+        return "select firstname,lastname, SSN from person where person.wanted = true;";
+    }
+
     public String getWantedCrime(String splitSSN) {
         StringJoiner sj = new StringJoiner(", ");
         try {
             Connection con = DBCPDataSource.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select crimeType from person\n" +
-                    "join suspect on person.SSN = suspect.Person_SSN\n" +
-                    "join suspect_of_crime on suspect_of_crime.Suspect_Person_SSN = suspect.Person_SSN\n" +
-                    "join crime on crime.crimeID = suspect_of_crime.Crime_crimeID\n" +
-                    "where  person.wanted = true AND person.SSN = '" + splitSSN + "' ;");
+            con.setAutoCommit(false);
+            PreparedStatement suspectCrimeData = con.prepareStatement(sqlCrime());
+            suspectCrimeData.setString(1, splitSSN);
+            ResultSet rs = suspectCrimeData.executeQuery();
+            con.commit();
             while (rs.next()) {
                 sj.add(rs.getString(1));
             }
@@ -64,5 +67,14 @@ public class WantedDatabase {
         }
         return sj.toString();
     }
+
+    private String sqlCrime() {
+        return "select crimeType from person\n" +
+                "join suspect on person.SSN = suspect.Person_SSN\n" +
+                "join suspect_of_crime on suspect_of_crime.Suspect_Person_SSN = suspect.Person_SSN\n" +
+                "join crime on crime.crimeID = suspect_of_crime.Crime_crimeID\n" +
+                "where  person.wanted = true AND person.SSN = ?";
+    }
+
 
 }
