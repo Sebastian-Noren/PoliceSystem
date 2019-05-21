@@ -1,5 +1,6 @@
 package pust.controller.main_window;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -18,11 +19,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import pust.model.database_functionality.SQLDatabase;
+import pust.model.database_functionality.SelectPerson;
+import pust.model.entity.Employee;
+import pust.model.entity.Person;
+import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
 import pust.model.database_functionality.InsertPerson;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +55,7 @@ public class MainFrameController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
     @FXML
-    private Label notifyLabelNumber;
+    private Label notifyLabelNumber, labelPoliceID, labelPoliceRole, labelPoliceName, dateTime;
     private int i = 0;
     private int notify = 0;
 
@@ -56,7 +64,8 @@ public class MainFrameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
-
+        initClock();
+        setPoliceInfo();
         notifyLabelNumber.setVisible(false);
         choiceBox.setStyle("-fx-background-color: #d7d7d7;");
         anchorPaneRight.setStyle("-fx-background-color:#d7d7d7;");
@@ -72,7 +81,7 @@ public class MainFrameController implements Initializable {
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[1].getScrolltextDescription())));
         timeline.play();
 
-        Image image = new Image("/image/user_accounts.png");
+        Image image = new Image("/image/police.jpg");
         imageView.setImage(image);
 
         Image image1 = new Image("/image/smallSwepustlogg.png");
@@ -238,6 +247,53 @@ public class MainFrameController implements Initializable {
                 //add marker metoden som lägger till en marker
                 ae -> vBoxText.getChildren().removeAll(text)));
         timeline.play();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Sebs new//
+    private void setPoliceInfo() {
+        SQLDatabase sqlDatabase = new SQLDatabase();
+        String ssn = sqlDatabase.getPolice(AppConstant.getCurrentUser());
+        Person person = new SelectPerson(ssn).loadPerson();
+        Employee employee = null;
+        if (person instanceof Employee) {
+            employee = (Employee) person;
+        }
+        labelPoliceName.setText(person.getFirstName() + " " + person.getSurname());
+        labelPoliceID.setText(String.format("ID: %d", employee.getId()));
+        labelPoliceRole.setText(employee.getTitle().toString());
+    }
+
+    private void initClock() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
+            dateTime.setText(LocalDateTime.now().format(formatter));
+        }), new KeyFrame(Duration.seconds(1)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
     }
 }
 

@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class WantedDatabase {
+public class SQLDatabase {
     private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     public ArrayList<String> getSuspects() {
@@ -74,6 +74,29 @@ public class WantedDatabase {
                 "join suspect_of_crime on suspect_of_crime.Suspect_Person_SSN = suspect.Person_SSN\n" +
                 "join crime on crime.crimeID = suspect_of_crime.Crime_crimeID\n" +
                 "where  person.wanted = true AND person.SSN = ?";
+    }
+
+
+    public String getPolice(String splitSSN) {
+        String getSSN = "";
+        try {
+            Connection con = DBCPDataSource.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement suspectCrimeData = con.prepareStatement(sqlOfficer());
+            suspectCrimeData.setString(1, splitSSN);
+            ResultSet rs = suspectCrimeData.executeQuery();
+            con.commit();
+            while (rs.next()) {
+                getSSN = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        }
+        return getSSN;
+    }
+
+    private String sqlOfficer() {
+        return "select Person_SSN from police where police.username = ?";
     }
 
 
