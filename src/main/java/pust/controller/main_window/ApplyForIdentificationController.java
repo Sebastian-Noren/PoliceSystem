@@ -22,10 +22,7 @@ public class ApplyForIdentificationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //loads up IDScene
         IDScene();
-        //loads up criminalRecordsScene
-        //Loads up passportScene
         passportScene();
     }
 
@@ -50,5 +47,6 @@ public class ApplyForIdentificationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
