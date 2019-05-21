@@ -76,7 +76,7 @@
                   <Label GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Last updated" GridPane.rowIndex="10" />
-                  <Label text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label fx:id="labelDate2" text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <Label text="Sweden" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label prefHeight="17.0" prefWidth="99.0" text="Not implemented" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
@@ -116,7 +116,7 @@
                   <Label fx:id="labelZipCode" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="labelCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="labelCountry" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="labelDate1" text="2018-09-01" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <Separator orientation="VERTICAL" prefHeight="200.0" />

@@ -12,6 +12,8 @@ import pust.model.entity.Person;
 import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -19,7 +21,7 @@ public class ViewWantedController implements Initializable {
 
     @FXML
     private Label labelHeadName, labelWanted, labelAlias, labelSSN, labelDateBirth, labelGender,
-            labelEthnicity, labelHair, labelHeight, labelWeight, labelEyes, labelThin, labelDescription;
+            labelEthnicity, labelHair, labelHeight, labelWeight, labelEyes, labelThin, labelDescription,labelCurrentDate;
     @FXML
     private ListView listWanted;
     private Suspect suspect = null;
@@ -27,6 +29,9 @@ public class ViewWantedController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateWantedlist();
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        labelCurrentDate.setText(String.format("Last Updated: %s", date.format(formatter)));
     }
 
     @FXML
@@ -45,11 +50,13 @@ public class ViewWantedController implements Initializable {
     }
 
     private void getSuspectedFromList(String splitSSN){
+        WantedDatabase wantedDatabase = new WantedDatabase();
         Person person = new SelectPerson(splitSSN).loadPerson();
         if (person instanceof Suspect) {
             suspect = (Suspect) person;
         }
-        setlabel(person, suspect);
+        String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(splitSSN));
+        setlabel(person, suspect,crime);
     }
 
     private void updateWantedlist(){
@@ -62,9 +69,10 @@ public class ViewWantedController implements Initializable {
         listWanted.getSelectionModel().select(0);
     }
 
-    private void setlabel(Person person, Suspect suspect) {
+
+    private void setlabel(Person person, Suspect suspect, String crime) {
             labelHeadName.setText(person.getFirstName().toUpperCase() + " " + person.getSurname().toUpperCase());
-            labelWanted.setText(String.valueOf(person.isWanted()));
+            labelWanted.setText(crime);
             labelAlias.setText(person.getFirstName().toUpperCase() + " " + person.getSurname().toUpperCase());
             labelSSN.setText(person.getPersonalNumber().getPersonalNumber());
             labelDateBirth.setText(AppConstant.dateOfBirth(person.getPersonalNumber().getPersonalNumber()));

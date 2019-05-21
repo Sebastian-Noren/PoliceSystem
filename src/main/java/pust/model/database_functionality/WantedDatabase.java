@@ -35,4 +35,34 @@ public class WantedDatabase {
         return userReturn;
     }
 
+    public String getWantedCrime(String splitSSN) {
+        StringJoiner sj = new StringJoiner(", ");
+        try {
+            Connection con = DBCPDataSource.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select crimeType from person\n" +
+                    "join suspect on person.SSN = suspect.Person_SSN\n" +
+                    "join suspect_of_crime on suspect_of_crime.Suspect_Person_SSN = suspect.Person_SSN\n" +
+                    "join crime on crime.crimeID = suspect_of_crime.Crime_crimeID\n" +
+                    "where  person.wanted = true AND person.SSN = '" + splitSSN + "' ;");
+            while (rs.next()) {
+                sj.add(rs.getString(1));
+            }
+            String sentence = sj.toString();
+            String replacement = " and";
+            String toReplace = ",";
+            int start = sentence.lastIndexOf(toReplace);
+            if (start >= 0) {
+                StringBuilder builder = new StringBuilder();
+                builder.append(sentence, 0, start);
+                builder.append(replacement);
+                builder.append(sentence.substring(start + toReplace.length()));
+                return builder.toString();
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        }
+        return sj.toString();
+    }
+
 }

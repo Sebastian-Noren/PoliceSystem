@@ -20,7 +20,7 @@ public class PersonalInformationController implements Initializable {
     @FXML
     private Label labelSSN, labelAge, labelGender, labelFullname, labelFirstname, labelLastname,
             labelStreet, labelZipCode, labelCity, labelCountry, labelMissing, labelWanted, labelSuspect,
-            labelCrimeCount, labelInCustody;
+            labelCrimeCount, labelInCustody, labelDate2, labelDate1;
     @FXML
     private TextArea criminalTextBox;
     private int counter = 0;
@@ -31,6 +31,10 @@ public class PersonalInformationController implements Initializable {
         ArrayList<CriminalRecord> criminalRecord = perData.getCrimeRecord(AppConstant.person.getPersonalNumber().getPersonalNumber());
         printCrimeRecords(criminalRecord);
         setlabel();
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        labelDate1.setText(String.format("%s", date.format(formatter)));
+        labelDate2.setText(String.format("%s", date.format(formatter)));
         if (AppConstant.person.isWanted()) {
             AppConstant.alertBoxWarning("Wanted!", AppConstant.person.getFirstName() + " is wanted for a Crime!");
         }

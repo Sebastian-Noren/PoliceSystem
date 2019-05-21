@@ -19,8 +19,6 @@ public class ReportArrestInCustodyController implements Initializable {
     @FXML
     private ChoiceBox<Build> suspectBuildBox;
     @FXML
-    private ChoiceBox<Gender> suspectDescGenderBox;
-    @FXML
     private ChoiceBox<Color.eyeColor> suspectEyeBox;
     @FXML
     private ChoiceBox<Color.hairColor> suspectHairBox;
@@ -41,7 +39,6 @@ public class ReportArrestInCustodyController implements Initializable {
     private void fillMultiboxes(){
         suspectGenderBox.getItems().setAll(Gender.values());
         suspectBuildBox.getItems().setAll(Build.values());
-        suspectDescGenderBox.getItems().setAll(Gender.values());
         suspectEyeBox.getItems().setAll(Color.eyeColor.values());
         suspectHairBox.getItems().setAll(Color.hairColor.values());
         suspectEthnicityBox.getItems().setAll(Ethnicity.values());
