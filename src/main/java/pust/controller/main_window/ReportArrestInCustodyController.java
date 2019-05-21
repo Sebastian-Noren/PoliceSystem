@@ -35,7 +35,6 @@ public class ReportArrestInCustodyController implements Initializable {
 
     }
 
-
     private void fillMultiboxes(){
         suspectGenderBox.getItems().setAll(Gender.values());
         suspectBuildBox.getItems().setAll(Build.values());
@@ -43,6 +42,4 @@ public class ReportArrestInCustodyController implements Initializable {
         suspectHairBox.getItems().setAll(Color.hairColor.values());
         suspectEthnicityBox.getItems().setAll(Ethnicity.values());
     }
-
-
 }

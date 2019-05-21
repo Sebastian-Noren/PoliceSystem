@@ -13,8 +13,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
+import pust.model.entity.Suspect;
 import pust.model.enumerations.*;
 
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class AppConstant {
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
     private static boolean SSN_CHECK = false;
     public static Person person;
+    public static Suspect suspect;
+    public static Employee employee;
 
     public static boolean isSsnCheck() {
         return SSN_CHECK;
@@ -46,7 +50,6 @@ public class AppConstant {
     public static void setSsnCheck(boolean ssnCheck) {
         SSN_CHECK = ssnCheck;
     }
-
 
     public static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
