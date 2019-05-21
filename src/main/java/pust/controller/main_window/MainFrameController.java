@@ -97,11 +97,12 @@ public class MainFrameController implements Initializable {
         notifyLabelNumber.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                goToGoogleMaps();
+                //goToGoogleMaps();
                 openChoiceBox();
             }
         });
     }
+
 
     public void openChoiceBox() {
         choiceBox.show();
@@ -113,14 +114,14 @@ public class MainFrameController implements Initializable {
 
                 notifyLabelNumber.setText(String.valueOf(notify));
 
-                choiceBox.getItems().remove("Aggravated assault");
+               // choiceBox.getItems().remove("Aggravated assault");
             } else if (choiceBox.getValue().equals("Vandalism")) {
                 notify--;
 
                 GoogleMapsController.goToCrimeLocation("Vandalism");
 
                 notifyLabelNumber.setText(String.valueOf(notify));
-                choiceBox.getItems().remove("Vandalism");
+               // choiceBox.getItems().remove("Vandalism");
 
             }
         });

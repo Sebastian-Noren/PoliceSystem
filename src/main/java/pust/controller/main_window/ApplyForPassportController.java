@@ -173,7 +173,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void paus() {
-        
+
 
         if(webcam.open()){
 
