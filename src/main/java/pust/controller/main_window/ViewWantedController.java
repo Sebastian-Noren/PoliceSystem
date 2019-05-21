@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import pust.model.database_functionality.InsertPerson;
 import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Person;
@@ -17,8 +18,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ViewWantedController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private Label labelHeadName, labelWanted, labelAlias, labelSSN, labelDateBirth, labelGender,
@@ -68,13 +72,20 @@ public class ViewWantedController implements Initializable {
     }
 
     private void updateWantedlist() {
-        SQLDatabase SQLDatabase = new SQLDatabase();
-        listWanted.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        ArrayList<String> listOfWantedSuspects = SQLDatabase.getSuspects();
-        for (String g : listOfWantedSuspects) {
-            listWanted.getItems().add(g);
+        try {
+            Thread thread = new Thread(() -> {
+                SQLDatabase SQLDatabase = new SQLDatabase();
+                listWanted.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                ArrayList<String> listOfWantedSuspects = SQLDatabase.getSuspects();
+                for (String g : listOfWantedSuspects) {
+                    listWanted.getItems().add(g);
+                }
+                listWanted.getSelectionModel().select(0);
+            });
+            thread.start();
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-        listWanted.getSelectionModel().select(0);
     }
 
     private void setlabel(Person person, Suspect suspect, String crime) {

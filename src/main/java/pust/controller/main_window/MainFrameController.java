@@ -23,11 +23,10 @@ import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
-import pust.model.entity.Suspect;
 import pust.model.utility.AppConstant;
 
 import pust.model.database_functionality.InsertPerson;
-import pust.model.utility.AppConstant;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -85,13 +84,13 @@ public class MainFrameController implements Initializable {
         timeline.play();
 
 
-        
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(34),
                 ae -> scrollText(randomCrimeSpot.getCrimeMark()[2].getScrolltextDescription())
         ));
         timeline.play();
-Image image = new Image("/image/police.jpg");
+
+        Image image = new Image("/image/police.jpg");
 
         imageView.setImage(image);
 
@@ -122,7 +121,6 @@ Image image = new Image("/image/police.jpg");
             }
         });
     }
-
 
     public void openChoiceBox() {
         choiceBox.show();
@@ -276,30 +274,6 @@ Image image = new Image("/image/police.jpg");
         timeline.play();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Sebs new//
     private void setPoliceInfo() {
         SQLDatabase sqlDatabase = new SQLDatabase();
@@ -315,12 +289,20 @@ Image image = new Image("/image/police.jpg");
     }
 
     private void initClock() {
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
-            dateTime.setText(LocalDateTime.now().format(formatter));
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
+        try {
+            Thread thread = new Thread(() -> {
+                Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
+                    dateTime.setText(LocalDateTime.now().format(formatter));
+                }), new KeyFrame(Duration.seconds(1)));
+                clock.setCycleCount(Animation.INDEFINITE);
+                clock.play();
+            });
+            thread.start();
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        }
     }
 }
+
 
