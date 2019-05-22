@@ -6,8 +6,7 @@ import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
 import pust.model.enumerations.PersonType;
-import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.random_person_generator.RandomPerson;
+import pust.model.utility.random_generator.person.RandomPerson;
 
 public class HandlePassportTest {
 

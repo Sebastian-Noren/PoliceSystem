@@ -1,4 +1,4 @@
-package pust.model.utility.random_person_generator;
+package pust.model.utility.random_generator.person;
 
 
 import java.time.LocalDate;

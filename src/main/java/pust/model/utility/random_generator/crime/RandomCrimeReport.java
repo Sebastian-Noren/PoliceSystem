@@ -1,11 +1,24 @@
-package pust.model.utility.random_person_generator;
+package pust.model.utility.random_generator.crime;
 
 import pust.model.entity.*;
 import pust.model.enumerations.PersonType;
+import pust.model.utility.random_generator.address.RandomAddress;
+import pust.model.utility.random_generator.person.RandomPerson;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
+
+/*
+ * Creates a random crime report object to be used when populating the database.
+ * To create the random object use the standard syntax for the build pattern e.g.
+ * RandomCrime rc = new RandomCrime();
+ * CrimeReport crimeReport = (CrimeReport) new CrimeReportBuilder()
+ *                                          ..withTracks(rc.getTracks)
+ *                                          ...
+ *                                          ...
+ *                                          .build();
+ */
 
 public class RandomCrimeReport {
 
@@ -23,9 +36,21 @@ public class RandomCrimeReport {
     private Witness witness;
 
     public RandomCrimeReport() {
+        RandomDate randomDate = new RandomDate();
+        currentDate = randomDate.getRandomDate();
+        timeAndDateOfEvent = randomDate.getRandomDateAndTime();
+
+        RandomAddress randomAddress = new RandomAddress();
+        placeOfEvent = new Address(
+                randomAddress.getStreet(), randomAddress.getZipCode(),
+                randomAddress.getCity(), randomAddress.getCountry());
+
         ref = randomRef();
-        currentDate = randomLocalDate();
         administrativeOfficer = randomPolice();
+        notifier = randomNotifier();
+        descriptionOfEvent = new DescriptionSource().random();
+        tracks = new TrackSource().random();
+        witness = randomWitness();
 
     }
 
@@ -38,53 +63,16 @@ public class RandomCrimeReport {
                 ThreadLocalRandom.current().nextInt(10, 100);
     }
 
-    private LocalDate randomLocalDate() {
-        int year = ThreadLocalRandom.current().nextInt(1980, 2019);
-        int month = ThreadLocalRandom.current().nextInt(1, 13);
-        int day = 0;
-        switch (month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                day = 31;
-                break;
-            case 2:
-                if (isLeapYear(year)) {
-                    day = 29;
-                    break;
-                } else {
-                    day = 28;
-                    break;
-                }
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                day = 30;
-                break;
-        }
-        return LocalDate.of(year, month, day);
-    }
-
-    private Police randomPolice(){
+    private Police randomPolice() {
         return (Police) new RandomPerson(PersonType.POLICE).generateRandomPerson();
     }
 
-    private LocalDateTime randomTimeAndDateOfEvent(){
-        int year = currentDate.getYear() - ThreadLocalRandom.current().nextInt(11);
-        int month = currentDate.getMonthValue() - ThreadLocalRandom.current().nextInt(currentDate.getMonthValue() - 1);
-        int day = currentDate.getDayOfMonth() - ThreadLocalRandom.current().nextInt(currentDate.getDayOfMonth() - 1);
-        int hour = ThreadLocalRandom.current().nextInt(25);
-        int min = ThreadLocalRandom.current().nextInt(60);
-        return LocalDateTime.of(year, month, day, hour, min);
+    private Notifier randomNotifier() {
+        return (Notifier) new RandomPerson(PersonType.NOTIFIER).generateRandomPerson();
     }
 
-    private boolean isLeapYear(int year) {
-        return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));
+    private Witness randomWitness() {
+        return (Witness) new RandomPerson(PersonType.WITNESS).generateRandomPerson();
     }
 
     public String getRef() {

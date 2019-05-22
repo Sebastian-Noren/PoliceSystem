@@ -1,4 +1,4 @@
-package pust.model.utility.random_person_generator;
+package pust.model.utility.random_generator;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ReadFile {
 
-    static ArrayList<String> readFile(String path) {
+    public static ArrayList<String> readFile(String path) {
         ArrayList<String> temp = new ArrayList<>();
         FileReader fr = null;
         BufferedReader br = null;

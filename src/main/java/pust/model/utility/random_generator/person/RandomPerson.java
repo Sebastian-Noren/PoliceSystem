@@ -1,4 +1,4 @@
-package pust.model.utility.random_person_generator;
+package pust.model.utility.random_generator.person;
 
 import pust.model.administrative_functions.report_system.report.BaseReport;
 import pust.model.administrative_functions.report_system.record.CriminalRecord;
@@ -7,6 +7,7 @@ import pust.model.entity.*;
 import pust.model.entity.entity_builder.*;
 import pust.model.enumerations.*;
 import pust.model.utility.AppConstant;
+import pust.model.utility.random_generator.address.RandomAddress;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;

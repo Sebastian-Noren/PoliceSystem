@@ -1,24 +1,17 @@
 package pust.model.entity;
 
 import org.junit.*;
-import pust.model.database_functionality.InsertPerson;
 import pust.model.entity.entity_builder.SuspectBuilder;
 import pust.model.entity.entity_builder.VisitorBuilder;
 import pust.model.enumerations.Color;
 import pust.model.enumerations.Ethnicity;
-import pust.model.enumerations.PersonType;
 import pust.model.utility.Encrypt;
-import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.random_person_generator.RandomPerson;
 
-import javax.xml.transform.Result;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.sql.*;
-
-import static org.junit.Assert.*;
 
 public class GenericTest {
 
