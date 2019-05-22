@@ -22,7 +22,7 @@ public class LogInModel {
     public void resetPassword() throws javax.mail.internet.AddressException, javax.mail.MessagingException {
         TextInputDialog dialog = new TextInputDialog();
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(this.getClass().getResource("/image/icon.png").toString()));
         dialog.getDialogPane().getStylesheets().add(getClass().getResource("/view/basicStyleSheet.css").toExternalForm());
         dialog.setTitle("Password Reset");
         dialog.setHeaderText(null);
