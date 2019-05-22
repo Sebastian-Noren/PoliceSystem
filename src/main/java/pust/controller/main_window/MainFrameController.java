@@ -94,7 +94,7 @@ public class MainFrameController implements Initializable {
 
         imageView.setImage(image);
 
-        Image image1 = new Image("/image/smallSwepustlogg.png");
+        Image image1 = new Image("/image/icon.png");
         notifyImg.setImage(image1);
         try {
             fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));

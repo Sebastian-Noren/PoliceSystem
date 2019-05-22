@@ -276,7 +276,7 @@ public class AppConstant {
     public static void alertBoxInformation(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/icon.png").toString()));
         alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -288,7 +288,7 @@ public class AppConstant {
     public static void alertBoxWarning(String titel, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/icon.png").toString()));
         alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(titel);
         alert.setHeaderText(null);
@@ -301,7 +301,7 @@ public class AppConstant {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(AppConstant.class.getResource(changeScene));
-            Image image = new Image(AppConstant.class.getResourceAsStream("/image/swepustlogg.png"));
+            Image image = new Image(AppConstant.class.getResourceAsStream("/image/icon.png"));
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

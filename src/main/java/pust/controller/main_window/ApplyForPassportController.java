@@ -41,13 +41,14 @@ public class ApplyForPassportController extends Thread implements Initializable 
     private ImageView iconImage;
     @FXML
     private TextField videoStatus;
+    @FXML
+    private Button paus;
 
     public DetectMotion detectMotion = new DetectMotion();
 
 
     public Webcam webcam;
     public ImageView imageView;
-
 
     //upload image
     private Image[] upploadImage = new Image[1];
@@ -75,7 +76,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         //set random place
         placeOfBirth.setText(birthPlace[secureRandom.nextInt(birthPlace.length)]);
 
-        Image image = new Image("image/smallSwepustlogg.png");
+        Image image = new Image("image/icon.png");
         iconImage.setImage(image);
 
         nationality.setText("SWEDISH");
@@ -160,7 +161,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
                 upploadImage[0] = myCaptured;
-                webcam.close();
+               // webcam.close();
 
                 Log log = new Log();
                 log.saveToFile("IMAGE CAPTURED");
@@ -291,7 +292,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     "7. Height" + "\n" +
                     "8. Hair color" + "\n" +
                     "9. Eye color" + "\n" +
-                    "10. Weight ");
+                    "10. Weight " + "\n" +
+                    "11. Take a photograph");
             alert1.showAndWait();
         }
     }
@@ -405,11 +407,11 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     //TODO ändra detta gör det bättre!
-    class VideoCapture extends Thread   {
+    class VideoCapture extends Thread {
         private boolean status = true;
 
         @Override
-        public void run(){
+        public void run() {
 
             // each 30 millis a image  is taken and inserted to imageView
             while (status != false) {
@@ -417,7 +419,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
 
-                }catch(InterruptedException e){
+                } catch (InterruptedException e) {
 
                 }
             }
@@ -455,7 +457,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
                             } else if (!motionDetector.isMotion()) {
                                 //something for us to compare in event log
-                               // System.out.println("you are still");
+                                // System.out.println("you are still");
                                 videoStatus.setStyle("-fx-text-inner-color: green;");
                                 videoStatus.setText("YOU CAN TAKE A PICTURE");
 

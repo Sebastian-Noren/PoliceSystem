@@ -30,7 +30,6 @@ public class LogInController implements Initializable {
     private String lockedAccount;
     private int counter;
     private long startTime;
-    private long lockTimeLeft = 60;
     private int lockDuration = 60;
 
     private LogInModel model = new LogInModel();
@@ -83,6 +82,7 @@ public class LogInController implements Initializable {
 
     // flawed but cool lock-out. To be improved.
     private void lockout(String userInfo) {
+        long lockTimeLeft;
         long endTime;
         lockedAccount = userInfo;
         if (userName.getText().equals(lockedAccount) ){
@@ -91,7 +91,7 @@ public class LogInController implements Initializable {
             lockTimeLeft = (endTime - startTime);
             lockTimeLeft = TimeUnit.SECONDS.convert(lockTimeLeft, TimeUnit.NANOSECONDS);
             lockTimeLeft = lockDuration - lockTimeLeft;
-            model.alertWarning("Warning", "Due to repeated failed attempts to log in, " +
+            model.alertWarning("Warning", "Due to repeated failed log in attempts, " +
                     "your account has been locked for "
                     + lockDuration + " seconds. "
                     + lockTimeLeft + " seconds remaining.");

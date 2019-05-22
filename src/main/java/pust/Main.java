@@ -19,7 +19,7 @@ public class Main extends Application {
 
 
         window = primaryStage;
-        Image image = new Image(getClass().getResourceAsStream("/image/swepustlogg.png"));
+        Image image = new Image(getClass().getResourceAsStream("/image/icon.png"));
         primaryStage.getIcons().add(image);
         Parent root = FXMLLoader.load(getClass().getResource("/view/LogInScreen.fxml"));
         window.setResizable(false);

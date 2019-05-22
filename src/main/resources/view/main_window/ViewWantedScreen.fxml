@@ -48,7 +48,7 @@
                         <Region prefHeight="100.0" prefWidth="99.0" />
                         <ImageView fitHeight="63.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@/image/smallSwepustlogg.png" />
+                                <Image url="@/image/icon.png" />
                             </image>
                         </ImageView>
                     </children>
