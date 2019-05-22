@@ -53,7 +53,7 @@ public class LogInModel {
     private void alertInfo(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(this.getClass().getResource("/image/icon.png").toString()));
         alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -65,7 +65,7 @@ public class LogInModel {
     public void alertWarning(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(this.getClass().getResource("/image/icon.png").toString()));
         alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
         alert.setHeaderText(null);

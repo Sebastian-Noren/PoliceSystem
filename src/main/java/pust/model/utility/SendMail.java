@@ -15,6 +15,8 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
+
+    // the email takes in four strings to generate and send the message. The attachment needs to be sent as "this.getClass().getResource("***").getPath();"
     public void generateAndSendEmail(String recipient, String subject, String message, String attachment) throws MessagingException {
 
         // This sets up the properties of the mail server
@@ -30,10 +32,6 @@ public class SendMail {
         createMail.setSubject(subject);
 
         //Creates email with text
-
-        File file = new File("/image/swepustText.png");
-        attachment = this.getClass().getResource("/image/swepustText.png").getPath();
-
         MimeMultipart multipart = new MimeMultipart("related");
         BodyPart messageBody = new MimeBodyPart();
         String emailText = message + "<br><br> Regards, <br>PUST Integrated Graphic System";

@@ -98,6 +98,7 @@ public class ReportController implements Initializable {
             reportMissingPersonPane .getChildren().removeAll();
             reportMissingPersonPane .getChildren().setAll(fxml);
         } catch (IOException ex) {
+            ex.printStackTrace();
             LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
     }
