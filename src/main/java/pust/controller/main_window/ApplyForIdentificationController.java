@@ -47,6 +47,5 @@ public class ApplyForIdentificationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
