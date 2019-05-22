@@ -14,7 +14,13 @@ public class Visitor extends Person {
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification
+            Identification identification,
+            String phoneNumber,
+            Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect
     ) {
         super(
                 firstName,
@@ -23,7 +29,13 @@ public class Visitor extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification
+                identification,
+                phoneNumber,
+                gender,
+                isWanted,
+                isMissing,
+                inCustody,
+                isSuspect
         );
     }
 }

@@ -6,6 +6,6 @@ import java.time.LocalDate;
 
 public class IdCard extends Identification {
     public IdCard(Person person, LocalDate expirationDate) {
-        super(person, expirationDate);
+        //TODO Add functionality to this class
     }
 }

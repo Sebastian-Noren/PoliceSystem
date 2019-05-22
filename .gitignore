@@ -6,3 +6,5 @@ out/
 artifacts/
 target/
 encrypt.bin
+hs_err_pid19458.log
+src/main/resources/html/google.html

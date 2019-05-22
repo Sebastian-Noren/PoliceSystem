@@ -13,6 +13,12 @@ public abstract class Person {
     private Record crimeRecord;
     private int height;
     private Identification identification;
+    private String phoneNumber;
+    private Enum gender;
+    private boolean isWanted;
+    private boolean isMissing;
+    private boolean inCustody;
+    private boolean isSuspect;
 
     Person(
             String firstName,
@@ -21,7 +27,13 @@ public abstract class Person {
             Address address,
             Record crimeRecord,
             int height,
-            Identification identification
+            Identification identification,
+            String phoneNumber,
+            Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect
     ) {
 
         this.firstName = firstName;
@@ -31,6 +43,12 @@ public abstract class Person {
         this.crimeRecord = crimeRecord;
         this.height = height;
         this.identification = identification;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.isWanted = isWanted;
+        this.isMissing = isMissing;
+        this.inCustody = inCustody;
+        this.isSuspect = isSuspect;
     }
 
     public String getFirstName() {
@@ -59,5 +77,33 @@ public abstract class Person {
 
     public Identification getIdentification() {
         return identification;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPersonalNumber(PersonalNumber personalNumber) {
+        this.personalNumber = personalNumber;
+    }
+
+    public Enum getGender() {
+        return gender;
+    }
+
+    public boolean isWanted() {
+        return isWanted;
+    }
+
+    public boolean isMissing() {
+        return isMissing;
+    }
+
+    public boolean isInCustody() {
+        return inCustody;
+    }
+
+    public boolean isSuspect() {
+        return isSuspect;
     }
 }

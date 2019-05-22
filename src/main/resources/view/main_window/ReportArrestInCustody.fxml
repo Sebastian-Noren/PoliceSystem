@@ -1,11 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
-   <children>
-      <Label layoutX="376.0" layoutY="265.0" text="Report arrest in custody" />
-   </children>
-</AnchorPane>
+<BorderPane minHeight="700.0" minWidth="781.0" prefHeight="700.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
+   <top>
+      <HBox prefHeight="36.0" prefWidth="781.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="81.0" prefWidth="803.0">
+               <children>
+                  <Label fx:id="pustLabel" alignment="CENTER" prefHeight="39.0" prefWidth="814.0" text="PUST GRAPHICAL INTERFACE SYSTEM">
+                     <font>
+                        <Font name="Garamond Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="17.0" prefWidth="1017.0" text="Arrest into Custody">
+                     <font>
+                        <Font name="Garamond" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/icon.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../basicStyleSheet.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="52.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="52.0" prefWidth="86.0">
+                     <children>
+                        <Label fx:id="boldLabel" prefHeight="17.0" prefWidth="53.0" text="Suspect:" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#suspectAutoBtnPressed" text="Autofill" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="183.0">
+                     <children>
+                        <Label text="Last Name:" />
+                        <TextField fx:id="suspectLastNameField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="201.0">
+                     <children>
+                        <Label text="First Name:" />
+                        <TextField fx:id="suspectFirstNameField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="118.0">
+                     <children>
+                        <Label text="SSN:" />
+                        <TextField fx:id="suspectSSNField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="94.0">
+                     <children>
+                        <Label text="Gender" />
+                        <ChoiceBox fx:id="suspectGenderBox" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+               <children>
+                  <VBox prefHeight="48.0" prefWidth="76.0">
+                     <children>
+                        <Label fx:id="boldLabel1" text="Contact:">
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="48.0" prefWidth="217.0">
+                     <children>
+                        <Label text="Street:" />
+                        <TextField fx:id="suspectStreetField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="48.0" prefWidth="81.0">
+                     <children>
+                        <Label text="Zip Code:" />
+                        <TextField fx:id="suspectZIPField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="48.0" prefWidth="189.0">
+                     <children>
+                        <Label text="City:" />
+                        <TextField fx:id="suspectCityField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="48.0" prefWidth="111.0">
+                     <children>
+                        <Label text="Phone:" />
+                        <TextField fx:id="suspectPhoneField" prefHeight="25.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="95.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="133.0" prefWidth="86.0">
+                     <children>
+                        <Label fx:id="boldLabel2" text="Description:" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="93.0" prefWidth="103.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="TOP" text="Build:">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </Label>
+                        <ChoiceBox fx:id="suspectBuildBox" prefWidth="150.0" />
+                        <Label text="Ethnicity:" />
+                        <ChoiceBox fx:id="suspectEthnicityBox" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="109.0" prefWidth="64.0">
+                     <children>
+                        <Label text="Weight:" />
+                        <TextField fx:id="suspectWeightField" prefHeight="3.0" prefWidth="64.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Height:" />
+                        <TextField fx:id="suspectHeightField" prefHeight="16.0" prefWidth="64.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="93.0" prefWidth="103.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="67.0" text="Eye Color:" />
+                        <ChoiceBox fx:id="suspectEyeBox" prefWidth="150.0" />
+                        <Label prefHeight="17.0" prefWidth="74.0" text="Hair Color:" />
+                        <ChoiceBox fx:id="suspectHairBox" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="94.0" prefWidth="330.0">
+                     <children>
+                        <Label text="Characteristics:" />
+                        <TextArea fx:id="characteristicsArea" prefHeight="67.0" prefWidth="328.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

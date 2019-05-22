@@ -13,7 +13,13 @@ public class MissingPersonBuilder extends PersonBuilder<MissingPerson> {
                 super.address,
                 super.crimeRecord,
                 super.height,
-                super.identification
+                super.identification,
+                super.phoneNumber,
+                super.gender,
+                super.isWanted,
+                super.isMissing,
+                super.inCustody,
+                super.isSuspect
         );
     }
 }

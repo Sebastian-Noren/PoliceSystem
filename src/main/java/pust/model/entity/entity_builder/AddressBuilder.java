@@ -4,19 +4,13 @@ import pust.model.entity.Address;
 
 public class AddressBuilder<T extends Address> {
 
-    private String streetName;
-    private int streetNumber;
+    private String street;
     private int zipCode;
     private String city;
     private String country;
 
     public AddressBuilder withStreetName(String streetName) {
-        this.streetName = streetName;
-        return this;
-    }
-
-    public AddressBuilder withStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
+        this.street = streetName;
         return this;
     }
 
@@ -37,8 +31,7 @@ public class AddressBuilder<T extends Address> {
 
     public Address build() {
         return new Address(
-                streetName,
-                streetNumber,
+                street,
                 zipCode,
                 city,
                 country

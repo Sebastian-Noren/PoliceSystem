@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import pust.model.admin_create.AdminCreateModel;
-import pust.model.admin_create.AdminDatabase;
+import pust.model.database_functionality.AdminDatabase;
 import pust.model.admin_create.AdminUserTable;
 import pust.model.utility.AppConstant;
 
@@ -48,7 +48,7 @@ public class AdminScreenController implements Initializable {
     private ObservableList<AdminUserTable> oblist = FXCollections.observableArrayList();
     private FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files (.jpg /.png)", "*.jpg", "*.png");
     private FileChooser fc = new FileChooser();
-    BufferedImage bImg = null;
+    private BufferedImage bImg = null;
     private String userSelect, policeRole;
 
     @Override
@@ -87,7 +87,7 @@ public class AdminScreenController implements Initializable {
                     updateList();
                     image = new Image("image/photo.jpg", 176.0, 224.0, false, true);
                     profileImg.setImage(image);
-                    AppConstant.alertBoxInformation("Account Created","New account name is: " + randGenUserName+", New police ID: "+policeID);
+                    AppConstant.alertBoxInformation("Account Created", String.format("New account name is: %s, New police ID: %d", randGenUserName, policeID));
                 }
             } else {
                 labWarPass.setText("Password don´t match!");
@@ -123,7 +123,7 @@ public class AdminScreenController implements Initializable {
             delete.setDisable(true);
             grantOption.setSelected(false);
             grantOption.setDisable(true);
-            policeRole = "Police officer";
+            policeRole = "INSPECTOR";
 
         }
         if (accPoliceChiefRole.isSelected()) {
@@ -131,14 +131,14 @@ public class AdminScreenController implements Initializable {
             delete.setSelected(true);
             grantOption.setDisable(true);
             grantOption.setSelected(false);
-            policeRole = "Police chief";
+            policeRole = "SUPERINTENDENT";
         }
         if (accITrole.isSelected()) {
             delete.setDisable(false);
             delete.setSelected(true);
             grantOption.setSelected(true);
             grantOption.setDisable(false);
-            policeRole = "IT-administrator";
+            policeRole = "ITADMINISTRATOR";
         }
         select.setSelected(true);
         insert.setSelected(true);

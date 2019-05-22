@@ -9,7 +9,6 @@ import pust.model.administrative_functions.report_system.record.Record;
  */
 
 public class Suspect extends Person {
-    private Enum gender;
     private Enum ethnicity;
     private Enum build;
     private Enum hairColor;
@@ -25,7 +24,12 @@ public class Suspect extends Person {
             Record crimeRecord,
             int height,
             Identification identification,
+            String phoneNumber,
             Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect,
             Enum ethnicity,
             Enum build,
             Enum hairColor,
@@ -40,19 +44,21 @@ public class Suspect extends Person {
                 address,
                 crimeRecord,
                 height,
-                identification
+                identification,
+                phoneNumber,
+                gender,
+                isWanted,
+                isMissing,
+                inCustody,
+                isSuspect
+
         );
-        this.gender = gender;
         this.ethnicity = ethnicity;
         this.build = build;
         this.hairColor = hairColor;
         this.eyeColor = eyeColor;
         this.weight = weight;
         this.characteristic = characteristic;
-    }
-
-    public Enum getGender() {
-        return gender;
     }
 
     public Enum getEthnicity() {

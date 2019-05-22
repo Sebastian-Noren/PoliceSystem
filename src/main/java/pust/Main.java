@@ -1,20 +1,13 @@
-package pust;
+ package pust;
+
 
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pust.model.utility.AppConstant;
-
-/*
- * To run this program Assert must be enabled.
- * 1. Edit the run configuration
- * 2. Under VM options enter: -ea
- * 3. Run
- */
 
 public class Main extends Application {
 
@@ -23,8 +16,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
         window = primaryStage;
-        Image image = new Image(getClass().getResourceAsStream("/image/swepustlogg.png"));
+        Image image = new Image(getClass().getResourceAsStream("/image/icon.png"));
         primaryStage.getIcons().add(image);
         Parent root = FXMLLoader.load(getClass().getResource("/view/LogInScreen.fxml"));
         window.setResizable(false);
@@ -39,5 +33,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }

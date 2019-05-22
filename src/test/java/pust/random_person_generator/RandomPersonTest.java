@@ -58,14 +58,16 @@ public class RandomPersonTest {
             System.out.println("Surname:            "
                     + person.getSurname());
             System.out.println("Address:            "
-                    + person.getAddress().getStreetName()
-                    + " " + person.getAddress().getStreetNumber());
+                    + person.getAddress().getStreet()
+                    + " ");
             System.out.println("Zip code:           "
                     + person.getAddress().getZipCode());
             System.out.println("City:               "
                     + person.getAddress().getCity());
             System.out.println("Country:            "
                     + person.getAddress().getCountry());
+            System.out.println("Phone number:"
+                    + person.getPhoneNumber());
             if (person instanceof Employee) {
                 System.out.println("ID:                 "
                         + ((Employee) person).getId());
@@ -77,6 +79,8 @@ public class RandomPersonTest {
                         + ((Employee) person).getUserName());
                 System.out.println("Password:           "
                         + ((Employee) person).getPassword());
+                System.out.println("E-mail;             "
+                        + ((Employee) person).getEmail());
             } else if (person instanceof Suspect) {
                 System.out.println("Gender:             "
                         + ((Suspect) person).getGender());

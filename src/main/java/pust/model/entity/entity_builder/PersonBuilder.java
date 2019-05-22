@@ -6,6 +6,7 @@ import pust.model.administrative_functions.report_system.record.Record;
 import pust.model.entity.Address;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
+import pust.model.enumerations.Gender;
 
 public abstract class PersonBuilder <T extends Person>{
 
@@ -16,6 +17,12 @@ public abstract class PersonBuilder <T extends Person>{
     protected Record crimeRecord;
     protected int height;
     protected Identification identification;
+    protected String phoneNumber;
+    protected Enum gender;
+    protected boolean isWanted;
+    protected boolean isMissing;
+    protected boolean inCustody;
+    protected boolean isSuspect;
 
     public PersonBuilder withFirstName(String firstName) {
         this.firstName = firstName;
@@ -51,6 +58,38 @@ public abstract class PersonBuilder <T extends Person>{
         this.identification = identification;
         return this;
     }
+
+    public PersonBuilder withPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public PersonBuilder withGender(Gender gender){
+        this.gender = gender;
+        return this;
+    }
+
+    public PersonBuilder isWanted(boolean isWanted){
+        this.isWanted = isWanted;
+        return this;
+    }
+
+    public PersonBuilder isMissing(boolean isMissing){
+        this.isMissing = isMissing;
+        return this;
+    }
+
+    public PersonBuilder inCustody(boolean inCustody){
+        this.inCustody = inCustody;
+        return this;
+    }
+
+    public PersonBuilder isSuspect(boolean isSuspect){
+        this.isSuspect = isSuspect;
+        return this;
+    }
+
+
 
     public abstract T build();
 }

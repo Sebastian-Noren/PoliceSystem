@@ -14,11 +14,18 @@ public class PoliceChief extends Employee {
             Record crimeRecord,
             int height,
             Identification identification,
+            String phoneNumber,
+            Enum gender,
+            boolean isWanted,
+            boolean isMissing,
+            boolean inCustody,
+            boolean isSuspect,
             int salary,
             Enum title,
             int id,
             String userName,
-            String password
+            String password,
+            String email
     ) {
         super(
                 firstName,
@@ -28,11 +35,18 @@ public class PoliceChief extends Employee {
                 crimeRecord,
                 height,
                 identification,
+                phoneNumber,
+                gender,
+                isWanted,
+                isMissing,
+                inCustody,
+                isSuspect,
                 salary,
                 title,
                 id,
                 userName,
-                password
+                password,
+                email
         );
     }
 }
