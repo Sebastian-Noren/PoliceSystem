@@ -1,4 +1,5 @@
 package pust.controller.main_window;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import pust.model.enumerations.Gender;
 import pust.model.utility.AppConstant;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class ReportCrimeController implements Initializable {
 
     @FXML
@@ -46,6 +48,18 @@ public class ReportCrimeController implements Initializable {
     private ObservableList<String> crimeIDList = FXCollections
             .observableArrayList("1","2","3","4");
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        notifierGenderBox.getItems().setAll(Gender.values());
+        crimeIDBox.setItems(crimeIDList);
+        suspectGenderBox.getItems().setAll(Gender.values());
+        suspectBuildBox.getItems().setAll(Build.values());
+        suspectDescGenderBox.getItems().setAll(Gender.values());
+        suspectEyeBox.getItems().setAll(Color.eyeColor.values());
+        suspectHairBox.getItems().setAll(Color.hairColor.values());
+        suspectEthnicityBox.getItems().setAll(Ethnicity.values());
+    }
+
     //These control the buttons, so far only local values, will be filled by database.
     public void notifierAutoBtnPressed(){
         notifierFirstNameField.setText(AppConstant.person.getFirstName());
@@ -65,17 +79,5 @@ public class ReportCrimeController implements Initializable {
         suspectSSNField.setText("33123212");
         suspectStreetField.setText("Evil Road 5c");
         suspectZIPField.setText("546 87");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        notifierGenderBox.getItems().setAll(Gender.values());
-        crimeIDBox.setItems(crimeIDList);
-        suspectGenderBox.getItems().setAll(Gender.values());
-        suspectBuildBox.getItems().setAll(Build.values());
-        suspectDescGenderBox.getItems().setAll(Gender.values());
-        suspectEyeBox.getItems().setAll(Color.eyeColor.values());
-        suspectHairBox.getItems().setAll(Color.hairColor.values());
-        suspectEthnicityBox.getItems().setAll(Ethnicity.values());
     }
 }
