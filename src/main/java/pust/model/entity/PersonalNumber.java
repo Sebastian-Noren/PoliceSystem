@@ -47,14 +47,14 @@ public class PersonalNumber {
     }
 
     public String getPersonalNumber(){
-        if (birthMonth < 10){
-            return "" + birthYear + "0" + birthMonth + "" + birthDay + "" + serialNumber + "" + controlNumber;
-        } else if (birthDay < 10){
-            return "" + birthYear + "" + birthMonth + "0" + birthDay + "" + serialNumber + "" + controlNumber;
-
-        } else if (birthMonth < 10 && birthDay < 10){
+        if (birthMonth < 10 && birthDay < 10){
             return "" + birthYear + "0" + birthMonth + "0" + birthDay + "" + serialNumber + "" + controlNumber;
-
+        }
+        else if (birthDay < 10){
+            return "" + birthYear + "" + birthMonth + "0" + birthDay + "" + serialNumber + "" + controlNumber;
+        }
+        else if (birthMonth < 10){
+            return "" + birthYear + "0" + birthMonth + "" + birthDay + "" + serialNumber + "" + controlNumber;
         }
         return "" + birthYear + "" + birthMonth + "" + birthDay + "" + serialNumber + "" + controlNumber;
     }

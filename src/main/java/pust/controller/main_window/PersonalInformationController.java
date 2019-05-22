@@ -13,16 +13,18 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class PersonalInformationController implements Initializable {
+
     @FXML
     private Label labelSSN, labelAge, labelGender, labelFullname, labelFirstname, labelLastname,
             labelStreet, labelZipCode, labelCity, labelCountry, labelMissing, labelWanted, labelSuspect,
-            labelCrimeCount, labelInCustody;
+            labelCrimeCount, labelInCustody, labelDate2, labelDate1;
     @FXML
     private TextArea criminalTextBox;
+    @FXML
+
     private int counter = 0;
 
     @Override
@@ -31,16 +33,17 @@ public class PersonalInformationController implements Initializable {
         ArrayList<CriminalRecord> criminalRecord = perData.getCrimeRecord(AppConstant.person.getPersonalNumber().getPersonalNumber());
         printCrimeRecords(criminalRecord);
         setlabel();
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        labelDate1.setText(String.format("%s", date.format(formatter)));
+        labelDate2.setText(String.format("%s", date.format(formatter)));
     }
-
 
     private void setlabel() {
         labelSSN.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
-        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().toString()));
-        //labelAge.setText(String.valueOf(2019 - AppConstant.person.getPersonalNumber().getBirthYear()));
+        labelAge.setText(calcAge(AppConstant.person.getPersonalNumber().getPersonalNumber()));
         labelSuspect.setText(String.valueOf(AppConstant.person.isSuspect()));
-        labelInCustody.setText(String.valueOf(AppConstant.person.isWanted()));
-
+        labelInCustody.setText(String.valueOf(AppConstant.person.isInCustody()));
         labelCrimeCount.setText(String.valueOf(counter));
         labelGender.setText(AppConstant.person.getGender().toString());
         labelFullname.setText(AppConstant.person.getSurname() + ", " + AppConstant.person.getFirstName());
@@ -68,7 +71,6 @@ public class PersonalInformationController implements Initializable {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate birthDate = LocalDate.parse(ssn, formatter);
-
         return Integer.toString(Period.between(birthDate, currentDate).getYears());
     }
 }

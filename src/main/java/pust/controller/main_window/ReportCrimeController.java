@@ -1,58 +1,78 @@
 package pust.controller.main_window;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import pust.model.enumerations.Build;
+import pust.model.enumerations.Color;
+import pust.model.enumerations.Ethnicity;
+import pust.model.enumerations.Gender;
+import pust.model.utility.AppConstant;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class ReportCrimeController implements Initializable {
 
     @FXML
-    public TextField caseIDField, crimeStreetField, crimeZipField, crimeCityField, notifierFirstNameField,
+    private TextField caseIDField, crimeStreetField, crimeZipField, crimeCityField, notifierFirstNameField,
             notifierLastNameField, notifierSSNField, notifierStreetField, notifierZIPField, notifierCityField,
             notifierPhoneField, suspectFirstNameField, suspectLastNameField, suspectSSNField,
             suspectStreetField, suspectZIPField, suspectCityField, suspectPhoneField, suspectHeightField,
             suspectWeightField, policeIDField, policeNameField, PoliceSSNField;
 
     @FXML
-    public TextArea characteristicsArea, descriptionArea;
-
+    private TextArea characteristicsArea, descriptionArea;
     @FXML
-    public DatePicker crimeDatePick, reportDatePick;
-
+    private DatePicker crimeDatePick, reportDatePick;
     @FXML
-    public ChoiceBox crimeIDBox, notifierGenderBox, suspectGenderBox, suspectBuildBox, suspectDescGenderBox,
-            suspectEyeBox, suspectHairBox, suspectEthnicityBox;
-
+    private ChoiceBox<String> crimeIDBox;
     @FXML
-    private Button notifierAutoBtn, suspectAutoBtn, descriptionSaveBtn, crimeSaveBtn, submitBtn;
-
+    private ChoiceBox<Gender> notifierGenderBox;
     @FXML
-    public Label pustLabel, boldLabel;
+    private ChoiceBox<Gender> suspectGenderBox;
+    @FXML
+    private ChoiceBox<Build> suspectBuildBox;
+    @FXML
+    private ChoiceBox<Gender> suspectDescGenderBox;
+    @FXML
+    private ChoiceBox<Color.eyeColor> suspectEyeBox;
+    @FXML
+    private ChoiceBox<Color.hairColor> suspectHairBox;
+    @FXML
+    private ChoiceBox<Ethnicity> suspectEthnicityBox;
+    @FXML
+    private Label pustLabel, boldLabel;
 
-    //this sets up the choiceBoxes, will be replaced by database info.
-    private ObservableList<String> genderList = FXCollections.observableArrayList("M","F");
     private ObservableList<String> crimeIDList = FXCollections
             .observableArrayList("1","2","3","4");
-    private ObservableList<String> buildList = FXCollections
-            .observableArrayList("Small","Fat","Obese","Skinny");
-    private ObservableList<String> eyeList = FXCollections
-            .observableArrayList("Green","Blue","Brown","Beautiful");
-    private ObservableList<String> hairList = FXCollections
-            .observableArrayList("Blonde","Brown","Black","Purple");
-    private ObservableList<String> ethnicityList = FXCollections
-            .observableArrayList("White","Black","Yellow","Purple");
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        fillChoiceBoxes();
+    }
+
+    private void fillChoiceBoxes() {
+        notifierGenderBox.getItems().setAll(Gender.values());
+        crimeIDBox.setItems(crimeIDList);
+        suspectGenderBox.getItems().setAll(Gender.values());
+        suspectBuildBox.getItems().setAll(Build.values());
+        suspectDescGenderBox.getItems().setAll(Gender.values());
+        suspectEyeBox.getItems().setAll(Color.eyeColor.values());
+        suspectHairBox.getItems().setAll(Color.hairColor.values());
+        suspectEthnicityBox.getItems().setAll(Ethnicity.values());
+    }
 
     //These control the buttons, so far only local values, will be filled by database.
     public void notifierAutoBtnPressed(){
-        notifierFirstNameField.setText("Julius");
-        notifierLastNameField.setText("Soutine");
-        notifierCityField.setText("Stockholm");
-        notifierPhoneField.setText("0734454072");
-        notifierSSNField.setText("8112027431");
-        notifierStreetField.setText("Gräsåkersvägen 2b");
-        notifierZIPField.setText("178 51");
+        notifierFirstNameField.setText(AppConstant.person.getFirstName());
+        notifierLastNameField.setText(AppConstant.person.getSurname());
+        notifierCityField.setText(AppConstant.person.getAddress().getCity());
+        notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
+        notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+        notifierStreetField.setText(AppConstant.person.getAddress().getStreet());
+        notifierZIPField.setText(String.valueOf(AppConstant.person.getAddress().getZipCode()));
     }
 
     public void suspectAutoBtnPressed(){
@@ -63,17 +83,5 @@ public class ReportCrimeController implements Initializable {
         suspectSSNField.setText("33123212");
         suspectStreetField.setText("Evil Road 5c");
         suspectZIPField.setText("546 87");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        crimeIDBox.setItems(crimeIDList);
-        notifierGenderBox.setItems(genderList);
-        suspectGenderBox.setItems(genderList);
-        suspectBuildBox.setItems(buildList);
-        suspectDescGenderBox.setItems(genderList);
-        suspectEyeBox.setItems(eyeList);
-        suspectHairBox.setItems(hairList);
-        suspectEthnicityBox.setItems(ethnicityList);
     }
 }

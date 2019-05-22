@@ -12,9 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pust.model.database_functionality.InsertPerson;
+import javafx.stage.StageStyle;
+import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
+import pust.model.entity.Suspect;
 import pust.model.enumerations.*;
 
 import java.io.IOException;
@@ -31,12 +33,22 @@ import static pust.model.enumerations.Title.*;
 public class AppConstant {
     private static final Logger LOGGER = Logger.getLogger(AppConstant.class.getName());
     private static final String SOFTWARE_NAME = "PUST GIS";
-    private static final String DATABASE_NAME = "pustgis"; // TODO Change to new database name
-    private static final String DATABASE_HOST = "localhost"; // TODO Change Server.
+    private static final String DATABASE_NAME = "pustgis";
+    private static final String DATABASE_HOST = "localhost";
     private static String CURRENT_USER = ""; //Save the current user in the program
-    private static String CURRENT_USER_PASS = ""; //save the current password in the program.
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
+    private static boolean SSN_CHECK = false;
     public static Person person;
+    public static Suspect suspect;
+    public static Employee employee;
+
+    public static boolean isSsnCheck() {
+        return SSN_CHECK;
+    }
+
+    public static void setSsnCheck(boolean ssnCheck) {
+        SSN_CHECK = ssnCheck;
+    }
 
     public static String getSOFTWARE_NAME() {
         return SOFTWARE_NAME;
@@ -56,14 +68,6 @@ public class AppConstant {
 
     public static void setCurrentUser(String currentUser) {
         CURRENT_USER = currentUser;
-    }
-
-    public static String getCurrentUserPass() {
-        return CURRENT_USER_PASS;
-    }
-
-    public static void setCurrentUserPass(String currentUserPass) {
-        CURRENT_USER_PASS = currentUserPass;
     }
 
     public static boolean isFemale(int serialNumber) {
@@ -197,7 +201,7 @@ public class AppConstant {
                 return WHITEANDBLACKCARIBBEAN;
             case "White and Asian":
                 return WHITEANDASIAN;
-            case "Other mixed":
+            case "Other Mixed":
                 return OTHERMIXED;
             case "Indian":
                 return INDIAN;
@@ -266,31 +270,38 @@ public class AppConstant {
             default:
                 LOGGER.log(Level.FINER, "No hair colour found matching the cases");
                 return null;
-
         }
     }
 
     public static void alertBoxInformation(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/icon.png").toString()));
+        alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
-        alert.setHeaderText("");
+        alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(AppConstant.class.getResource("/view/basicStyleSheet.css").toExternalForm());
         alert.showAndWait();
     }
 
     public static void alertBoxWarning(String titel, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/icon.png").toString()));
+        alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(titel);
-        alert.setHeaderText("");
+        alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
+        alert.getDialogPane().getStylesheets().add(AppConstant.class.getResource("/view/basicStyleSheet.css").toExternalForm());
+        alert.show();
     }
 
     public static void switchScene(Event event, String changeScene) {
         try {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(AppConstant.class.getResource(changeScene));
-            Image image = new Image(AppConstant.class.getResourceAsStream("/image/swepustlogg.png"));
+            Image image = new Image(AppConstant.class.getResourceAsStream("/image/icon.png"));
             primaryStage.getIcons().add(image);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -301,5 +312,60 @@ public class AppConstant {
         }
     }
 
+    private static String monthToString(int month) {
+        switch (month) {
+            case 1:
+                return "January";
+            case 2:
+                return "February";
+            case 3:
+                return "Mars";
+            case 4:
+                return "April";
+            case 5:
+                return "May";
+            case 6:
+                return "June";
+            case 7:
+                return "July";
+            case 8:
+                return "August";
+            case 9:
+                return "September";
+            case 10:
+                return "October";
+            case 11:
+                return "November";
+            case 12:
+                return "December";
+            default:
+                return "ERROR";
+        }
+    }
+
+    public static String dateOfBirth(String ssn) {
+        int year;
+        int month;
+        int day;
+
+        StringBuilder sb = new StringBuilder();
+        char[] ssnArray = ssn.toCharArray();
+        for (int i = 0; i < 4; i++) {
+            sb.append(ssnArray[i]);
+        }
+        year = Integer.valueOf(sb.toString());
+        sb = new StringBuilder();
+        for (int i = 4; i < 6; i++) {
+            sb.append(ssnArray[i]);
+        }
+        month = Integer.valueOf(sb.toString());
+        sb = new StringBuilder();
+        for (int i = 6; i < 8; i++) {
+            sb.append(ssnArray[i]);
+        }
+        day = Integer.valueOf(sb.toString());
+
+        return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
+    }
 }
 
