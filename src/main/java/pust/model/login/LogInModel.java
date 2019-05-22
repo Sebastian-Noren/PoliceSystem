@@ -10,7 +10,6 @@ import pust.model.utility.SendMail;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -87,7 +86,7 @@ public class LogInModel {
 
     public boolean LogInAuth(String userName, String passWordText){
         try {
-            ds.setUrl("jdbc:mysql://localhost:4321/pustgis");
+            ds.setUrl("jdbc:mysql://localhost:4321/pustgis?&useSSL=FALSE");
             ds.setUsername(userName);
             ds.setPassword(passWordText);
             //"6978f28c972457220d4e72398bb9e000"
