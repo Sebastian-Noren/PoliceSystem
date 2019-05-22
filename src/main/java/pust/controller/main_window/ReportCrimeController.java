@@ -50,6 +50,10 @@ public class ReportCrimeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fillChoiceBoxes();
+    }
+
+    private void fillChoiceBoxes() {
         notifierGenderBox.getItems().setAll(Gender.values());
         crimeIDBox.setItems(crimeIDList);
         suspectGenderBox.getItems().setAll(Gender.values());

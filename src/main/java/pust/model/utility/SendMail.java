@@ -15,7 +15,6 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
-
     // the email takes in four strings to generate and send the message. The attachment needs to be sent as "this.getClass().getResource("***").getPath();"
     public void generateAndSendEmail(String recipient, String subject, String message, String attachment) throws MessagingException {
 
