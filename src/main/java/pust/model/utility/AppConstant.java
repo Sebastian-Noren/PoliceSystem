@@ -36,7 +36,6 @@ public class AppConstant {
     private static final String DATABASE_NAME = "pustgis";
     private static final String DATABASE_HOST = "localhost";
     private static String CURRENT_USER = ""; //Save the current user in the program
-    private static String CURRENT_USER_PASS = ""; //save the current password in the program.
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
     private static boolean SSN_CHECK = false;
     public static Person person;
@@ -69,14 +68,6 @@ public class AppConstant {
 
     public static void setCurrentUser(String currentUser) {
         CURRENT_USER = currentUser;
-    }
-
-    public static String getCurrentUserPass() {
-        return CURRENT_USER_PASS;
-    }
-
-    public static void setCurrentUserPass(String currentUserPass) {
-        CURRENT_USER_PASS = currentUserPass;
     }
 
     public static boolean isFemale(int serialNumber) {

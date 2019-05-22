@@ -6,7 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import pust.model.database_functionality.WantedDatabase;
+import pust.model.database_functionality.InsertPerson;
+import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Person;
 import pust.model.entity.Suspect;
@@ -17,8 +18,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ViewWantedController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(InsertPerson.class.getName());
 
     @FXML
     private Label labelHeadName, labelWanted, labelAlias, labelSSN, labelDateBirth, labelGender,
@@ -33,10 +37,12 @@ public class ViewWantedController implements Initializable {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         labelCurrentDate.setText(String.format("Last Updated: %s", date.format(formatter)));
-        if (AppConstant.person.isWanted()) {
-            WantedDatabase wantedDatabase = new WantedDatabase();
-            String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
-            setlabel(AppConstant.person, AppConstant.suspect, crime);
+        if (!(AppConstant.person == null)) {
+            if (AppConstant.person.isWanted()) {
+                SQLDatabase SQLDatabase = new SQLDatabase();
+                String crime = String.format("Wanted for %s.", SQLDatabase.getWantedCrime(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+                setlabel(AppConstant.person, AppConstant.suspect, crime);
+            }
         }
     }
 
@@ -56,23 +62,30 @@ public class ViewWantedController implements Initializable {
     }
 
     private void getSuspectedFromList(String splitSSN) {
-        WantedDatabase wantedDatabase = new WantedDatabase();
+        SQLDatabase SQLDatabase = new SQLDatabase();
         Person person = new SelectPerson(splitSSN).loadPerson();
         if (person instanceof Suspect) {
             suspect = (Suspect) person;
         }
-        String crime = String.format("Wanted for %s.", wantedDatabase.getWantedCrime(splitSSN));
+        String crime = String.format("Wanted for %s.", SQLDatabase.getWantedCrime(splitSSN));
         setlabel(person, suspect, crime);
     }
 
     private void updateWantedlist() {
-        WantedDatabase wantedDatabase = new WantedDatabase();
-        listWanted.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        ArrayList<String> listOfWantedSuspects = wantedDatabase.getSuspects();
-        for (String g : listOfWantedSuspects) {
-            listWanted.getItems().add(g);
+        try {
+            Thread thread = new Thread(() -> {
+                SQLDatabase SQLDatabase = new SQLDatabase();
+                listWanted.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                ArrayList<String> listOfWantedSuspects = SQLDatabase.getSuspects();
+                for (String g : listOfWantedSuspects) {
+                    listWanted.getItems().add(g);
+                }
+                listWanted.getSelectionModel().select(0);
+            });
+            thread.start();
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-        listWanted.getSelectionModel().select(0);
     }
 
     private void setlabel(Person person, Suspect suspect, String crime) {

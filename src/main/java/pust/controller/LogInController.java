@@ -45,13 +45,14 @@ public class LogInController implements Initializable {
             return;
         }
         if (userName.getText().equals("root")) {
-            if (model.LogInAuth(userName.getText(), passWord.getText())) {
+            if (model.LogInAuth(userName.getText().trim(), passWord.getText().trim())) {
                 //Send you to IT-administrator
                 String strSceneFXML = "/view/AdminScreen.fxml";
                 AppConstant.switchScene(actionEvent, strSceneFXML);
             }
-        } else if (model.LogInAuth(userName.getText(), passWord.getText())) {
+        } else if (model.LogInAuth(userName.getText().trim(), passWord.getText().trim())) {
             //Sends you to mainWindow
+            AppConstant.setCurrentUser(userName.getText().trim());
             String strSceneFXML = "/view/main_window/MainFrame.fxml";
             AppConstant.switchScene(actionEvent, strSceneFXML);
         }
