@@ -276,7 +276,7 @@ public class AppConstant {
     public static void alertBoxInformation(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/smallSwepustlogg.png").toString()));
+        stage.getIcons().add(new Image(AppConstant.class.getResource("/image/icon.png").toString()));
         alert.initStyle(StageStyle.DECORATED);
         alert.setTitle(title);
         alert.setHeaderText(null);
