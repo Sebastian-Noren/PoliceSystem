@@ -80,7 +80,7 @@ public class LogInController implements Initializable {
         //if (model.passwordCounter(counter).equals("warning"))
     }
 
-    // flawed but cool lock-out. To be improved.
+    // flawed but cool lock-out.
     private void lockout(String userInfo) {
         long lockTimeLeft;
         long endTime;
