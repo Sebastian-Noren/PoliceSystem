@@ -35,7 +35,7 @@
             </VBox>
             <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/smallSwepustlogg.png" />
+                  <Image url="@../../image/icon.png" />
                </image>
             </ImageView>
          </children>
