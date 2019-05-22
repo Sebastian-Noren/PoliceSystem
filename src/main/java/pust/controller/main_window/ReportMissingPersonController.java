@@ -14,32 +14,32 @@ import java.util.ResourceBundle;
 public class ReportMissingPersonController implements Initializable {
 
     @FXML
-    public TextField caseIDField, eventStreetField, eventZipField, eventCityField, notifierFirstNameField,
+    private TextField caseIDField, eventStreetField, eventZipField, eventCityField, notifierFirstNameField,
             notifierLastNameField, notifierSSNField, notifierStreetField, notifierZIPField, notifierCityField,
             notifierPhoneField, missingFirstNameField, missingLastNameField, missingSSNField,
             missingStreetField, missingZIPField, missingCityField, missingPhoneField, suspectHeightField,
             suspectWeightField, policeIDField, policeNameField, PoliceSSNField;
 
     @FXML
-    public TextArea characteristicsArea, clothesArea, reasonArea;
+    private TextArea characteristicsArea, clothesArea, reasonArea;
     @FXML
-    public DatePicker missingDatePick;
+    private DatePicker missingDatePick;
     @FXML
-    public ChoiceBox<Gender> notifierGenderBox;
+    private ChoiceBox<Gender> notifierGenderBox;
     @FXML
-    public ChoiceBox<Gender> missingGenderBox;
+    private ChoiceBox<Gender> missingGenderBox;
     @FXML
-    public ChoiceBox<Build> missingBuildBox;
+    private ChoiceBox<Build> missingBuildBox;
     @FXML
-    public ChoiceBox<Gender> missingDescGenderBox;
+    private ChoiceBox<Gender> missingDescGenderBox;
     @FXML
-    public ChoiceBox<Color.eyeColor> missingEyeBox;
+    private ChoiceBox<Color.eyeColor> missingEyeBox;
     @FXML
-    public ChoiceBox<Color.hairColor> missingHairBox;
+    private ChoiceBox<Color.hairColor> missingHairBox;
     @FXML
-    public ChoiceBox<Ethnicity> missingEthnicityBox;
+    private ChoiceBox<Ethnicity> missingEthnicityBox;
     @FXML
-    public Label pustLabel, boldLabel;
+    private Label pustLabel, boldLabel;
 
 
     @Override
@@ -58,7 +58,7 @@ public class ReportMissingPersonController implements Initializable {
         notifierLastNameField.setText(AppConstant.person.getSurname());
         notifierCityField.setText(AppConstant.person.getAddress().getCity());
         notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
-        notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber()));
+        notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber().getPersonalNumber()));
         notifierStreetField.setText(AppConstant.person.getAddress().getStreet());
         notifierZIPField.setText(String.valueOf(AppConstant.person.getAddress().getZipCode()));
     }

@@ -7,29 +7,29 @@ import pust.model.enumerations.Color;
 import pust.model.enumerations.Gender;
 import pust.model.utility.AppConstant;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReportLostEntityController implements Initializable {
 
     @FXML
-    public TextField caseIDField, eventStreetField, eventZipField, eventCityField, notifierFirstNameField,
+    private TextField caseIDField, eventStreetField, eventZipField, eventCityField, notifierFirstNameField,
             notifierLastNameField, notifierSSNField, notifierStreetField, notifierZIPField, notifierCityField,
             notifierPhoneField, manufacturerField, markingsField, materialField, modelField, productionField,
             policeIDField, policeNameField, PoliceSSNField;
 
     @FXML
-    public TextArea characteristicsArea, areaArea;
+    private TextArea characteristicsArea, areaArea;
     @FXML
-    public DatePicker missingDatePick;
+    private DatePicker missingDatePick;
     @FXML
-    public ChoiceBox<Gender> notifierGenderBox;
+    private ChoiceBox<Gender> notifierGenderBox;
+    @FXML
+    private ChoiceBox<Color.hairColor> itemColorBox;
 
     @FXML
-    public ChoiceBox<Color.hairColor> itemColorBox;
-
-    @FXML
-    public Label pustLabel, boldLabel;
+    private Label pustLabel, boldLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,12 +38,16 @@ public class ReportLostEntityController implements Initializable {
     }
 
     public void notifierAutoBtnPressed(){
-        notifierFirstNameField.setText(AppConstant.person.getFirstName());
-        notifierLastNameField.setText(AppConstant.person.getSurname());
-        notifierCityField.setText(AppConstant.person.getAddress().getCity());
-        notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
-        notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber()));
-        notifierStreetField.setText(AppConstant.person.getAddress().getStreet());
-        notifierZIPField.setText(String.valueOf(AppConstant.person.getAddress().getZipCode()));
+        try {
+            notifierFirstNameField.setText(AppConstant.person.getFirstName());
+            notifierLastNameField.setText(AppConstant.person.getSurname());
+            notifierCityField.setText(AppConstant.person.getAddress().getCity());
+            notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
+            notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+            notifierStreetField.setText(AppConstant.person.getAddress().getStreet());
+            notifierZIPField.setText(String.valueOf(AppConstant.person.getAddress().getZipCode()));
+        } catch (RuntimeException ex) {
+            System.out.println("huh");
+        }
     }
 }
