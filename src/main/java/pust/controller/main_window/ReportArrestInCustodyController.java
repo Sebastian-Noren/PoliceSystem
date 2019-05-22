@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import pust.model.database_functionality.SelectPerson;
+import pust.model.entity.Person;
 import pust.model.enumerations.Build;
 import pust.model.enumerations.Color;
 import pust.model.enumerations.Ethnicity;
@@ -34,17 +36,21 @@ public class ReportArrestInCustodyController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    fillMultiboxes();
-    setSuspectInit();
+        fillMultiboxes();
+        setSuspectInit();
     }
 
     @FXML
     private void suspectAutoBtnPressed(ActionEvent actionEvent) {
-
-
+        String strSSN = suspectSSNField.getText().trim();
+        if (strSSN.isEmpty() || strSSN.length() < 12 || strSSN.length() > 12) {
+            AppConstant.alertBoxInformation("No SSN", "Must enter a SSN");
+        } else {
+            getAndDetSuspectBySSN(strSSN);
+        }
     }
 
-    private void fillMultiboxes(){
+    private void fillMultiboxes() {
         suspectGenderBox.getItems().setAll(Gender.values());
         suspectBuildBox.getItems().setAll(Build.values());
         suspectEyeBox.getItems().setAll(Color.eyeColor.values());
@@ -52,7 +58,7 @@ public class ReportArrestInCustodyController implements Initializable {
         suspectEthnicityBox.getItems().setAll(Ethnicity.values());
     }
 
-    private void setSuspectInit(){
+    private void setSuspectInit() {
         if (AppConstant.isSsnCheck()) {
             suspectFirstNameField.setText(AppConstant.person.getFirstName());
             suspectLastNameField.setText(AppConstant.person.getSurname());
@@ -71,5 +77,17 @@ public class ReportArrestInCustodyController implements Initializable {
                 suspectEthnicityBox.setValue(Ethnicity.valueOf(AppConstant.suspect.getEthnicity().toString()));
             }
         }
+    }
+
+    private void getAndDetSuspectBySSN(String ssn) {
+        Person person = new SelectPerson(ssn).loadPerson();
+        suspectFirstNameField.setText(person.getFirstName());
+        suspectLastNameField.setText(person.getSurname());
+        suspectSSNField.setText(person.getPersonalNumber().getPersonalNumber());
+        suspectStreetField.setText(person.getAddress().getStreet());
+        suspectZIPField.setText(String.valueOf(person.getAddress().getZipCode()));
+        suspectCityField.setText(person.getAddress().getCity());
+        suspectPhoneField.setText(person.getPhoneNumber());
+        suspectGenderBox.setValue(Gender.valueOf(person.getGender().toString()));
     }
 }
