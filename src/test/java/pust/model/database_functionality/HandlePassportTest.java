@@ -5,14 +5,18 @@ import pust.model.administrative_functions.application_functions.Passport;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
+import pust.model.entity.Police;
 import pust.model.enumerations.PersonType;
 import pust.model.utility.LinuxRemoteConnection;
 import pust.model.utility.random_person_generator.RandomPerson;
+import static org.junit.Assert.*;
 
 public class HandlePassportTest {
 
     @Test
     public void addPassport() {
+        LinuxRemoteConnection.remoteConnect();
+
      //   LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         Person visitor = new RandomPerson(PersonType.VISITOR).generateRandomPerson();
         Employee police = (Employee) new RandomPerson(PersonType.POLICE).generateRandomPerson();
@@ -27,6 +31,8 @@ public class HandlePassportTest {
 
     @Test
     public void getPassport() {
+        LinuxRemoteConnection.remoteConnect();
+
      //   LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         /*
          * When generating a test person we get a valid random personal number.
