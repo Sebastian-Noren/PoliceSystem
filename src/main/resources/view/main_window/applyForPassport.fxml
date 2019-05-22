@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" style="-fx-background-color: white;" stylesheets="@../reportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" stylesheets="@../basicStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
    <children>
 
 
@@ -150,7 +150,7 @@
             <AnchorPane prefHeight="329.0" prefWidth="279.0">
                <children>
                   <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="7.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox layoutX="89.0" layoutY="278.0" prefHeight="35.0" prefWidth="166.0" spacing="5.0">
+                  <HBox layoutX="108.0" layoutY="282.0" prefHeight="35.0" prefWidth="111.0" spacing="5.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -159,7 +159,7 @@
                         <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
                      </children>
                   </HBox>
-                  <TextField fx:id="videoStatus" layoutX="89.0" layoutY="2.0" prefHeight="25.0" prefWidth="166.0" />
+                  <TextField fx:id="videoStatus" layoutX="88.0" layoutY="2.0" prefHeight="25.0" prefWidth="168.0" />
                </children>
             </AnchorPane>
          </children>
