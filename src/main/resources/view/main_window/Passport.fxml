@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="580.0" prefWidth="670.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pust.controller.main_window.PassportController">
+<AnchorPane fx:id="anchorPane" prefHeight="580.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.PassportController">
    <children>
       <ImageView fitHeight="707.0" fitWidth="853.0" layoutX="-26.0" layoutY="-45.0">
          <image>
@@ -19,6 +19,9 @@
          <font>
             <Font size="22.0" />
          </font></Label>
-      <ImageView fx:id="iconImage" fitHeight="62.0" fitWidth="109.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="iconImage" fitHeight="62.0" fitWidth="109.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/icon.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>

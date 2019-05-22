@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="715.0" layoutY="9.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/smallSwepustlogg.png" />
+            <Image url="@../../image/icon.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="144.0" layoutY="8.0" prefHeight="66.0" prefWidth="523.0">
@@ -45,6 +45,9 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Label>
                      </children>
                      <opaqueInsets>
@@ -85,8 +88,8 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="64.0" prefWidth="86.0">
                      <children>
-                        <Label fx:id="boldLabel" prefHeight="17.0" prefWidth="51.0" text="Notifier:" />
-                        <Button fx:id="notifierAutoBtnPressed" mnemonicParsing="false" text="Autofill" />
+                        <Label prefHeight="17.0" prefWidth="51.0" text="Notifier:" />
+                        <Button mnemonicParsing="false" onAction="#notifierAutoBtnPressed" text="Autofill" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" />
@@ -130,7 +133,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="48.0" prefWidth="76.0">
                      <children>
-                        <Label fx:id="boldLabel" text="Contact:">
+                        <Label text="Contact:">
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
@@ -204,7 +207,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="87.0">
                      <children>
-                        <Label fx:id="boldLabel1" text="Item:">
+                        <Label text="Item:">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -253,7 +256,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="52.0" prefWidth="86.0">
                      <children>
-                        <Label fx:id="boldLabel4" prefHeight="17.0" prefWidth="42.0" text="Police:" textAlignment="CENTER" />
+                        <Label prefHeight="17.0" prefWidth="42.0" text="Police:" textAlignment="CENTER" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" />
