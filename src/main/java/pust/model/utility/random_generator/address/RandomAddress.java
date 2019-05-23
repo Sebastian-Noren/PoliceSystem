@@ -1,4 +1,4 @@
-package pust.model.utility.random_person_generator;
+package pust.model.utility.random_generator.address;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,8 +9,8 @@ public class RandomAddress {
     private String city;
     private String country;
 
-    RandomAddress() {
-        this.street = new StreetSource().random() + ThreadLocalRandom.current().nextInt(1, 200);
+    public RandomAddress() {
+        this.street = new StreetSource().random() + " " + ThreadLocalRandom.current().nextInt(1, 200);
         this.zipCode = ThreadLocalRandom.current().nextInt(10000, 97999);
         this.city = new CitySource().random();
         this.country = "Sverige";

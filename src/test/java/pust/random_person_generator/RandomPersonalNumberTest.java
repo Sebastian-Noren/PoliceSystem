@@ -2,7 +2,7 @@ package pust.random_person_generator;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pust.model.utility.random_person_generator.RandomPersonalNumber;
+import pust.model.utility.random_generator.person.RandomPersonalNumber;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

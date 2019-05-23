@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pust.model.utility.AppConstant;
+import pust.model.utility.LinuxRemoteConnection;
 
 public class Main extends Application {
 
@@ -27,6 +28,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
         //When someone press X
+        LinuxRemoteConnection.closeConnection();
         window.setOnCloseRequest(event -> System.exit(0));
 
     }

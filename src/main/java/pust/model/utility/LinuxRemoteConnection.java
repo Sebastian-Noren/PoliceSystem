@@ -8,6 +8,7 @@ import java.io.*;
 public class LinuxRemoteConnection {
 
     private static Encrypt encrypt;
+    private static Session session = null;
 
     public static void remoteConnect() {
         readEncryption();
@@ -18,7 +19,7 @@ public class LinuxRemoteConnection {
 
         try {
             JSch jSch = new JSch();
-            Session session = jSch.getSession(user, host, port);
+            session = jSch.getSession(user, host, port);
             int listeningPort = encrypt.getListeningPort();
             String remoteHost = encrypt.getRemoteHost();
             int remotePort = encrypt.getRemotePort();
@@ -43,6 +44,12 @@ public class LinuxRemoteConnection {
             encrypt = (Encrypt) oi.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void closeConnection(){
+        if (session != null){
+            session.disconnect();
         }
     }
 }

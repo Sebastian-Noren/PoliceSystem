@@ -74,6 +74,10 @@ public class AppConstant {
         return serialNumber % 2 == 0;
     }
 
+    public static boolean isLeapYear(int year) {
+        return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));
+    }
+
     public static boolean parseToBoolean(int value) {
         return value == 1;
     }

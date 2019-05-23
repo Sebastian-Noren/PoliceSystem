@@ -4,8 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import pust.model.entity.Person;
 import pust.model.enumerations.PersonType;
-import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.random_person_generator.RandomPerson;
+import pust.model.utility.random_generator.person.RandomPerson;
 
 import java.io.File;
 import java.io.IOException;
