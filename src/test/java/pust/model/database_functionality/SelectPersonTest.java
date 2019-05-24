@@ -4,6 +4,9 @@ import org.junit.Test;
 import pust.model.entity.*;
 import pust.model.utility.LinuxRemoteConnection;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SelectPersonTest {
@@ -16,7 +19,9 @@ public class SelectPersonTest {
 
     @Test
     public void loadPerson() {
+        configureLogger();
         LinuxRemoteConnection.remoteConnect();
+        System.out.println(LOGGER.getResourceBundle());
         Person person = new SelectPerson(ssn).loadPerson();
         Suspect suspect;
         Employee employee;
@@ -52,6 +57,14 @@ public class SelectPersonTest {
             System.out.println("E-mail: " + employee.getEmail());
         }
 
+    }
+
+    private void configureLogger() {
+        Handler handlerObj = new ConsoleHandler();
+        handlerObj.setLevel(Level.ALL);
+        LOGGER.addHandler(handlerObj);
+        LOGGER.setLevel(Level.ALL);
+        LOGGER.setUseParentHandlers(false);
     }
 
     @Test

@@ -19,7 +19,6 @@ public class DBCPDataSource {
     }
 
     public static Connection getConnection() throws SQLException {
-        System.out.println("Executing SQL method!");
         return ds.getConnection();
     }
 
