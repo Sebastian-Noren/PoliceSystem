@@ -28,7 +28,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
         //When someone press X
-        LinuxRemoteConnection.closeConnection();
+        window.setOnCloseRequest(event -> LinuxRemoteConnection.closeConnection());
         window.setOnCloseRequest(event -> System.exit(0));
 
     }
