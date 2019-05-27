@@ -39,6 +39,7 @@ public class AppConstant {
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
     private static boolean SSN_CHECK = false;
     public static Person person;
+    public static Person person2;
     public static Suspect suspect;
     public static Employee employee;
 
@@ -372,4 +373,3 @@ public class AppConstant {
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
 }
-

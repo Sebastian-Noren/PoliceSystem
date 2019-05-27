@@ -34,7 +34,7 @@
                         <Insets bottom="10.0" />
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id="userName" onKeyPressed="#typingReset" prefHeight="33.0" prefWidth="221.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                <TextField fx:id="userNameField" onKeyPressed="#typingReset" prefHeight="33.0" prefWidth="221.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -42,7 +42,7 @@
                         <Insets left="30.0" right="30.0" />
                     </GridPane.margin>
                 </TextField>
-                <PasswordField fx:id="passWord" onKeyPressed="#typingReset" prefHeight="33.0" prefWidth="221.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                <PasswordField fx:id="passWordField" onKeyPressed="#typingReset" prefHeight="33.0" prefWidth="221.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                     <font>
                         <Font size="14.0" />
                     </font>

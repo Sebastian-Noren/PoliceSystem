@@ -16,7 +16,7 @@
 
 <AnchorPane minHeight="565.0" minWidth="771.0" prefHeight="600.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportCrimeController">
    <children>
-      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="717.0" layoutY="4.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="678.0" layoutY="1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/icon.png" />
          </image>
@@ -64,34 +64,34 @@
                         <ChoiceBox fx:id="crimeIDBox" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="48.0" prefWidth="130.0">
+                  <VBox prefHeight="48.0" prefWidth="103.0">
                      <children>
                         <Label text="Date Occured:" />
                         <DatePicker fx:id="crimeDatePick" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="48.0" prefWidth="119.0">
+                  <VBox prefHeight="48.0" prefWidth="105.0">
+                     <children>
+                        <Label text="Date Reported:" />
+                        <DatePicker fx:id="reportDatePick" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="48.0" prefWidth="133.0">
                      <children>
                         <Label text="Street:" />
                         <TextField fx:id="crimeStreetField" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="48.0" prefWidth="72.0">
-                     <children>
-                        <Label text="Zip Code:" />
-                        <TextField fx:id="crimeZipField" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="48.0" prefWidth="147.0">
+                  <VBox prefHeight="48.0" prefWidth="90.0">
                      <children>
                         <Label text="City:" />
                         <TextField fx:id="crimeCityField" prefHeight="22.0" prefWidth="187.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="48.0" prefWidth="82.0">
+                  <VBox prefHeight="48.0" prefWidth="93.0">
                      <children>
-                        <Label text="Date Reported:" />
-                        <DatePicker fx:id="reportDatePick" />
+                        <Label text="Zip Code:" />
+                        <TextField fx:id="crimeZipField" />
                      </children>
                   </VBox>
                </children>
@@ -112,11 +112,11 @@
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="89.0" prefWidth="140.0">
+                  <VBox prefHeight="89.0" prefWidth="100.0">
                      <children>
                         <Label text="SSN:" />
                         <TextField fx:id="notifierSSNField" />
-                        <Label fx:id="notifierSSNLabel" text="Please enter 12 numbers" textFill="RED" />
+                        <Label fx:id="notifierSSNLabel" text="Enter 12 digit SSN" textFill="RED" />
                         <Button mnemonicParsing="false" onAction="#notifierAutoBtnPressed" text="Autofill">
                            <VBox.margin>
                               <Insets />
@@ -124,7 +124,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="117.0">
+                  <VBox prefHeight="84.0" prefWidth="150.0">
                      <children>
                         <Label text="Last Name:" />
                         <TextField fx:id="notifierLastNameField" />
@@ -135,7 +135,7 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="84.0" prefWidth="125.0">
+                  <VBox prefHeight="84.0" prefWidth="150.0">
                      <children>
                         <Label text="First Name:" />
                         <TextField fx:id="notifierFirstNameField" />
@@ -146,7 +146,7 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="92.0">
+                  <VBox prefHeight="52.0" prefWidth="90.0">
                      <children>
                         <Label text="Phone:" />
                         <TextField fx:id="notifierPhoneField" />
@@ -157,10 +157,12 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="89.0" prefWidth="92.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="47.0" text="Gender:" />
-                        <ChoiceBox fx:id="notifierGenderBox" prefHeight="28.0" prefWidth="92.0" />
+                        <ChoiceBox fx:id="notifierGenderBox" prefHeight="13.0" prefWidth="92.0" />
+                        <Label text="Country:" />
+                        <TextField fx:id="notifierCountryField" prefHeight="25.0" prefWidth="88.0" />
                      </children>
                   </VBox>
                </children>
@@ -178,18 +180,18 @@
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="89.0" prefWidth="139.0">
+                  <VBox prefHeight="89.0" prefWidth="100.0">
                      <children>
                         <Label text="SSN:" />
                         <TextField fx:id="suspectSSNField" />
-                        <Label fx:id="suspectSSNLabel" text="Please enter 12 numbers" textFill="#fc0000" />
+                        <Label fx:id="suspectSSNLabel" text="Enter 12 digit SSN" textFill="#fc0000" />
                         <Button mnemonicParsing="false" onAction="#suspectAutoBtnPressed" text="Autofill">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Button>
                      </children>
                   </VBox>
-                  <VBox prefHeight="84.0" prefWidth="120.0">
+                  <VBox prefHeight="84.0" prefWidth="150.0">
                      <children>
                         <Label text="Last Name:" />
                         <TextField fx:id="suspectLastNameField" />
@@ -200,7 +202,7 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="84.0" prefWidth="123.0">
+                  <VBox prefHeight="84.0" prefWidth="150.0">
                      <children>
                         <Label text="First Name:" />
                         <TextField fx:id="suspectFirstNameField" />
@@ -211,7 +213,7 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="84.0" prefWidth="93.0">
+                  <VBox prefHeight="84.0" prefWidth="90.0">
                      <children>
                         <Label text="Phone:" />
                         <TextField fx:id="suspectPhoneField" prefHeight="25.0" prefWidth="200.0" />
@@ -222,10 +224,12 @@
                         <Insets bottom="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="94.0">
+                  <VBox prefHeight="89.0" prefWidth="94.0">
                      <children>
                         <Label text="Gender" />
                         <ChoiceBox fx:id="suspectGenderBox" prefWidth="150.0" />
+                        <Label text="Country:" />
+                        <TextField fx:id="suspectCountryField" />
                      </children>
                   </VBox>
                </children>
@@ -234,16 +238,21 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="93.0" prefWidth="81.0">
                      <children>
-                        <Label fx:id="boldLabel" text="Description:">
+                        <Label fx:id="boldLabel" text="Suspect">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
+                        <Label fx:id="boldLabel1" text="Description:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="93.0" prefWidth="103.0">
+                  <VBox prefHeight="93.0" prefWidth="101.0">
                      <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="TOP" text="Build:">
                            <padding>
@@ -255,9 +264,9 @@
                         <ChoiceBox fx:id="suspectDescGenderBox" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="109.0" prefWidth="64.0">
+                  <VBox prefHeight="93.0" prefWidth="73.0">
                      <children>
-                        <Label text="Weight:" />
+                        <Label text="~Weight kg:" />
                         <TextField fx:id="suspectWeightField" prefHeight="3.0" prefWidth="64.0">
                            <opaqueInsets>
                               <Insets />
@@ -266,7 +275,7 @@
                               <Insets bottom="2.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label text="Height:" />
+                        <Label text="~Height cm:" />
                         <TextField fx:id="suspectHeightField" prefHeight="16.0" prefWidth="64.0" />
                      </children>
                   </VBox>
@@ -278,13 +287,13 @@
                         <ChoiceBox fx:id="suspectHairBox" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="93.0" prefWidth="126.0">
+                  <VBox prefHeight="93.0" prefWidth="145.0">
                      <children>
                         <Label text="Ethnicity:" />
                         <ChoiceBox fx:id="suspectEthnicityBox" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="93.0" prefWidth="193.0">
+                  <VBox prefHeight="93.0" prefWidth="162.0">
                      <children>
                         <Label text="Characteristics:" />
                         <TextArea fx:id="characteristicsArea" prefHeight="66.0" prefWidth="210.0">
@@ -296,11 +305,11 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="128.0" prefWidth="764.0" spacing="10.0" style="-fx-border-color: gray;">
+            <HBox prefHeight="147.0" prefWidth="769.0" spacing="10.0" style="-fx-border-color: gray;">
                <children>
                   <VBox alignment="CENTER" prefHeight="126.0" prefWidth="75.0">
                      <children>
-                        <Label fx:id="boldLabel" text="Crime:">
+                        <Label fx:id="boldLabel" text="Event:">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
@@ -309,9 +318,9 @@
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="126.0" prefWidth="630.0">
+                  <VBox prefHeight="124.0" prefWidth="632.0">
                      <children>
-                        <Label text="Description of event." />
+                        <Label text="Write a description of the event." />
                         <TextArea fx:id="descriptionArea" prefHeight="99.0" prefWidth="634.0">
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -321,11 +330,11 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="54.0" prefWidth="764.0" spacing="10.0" style="-fx-border-color: gray;">
+            <HBox prefHeight="59.0" prefWidth="769.0" spacing="10.0" style="-fx-border-color: gray;">
                <children>
-                  <VBox alignment="CENTER" prefHeight="52.0" prefWidth="78.0">
+                  <VBox alignment="CENTER" prefHeight="52.0" prefWidth="73.0">
                      <children>
-                        <Label fx:id="boldLabel" prefHeight="17.0" prefWidth="42.0" text="Police:" textAlignment="CENTER">
+                        <Label fx:id="boldLabel" prefHeight="17.0" prefWidth="42.0" text="Officer:" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
@@ -334,27 +343,33 @@
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="183.0">
+                  <VBox prefHeight="52.0" prefWidth="90.0">
                      <children>
                         <Label text="Police ID:" />
-                        <TextField fx:id="policeIDField" />
+                        <TextField fx:id="policeIDField" editable="false" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="201.0">
+                  <VBox prefHeight="52.0" prefWidth="120.0">
+                     <children>
+                        <Label text="Rank:" />
+                        <TextField fx:id="policeRankField" editable="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="126.0">
+                     <children>
+                        <Label text="Last Name:" />
+                        <TextField fx:id="policeLastNameField" editable="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="52.0" prefWidth="120.0">
                      <children>
                         <Label text="First Name:" />
-                        <TextField fx:id="policeNameField" />
+                        <TextField fx:id="policeFirstNameField" editable="false" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="52.0" prefWidth="81.0">
+                  <VBox alignment="BOTTOM_RIGHT" prefHeight="52.0" prefWidth="181.0" spacing="10.0">
                      <children>
-                        <Label text="SSN:" />
-                        <TextField fx:id="PoliceSSNField" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="BOTTOM_RIGHT" prefHeight="52.0" prefWidth="174.0" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="Submit Report" />
+                        <Button mnemonicParsing="false" onAction="#submitBtnPressed" text="Submit Report" />
                      </children>
                      <padding>
                         <Insets bottom="15.0" right="40.0" />

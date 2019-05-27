@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class LogInController implements Initializable {
 
     @FXML
-    TextField userName, passWord;
+    TextField userNameField, passWordField;
     @FXML
     Label userWarning, passWarning, passForgot;
     @FXML
@@ -40,7 +40,7 @@ public class LogInController implements Initializable {
         passWarning.setText(null);
         userWarning.setText(null);
         LinuxRemoteConnection.remoteConnect();
-        userName.focusedProperty().addListener((ov, oldValue, newValue) -> {
+        userNameField.focusedProperty().addListener((ov, oldValue, newValue) -> {
             if (!newValue) { // focus lost
                 checkLockout();
             }
@@ -49,32 +49,32 @@ public class LogInController implements Initializable {
 
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
-        if (userName.getText().isEmpty()) {
+        if (userNameField.getText().isEmpty()) {
             userWarning.setText("Enter a username");
             return;
         }
-        if (passWord.getText().isEmpty()) {
+        if (passWordField.getText().isEmpty()) {
             passWarning.setText("Enter a password");
             return;
         }
-        if (userName.getText().equals("root")) {
-            if (model.LogInAuth(userName.getText().trim(), passWord.getText().trim())) {
+        if (userNameField.getText().equals("root")) {
+            if (model.LogInAuth(userNameField.getText().trim(), passWordField.getText().trim())) {
                 //Send you to IT-administrator
                 String strSceneFXML = "/view/AdminScreen.fxml";
                 AppConstant.switchScene(actionEvent, strSceneFXML);
             }
-        } else if (model.LogInAuth(userName.getText().trim(), passWord.getText().trim())) {
+        } else if (model.LogInAuth(userNameField.getText().trim(), passWordField.getText().trim())) {
             //Sends you to mainWindow
-            AppConstant.setCurrentUser(userName.getText().trim());
+            AppConstant.setCurrentUser(userNameField.getText().trim());
             String strSceneFXML = "/view/main_window/MainFrame.fxml";
             AppConstant.switchScene(actionEvent, strSceneFXML);
         }
 
         //temporary log in without database
-        if (userName.getText().equals("root") && passWord.getText().equals("root")) {
+        if (userNameField.getText().equals("root") && passWordField.getText().equals("root")) {
             String strSceneFXML = "/view/AdminScreen.fxml";
             AppConstant.switchScene(actionEvent,strSceneFXML);
-        } else if (userName.getText().equals("user") && passWord.getText().equals("user")) {
+        } else if (userNameField.getText().equals("user") && passWordField.getText().equals("user")) {
             String strSceneFXML = "/view/main_window/MainFrame.fxml";
             AppConstant.switchScene(actionEvent,strSceneFXML);
         }
@@ -88,7 +88,7 @@ public class LogInController implements Initializable {
             startTime = System.nanoTime();
             passWarning.setText(null);
             counter = 0;
-            lockout(userName.getText());
+            lockout(userNameField.getText());
         }
     }
 
@@ -97,8 +97,8 @@ public class LogInController implements Initializable {
         long lockTimeLeft;
         long endTime;
         lockedAccount = userInfo;
-        if (userName.getText().equals(lockedAccount) ){
-            userName.setText(null);
+        if (userNameField.getText().equals(lockedAccount) ){
+            userNameField.setText(null);
             endTime = System.nanoTime();
             lockTimeLeft = (endTime - startTime);
             lockTimeLeft = TimeUnit.SECONDS.convert(lockTimeLeft, TimeUnit.NANOSECONDS);
