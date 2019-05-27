@@ -1,6 +1,6 @@
 package pust.model.database_functionality;
 
-import pust.model.utility.database_connection.DBCPDataSource;
+import pust.model.utility.AppConstant;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class SQLDatabase {
     public ArrayList<String> getSuspects() {
         ArrayList<String> userReturn = new ArrayList<>();
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             con.setAutoCommit(false);
             PreparedStatement suspectListData = con.prepareStatement(sqlSuspect());
             ResultSet rs = suspectListData.executeQuery();
@@ -42,7 +42,7 @@ public class SQLDatabase {
     public String getWantedCrime(String splitSSN) {
         StringJoiner sj = new StringJoiner(", ");
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             con.setAutoCommit(false);
             PreparedStatement suspectCrimeData = con.prepareStatement(sqlCrime());
             suspectCrimeData.setString(1, splitSSN);
@@ -80,7 +80,7 @@ public class SQLDatabase {
     public String getPolice(String splitSSN) {
         String getSSN = "";
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             con.setAutoCommit(false);
             PreparedStatement suspectCrimeData = con.prepareStatement(sqlOfficer());
             suspectCrimeData.setString(1, splitSSN);

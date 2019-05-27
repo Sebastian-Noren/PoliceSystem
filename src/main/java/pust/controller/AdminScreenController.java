@@ -220,10 +220,10 @@ public class AdminScreenController implements Initializable {
             labWarSSN.setText("SSN needs to be 12 characters!");
         }
         if (strPass.isEmpty()) {
-            labWarPass.setText("Needs a password!");
+            labWarPass.setText("Needs a passwordTextField!");
         }
         if (strConfPass.isEmpty()) {
-            labWarConfPass.setText("Confirm your password!");
+            labWarConfPass.setText("Confirm your passwordTextField!");
         }
     }
 

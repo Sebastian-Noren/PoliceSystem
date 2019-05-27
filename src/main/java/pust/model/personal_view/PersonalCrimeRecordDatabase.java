@@ -1,6 +1,6 @@
 package pust.model.personal_view;
 
-import pust.model.utility.database_connection.DBCPDataSource;
+import pust.model.utility.AppConstant;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class PersonalCrimeRecordDatabase {
     public ArrayList<CriminalRecord> getCrimeRecord(String ssn) {
         ArrayList<CriminalRecord> crimRecords = new ArrayList<>();
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             con.setAutoCommit(false);
             PreparedStatement suspectCrimeData = con.prepareStatement(sqlCrimeRecord());
             suspectCrimeData.setString(1, ssn);
