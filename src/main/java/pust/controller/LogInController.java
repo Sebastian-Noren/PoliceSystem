@@ -51,7 +51,7 @@ public class LogInController implements Initializable {
             return;
         }
         if (password.isEmpty()) {
-            passWarning.setText("Enter a passwordTextField");
+            passWarning.setText("Enter a password");
             return;
         }
 
@@ -82,7 +82,7 @@ public class LogInController implements Initializable {
     }
 
     private void passWordWarning(){
-        passWarning.setText("Incorrect username or passwordTextField");
+        passWarning.setText("Incorrect username or password");
         if (counter >= 3) {
             startTime = System.nanoTime();
             passWarning.setText(null);
