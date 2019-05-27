@@ -1,5 +1,4 @@
- package pust;
-
+package pust;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
 
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/image/icon.png"));
@@ -35,6 +33,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 }

@@ -34,6 +34,19 @@ public class LogInController implements Initializable {
 
     private LogInModel model = new LogInModel();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> logInBtn.requestFocus());
+        passWarning.setText(null);
+        userWarning.setText(null);
+        LinuxRemoteConnection.remoteConnect();
+        userName.focusedProperty().addListener((ov, oldValue, newValue) -> {
+            if (!newValue) { // focus lost
+                checkLockout();
+            }
+        });
+    }
+
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
         if (userName.getText().isEmpty()) {
@@ -77,7 +90,6 @@ public class LogInController implements Initializable {
             counter = 0;
             lockout(userName.getText());
         }
-        //if (model.passwordCounter(counter).equals("warning"))
     }
 
     // flawed but cool lock-out. To be improved.
@@ -114,19 +126,4 @@ public class LogInController implements Initializable {
         passWarning.setText(null);
         userWarning.setText(null);
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> logInBtn.requestFocus());
-        passWarning.setText(null);
-        userWarning.setText(null);
-        LinuxRemoteConnection.remoteConnect();
-        userName.focusedProperty().addListener((ov, oldValue, newValue) -> {
-            if (!newValue) { // focus lost
-                checkLockout();
-            }
-        });
-    }
 }
-
-
