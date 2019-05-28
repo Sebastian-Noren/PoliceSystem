@@ -5,7 +5,6 @@ import pust.model.entity.Person;
 import pust.model.entity.Suspect;
 import pust.model.enumerations.Build;
 import pust.model.utility.AppConstant;
-import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -76,7 +75,7 @@ public class InsertPerson {
 
         PreparedStatement pstmt = null;
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
 
             connection.setAutoCommit(false);
             pstmt = connection.prepareStatement(sqlSuspect());
@@ -108,7 +107,7 @@ public class InsertPerson {
     private void insertEmployee() {
         PreparedStatement pstmt = null;
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
 
             connection.setAutoCommit(false);
             pstmt = connection.prepareStatement(sqlEmployee());
@@ -137,7 +136,7 @@ public class InsertPerson {
     private void insertPerson() {
         PreparedStatement pstmt = null;
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
 
             connection.setAutoCommit(false);
             pstmt = connection.prepareStatement(sqlPerson());
@@ -170,7 +169,7 @@ public class InsertPerson {
         PreparedStatement connectPerson = null;
         String streetAddress = person.getAddress().getStreet().concat(" " + person.getAddress().getStreet());
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
 
             connection.setAutoCommit(false);
             address = connection.prepareStatement(sqlAddress());

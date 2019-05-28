@@ -216,7 +216,7 @@ public class AdminScreenController implements Initializable {
         if (strLastName.isEmpty()) {
             labWarLastname.setText("You need to fill out this field!");
         }
-        if (strSSN.isEmpty() || strSSN.length() < 12 || strSSN.length() > 12) {
+        if (strSSN.length() != 12) {
             labWarSSN.setText("SSN needs to be 12 characters!");
         }
         if (strPass.isEmpty()) {

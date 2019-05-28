@@ -3,13 +3,12 @@ package pust.model.database_functionality;
 import pust.model.administrative_functions.application_functions.Passport;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
-import pust.model.utility.database_connection.DBCPDataSource;
+import pust.model.utility.AppConstant;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +32,7 @@ public class HandlePassport {
     public static void addPassport(Passport passport) {
         PreparedStatement pstmt = null;
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             connection.setAutoCommit(false);
             pstmt = connection.prepareStatement(sqlAddPassport());
             pstmt.setInt(1, passport.getPassportId());
@@ -67,7 +66,7 @@ public class HandlePassport {
         int policeId = -1;
         String personalNumber = "";
 
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             pstmt = connection.prepareStatement(sqlGetPassport());
             pstmt.setString(1, visitor.getPersonalNumber().getPersonalNumber());
             ResultSet rs = pstmt.executeQuery();
