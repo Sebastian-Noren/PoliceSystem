@@ -3,6 +3,7 @@ package pust.controller.main_window;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import pust.model.administrative_functions.ReportReceipt;
 import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Employee;
@@ -96,7 +97,7 @@ public class ReportCrimeController implements Initializable {
         suspectEthnicityBox.getItems().setAll(Ethnicity.values());
     }
 
-    private void fillNotifier() throws NullPointerException {
+    private void fillNotifier() {
         notifierFirstNameField.setText(AppConstant.person.getFirstName());
         notifierLastNameField.setText(AppConstant.person.getSurname());
         notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
@@ -109,7 +110,7 @@ public class ReportCrimeController implements Initializable {
     }
 
     // TODO resolve catch
-    private void fillSuspect() throws NullPointerException {
+    private void fillSuspect() {
         try {
             suspectFirstNameField.setText(AppConstant.person2.getFirstName());
             suspectLastNameField.setText(AppConstant.person2.getSurname());
@@ -123,7 +124,6 @@ public class ReportCrimeController implements Initializable {
         } catch (NullPointerException ex) {
             AppConstant.alertBoxWarning("Alert", "Fill in missing information");
         }
-
     }
 
     private void checkWeight() throws NumberFormatException {

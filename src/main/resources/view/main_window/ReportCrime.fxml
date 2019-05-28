@@ -21,18 +21,6 @@
             <Image url="@../../image/icon.png" />
          </image>
       </ImageView>
-      <VBox layoutX="-1.0" layoutY="16.0" prefHeight="52.0" prefWidth="139.0" style="-fx-border-color: gray; -fx-border-insets: 1;">
-         <children>
-            <Label text="Case ID:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="caseIDField" prefWidth="116.0" />
-         </children>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
-      </VBox>
       <HBox alignment="CENTER" layoutX="137.0" prefHeight="66.0" prefWidth="541.0">
          <children>
             <VBox alignment="CENTER" prefHeight="66.0" prefWidth="487.0">
@@ -51,7 +39,19 @@
             </VBox>
          </children>
       </HBox>
-      <VBox layoutY="65.0" prefHeight="535.0" prefWidth="771.0" style="-fx-border-color: gray;">
+      <VBox layoutX="-1.0" layoutY="16.0" prefHeight="52.0" prefWidth="139.0" style="-fx-border-color: gray; -fx-border-insets: 1; -fx-border-width: 2;">
+         <children>
+            <Label text="Case ID:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextField fx:id="caseIDField" prefWidth="116.0" />
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutY="65.0" prefHeight="535.0" prefWidth="755.0" style="-fx-border-color: gray;">
          <children>
             <HBox prefHeight="50.0" prefWidth="764.0" spacing="10.0" style="-fx-border-color: gray;">
                <children>
