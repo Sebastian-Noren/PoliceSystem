@@ -36,12 +36,13 @@ public class StandardWindowController implements Initializable {
 
     @FXML
     private void watchPersonInfo() {
-        if (ssnTextSearch.getText().isEmpty() || ssnTextSearch.getText().length() < 12 || ssnTextSearch.getText().length() > 12) {
+        if (ssnTextSearch.getText().length() != 12) {
             labelSSN.setText("SSN needs to be 12 characters!");
             ssnTextSearch.clear();
         } else {
             String ssn = ssnTextSearch.getText().trim();
             AppConstant.person = new SelectPerson(ssn).loadPerson();
+
             if (AppConstant.person instanceof Suspect) {
                 AppConstant.suspect = (Suspect) AppConstant.person;
             } else if (AppConstant.person instanceof Employee) {

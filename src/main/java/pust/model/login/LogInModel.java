@@ -10,11 +10,14 @@ import pust.model.utility.SendMail;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class LogInModel {
-    private static BasicDataSource ds = new BasicDataSource();
+    private static final Logger LOGGER = Logger.getLogger(LogInModel.class.getName());
+
 
     private SendMail sendMail = new SendMail();
 
@@ -37,7 +40,7 @@ public class LogInModel {
                     String message = "Hello " + emailResult + ", here is your new password: test";
                     String attachment = this.getClass().getResource("/image/swepustText.png").getPath();
 
-                        sendMail.generateAndSendEmail(emailResult, subject, message, attachment);
+                    sendMail.generateAndSendEmail(emailResult, subject, message, attachment);
 
                     alertInfo("E-mail sent", "Check your inbox, we have sent you a new password");
                 } else {
@@ -84,19 +87,21 @@ public class LogInModel {
         return valid;
     }
 
-    public boolean LogInAuth(String userName, String passWordText){
-        try {
-            ds.setUrl("jdbc:mysql://localhost:4321/pustgis?&useSSL=FALSE");
-            ds.setUsername(userName);
-            ds.setPassword(passWordText);
-            //"6978f28c972457220d4e72398bb9e000"
-            ds.getConnection();
-            System.out.println("Login Successfully");
-            return true;
+    public boolean isValidUser(BasicDataSource bs, String userName, String password) {
+        bs.setUrl("jdbc:mysql://localhost:4321/pustgis?&useSSL=FALSE");
+        bs.setUsername(userName);
+        bs.setPassword(password);
+        bs.setMinIdle(5);
+        bs.setMaxIdle(10);
+        bs.setMaxOpenPreparedStatements(200);
+
+        boolean result = false;
+        try (Connection connection = bs.getConnection()) {
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return result;
     }
 }
 
