@@ -1,5 +1,4 @@
- package pust;
-
+package pust;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +16,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
         window = primaryStage;
         Image image = new Image(getClass().getResourceAsStream("/image/icon.png"));
         primaryStage.getIcons().add(image);
@@ -30,11 +28,9 @@ public class Main extends Application {
         //When someone press X
         window.setOnCloseRequest(event -> LinuxRemoteConnection.closeConnection());
         window.setOnCloseRequest(event -> System.exit(0));
-
     }
 
     public static void main(String[] args) {
         launch(args);
-
     }
 }

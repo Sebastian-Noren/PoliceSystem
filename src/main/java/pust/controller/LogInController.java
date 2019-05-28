@@ -26,11 +26,11 @@ public class LogInController implements Initializable {
     private static final Logger LOGGER = Logger.getLogger(LogInController.class.getName());
 
     @FXML
-    TextField userNameTextField, passwordTextField;
+    private TextField userNameTextField, passwordTextField;
     @FXML
-    Label userWarning, passWarning, passForgot;
+    private Label userWarning, passWarning;
     @FXML
-    Button logInBtn;
+    private Button logInBtn;
 
     private String lockedAccount;
     private String userName;
@@ -40,6 +40,21 @@ public class LogInController implements Initializable {
     private int lockDuration = 60;
 
     private LogInModel model = new LogInModel();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> logInBtn.requestFocus());
+        passWarning.setText(null);
+        userWarning.setText(null);
+        userName = userNameTextField.getText().trim();
+        password = passwordTextField.getText().trim();
+        LinuxRemoteConnection.remoteConnect();
+        userNameTextField.focusedProperty().addListener((ov, oldValue, newValue) -> {
+            if (!newValue) { // focus lost
+                checkLockout();
+            }
+        });
+    }
 
     @FXML
     private void logInBtn(ActionEvent actionEvent) {
@@ -60,10 +75,12 @@ public class LogInController implements Initializable {
         if (userName.equals("root")) {
             if (model.isValidUser(basicDataSource, userName, password)) {
                 AppConstant.dataSource = basicDataSource;
+
                 //Send you to IT-administrator
                 String strSceneFXML = "/view/AdminScreen.fxml";
                 AppConstant.switchScene(actionEvent, strSceneFXML);
             }
+
         } else if (model.isValidUser(basicDataSource, userName, password)) {
             AppConstant.dataSource = basicDataSource;
             //Sends you to mainWindow
@@ -81,7 +98,7 @@ public class LogInController implements Initializable {
         passWordWarning();
     }
 
-    private void passWordWarning(){
+    private void passWordWarning() {
         passWarning.setText("Incorrect username or password");
         if (counter >= 3) {
             startTime = System.nanoTime();
@@ -89,7 +106,6 @@ public class LogInController implements Initializable {
             counter = 0;
             lockout(userName);
         }
-        //if (model.passwordCounter(counter).equals("warning"))
     }
 
     // flawed but cool lock-out. To be improved.
@@ -97,20 +113,20 @@ public class LogInController implements Initializable {
         long lockTimeLeft;
         long endTime;
         lockedAccount = userInfo;
-        if (userName.equals(lockedAccount) ){
+        if (userNameTextField.getText().equals(lockedAccount)) {
             userNameTextField.setText(null);
             endTime = System.nanoTime();
             lockTimeLeft = (endTime - startTime);
             lockTimeLeft = TimeUnit.SECONDS.convert(lockTimeLeft, TimeUnit.NANOSECONDS);
             lockTimeLeft = lockDuration - lockTimeLeft;
             model.alertWarning("Warning", "Due to repeated failed log in attempts, " +
-                    "your account has been locked for "
+                    "your account \"" + lockedAccount + "\" has been locked for "
                     + lockDuration + " seconds. "
                     + lockTimeLeft + " seconds remaining.");
         }
     }
 
-    private void checkLockout()  {
+    private void checkLockout() {
         PauseTransition delay = new PauseTransition(Duration.seconds(lockDuration));
         lockout(lockedAccount);
         delay.setOnFinished(event -> lockedAccount = (null));
@@ -126,21 +142,4 @@ public class LogInController implements Initializable {
         passWarning.setText(null);
         userWarning.setText(null);
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> logInBtn.requestFocus());
-        passWarning.setText(null);
-        userWarning.setText(null);
-        userName = userNameTextField.getText().trim();
-        password = passwordTextField.getText().trim();
-        LinuxRemoteConnection.remoteConnect();
-        userNameTextField.focusedProperty().addListener((ov, oldValue, newValue) -> {
-            if (!newValue) { // focus lost
-                checkLockout();
-            }
-        });
-    }
 }
-
-

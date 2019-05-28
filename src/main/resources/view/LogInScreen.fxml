@@ -34,7 +34,9 @@
                         <Insets bottom="10.0" />
                     </GridPane.margin>
                 </Label>
+
                 <TextField fx:id="userNameTextField" onKeyPressed="#typingReset" prefHeight="33.0" prefWidth="221.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+
                     <font>
                         <Font size="14.0" />
                     </font>

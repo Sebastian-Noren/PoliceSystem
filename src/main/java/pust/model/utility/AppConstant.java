@@ -41,6 +41,7 @@ public class AppConstant {
     private static boolean SSN_CHECK = false;
     public static BasicDataSource dataSource;
     public static Person person;
+    public static Person person2;
     public static Suspect suspect;
     public static Employee employee;
 
@@ -374,4 +375,3 @@ public class AppConstant {
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
 }
-
