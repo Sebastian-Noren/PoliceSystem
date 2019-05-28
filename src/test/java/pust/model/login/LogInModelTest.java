@@ -3,11 +3,8 @@ package pust.model.login;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Test;
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.SQLException;
-
-import static org.junit.Assert.*;
 
 public class LogInModelTest {
 

@@ -1,7 +1,6 @@
 package pust.model.database_functionality;
 
 import pust.model.utility.AppConstant;
-import pust.model.utility.database_connection.DBCPDataSource;
 
 
 import java.sql.*;
@@ -11,7 +10,7 @@ public class AdminDatabase {
 
     public boolean insertPoliceSQL(int policeID, String strSSN, String randGenUserName, String strMail, String policeRole) {
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             Statement statement = con.createStatement();
             String prepareSQL = "INSERT INTO `"+AppConstant.getDatabaseName()+"`.`police` (`policeID`, `Person_SSN`, `username`, `e-mail`, `jobtitle`) VALUES " +
                     "('"+policeID+"', '"+strSSN+"', '"+randGenUserName+"', '"+strMail+"', '"+policeRole+"');";
@@ -26,7 +25,7 @@ public class AdminDatabase {
 
    public void createUsersSQL(String accName, String accPassText) {
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             Statement statement = con.createStatement();
             statement.executeUpdate("CREATE USER '" + accName + "'@'" + AppConstant.getDatabaseHost() + "' IDENTIFIED BY '" + accPassText + "';");
         } catch (SQLException ex) {
@@ -36,7 +35,7 @@ public class AdminDatabase {
 
    public void grantOptionsSQL(String grant, String accName) {
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             Statement statement = con.createStatement();
             statement.executeUpdate("GRANT "+grant+" ON *.* TO '" + accName + "'@'" + AppConstant.getDatabaseHost() +"';");
         } catch (SQLException ex) {
@@ -46,7 +45,7 @@ public class AdminDatabase {
 
    public void removeUsersSQL(String userToDelete) {
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             Statement statement = con.createStatement();
             statement.executeUpdate("DROP USER '"+userToDelete+"'@'" + AppConstant.getDatabaseHost() + "';");
             statement.executeUpdate("DELETE FROM `"+AppConstant.getDatabaseName()+"`.`police` WHERE (`username` = '"+userToDelete+"');");
@@ -58,7 +57,7 @@ public class AdminDatabase {
    public ArrayList<String> getUsersAdmin() {
         ArrayList<String> userReturn = new ArrayList<>();
         try {
-            Connection con = DBCPDataSource.getConnection();
+            Connection con = AppConstant.dataSource.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("SELECT user FROM mysql.user;");
 
