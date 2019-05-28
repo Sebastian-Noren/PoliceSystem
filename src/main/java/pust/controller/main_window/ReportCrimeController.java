@@ -121,7 +121,7 @@ public class ReportCrimeController implements Initializable {
             suspectGenderBox.setValue(Gender.valueOf(AppConstant.person2.getGender().toString()));
             suspectCountryField.setText(AppConstant.person.getAddress().getCountry());
         } catch (NullPointerException ex) {
-            AppConstant.alertBoxWarning("Hey", "Enter more shit");
+            AppConstant.alertBoxWarning("Alert", "Fill in missing information");
         }
 
     }
@@ -198,6 +198,6 @@ public class ReportCrimeController implements Initializable {
 
     // check if any fields are empty before confirming
     public void submitBtnPressed() {
-
+        AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
     }
 }
