@@ -407,7 +407,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    //TODO ändra detta gör det bättre!
+
     class VideoCapture extends Thread {
 
 
