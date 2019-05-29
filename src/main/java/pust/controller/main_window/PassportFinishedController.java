@@ -47,7 +47,7 @@ public class PassportFinishedController implements Initializable {
 
     //labels that are autofilled
     @FXML
-    private Label nationality, type, code, dateOfIssue, dateOfExpiry, signature, passportNbr, authority;
+    private Label nationality, type, code, dateOfIssue, dateOfExpiry, passportNbr, authority;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,7 +62,7 @@ public class PassportFinishedController implements Initializable {
         //for nationality,Code,Type
         Font font1 = Font.font("Verdana", FontWeight.BOLD, 15);
         //for signature
-        Font font2 = Font.font("Serif", FontWeight.EXTRA_LIGHT, 20);
+        //Font font2 = Font.font("Serif", FontWeight.EXTRA_LIGHT, 20);
 
         String fullname = firstname + " " + lastname;
 
@@ -80,7 +80,7 @@ public class PassportFinishedController implements Initializable {
         this.placeOfBirth.setFont(font);
         this.placeOfBirth.setText(placeOfBirth);
 
-        this.ssn.setFont(font2);
+       // this.ssn.setFont(font2);
         this.ssn.setText(ssn);
 
         this.height.setFont(font);
@@ -129,9 +129,9 @@ public class PassportFinishedController implements Initializable {
 
         //work in progress to make the text realistic if needed
         //set the font
-        signature.setFont(font2);
+       // signature.setFont(font2);
         //get the text
-        signature.setText(name.getText());
+        // signature.setText(name.getText());
 
         //Set the font
         this.authority.setFont(font1);

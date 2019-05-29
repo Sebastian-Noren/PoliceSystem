@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +21,8 @@ public class StatisticsController implements Initializable {
     private LineChart<Integer, Integer> linechart;
     @FXML
     private PieChart pieChart;
+    @FXML
+    private BarChart<String, Double> barChart;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,4 +43,8 @@ public class StatisticsController implements Initializable {
         pieChart.setLegendSide(Side.BOTTOM);
         pieChart.setLabelsVisible(true);
     }
+
+
+
+
 }
