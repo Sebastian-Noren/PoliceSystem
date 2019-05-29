@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
@@ -38,7 +39,9 @@ public class AppConstant {
     private static String CURRENT_USER = ""; //Save the current user in the program
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
     private static boolean SSN_CHECK = false;
+    public static BasicDataSource dataSource;
     public static Person person;
+    public static Person person2;
     public static Suspect suspect;
     public static Employee employee;
 
@@ -372,4 +375,3 @@ public class AppConstant {
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
 }
-

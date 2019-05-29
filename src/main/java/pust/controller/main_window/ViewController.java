@@ -55,7 +55,7 @@ public class ViewController implements Initializable {
     }
     public void searchScene(){
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/search.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Search.fxml"));
             searchPane.getChildren().removeAll();
             searchPane.getChildren().setAll(fxml);
         } catch (IOException ex) {

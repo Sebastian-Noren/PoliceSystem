@@ -187,7 +187,10 @@ public class MainFrameController implements Initializable {
                 vBox.getChildren().removeAll();
                 vBox.getChildren().setAll(fxml);
             } else {
-                AppConstant.alertBoxInformation("NO SSN", "Must enter a SSN first!");
+                AppConstant.alertBoxInformation("NO SSN", "First enter a SSN number.");
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
