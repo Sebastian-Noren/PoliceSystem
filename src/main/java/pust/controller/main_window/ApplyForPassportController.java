@@ -336,31 +336,24 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    //set date of birth based on ssn entered!
     public void automaticDateOfBirth() {
-
-        //take ssn and add it to string
+        
         String ssn = this.ssn.getText();
-        //get day
         char day = ssn.charAt(6);
         char day1 = ssn.charAt(7);
-        //take specific indexes and create a string (stringBuilder)
+
         StringBuilder day2 = new StringBuilder();
         day2.append(day);
         day2.append(day1);
-        //set our created string (stringBuilder) to a string
         String day3 = day2.toString();
 
-        //cut character at specific index of ssn and create a char of that index [cut at the month]
         char month = ssn.charAt(4);
         char month1 = ssn.charAt(5);
 
-        //take specific indexes and create a string
         StringBuilder month3 = new StringBuilder();
         month3.append(month);
         month3.append(month1);
 
-        //set our created string (stringBuilder) to a string
         String month4 = month3.toString();
 
 
@@ -413,8 +406,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
         @Override
         public void run() {
-
-            // each 30 millis a image  is taken and inserted to imageView
             while (upploadImage[0] == null) {
                 try {
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
