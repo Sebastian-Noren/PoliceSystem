@@ -260,7 +260,7 @@ public class ReportLostEntityController implements Initializable {
         return true;
     }
 
-    private void submitBtnPressed() {
+    public void submitBtnPressed() {
         if (checkEmpty()) {
             ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport(),"files/pdf/horse.pdf");
             itemReceipt.createPdf("test");
