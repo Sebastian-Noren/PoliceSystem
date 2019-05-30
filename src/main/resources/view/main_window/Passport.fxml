@@ -9,19 +9,19 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="580.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.PassportController">
    <children>
-      <ImageView fitHeight="707.0" fitWidth="853.0" layoutX="-26.0" layoutY="-45.0">
-         <image>
-            <Image url="@../../image/Converted.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="nextBtn" layoutX="681.0" layoutY="551.0" mnemonicParsing="false" text="Next" />
       <Label layoutX="196.0" layoutY="14.0" text="APPLICATION FOR A SWEDISH PASSPORT">
          <font>
             <Font size="22.0" />
          </font></Label>
+      <ImageView fitHeight="580.0" fitWidth="684.0" layoutY="-1.0">
+         <image>
+            <Image url="@../../image/Converted.jpg" />
+         </image>
+      </ImageView>
       <ImageView fx:id="iconImage" fitHeight="62.0" fitWidth="109.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/icon.png" />
          </image></ImageView>
+      <Button fx:id="nextBtn" layoutX="642.0" layoutY="527.0" mnemonicParsing="false" text="Next" />
    </children>
 </AnchorPane>
