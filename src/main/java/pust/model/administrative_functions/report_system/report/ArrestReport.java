@@ -16,7 +16,7 @@ public class ArrestReport extends BaseReport {
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
-            LocalDateTime timeAndDateOfEvent,
+            LocalDate timeAndDateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,

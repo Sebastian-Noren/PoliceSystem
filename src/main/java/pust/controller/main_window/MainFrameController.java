@@ -172,9 +172,16 @@ public class MainFrameController implements Initializable {
 
     public void ReportTab() {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Report.fxml"));
-            vBox.getChildren().removeAll();
-            vBox.getChildren().setAll(fxml);
+            if (AppConstant.isSsnCheck()) {
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/Report.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
+            } else {
+                AppConstant.alertBoxInformation("NO SSN", "First enter a SSN number.");
+                fxml = FXMLLoader.load(getClass().getResource("/view/main_window/StandardWindow.fxml"));
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(fxml);
+            }
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }

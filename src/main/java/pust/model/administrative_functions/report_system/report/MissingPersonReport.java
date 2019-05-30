@@ -20,7 +20,7 @@ public class MissingPersonReport extends BaseReport {
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
-            LocalDateTime timeAndDateOfEvent,
+            LocalDate dateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
@@ -34,7 +34,7 @@ public class MissingPersonReport extends BaseReport {
                 ref,
                 currentDate,
                 administrativeOfficer,
-                timeAndDateOfEvent,
+                dateOfEvent,
                 placeOfEvent,
                 notifier,
                 descriptionOfEvent
