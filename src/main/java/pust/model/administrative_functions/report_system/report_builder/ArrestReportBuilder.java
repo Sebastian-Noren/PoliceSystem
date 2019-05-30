@@ -13,7 +13,7 @@ public class ArrestReportBuilder extends BaseReportBuilder<ArrestReport> {
                 super.ref,
                 super.currentDate,
                 super.administrativeOfficer,
-                super.timeAndDateOfEvent,
+                super.dateOfEvent,
                 super.placeOfEvent,
                 super.notifier,
                 super.descriptionOfEvent,
