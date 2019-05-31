@@ -85,6 +85,30 @@ public class AppConstant {
         return value == 1;
     }
 
+    public static boolean isInteger(String input) {
+        if (input == null) {
+            return false;
+        }
+        int numLength = input.length();
+        if (numLength == 0) {
+            return false;
+        }
+        int check = 0;
+        if (input.charAt(0) == '-') {
+            if (check == 1) {
+                return false;
+            }
+            check = 1;
+        }
+        for (; check < numLength; check++){
+            char tmp = input.charAt(check);
+            if (tmp < '0' || tmp > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static PersonalNumber parsePersonalNumber(String ssn) {
         int year;
         int month;
@@ -119,7 +143,7 @@ public class AppConstant {
         return new PersonalNumber(year, month, day, serialNumber, controlNumber);
     }
 
-    public static String parseGenderToString(Enum gender) {
+    public static String parseGenderToString(Gender gender) {
         if (gender.equals(FEMALE)) {
             return "F";
         } else {

@@ -11,22 +11,30 @@ import pust.model.administrative_functions.report_system.report_builder.MissingI
 import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.*;
+import pust.model.entity.entity_builder.NotifierBuilder;
+import pust.model.entity.entity_builder.PoliceBuilder;
 import pust.model.enumerations.Color;
 import pust.model.enumerations.Gender;
+import pust.model.enumerations.Title;
 import pust.model.utility.AppConstant;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ReportLostEntityController implements Initializable {
 
     @FXML
-    private TextField caseIDField, eventStreetField, eventZipField, eventCityField, notifierFirstNameField,
-            notifierLastNameField, notifierSSNField, notifierStreetField, notifierZIPField, notifierCityField,
-            notifierPhoneField, notifierCountryField, manufacturerField, markingsField, materialField, modelField, productionField,
-            policeIDField, policeFirstNameField, policeLastNameField, policeRankField;
+    private TextField caseIDField,
+            eventStreetField, eventZipField, eventCityField,
+            notifierFirstNameField, notifierLastNameField, notifierSSNField,
+            notifierStreetField, notifierZIPField, notifierCityField, notifierPhoneField,
+            notifierCountryField,
+            objectTypeField, quantityField, currencyField, valueField,
+            policeIDField, policeFirstNameField, policeLastNameField;
+
     @FXML
     private TextArea characteristicsArea, areaArea;
     @FXML
@@ -36,13 +44,18 @@ public class ReportLostEntityController implements Initializable {
     @FXML
     private ChoiceBox<Color.hairColor> itemColorBox;
     @FXML
+    private ChoiceBox<Title> policeRankField;
+
+    @FXML
     private Label notifierSSNLabel;
+
+    private ArrayList<TextField> textFields;
 
     // notifier
     private String notifierFirstName = AppConstant.person.getFirstName();
     private String notifierLastName = AppConstant.person.getSurname();
     private String notifierPhone = AppConstant.person.getPhoneNumber();
-    private Enum notifierGender = AppConstant.person.getGender();
+    private Gender notifierGender = AppConstant.person.getGender();
     private Record notifierCrimeRecord = AppConstant.person.getCrimeRecord();
     private Identification notifierID = AppConstant.person.getIdentification();
     private PersonalNumber notifierSSN = AppConstant.person.getPersonalNumber();
@@ -66,7 +79,7 @@ public class ReportLostEntityController implements Initializable {
     private int officerHeight = AppConstant.employee.getHeight();
     private Identification officerIdentification = AppConstant.employee.getIdentification();
     private String officerPhoneNumber = AppConstant.employee.getPhoneNumber();
-    private Enum officerGender = AppConstant.employee.getGender();
+    private Gender officerGender = AppConstant.employee.getGender();
     private boolean officerIsWanted = AppConstant.employee.isWanted();
     private boolean officerIsMissing = AppConstant.employee.isMissing();
     private boolean officerInCustody = AppConstant.employee.isInCustody();
@@ -84,10 +97,12 @@ public class ReportLostEntityController implements Initializable {
         notifierSSNLabel.setVisible(false);
         notifierGenderBox.getItems().setAll(Gender.values());
         itemColorBox.getItems().setAll(Color.hairColor.values());
+        policeRankField.getItems().setAll(Title.values());
         caseIDField.setText(String.valueOf(ThreadLocalRandom.current().nextInt(100000, 999999)));
         if (AppConstant.person != null) {
             notifierSSNField.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
         }
+        addTextFieldsToList();
     }
 
     public void notifierAutoBtnPressed() {
@@ -108,6 +123,13 @@ public class ReportLostEntityController implements Initializable {
         }
     }
 
+    public void submitBtnPressed() {
+        if (isEmpty()) {
+            ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport(), "files/pdf/horse.pdf");
+            AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
+        }
+    }
+
     private void setPoliceInfo() {
         SQLDatabase sqlDatabase = new SQLDatabase();
         String ssn = sqlDatabase.getPolice(AppConstant.getCurrentUser());
@@ -120,7 +142,6 @@ public class ReportLostEntityController implements Initializable {
             policeFirstNameField.setText(officerFirstName);
             policeLastNameField.setText(person.getSurname());
             policeIDField.setText(String.valueOf(employee.getId()));
-            policeRankField.setText(employee.getTitle().toString());
         } catch (NullPointerException ex) {
             AppConstant.alertBoxInformation("Alert", "Enter ID");
         }
@@ -141,35 +162,31 @@ public class ReportLostEntityController implements Initializable {
         // report
         String characteristics = characteristicsArea.getText();
         String area = areaArea.getText();
-        String productionNumber = productionField.getText();
-        String model = modelField.getText();
-        String material = materialField.getText();
-        String manufacturer = manufacturerField.getText();
-        String marking = markingsField.getText();
+        String productionNumber = valueField.getText();
+        String model = currencyField.getText();
+        String manufacturer = objectTypeField.getText();
+        String marking = quantityField.getText();
         String caseID = caseIDField.getText();
         LocalDate currentDate = reportDatePick.getValue();
         LocalDate eventDate = missingDatePick.getValue();
         Enum color = itemColorBox.getValue();
-
-        // TODO see so that only numbers can be entered in ZIP
-        // event address
+        Title officerTitle = policeRankField.getValue();
         String eventStreet = eventStreetField.getText();
-        int eventZip = Integer.parseInt(eventZipField.getText());
+        int eventZip = 0;
+        if (AppConstant.isInteger(eventZipField.getText())) {
+            eventZip = Integer.parseInt(eventZipField.getText());
+        } else {
+            AppConstant.alertBoxWarning("Wrong format", "Zip code can only contain numbers");
+        }
         String eventCity = eventCityField.getText();
         Address eventAddress = new Address(eventStreet, eventZip, eventCity, country);
-
-        Notifier notifier = new Notifier(notifierFirstName, notifierLastName, notifierSSN, notifierAddress, notifierCrimeRecord, notifierHeight,
-                notifierID, notifierPhone, notifierGender, notifierWanted, notifierMissing, notifierCustody, notifierSuspect);
-
-        Police police = new Police(officerFirstName, officerSurname, officerPersonalNumber, officerAddress, officerCrimeRecord, officerHeight, officerIdentification,
-                officerPhoneNumber, officerGender, officerIsWanted, officerIsMissing, officerInCustody, officerIsSuspect, officerSalary, officerTitle,
-                officerId, officerUserName, officerPassword, officerEmail);
+        Notifier notifier = createNotifier();
+        Police police = createPolice();
 
         return (MissingItemReport) new MissingItemReportBuilder()
                 .withSpecificCharacteristics(characteristics)
                 .withProductionNumber(productionNumber)
                 .withModel(model)
-                .withMaterial(material)
                 .withMarking(marking)
                 .withManufacturer(manufacturer)
                 .withColor(color)
@@ -183,88 +200,80 @@ public class ReportLostEntityController implements Initializable {
                 .build();
     }
 
-    private boolean checkEmpty() {
-
-        StringBuilder empty = new StringBuilder();
-
-        // Confirms fields are filled out
-        if (caseIDField.getText().trim().isEmpty()) {
-            empty.append("Enter a case ID.\n");
+    private boolean isEmpty() {
+        boolean hasData = true;
+        for (int i = 0; i < textFields.size(); i++) {
+            if (textFields.get(i) == null) {
+                AppConstant.alertBoxWarning("Empty", "Enter "
+                        + textFields.get(i).getPromptText().toLowerCase());
+                hasData = false;
+            }
         }
-        if (reportDatePick.getValue() == null) {
-            empty.append("Enter date reported.\n");
-        }
-        if (missingDatePick.getValue() == null) {
-            empty.append("Enter a date occured.\n");
-        }
-        if (eventStreetField.getText().trim().isEmpty()) {
-            empty.append("Enter a street address of event.\n");
-        }
-        if (eventCityField.getText().trim().isEmpty()) {
-            empty.append("Enter the city of the event.\n");
-        }
-        if (eventZipField.getText().trim().isEmpty()) {
-            empty.append("Enter the ZIP code of the event.\n");
-        }
-        if (notifierFirstNameField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers first name.\n");
-        }
-        if (notifierLastNameField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers last name.\n");
-        }
-        if (notifierPhoneField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers phone number.\n");
-        }
-        if (notifierGenderBox.toString().trim().isEmpty()) {
-            empty.append("Enter the notifiers gender.\n");
-        }
-        if (notifierStreetField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers street address.\n");
-        }
-        if (notifierZIPField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers zip number.\n");
-        }
-        if (notifierCountryField.getText().trim().isEmpty()) {
-            empty.append("Enter the notifiers country.\n");
-        }
-        if (characteristicsArea.getText().trim().isEmpty()) {
-            empty.append("Enter the characteristics of the item.\n");
-        }
-        if (areaArea.getText().trim().isEmpty()) {
-            empty.append("Enter the area of use of the item.\n");
-        }
-        if (manufacturerField.getText().trim().isEmpty()) {
-            empty.append("Enter the manufacturer of the item.\n");
-        }
-        if (markingsField.getText().trim().isEmpty()) {
-            empty.append("Enter the items markings.\n");
-        }
-        if (materialField.getText().trim().isEmpty()) {
-            empty.append("Enter the items material.\n");
-        }
-        if (modelField.getText().trim().isEmpty()) {
-            empty.append("Enter the items model.\n");
-        }
-        if (productionField.getText().trim().isEmpty()) {
-            empty.append("Enter the items production number.\n");
-        }
-        if (itemColorBox.toString().trim().isEmpty()) {
-            empty.append("Enter the items color.\n");
-        }
-
-        // If missing information is found, show the error messages and return false
-        if (empty.length() > 0) {
-            AppConstant.alertBoxWarning("Empty", empty.toString());
-            return false;
-        }
-        return true;
+        return hasData;
     }
 
-    public void submitBtnPressed() {
-        if (checkEmpty()) {
-            ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport(),"files/pdf/horse.pdf");
-            itemReceipt.createPdf("test");
-            AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
-        }
+    private void addTextFieldsToList() {
+        textFields = new ArrayList<>();
+        textFields.add(caseIDField);
+        textFields.add(eventStreetField);
+        textFields.add(eventZipField);
+        textFields.add(eventCityField);
+        textFields.add(notifierFirstNameField);
+        textFields.add(notifierLastNameField);
+        textFields.add(notifierSSNField);
+        textFields.add(notifierStreetField);
+        textFields.add(notifierZIPField);
+        textFields.add(notifierCityField);
+        textFields.add(notifierPhoneField);
+        textFields.add(notifierCountryField);
+        textFields.add(objectTypeField);
+        textFields.add(quantityField);
+        textFields.add(currencyField);
+        textFields.add(valueField);
+        textFields.add(policeIDField);
+        textFields.add(policeFirstNameField);
+        textFields.add(policeLastNameField);
+    }
+
+    private Notifier createNotifier() {
+        return (Notifier) new NotifierBuilder()
+                .withFirstName(notifierFirstName)
+                .withSurname(notifierLastName)
+                .withPersonalNumber(notifierSSN)
+                .withAddress(notifierAddress)
+                .withCrimeRecord(notifierCrimeRecord)
+                .withHeight(notifierHeight)
+                .withIdentification(notifierID)
+                .withPhoneNumber(notifierPhone)
+                .withGender(notifierGender)
+                .isWanted(notifierWanted)
+                .isMissing(notifierMissing)
+                .inCustody(notifierCustody)
+                .isSuspect(notifierSuspect)
+                .build();
+    }
+
+    private Police createPolice() {
+        return (Police) new PoliceBuilder()
+                .withSalary(officerSalary)
+                .withTitle(officerTitle)
+                .withId(officerId)
+                .withUserName(officerUserName)
+                .withPassword(officerPassword)
+                .withEmail(officerEmail)
+                .withFirstName(officerFirstName)
+                .withSurname(officerSurname)
+                .withPersonalNumber(officerPersonalNumber)
+                .withAddress(officerAddress)
+                .withCrimeRecord(officerCrimeRecord)
+                .withHeight(officerHeight)
+                .withIdentification(officerIdentification)
+                .withPhoneNumber(officerPhoneNumber)
+                .withGender(officerGender)
+                .isWanted(officerIsWanted)
+                .isMissing(officerIsMissing)
+                .inCustody(officerInCustody)
+                .isSuspect(notifierSuspect)
+                .build();
     }
 }
