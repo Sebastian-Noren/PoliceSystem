@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="700.0" minWidth="781.0" prefHeight="700.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
+<BorderPane minHeight="700.0" minWidth="752.0" prefHeight="700.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ReportArrestInCustodyController">
    <top>
-      <HBox prefHeight="36.0" prefWidth="781.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="64.0" prefWidth="752.0" BorderPane.alignment="CENTER">
          <children>
-            <Region prefHeight="200.0" prefWidth="200.0" />
-            <VBox prefHeight="81.0" prefWidth="803.0">
+            <Region prefHeight="60.0" prefWidth="102.0" />
+            <VBox prefHeight="55.0" prefWidth="559.0">
                <children>
                   <Label fx:id="pustLabel" alignment="CENTER" prefHeight="39.0" prefWidth="814.0" text="PUST GRAPHICAL INTERFACE SYSTEM">
                      <font>
@@ -32,8 +32,11 @@
                      </font>
                   </Label>
                </children>
+               <HBox.margin>
+                  <Insets left="20.0" top="5.0" />
+               </HBox.margin>
             </VBox>
-            <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="69.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/icon.png" />
                </image>
@@ -45,7 +48,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../basicStyleSheet.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="565.0" prefWidth="709.0" stylesheets="@../basicStyleSheet.css" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="52.0" prefWidth="800.0" spacing="10.0" style="-fx-border-color: gray;">
                <children>
@@ -58,6 +61,12 @@
                         <Insets bottom="10.0" left="10.0" />
                      </padding>
                   </VBox>
+                  <VBox prefHeight="52.0" prefWidth="118.0">
+                     <children>
+                        <Label text="SSN:" />
+                        <TextField fx:id="suspectSSNField" />
+                     </children>
+                  </VBox>
                   <VBox prefHeight="52.0" prefWidth="183.0">
                      <children>
                         <Label text="Last Name:" />
@@ -68,12 +77,6 @@
                      <children>
                         <Label text="First Name:" />
                         <TextField fx:id="suspectFirstNameField" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="52.0" prefWidth="118.0">
-                     <children>
-                        <Label text="SSN:" />
-                        <TextField fx:id="suspectSSNField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="52.0" prefWidth="94.0">

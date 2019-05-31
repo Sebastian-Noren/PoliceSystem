@@ -41,9 +41,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
     private ImageView iconImage;
     @FXML
     private TextField videoStatus;
-    @FXML
-    private Button paus;
-
     public DetectMotion detectMotion = new DetectMotion();
 
 
@@ -121,6 +118,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
             System.out.println("Camera not found");
         }
 
+        upploadImage[0] = null;
         //set with and height of our cam to the size of our imageView
         webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
         webcam.open();
@@ -128,7 +126,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         VideoCapture videoCapture = new VideoCapture();
         videoCapture.start();
 
-        videoCapture.status(true);
 //         Start camera capture
         new VideoCapture().start();
 
@@ -161,7 +158,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 Image myCaptured = SwingFXUtils.toFXImage(image, null);
 
                 upploadImage[0] = myCaptured;
-               // webcam.close();
+                webcam.close();
 
                 Log log = new Log();
                 log.saveToFile("IMAGE CAPTURED");
@@ -170,18 +167,24 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    public void paus() {
-
+    public void stopCam() {
 
         if (webcam.open()) {
 
-            //stop detecting motion
+            BufferedImage image = webcam.getImage();
+            Image myCaptured = SwingFXUtils.toFXImage(image, null);
+
+            upploadImage[0] = myCaptured;
+
+//            upploadImage[0] = null;
+
+//            //stop detecting motion
             detectMotion.t.stop();
-            //stop video capture
 
 //        videoCapture.status(false);
             //stop webcam
             webcam.close();
+
         }
 
 
@@ -201,8 +204,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void upploadImage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
-
         //upload image
         FileChooser fileChooser = new FileChooser();
         File selectedImage = fileChooser.showOpenDialog(null);
@@ -335,31 +336,24 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    //set date of birth based on ssn entered!
     public void automaticDateOfBirth() {
-
-        //take ssn and add it to string
+        
         String ssn = this.ssn.getText();
-        //get day
         char day = ssn.charAt(6);
         char day1 = ssn.charAt(7);
-        //take specific indexes and create a string (stringBuilder)
+
         StringBuilder day2 = new StringBuilder();
         day2.append(day);
         day2.append(day1);
-        //set our created string (stringBuilder) to a string
         String day3 = day2.toString();
 
-        //cut character at specific index of ssn and create a char of that index [cut at the month]
         char month = ssn.charAt(4);
         char month1 = ssn.charAt(5);
 
-        //take specific indexes and create a string
         StringBuilder month3 = new StringBuilder();
         month3.append(month);
         month3.append(month1);
 
-        //set our created string (stringBuilder) to a string
         String month4 = month3.toString();
 
 
@@ -406,15 +400,13 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-    //TODO ändra detta gör det bättre!
+
     class VideoCapture extends Thread {
-        private boolean status = true;
+
 
         @Override
         public void run() {
-
-            // each 30 millis a image  is taken and inserted to imageView
-            while (status != false) {
+            while (upploadImage[0] == null) {
                 try {
                     imageView.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                     sleep(30);
@@ -422,11 +414,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 } catch (InterruptedException e) {
 
                 }
-            }
-        }
 
-        public void status(boolean state) {
-            status = state;
+            }
+
 
         }
     }

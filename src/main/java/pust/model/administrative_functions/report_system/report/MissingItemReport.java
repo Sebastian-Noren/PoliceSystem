@@ -23,10 +23,11 @@ public class MissingItemReport extends BaseReport {
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
-            LocalDateTime timeAndDateOfEvent,
+            LocalDate dateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
+            String manufacturer,
             String areaOfUse,
             String model,
             String productionNumber,
@@ -40,11 +41,12 @@ public class MissingItemReport extends BaseReport {
                 ref,
                 currentDate,
                 administrativeOfficer,
-                timeAndDateOfEvent,
+                dateOfEvent,
                 placeOfEvent,
                 notifier,
                 descriptionOfEvent
         );
+        this.manufacturer = manufacturer;
         this.areaOfUse = areaOfUse;
         this.model = model;
         this.productionNumber = productionNumber;

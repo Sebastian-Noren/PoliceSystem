@@ -3,15 +3,13 @@ package pust.controller.main_window;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import pust.model.administrative_functions.ReportReceipt;
+import pust.model.administrative_functions.report_system.report_builder.CrimeReportBuilder;
 import pust.model.database_functionality.SQLDatabase;
 import pust.model.database_functionality.SelectPerson;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.enumerations.*;
 import pust.model.utility.AppConstant;
-
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
@@ -47,6 +45,8 @@ public class ReportCrimeController implements Initializable {
     private ChoiceBox<Ethnicity> suspectEthnicityBox;
     @FXML
     private Label notifierSSNLabel, suspectSSNLabel;
+
+    CrimeReportBuilder crimeReport = new CrimeReportBuilder();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -198,6 +198,10 @@ public class ReportCrimeController implements Initializable {
 
     // check if any fields are empty before confirming
     public void submitBtnPressed() {
+        crimeReport.theNotifier(AppConstant.person);
+
+
+
         AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
     }
 }
