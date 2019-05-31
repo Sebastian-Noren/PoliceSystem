@@ -24,36 +24,32 @@ import java.util.logging.Logger;
 
 public class ItemReportReceipt {
     private static final Logger LOGGER = Logger.getLogger(ItemReportReceipt.class.getName());
-    private String pdfFile = "src/main/resources/files/pdf/crime_receipt_draft_1.pdf";
     private static final String pustLogo = "src/main/resources/image/swepustlogo2.png";
     private float[] headerColumnWidth = {100F};
     private float[] reportTableWidth = {250F, 250F};
     private MissingItemReport missingItemReport;
     private DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public ItemReportReceipt() {
-        createPdf(pdfFile);
-    }
-
     public ItemReportReceipt(MissingItemReport missingItemReport) {
         this.missingItemReport = missingItemReport;
         createPdf("src/main/resources/files/pdf/" + missingItemReport.getRef() + ".pdf");
     }
 
-    public ItemReportReceipt(MissingItemReport missingItemReport, String filePath) {
-        this.missingItemReport = missingItemReport;
-        createPdf(filePath);
-    }
+//    public ItemReportReceipt(MissingItemReport missingItemReport, String filePath) {
+//        this.missingItemReport = missingItemReport;
+//        createPdf(filePath);
+//    }
 
-    public void createPdf(String fileName) {
+    private void createPdf(String fileName) {
 
         //Setup the pdf document
         PdfWriter writer = null;
         try {
-            writer = new PdfWriter(pdfFile);
+            writer = new PdfWriter(fileName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         assert writer != null;
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
@@ -103,7 +99,7 @@ public class ItemReportReceipt {
                 "Time of report: " + LocalDateTime.now().format(dateTimeFormat) + "\n");
         timeWhenReported.setFontSize(8F);
         timeWhenReported.setMarginBottom(-20F);
-        Paragraph ref = new Paragraph("Reference:\n" + "I-12-10789202-13\n");
+        Paragraph ref = new Paragraph("Reference:\n" + missingItemReport.getRef() + "\n");
         Paragraph pageNumbers = new Paragraph(
                 "Page:\n" + page + "[" + pdf.getNumberOfPages() + "]");
 
@@ -190,7 +186,7 @@ public class ItemReportReceipt {
         reportInfoTable.addCell(reportC11);
 
         Cell reportC12 = new Cell();
-        reportC12.add("I-12-10789202-13");
+        reportC12.add(missingItemReport.getRef());
         reportC12.setBorder(Border.NO_BORDER);
         reportInfoTable.addCell(reportC12);
 
@@ -316,7 +312,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c11);
 
         Cell c12 = new Cell();
-        c12.add("Motorcycle");
+        c12.add(missingItemReport.getManufacturer());
         c12.setBorder(Border.NO_BORDER);
         objectTable.addCell(c12);
 
@@ -326,7 +322,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c21);
 
         Cell c22 = new Cell();
-        c22.add("1");
+        c22.add(missingItemReport.getMarking());
         c22.setBorder(Border.NO_BORDER);
         objectTable.addCell(c22);
 
@@ -336,7 +332,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c31);
 
         Cell c32 = new Cell();
-        c32.add("Sweden - SEK");
+        c32.add(missingItemReport.getModel());
         c32.setBorder(Border.NO_BORDER);
         objectTable.addCell(c32);
 
@@ -346,7 +342,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c41);
 
         Cell c42 = new Cell();
-        c42.add("145 000");
+        c42.add(missingItemReport.getProductionNumber());
         c42.setBorder(Border.NO_BORDER);
         objectTable.addCell(c42);
         document.add(objectTable);
@@ -368,7 +364,7 @@ public class ItemReportReceipt {
         locationTable.addCell(c11);
 
         Cell c12 = new Cell();
-        c12.add("Germany");
+        c12.add(missingItemReport.getPlaceOfEvent().getCountry());
         c12.setBorder(Border.NO_BORDER);
         locationTable.addCell(c12);
 
@@ -378,7 +374,7 @@ public class ItemReportReceipt {
         locationTable.addCell(c21);
 
         Cell c22 = new Cell();
-        c22.add("Berlin");
+        c22.add(missingItemReport.getPlaceOfEvent().getCity());
         c22.setBorder(Border.NO_BORDER);
         locationTable.addCell(c22);
 
@@ -388,7 +384,7 @@ public class ItemReportReceipt {
         locationTable.addCell(c31);
 
         Cell c32 = new Cell();
-        c32.add("Weydemeyerstraße 106");
+        c32.add(missingItemReport.getPlaceOfEvent().getStreet());
         c32.setBorder(Border.NO_BORDER);
         locationTable.addCell(c32);
 
@@ -405,16 +401,6 @@ public class ItemReportReceipt {
         document.add(addLine());
 
         Table descriptionTable = new Table(reportTableWidth);
-        Cell c11 = new Cell();
-        c11.add("Environment");
-        c11.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c11);
-
-        Cell c12 = new Cell();
-        c12.add("By the gas station");
-        c12.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c12);
-
         Cell c21 = new Cell();
         c21.add("Time of event");
         c21.setBold();
@@ -422,7 +408,7 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c21);
 
         Cell c22 = new Cell();
-        c22.add("");
+        c22.add(missingItemReport.getDateOfEvent().toString());
         c22.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c22);
 
@@ -432,7 +418,7 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c31);
 
         Cell c32 = new Cell();
-        c32.add("2018-06-28 17:00");
+        c32.add("");
         c32.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c32);
 
@@ -442,7 +428,7 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c41);
 
         Cell c42 = new Cell();
-        c42.add("2018-06-28 17:30");
+        c42.add("");
         c42.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c42);
 
@@ -452,7 +438,7 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c51);
 
         Cell c52 = new Cell();
-        c52.add("Theft");
+        c52.add("Lost the item");
         c52.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c52);
 
@@ -462,8 +448,7 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c61);
 
         Cell c62 = new Cell();
-        c62.add("The vehicle was parked outside a gas station and someone " +
-                "stole the bike when the victim was in the station.");
+        c62.add(missingItemReport.getSpecificCharacteristics());
         c62.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c62);
 
@@ -473,19 +458,9 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c71);
 
         Cell c72 = new Cell();
-        c72.add("John Doe");
+        c72.add("None");
         c72.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c72);
-
-        Cell c81 = new Cell();
-        c81.add("Tracks");
-        c81.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c81);
-
-        Cell c82 = new Cell();
-        c82.add("The thief dropped a wallet next to the bike.");
-        c82.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c82);
 
         document.add(descriptionTable);
     }

@@ -3,6 +3,7 @@ package pust.model.entity;
 import pust.model.administrative_functions.application_functions.Identification;
 import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
+import pust.model.enumerations.Gender;
 
 public class Notifier extends Person {
 
@@ -15,7 +16,7 @@ public class Notifier extends Person {
             int height,
             Identification identification,
             String phoneNumber,
-            Enum gender,
+            Gender gender,
             boolean isWanted,
             boolean isMissing,
             boolean inCustody,
