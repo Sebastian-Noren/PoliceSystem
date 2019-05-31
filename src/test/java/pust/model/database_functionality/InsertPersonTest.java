@@ -2,7 +2,12 @@ package pust.model.database_functionality;
 
 import org.junit.Test;
 import pust.model.enumerations.PersonType;
+
 import pust.model.utility.random_generator.person.RandomPerson;
+
+
+import pust.model.utility.LinuxRemoteConnection;
+import static org.junit.Assert.*;
 
 /*
  * This class tests the functionality of the InsertPerson class. The purpose
@@ -16,19 +21,21 @@ public class InsertPersonTest {
 
     @Test
     public void addRandomSuspectToDatabase() {
+        LinuxRemoteConnection.remoteConnect();
        // LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.SUSPECT).generateRandomPerson());
     }
 
     @Test
     public void addRandomPoliceToDatabase() {
+        LinuxRemoteConnection.remoteConnect();
       //  LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
         InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.POLICE).generateRandomPerson());
     }
 
     @Test
     public void addRandomPersonToDatabase() {
-    //    LinuxRemoteConnection.remoteConnect(userName.getText(), passWord.getText());
+        LinuxRemoteConnection.remoteConnect();
         InsertPerson insertPerson = new InsertPerson(new RandomPerson(PersonType.NOTIFIER).generateRandomPerson());
     }
 

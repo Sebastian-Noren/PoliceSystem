@@ -123,22 +123,27 @@ public class MainFrameController implements Initializable {
     }
 
     public void openChoiceBox() {
+        notify = 0;
+        notifyLabelNumber.setText(String.valueOf(notify));
+
         choiceBox.show();
         choiceBox.getSelectionModel().selectedItemProperty().addListener((V, oldValue, newValue) -> {
 
+
+
+
             if (choiceBox.getValue().equals("Aggravated assault")) {
+                //notify--;
+                //notifyLabelNumber.setText(String.valueOf(notify));
 
-
-                notifyLabelNumber.setText(String.valueOf(2));
                 GoogleMapsController.goToCrimeLocation("Aggravated");
 
                 choiceBox.getItems().remove("Aggravated assault");
 
 
             } else if (choiceBox.getValue().equals("Vandalism")) {
-
-
-                notifyLabelNumber.setText(String.valueOf(1));
+                //notify--;
+                //notifyLabelNumber.setText(String.valueOf(notify));
 
 
                 GoogleMapsController.goToCrimeLocation("Vandalism");
@@ -146,9 +151,8 @@ public class MainFrameController implements Initializable {
                 choiceBox.getItems().remove("Vandalism");
 
             } else if (choiceBox.getValue().equals("Theft")) {
-
-
-                notifyLabelNumber.setText(String.valueOf(0));
+                //notify--;
+                //notifyLabelNumber.setText(String.valueOf(notify));
 
                 GoogleMapsController.goToCrimeLocation("Theft");
 
@@ -221,21 +225,17 @@ public class MainFrameController implements Initializable {
     public void scrollText(String crimeDescription) {
         RandomCrimeSpot randomCrimeSpot = new RandomCrimeSpot();
         i++;
+        notify++;
+        notifyLabelNumber.setText(String.valueOf(notify));
         switch (i) {
             case 1:
                 notifyLabelNumber.setVisible(true);
-                notify++;
-                notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[0].getTitle());
                 break;
             case 2:
-                notify++;
-                notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[1].getTitle());
                 break;
             case 3:
-                notify++;
-                notifyLabelNumber.setText(String.valueOf(notify));
                 choiceBox.getItems().add(randomCrimeSpot.getCrimeMark()[2].getTitle());
                 break;
         }
