@@ -27,14 +27,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.*;
 
+import static pust.model.utility.AppConstant.person;
+
 public class ApplyForPassportController extends Thread implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
-    //will be autofilled later
     @FXML
     private TextField firstName, lastName, dateOfBirth, sex, placeOfBirth, ssn, height, hairColor, eyeColor, weight;
-    //auto filled
     @FXML
     private TextField nationality, type, code, dateOfIssue, dateOfExpiry, authority, passportNbr;
     @FXML
@@ -42,14 +42,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
     @FXML
     private TextField videoStatus;
     public DetectMotion detectMotion = new DetectMotion();
-
-
     public Webcam webcam;
     public ImageView imageView;
-
-    //upload image
     private Image[] upploadImage = new Image[1];
-    //place of birth
     private String[] birthPlace = new String[10];
 
 
@@ -58,19 +53,16 @@ public class ApplyForPassportController extends Thread implements Initializable 
         SecureRandom secureRandom = new SecureRandom();
 
         ssn.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
-
         videoStatus.setStyle("-fx-border-style: solid inside; ");
         videoStatus.setStyle("-fx-border-width: 2; ");
         videoStatus.setStyle("-fx-border-insets: 5;");
         videoStatus.setStyle("-fx-border-radius: 5;");
         videoStatus.setStyle("-fx-border-color:white; ");
 
-        //get our default cam
         webcam = webcam.getDefault();
 
-        //fill array with places
         automaticBirthPlace();
-        //set random place
+
         placeOfBirth.setText(birthPlace[secureRandom.nextInt(birthPlace.length)]);
 
         Image image = new Image("image/icon.png");
@@ -80,64 +72,54 @@ public class ApplyForPassportController extends Thread implements Initializable 
         type.setText("P");
         code.setText("SWE");
 
-        //get current date
         Calendar currentDate = Calendar.getInstance();
-        //today's date
         Date date = new Date();
         currentDate.setTime(date);
-        //format we show it as
         DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd");
-        //set the current date
         dateOfIssue.setText(dateFormat.format(date.getTime()));
 
         currentDate.add(Calendar.YEAR, 5);
-        //we get the date + 5 years we added
         dateOfExpiry.setText(dateFormat.format(currentDate.getTime()));
-        //set authority text
         authority.setText("P.G.I.S");
 
-        //generate random passport number
         int numberFrom = 1000000;
         int numberTo = 100000000;
         int randomnbr = secureRandom.nextInt(numberTo - numberFrom) + numberFrom;
 
         passportNbr.setText(String.valueOf(randomnbr));
 
-        //TODO fix
-        //When we auto fill ssn then we will activate the method
-        //but for now we need to type in the information manually.
-        ssn.setOnMouseClicked(e -> {
-            automaticDateOfBirth();
-            automaticGender();
-        });
+        sex.setText(person.getGender().toString());
+        dateOfBirth.setText(AppConstant.dateOfBirth(person.getPersonalNumber().getPersonalNumber()));
+        firstName.setText(AppConstant.person.getFirstName());
+        lastName.setText(AppConstant.person.getSurname());
+
     }
 
     public void startCam() {
+        if (!webcam.isOpen()) {
 
-        if (webcam == null) {
-            System.out.println("Camera not found");
+            if (webcam == null) {
+                System.out.println("Camera not found");
+            }
+            upploadImage[0] = null;
+            webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
+            webcam.open();
+
+
+
+            VideoCapture videoCapture = new VideoCapture();
+            videoCapture.start();
+
+            new VideoCapture().start();
+            detectMotion.motionDetected(videoStatus);
+
+            Log log = new Log();
+            log.saveToFile("OPENED WEBCAM");
+        } else {
+            System.err.println("WEBCAM ALREADY ON");
         }
 
-        upploadImage[0] = null;
-        //set with and height of our cam to the size of our imageView
-        webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
-        webcam.open();
-
-        VideoCapture videoCapture = new VideoCapture();
-        videoCapture.start();
-
-//         Start camera capture
-        new VideoCapture().start();
-
-//        checks our motion
-        detectMotion.motionDetected(videoStatus);
-
-        Log log = new Log();
-        log.saveToFile("OPENED WEBCAM");
-
-
     }
-
 
     public void captureImage() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -145,7 +127,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         alert.setHeaderText("CANNOT TAKE IMAGE WHILE MOVING!");
         alert.setContentText("PUST is unable to capture image since target is moving, in order to avoid blurry" +
                 " photos the applicant needs to stand still, please try again!");
-
 
         switch (videoStatus.getText()) {
             case "PLEASE STAND STILL":
@@ -163,30 +144,19 @@ public class ApplyForPassportController extends Thread implements Initializable 
                 Log log = new Log();
                 log.saveToFile("IMAGE CAPTURED");
                 break;
-
         }
     }
 
     public void stopCam() {
-
         if (webcam.open()) {
-
             BufferedImage image = webcam.getImage();
             Image myCaptured = SwingFXUtils.toFXImage(image, null);
-
             upploadImage[0] = myCaptured;
-
-//            upploadImage[0] = null;
-
-//            //stop detecting motion
             detectMotion.t.stop();
 
-//        videoCapture.status(false);
-            //stop webcam
             webcam.close();
 
         }
-
 
     }
 
@@ -213,10 +183,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
             FileInputStream fileInputStream = new FileInputStream(uploadedImage.get(0));
             Image image1 = new Image(fileInputStream, 160, 194, false, false);
 
-            //insert uploaded image to array
             upploadImage[0] = image1;
 
-            //get uploaded file
             switch (uploadedImage.get(0).getName()) {
                 case "woman1.jpg":
                     this.height.setText("164");
@@ -258,12 +226,10 @@ public class ApplyForPassportController extends Thread implements Initializable 
         }
     }
 
-
     public void next() {
         if (upploadImage[0] != null && firstName.getText() != null && lastName.getText() != null && ssn.getText() != null && dateOfBirth.getText() != null
                 && sex.getText() != null && placeOfBirth.getText() != null && height.getText() != null && hairColor.getText() != null && eyeColor.getText() != null
                 && weight.getText() != null) {
-
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_window/PassportFinished.fxml"));
@@ -322,7 +288,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         birthPlace[9] = place9;
     }
 
-
     public void automaticGender() {
         String gender = this.ssn.getText();
         char gender1 = gender.charAt(10);
@@ -337,7 +302,10 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void automaticDateOfBirth() {
-        
+
+        dateOfBirth.setText(AppConstant.dateOfBirth(person.getPersonalNumber().getPersonalNumber()));
+
+
         String ssn = this.ssn.getText();
         char day = ssn.charAt(6);
         char day1 = ssn.charAt(7);
@@ -355,7 +323,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
         month3.append(month1);
 
         String month4 = month3.toString();
-
 
         switch (month4) {
             case "01":
