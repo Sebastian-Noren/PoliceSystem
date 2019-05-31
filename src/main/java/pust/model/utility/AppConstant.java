@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.dbcp2.BasicDataSource;
 import pust.model.entity.Employee;
 import pust.model.entity.Person;
 import pust.model.entity.PersonalNumber;
@@ -38,7 +39,9 @@ public class AppConstant {
     private static String CURRENT_USER = ""; //Save the current user in the program
     public static String SAVE_FOLDER_PATH = "src/pust/images/";
     private static boolean SSN_CHECK = false;
+    public static BasicDataSource dataSource;
     public static Person person;
+    public static Person person2;
     public static Suspect suspect;
     public static Employee employee;
 
@@ -74,8 +77,36 @@ public class AppConstant {
         return serialNumber % 2 == 0;
     }
 
+    public static boolean isLeapYear(int year) {
+        return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));
+    }
+
     public static boolean parseToBoolean(int value) {
         return value == 1;
+    }
+
+    public static boolean isInteger(String input) {
+        if (input == null) {
+            return false;
+        }
+        int numLength = input.length();
+        if (numLength == 0) {
+            return false;
+        }
+        int check = 0;
+        if (input.charAt(0) == '-') {
+            if (check == 1) {
+                return false;
+            }
+            check = 1;
+        }
+        for (; check < numLength; check++){
+            char tmp = input.charAt(check);
+            if (tmp < '0' || tmp > '9') {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static PersonalNumber parsePersonalNumber(String ssn) {
@@ -112,7 +143,7 @@ public class AppConstant {
         return new PersonalNumber(year, month, day, serialNumber, controlNumber);
     }
 
-    public static String parseGenderToString(Enum gender) {
+    public static String parseGenderToString(Gender gender) {
         if (gender.equals(FEMALE)) {
             return "F";
         } else {
@@ -368,4 +399,3 @@ public class AppConstant {
         return String.format("%d %s, %d", day, AppConstant.monthToString(month), year);
     }
 }
-

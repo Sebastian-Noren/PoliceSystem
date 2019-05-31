@@ -6,7 +6,6 @@ import pust.model.entity.*;
 import pust.model.entity.entity_builder.*;
 import pust.model.enumerations.*;
 import pust.model.utility.AppConstant;
-import pust.model.utility.database_connection.DBCPDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -69,19 +68,16 @@ public class SelectPerson {
      * The constructor is used to set the variable ssn
      *
      * @param ssn needs a 12 digit String in the format XXXXXXXXXXXX
-     *
-     * //FIXME Add crimeRecord functionality
      */
+
+    //FIXME Add crimeRecord functionality
 
     public SelectPerson(String ssn) {
         this.ssn = ssn;
         foundPerson = false;
         foundEmployee = false;
         foundSuspect = false;
-        loadPersonData();
-        loadEmployeeData();
-        loadSuspectData();
-        loadAddressData();
+        loadData();
     }
 
     /**
@@ -128,8 +124,15 @@ public class SelectPerson {
         return person;
     }
 
+    private void loadData() {
+        loadPersonData();
+        loadEmployeeData();
+        loadSuspectData();
+        loadAddressData();
+    }
+
     private void loadPersonData() {
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             connection.setAutoCommit(false);
 
             //Get the data for a person object
@@ -157,9 +160,8 @@ public class SelectPerson {
     }
 
     private void loadEmployeeData() {
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             connection.setAutoCommit(false);
-
             //Get the data for an employee object
             PreparedStatement employeeData = connection.prepareStatement(sqlEmployee());
             employeeData.setString(1, ssn);
@@ -182,7 +184,7 @@ public class SelectPerson {
     }
 
     private void loadSuspectData() {
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             connection.setAutoCommit(false);
 
             //Get the data for a suspect object
@@ -223,7 +225,7 @@ public class SelectPerson {
     }
 
     private void loadAddressData() {
-        try (Connection connection = DBCPDataSource.getConnection()) {
+        try (Connection connection = AppConstant.dataSource.getConnection()) {
             if (foundPerson) {
                 connection.setAutoCommit(false);
 
@@ -471,42 +473,3 @@ public class SelectPerson {
                 .build();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

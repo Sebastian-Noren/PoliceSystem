@@ -10,15 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" stylesheets="@../basicStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
+
+
    <children>
 
 
       <Button fx:id="backBtn" layoutX="14.0" layoutY="526.0" mnemonicParsing="false" onAction="#back" prefHeight="19.0" prefWidth="45.0" text="Back" />
       <Button fx:id="nextBtn" layoutX="726.0" layoutY="526.0" mnemonicParsing="false" onAction="#next" text="Next" />
-      <Label layoutX="189.0" layoutY="14.0" prefHeight="25.0" prefWidth="428.0" text="APPLICATION FOR A SWEDISH PASSPORT">
+      <Label layoutX="231.0" layoutY="10.0" prefHeight="40.0" prefWidth="320.0" text="APPLICATION FOR A SWEDISH PASSPORT">
          <font>
-            <Font size="22.0" />
+            <Font size="17.0" />
          </font>
       </Label>
       <ImageView fx:id="iconImage" fitHeight="40.0" fitWidth="47.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
@@ -57,7 +60,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <HBox prefHeight="35.0" prefWidth="341.0" spacing="5.0">
+            <HBox prefHeight="35.0" prefWidth="350.0" spacing="5.0">
                <children>
                   <TextField fx:id="dateOfBirth" promptText="Date of birth" />
                   <TextField fx:id="sex" prefHeight="30.0" prefWidth="207.0" promptText="Sex Male/Female" />
@@ -90,7 +93,7 @@
                   </HBox>
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="308.0" text="5. Nationality                         6. Authority">
+            <Label prefHeight="19.0" prefWidth="308.0" text="5. Nationality                     6. Authority">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -104,7 +107,7 @@
                   <TextField fx:id="authority" promptText="Authority" />
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="310.0" text="7. Type                                             8. Code        ">
+            <Label prefHeight="19.0" prefWidth="310.0" text="7. Type                                8. Code        ">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -118,7 +121,7 @@
                   <TextField fx:id="code" promptText="Code" />
                </children>
             </HBox>
-            <Label prefHeight="19.0" prefWidth="308.0" text="9. Date of issue                                10. Date of Expiry">
+            <Label prefHeight="19.0" prefWidth="370.0" text="9. Date of issue                  10. Date of Expiry">
       
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -150,7 +153,7 @@
             <AnchorPane prefHeight="329.0" prefWidth="279.0">
                <children>
                   <ImageView fx:id="imageView" fitHeight="240.0" fitWidth="320.0" layoutX="7.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox layoutX="108.0" layoutY="282.0" prefHeight="35.0" prefWidth="111.0" spacing="5.0">
+                  <HBox layoutX="117.0" layoutY="282.0" prefHeight="35.0" prefWidth="111.0" spacing="5.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -159,7 +162,7 @@
                         <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
                      </children>
                   </HBox>
-                  <TextField fx:id="videoStatus" layoutX="88.0" layoutY="2.0" prefHeight="25.0" prefWidth="168.0" />
+                  <TextField fx:id="videoStatus" layoutX="80.0" layoutY="8.0" prefHeight="30.0" prefWidth="168.0" />
                </children>
             </AnchorPane>
          </children>

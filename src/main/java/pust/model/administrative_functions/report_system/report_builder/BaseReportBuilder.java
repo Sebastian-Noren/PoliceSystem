@@ -12,7 +12,7 @@ public abstract class BaseReportBuilder<T extends BaseReport> {
     protected String ref;
     protected LocalDate currentDate;
     protected Police administrativeOfficer;
-    protected LocalDateTime timeAndDateOfEvent;
+    protected LocalDate dateOfEvent;
     protected Address placeOfEvent;
     protected Person notifier;
     protected String descriptionOfEvent;
@@ -32,8 +32,8 @@ public abstract class BaseReportBuilder<T extends BaseReport> {
         return this;
     }
 
-    public BaseReportBuilder wasTimeAndDateOfEvent(LocalDateTime timeAndDateOfEvent) {
-        this.timeAndDateOfEvent = timeAndDateOfEvent;
+    public BaseReportBuilder wasTimeAndDateOfEvent(LocalDate timeAndDateOfEvent) {
+        this.dateOfEvent = timeAndDateOfEvent;
         return this;
     }
 

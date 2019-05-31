@@ -15,7 +15,7 @@ public abstract class BaseReport {
     private String ref;
     private LocalDate currentDate;
     private Police administrativeOfficer;
-    private LocalDateTime timeAndDateOfEvent;
+    private LocalDate dateOfEvent;
     private Address placeOfEvent;
     private Person notifier;
     private String descriptionOfEvent;
@@ -24,7 +24,7 @@ public abstract class BaseReport {
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
-            LocalDateTime timeAndDateOfEvent,
+            LocalDate dateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent
@@ -32,7 +32,7 @@ public abstract class BaseReport {
         this.ref = ref;
         this.currentDate = currentDate;
         this.administrativeOfficer = administrativeOfficer;
-        this.timeAndDateOfEvent = timeAndDateOfEvent;
+        this.dateOfEvent = dateOfEvent;
         this.placeOfEvent = placeOfEvent;
         this.notifier = notifier;
         this.descriptionOfEvent = descriptionOfEvent;
@@ -50,8 +50,8 @@ public abstract class BaseReport {
         return administrativeOfficer;
     }
 
-    public LocalDateTime getTimeAndDateOfEvent() {
-        return timeAndDateOfEvent;
+    public LocalDate getDateOfEvent() {
+        return dateOfEvent;
     }
 
     public Address getPlaceOfEvent() {

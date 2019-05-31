@@ -2,9 +2,13 @@ package pust.model.database_functionality;
 
 import org.junit.Test;
 import pust.model.enumerations.PersonType;
+
+import pust.model.utility.random_generator.person.RandomPerson;
+
+
 import pust.model.utility.LinuxRemoteConnection;
-import pust.model.utility.random_person_generator.RandomPerson;
 import static org.junit.Assert.*;
+
 /*
  * This class tests the functionality of the InsertPerson class. The purpose
  * is to pass a valid Person object to the constructor of InsertPerson which in turn
