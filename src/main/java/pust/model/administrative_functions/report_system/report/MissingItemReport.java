@@ -27,6 +27,7 @@ public class MissingItemReport extends BaseReport {
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
+            String manufacturer,
             String areaOfUse,
             String model,
             String productionNumber,
@@ -45,6 +46,7 @@ public class MissingItemReport extends BaseReport {
                 notifier,
                 descriptionOfEvent
         );
+        this.manufacturer = manufacturer;
         this.areaOfUse = areaOfUse;
         this.model = model;
         this.productionNumber = productionNumber;

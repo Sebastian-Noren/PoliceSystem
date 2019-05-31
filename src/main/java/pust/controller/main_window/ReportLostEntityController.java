@@ -125,7 +125,7 @@ public class ReportLostEntityController implements Initializable {
 
     public void submitBtnPressed() {
         if (isEmpty()) {
-            ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport(), "files/pdf/horse.pdf");
+            ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport());
             AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
         }
     }
@@ -156,9 +156,15 @@ public class ReportLostEntityController implements Initializable {
         notifierStreetField.setText(notifierStreet);
         notifierZIPField.setText(String.valueOf(notifierZip));
         notifierGenderBox.setValue(Gender.valueOf(AppConstant.person.getGender().toString()));
+        notifierCountryField.setText(AppConstant.person.getAddress().getCountry());
     }
 
     private MissingItemReport generateMissingItemReport() {
+        /*
+         * The names and values in some of the text fields are not represented
+         * very well anymore by the variables contained within the
+         * MissingItemReport object. This should be changed //FIXME
+         */
         // report
         String characteristics = characteristicsArea.getText();
         String area = areaArea.getText();
