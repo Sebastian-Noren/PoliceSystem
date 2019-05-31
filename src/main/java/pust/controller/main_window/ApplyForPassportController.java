@@ -105,6 +105,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
             webcam.setViewSize(new Dimension((int) imageView.getFitWidth(), (int) imageView.getFitHeight()));
             webcam.open();
 
+
+
             VideoCapture videoCapture = new VideoCapture();
             videoCapture.start();
 
@@ -151,7 +153,9 @@ public class ApplyForPassportController extends Thread implements Initializable 
             Image myCaptured = SwingFXUtils.toFXImage(image, null);
             upploadImage[0] = myCaptured;
             detectMotion.t.stop();
+
             webcam.close();
+
         }
 
     }
@@ -298,6 +302,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
     }
 
     public void automaticDateOfBirth() {
+
         dateOfBirth.setText(AppConstant.dateOfBirth(person.getPersonalNumber().getPersonalNumber()));
 
 

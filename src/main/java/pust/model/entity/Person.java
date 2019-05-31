@@ -3,6 +3,7 @@ package pust.model.entity;
 import pust.model.administrative_functions.application_functions.Identification;
 import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.record.Record;
+import pust.model.enumerations.Gender;
 
 public abstract class Person {
 
@@ -14,7 +15,7 @@ public abstract class Person {
     private int height;
     private Identification identification;
     private String phoneNumber;
-    private Enum gender;
+    private Gender gender;
     private boolean isWanted;
     private boolean isMissing;
     private boolean inCustody;
@@ -29,7 +30,7 @@ public abstract class Person {
             int height,
             Identification identification,
             String phoneNumber,
-            Enum gender,
+            Gender gender,
             boolean isWanted,
             boolean isMissing,
             boolean inCustody,
@@ -87,7 +88,7 @@ public abstract class Person {
         this.personalNumber = personalNumber;
     }
 
-    public Enum getGender() {
+    public Gender getGender() {
         return gender;
     }
 

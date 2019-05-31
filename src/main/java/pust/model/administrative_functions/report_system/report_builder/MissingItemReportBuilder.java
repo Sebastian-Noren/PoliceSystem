@@ -1,5 +1,6 @@
 package pust.model.administrative_functions.report_system.report_builder;
 
+import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.report.MissingItemReport;
 
 public class MissingItemReportBuilder extends BaseReportBuilder<MissingItemReport> {
@@ -62,6 +63,23 @@ public class MissingItemReportBuilder extends BaseReportBuilder<MissingItemRepor
 
     @Override
     public MissingItemReport build() {
-        return null;
+        return new MissingItemReport(
+                super.ref,
+                super.currentDate,
+                super.administrativeOfficer,
+                super.dateOfEvent,
+                super.placeOfEvent,
+                super.notifier,
+                super.descriptionOfEvent,
+                manufacturer,
+                areaOfUse,
+                model,
+                productionNumber,
+                marking,
+                material,
+                color,
+                fair,
+                specificCharacteristics
+        );
     }
 }

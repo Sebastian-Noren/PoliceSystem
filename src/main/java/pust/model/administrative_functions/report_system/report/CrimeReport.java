@@ -19,7 +19,7 @@ public class CrimeReport extends BaseReport {
             String ref,
             LocalDate currentDate,
             Police administrativeOfficer,
-            LocalDateTime timeAndDateOfEvent,
+            LocalDate dateOfEvent,
             Address placeOfEvent,
             Person notifier,
             String descriptionOfEvent,
@@ -32,7 +32,7 @@ public class CrimeReport extends BaseReport {
                 ref,
                 currentDate,
                 administrativeOfficer,
-                timeAndDateOfEvent,
+                dateOfEvent,
                 placeOfEvent,
                 notifier,
                 descriptionOfEvent

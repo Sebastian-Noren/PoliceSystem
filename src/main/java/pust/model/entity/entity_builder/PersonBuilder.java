@@ -18,7 +18,7 @@ public abstract class PersonBuilder <T extends Person>{
     protected int height;
     protected Identification identification;
     protected String phoneNumber;
-    protected Enum gender;
+    protected Gender gender;
     protected boolean isWanted;
     protected boolean isMissing;
     protected boolean inCustody;

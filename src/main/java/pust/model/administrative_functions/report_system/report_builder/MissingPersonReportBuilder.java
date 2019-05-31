@@ -18,7 +18,7 @@ public class MissingPersonReportBuilder extends BaseReportBuilder<MissingPersonR
                 super.ref,
                 super.currentDate,
                 super.administrativeOfficer,
-                super.timeAndDateOfEvent,
+                super.dateOfEvent,
                 super.placeOfEvent,
                 super.notifier,
                 super.descriptionOfEvent,
