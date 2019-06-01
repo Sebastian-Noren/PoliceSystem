@@ -106,7 +106,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
             webcam.open();
 
 
-
             VideoCapture videoCapture = new VideoCapture();
             videoCapture.start();
 
@@ -370,7 +369,6 @@ public class ApplyForPassportController extends Thread implements Initializable 
 
     class VideoCapture extends Thread {
 
-
         @Override
         public void run() {
             while (upploadImage[0] == null) {
@@ -379,12 +377,8 @@ public class ApplyForPassportController extends Thread implements Initializable 
                     sleep(30);
 
                 } catch (InterruptedException e) {
-
                 }
-
             }
-
-
         }
     }
 

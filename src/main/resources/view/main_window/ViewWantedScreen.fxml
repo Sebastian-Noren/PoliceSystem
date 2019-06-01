@@ -23,7 +23,7 @@
     <left>
         <VBox prefHeight="680.0" prefWidth="198.0" BorderPane.alignment="CENTER">
             <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" text="List of Suspect">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" text="List of Suspects">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

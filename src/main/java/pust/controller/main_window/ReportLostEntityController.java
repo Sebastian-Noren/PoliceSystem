@@ -3,6 +3,8 @@ package pust.controller.main_window;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import pust.model.administrative_functions.ItemReportReceipt;
 import pust.model.administrative_functions.application_functions.Identification;
 import pust.model.administrative_functions.report_system.record.Record;
@@ -17,10 +19,15 @@ import pust.model.enumerations.Color;
 import pust.model.enumerations.Gender;
 import pust.model.enumerations.Title;
 import pust.model.utility.AppConstant;
+import pust.model.utility.SendMail;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -124,9 +131,10 @@ public class ReportLostEntityController implements Initializable {
     }
 
     public void submitBtnPressed() {
-        if (isEmpty()) {
+        if (checkInput()) {
             ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport());
             AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
+            mailReport();
         }
     }
 
@@ -139,24 +147,25 @@ public class ReportLostEntityController implements Initializable {
             employee = (Employee) person;
         }
         try {
-            policeFirstNameField.setText(officerFirstName);
+            policeFirstNameField.setText(person.getFirstName());
             policeLastNameField.setText(person.getSurname());
             policeIDField.setText(String.valueOf(employee.getId()));
+            policeRankField.setValue(Title.valueOf(employee.getTitle().toString()));
         } catch (NullPointerException ex) {
             AppConstant.alertBoxInformation("Alert", "Enter ID");
         }
     }
 
     private void fillNotifier() {
-        notifierFirstNameField.setText(notifierFirstName);
-        notifierLastNameField.setText(notifierLastName);
-        notifierCityField.setText(notifierCity);
-        notifierPhoneField.setText(notifierPhone);
-        notifierSSNField.setText(AppConstant.person.getPersonalNumber().getPersonalNumber());
-        notifierStreetField.setText(notifierStreet);
-        notifierZIPField.setText(String.valueOf(notifierZip));
-        notifierGenderBox.setValue(Gender.valueOf(AppConstant.person.getGender().toString()));
+        notifierFirstNameField.setText(AppConstant.person.getFirstName());
+        notifierLastNameField.setText(AppConstant.person.getSurname());
+        notifierPhoneField.setText(AppConstant.person.getPhoneNumber());
+        notifierSSNField.setText(String.valueOf(AppConstant.person.getPersonalNumber().getPersonalNumber()));
+        notifierStreetField.setText(AppConstant.person.getAddress().getStreet());
+        notifierZIPField.setText(String.valueOf(AppConstant.person.getAddress().getZipCode()));
+        notifierCityField.setText(AppConstant.person.getAddress().getCity());
         notifierCountryField.setText(AppConstant.person.getAddress().getCountry());
+        notifierGenderBox.setValue(Gender.valueOf(AppConstant.person.getGender().toString()));
     }
 
     private MissingItemReport generateMissingItemReport() {
@@ -176,14 +185,8 @@ public class ReportLostEntityController implements Initializable {
         LocalDate currentDate = reportDatePick.getValue();
         LocalDate eventDate = missingDatePick.getValue();
         Enum color = itemColorBox.getValue();
-        Title officerTitle = policeRankField.getValue();
         String eventStreet = eventStreetField.getText();
-        int eventZip = 0;
-        if (AppConstant.isInteger(eventZipField.getText())) {
-            eventZip = Integer.parseInt(eventZipField.getText());
-        } else {
-            AppConstant.alertBoxWarning("Wrong format", "Zip code can only contain numbers");
-        }
+        int eventZip = Integer.parseInt(eventZipField.getText());
         String eventCity = eventCityField.getText();
         Address eventAddress = new Address(eventStreet, eventZip, eventCity, country);
         Notifier notifier = createNotifier();
@@ -204,6 +207,16 @@ public class ReportLostEntityController implements Initializable {
                 .theNotifier(notifier)
                 .hasAdministrativeOfficer(police)
                 .build();
+    }
+
+    private boolean checkInput() {
+        if (AppConstant.isInteger(eventZipField.getText())) {
+            return true;
+        } else {
+            AppConstant.alertBoxWarning("Wrong format", "The zip code may only contain digits");
+            eventZipField.requestFocus();
+            return false;
+        }
     }
 
     private boolean isEmpty() {
@@ -239,6 +252,50 @@ public class ReportLostEntityController implements Initializable {
         textFields.add(policeIDField);
         textFields.add(policeFirstNameField);
         textFields.add(policeLastNameField);
+    }
+
+    private void mailReport() {
+        SendMail sendmail = new SendMail();
+        TextInputDialog dialog = new TextInputDialog();
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/image/icon.png").toString()));
+        dialog.getDialogPane().getStylesheets().add(getClass().getResource("/view/basicStyleSheet.css").toExternalForm());
+        dialog.setTitle("Send Report");
+        dialog.setHeaderText("Enter the e-mail to which \nyou would like to send your report.");
+        dialog.setContentText("E-mail:");
+        Optional<String> result = dialog.showAndWait();
+        String messageText = (", Here is the police report you filed concerning your lost item, ");
+
+        try {
+            if (result.isPresent()) {
+                String subject = "PUST Password Reset";
+                String emailResult = result.get().trim();
+
+                if (validEmail(emailResult)) {
+                    String message = "Hello " + emailResult + messageText;
+                    String attachment = this.getClass().getResource("/pdf/" + generateMissingItemReport().getRef() + ".png").getPath();
+
+                    sendmail.generateAndSendEmail(emailResult, subject, message, attachment);
+
+                    AppConstant.alertBoxInformation("E-mail sent", "Check your inbox, we have sent you a new password");
+                } else {
+                    AppConstant.alertBoxInformation("Warning", "You did not enter a valid e-mail address");
+                }
+            }
+        } catch (RuntimeException | MessagingException ex) {
+            AppConstant.alertBoxWarning("Warning", "Something went horribly wrong");
+        }
+    }
+
+    private boolean validEmail(String email) {
+        boolean valid = true;
+        try {
+            InternetAddress emailAddress = new InternetAddress(email);
+            emailAddress.validate();
+        } catch (AddressException ex) {
+            valid = false;
+        }
+        return valid;
     }
 
     private Notifier createNotifier() {
@@ -279,7 +336,7 @@ public class ReportLostEntityController implements Initializable {
                 .isWanted(officerIsWanted)
                 .isMissing(officerIsMissing)
                 .inCustody(officerInCustody)
-                .isSuspect(notifierSuspect)
+                .isSuspect(officerIsSuspect)
                 .build();
     }
 }
