@@ -48,6 +48,7 @@ public class ApplyForPassportController extends Thread implements Initializable 
     private String[] birthPlace = new String[10];
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SecureRandom secureRandom = new SecureRandom();

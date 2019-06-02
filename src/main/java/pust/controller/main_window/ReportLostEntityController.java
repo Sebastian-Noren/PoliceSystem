@@ -131,11 +131,19 @@ public class ReportLostEntityController implements Initializable {
     }
 
     public void submitBtnPressed() {
-        if (checkInput()) {
-            ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport());
+
+        if (checkInput() && isEmpty()) {
+            Runnable runnable = () -> {
+                ItemReportReceipt itemReceipt = new ItemReportReceipt(generateMissingItemReport());
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
             AppConstant.alertBoxInformation("Report Submitted", "The report has been submitted.");
-            mailReport();
         }
+    }
+
+    public void sendBtnPressed() {
+        mailReport();
     }
 
     private void setPoliceInfo() {
@@ -210,21 +218,38 @@ public class ReportLostEntityController implements Initializable {
     }
 
     private boolean checkInput() {
-        if (AppConstant.isInteger(eventZipField.getText())) {
-            return true;
-        } else {
-            AppConstant.alertBoxWarning("Wrong format", "The zip code may only contain digits");
-            eventZipField.requestFocus();
+
+        try {
+            if (!AppConstant.isInteger(eventZipField.getText())) {
+                AppConstant.alertBoxWarning("Wrong format", "The zip code may only contain digits");
+                eventZipField.requestFocus();
+                return false;
+            } else if (!AppConstant.isInteger(valueField.getText())) {
+                AppConstant.alertBoxWarning("Wrong format", "The value must be numerical");
+                valueField.requestFocus();
+                return false;
+            } else if (LocalDate.now().isBefore(reportDatePick.getValue()) || LocalDate.now().isBefore(missingDatePick.getValue())) {
+                AppConstant.alertBoxWarning("Wrong date", "You have not entered a correct date");
+                reportDatePick.requestFocus();
+                return false;
+            } else {
+                return true;
+            }
+        } catch (NullPointerException ex) {
+            AppConstant.alertBoxWarning("No date", "Enter dates");
+            missingDatePick.requestFocus();
             return false;
         }
     }
 
+
     private boolean isEmpty() {
         boolean hasData = true;
         for (int i = 0; i < textFields.size(); i++) {
-            if (textFields.get(i) == null) {
+            if (textFields.get(i).getText().isEmpty()) {
                 AppConstant.alertBoxWarning("Empty", "Enter "
                         + textFields.get(i).getPromptText().toLowerCase());
+                textFields.get(i).requestFocus();
                 hasData = false;
             }
         }
@@ -268,22 +293,25 @@ public class ReportLostEntityController implements Initializable {
 
         try {
             if (result.isPresent()) {
-                String subject = "PUST Password Reset";
+                String subject = "Lost Item Report";
                 String emailResult = result.get().trim();
 
                 if (validEmail(emailResult)) {
                     String message = "Hello " + emailResult + messageText;
-                    String attachment = this.getClass().getResource("/pdf/" + generateMissingItemReport().getRef() + ".png").getPath();
+                    String attachment = this.getClass().getResource("/files/pdf/972429.pdf").getPath();
 
                     sendmail.generateAndSendEmail(emailResult, subject, message, attachment);
 
-                    AppConstant.alertBoxInformation("E-mail sent", "Check your inbox, we have sent you a new password");
+                    AppConstant.alertBoxInformation("E-mail sent", "The report has been sent to the specified address");
                 } else {
                     AppConstant.alertBoxInformation("Warning", "You did not enter a valid e-mail address");
                 }
             }
-        } catch (RuntimeException | MessagingException ex) {
+        } catch (MessagingException ex) {
             AppConstant.alertBoxWarning("Warning", "Something went horribly wrong");
+            ex.printStackTrace();
+        } catch (NullPointerException ex) {
+            AppConstant.alertBoxWarning("Warning", "Report not found");
         }
     }
 
