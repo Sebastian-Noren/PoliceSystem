@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" stylesheets="@../basicStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
+<AnchorPane fx:id="anchorPane" minHeight="565.0" minWidth="781.0" prefHeight="565.0" prefWidth="781.0" stylesheets="@../passportStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pust.controller.main_window.ApplyForPassportController">
 
 
    <children>
@@ -25,7 +24,7 @@
          </font>
       </Label>
       <ImageView fx:id="iconImage" fitHeight="40.0" fitWidth="47.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="uppload" layoutX="301.0" layoutY="526.0" mnemonicParsing="false" onAction="#upploadImage" text="uppload Image from computer" />
+      <Button fx:id="uppload" layoutX="301.0" layoutY="526.0" mnemonicParsing="false" onAction="#upploadImage" text="upload image from computer" />
       <VBox layoutX="21.0" layoutY="52.0" prefHeight="472.0" prefWidth="408.0">
          <children>
             <Label text="1. Name">
@@ -162,7 +161,7 @@
                         <Button fx:id="capture" mnemonicParsing="false" onAction="#captureImage" text="capture" />
                      </children>
                   </HBox>
-                  <TextField fx:id="videoStatus" layoutX="80.0" layoutY="8.0" prefHeight="30.0" prefWidth="168.0" />
+                  <TextField fx:id="videoStatus" layoutX="80.0" layoutY="8.0" prefHeight="30.0" prefWidth="168.0" stylesheets="@../passportStyleSheet.css" />
                </children>
             </AnchorPane>
          </children>

@@ -16,6 +16,7 @@ import pust.model.administrative_functions.report_system.report.CrimeReport;
 import pust.model.administrative_functions.report_system.report.MissingItemReport;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -290,7 +291,7 @@ public class ItemReportReceipt {
         informerTable.addCell(c81);
 
         Cell c82 = new Cell();
-        c82.add("christoffer@torsjogard.se");
+        c82.add("sebastian@horseenthusiasts.se");
         c82.setBorder(Border.NO_BORDER);
         informerTable.addCell(c82);
         document.add(informerTable);
@@ -322,7 +323,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c21);
 
         Cell c22 = new Cell();
-        c22.add(missingItemReport.getMarking());
+        c22.add(missingItemReport.getModel());
         c22.setBorder(Border.NO_BORDER);
         objectTable.addCell(c22);
 
@@ -332,7 +333,7 @@ public class ItemReportReceipt {
         objectTable.addCell(c31);
 
         Cell c32 = new Cell();
-        c32.add(missingItemReport.getModel());
+        c32.add(missingItemReport.getMarking());
         c32.setBorder(Border.NO_BORDER);
         objectTable.addCell(c32);
 
@@ -343,6 +344,18 @@ public class ItemReportReceipt {
 
         Cell c42 = new Cell();
         c42.add(missingItemReport.getProductionNumber());
+        c42.setBorder(Border.NO_BORDER);
+        objectTable.addCell(c42);
+        document.add(objectTable);
+
+        Cell c51 = new Cell();
+        c42.add("Color");
+        c42.setBorder(Border.NO_BORDER);
+        objectTable.addCell(c42);
+        document.add(objectTable);
+
+        Cell c52 = new Cell();
+        c42.add(missingItemReport.getColor().toString());
         c42.setBorder(Border.NO_BORDER);
         objectTable.addCell(c42);
         document.add(objectTable);
@@ -393,7 +406,7 @@ public class ItemReportReceipt {
 
     private void descriptionOfEvent(Document document) {
         document.add(addLine());
-        Paragraph description = new Paragraph("Description of event");
+        Paragraph description = new Paragraph("Description of item and event");
         description.setBold();
         description.setMarginTop(-5F);
         description.setMarginBottom(-18F);
@@ -412,38 +425,8 @@ public class ItemReportReceipt {
         c22.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c22);
 
-        Cell c31 = new Cell();
-        c31.add("From");
-        c31.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c31);
-
-        Cell c32 = new Cell();
-        c32.add("");
-        c32.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c32);
-
-        Cell c41 = new Cell();
-        c41.add("To");
-        c41.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c41);
-
-        Cell c42 = new Cell();
-        c42.add("");
-        c42.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c42);
-
-        Cell c51 = new Cell();
-        c51.add("Likely event");
-        c51.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c51);
-
-        Cell c52 = new Cell();
-        c52.add("Lost the item");
-        c52.setBorder(Border.NO_BORDER);
-        descriptionTable.addCell(c52);
-
         Cell c61 = new Cell();
-        c61.add("Description");
+        c61.add("Item characteristics");
         c61.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c61);
 
@@ -453,12 +436,12 @@ public class ItemReportReceipt {
         descriptionTable.addCell(c62);
 
         Cell c71 = new Cell();
-        c71.add("Suspect");
+        c71.add("Description of event");
         c71.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c71);
 
         Cell c72 = new Cell();
-        c72.add("None");
+        c72.add(missingItemReport.getAreaOfUse());
         c72.setBorder(Border.NO_BORDER);
         descriptionTable.addCell(c72);
 
